@@ -1,0 +1,47 @@
+.sign-lists{}
+.sign-lists .sign-item{margin: 0 20upx;margin-top: 20upx;background: #fff;border-radius: 15upx;padding: 20upx;position: relative;}
+.sign-lists .sign-item .status{position: absolute;top: 20upx;right: 20upx;}
+.sign-lists .sign-item .name{font-weight: 700;padding-right: 120upx;}
+.sign-lists .sign-item .task{color: #a7ced9;font-size: 28upx;}
+.sign-lists .sign-item .time{color: #888;font-size: 28upx;}
+
+.detail{}
+.detail .foot{height: 100upx;line-height:100upx;position: fixed;bottom: 0;left: 0;right: 0;background: #fff;display: flex;border-top: #eee 1px solid;text-align: center;}
+.detail .foot .sign{width: 70%;color: #333;}
+.detail .foot .sign .iconfont{display: inline;font-size: 36upx;}
+.detail .foot .next{color: #fff;width: 30%;}
+.detail .sign-pic{position: relative;background: #fff;padding: 30upx;padding-bottom: 320upx;}
+.detail .sign-pic .jia-path{position: absolute;bottom: 220upx;left: 30upx;display: inline-block;font-size: 28upx;line-height: 50upx;height:50upx;}
+.detail .sign-pic .jia-date{position: absolute;bottom: 160upx;left: 30upx;display: inline-block;font-size: 28upx;line-height: 50upx;height:50upx;}
+.detail .sign-pic .sign-path{position: absolute;bottom: 220upx;left: 50%;display: inline-block;font-size: 28upx;line-height: 50upx;height:50upx;}
+.detail .sign-pic .sign-path .sign-path-img{height: 50upx;width: 125upx;}
+.detail .sign-pic .sign-date{position: absolute;bottom: 160upx;left: 50%;display: inline-block;font-size: 28upx;line-height: 50upx;height:50upx;}
+.sign-panel{position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 99;background: rgba(0,0,0,0.6);}
+.sign-panel-con{height: 440upx;background:#fff;position: absolute;top: 50%;left: 20upx;right: 20upx;margin-top: -200upx;padding: 20upx 0;border-radius: 20upx;}
+
+.tui-modal-custom {
+	text-align: center
+}
+.tui-tips-img {
+	width: 100rpx;
+	height: 100rpx;
+	margin-top: 20rpx;
+}
+
+.tui-modal-custom-text {
+	font-size: 30rpx;
+	color: #333;
+	padding: 30rpx 0
+}
+
+.tui-prompt-title {
+	padding-bottom: 20rpx;
+	font-size: 34rpx;
+}
+
+.tui-input {
+	margin: 30rpx 40rpx;
+	border-bottom: 1rpx solid #E6E6E6;
+	padding-bottom: 20rpx;
+	font-size: 32rpx;
+}

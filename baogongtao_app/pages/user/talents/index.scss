@@ -1,0 +1,29 @@
+.title{background-color: $color-primary;color: $color-white;padding: 16rpx 30rpx 30rpx;font-size: 36rpx;line-height: 1;}
+
+.talents-item{
+	.info{
+		.labG{
+			display: flex;align-items: center;
+			.lab{
+				line-height: 1;font-size: 30rpx;color: #666;position: relative;padding-right: 16rpx;margin: 16rpx 16rpx 0 0;
+				&::before{content: '';display: block;position: absolute;width: 1px;height: 80%;right: 0;top: 5%;background-color: #bbb;}
+				&:last-child::before{display: none;}
+			}
+		}
+		.right{
+			.head{width: 100rpx;height: 100rpx;display: flex;border-radius: 50%;}
+		}
+	}
+	.con{
+		.dot{width: 8rpx;height: 8rpx;border-radius: 50%;background-color: #666;margin: 0 10rpx;}
+	}
+}
+
+.edit{
+	::v-deep .textarea{
+		display: block;
+		.dx-text{
+			margin-top: 20rpx;font-size: 30rpx;
+		}
+	}
+}

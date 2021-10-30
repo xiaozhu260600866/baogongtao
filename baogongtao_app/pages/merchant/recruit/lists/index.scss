@@ -1,0 +1,9 @@
+// 顶部
+.top-custom{
+	padding: 0 30% 0 0;display: flex;align-items: center;
+	.left{line-height: 30px;padding: 0 10px;}
+	.search-box{display: flex;align-items: center;background-color: $color-white;height: 30px;line-height: 30px;padding: 0 15px;border-radius: 15px;}
+}
+
+.title{background-color: $color-primary;color: $color-white;padding: 16rpx 30rpx 30rpx;font-size: 36rpx;line-height: 1;}
+

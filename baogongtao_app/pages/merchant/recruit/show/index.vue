@@ -1,0 +1,109 @@
+<template>
+	<view>
+		<page ref="page"></page>
+		<view class="bg-f pb60">
+			<view class="banner">
+				<image class="flex w-b100" src="/static/images/news/03.jpg" mode="widthFix"></image>
+			</view>
+			<view class="info plr15">
+				<view class="name fw-bold fs-17 pt20 pb10">{{company.name}}</view>
+				<view class="info-lists">
+					<view class="row cell">
+						<view class="icon dxi-icon dxi-icon-location fs-16"></view>
+						<view class="txt">工作地点：{{company.address}}</view>
+					</view>
+					<view class="row cell">
+						<view class="icon dxi-icon dxi-icon-time fs-14"></view>
+						<view class="txt">发薪日期：{{company.time}}</view>
+					</view>
+					<view class="row">
+						<view class="cell">
+							<view class="icon iconfont icon-merchant"></view>
+							<view class="txt">{{company.type}}</view>
+						</view>
+						<view class="cell">
+							<view class="icon iconfont icon-people"></view>
+							<view class="txt Arial ">{{company.people_num}}人</view>
+						</view>
+					</view>
+				</view>
+				<view class="intro">
+					<view class="intro-item">
+						<view class="title">企业简介</view>
+						<view class="content">{{intro.info}}</view>
+					</view>
+					<view class="intro-item">
+						<view class="title">拿多少钱</view>
+						<view class="content">{{intro.money}}</view>
+					</view>
+					<view class="intro-item">
+						<view class="title">有啥要求</view>
+						<view class="content">{{intro.require}}</view>
+					</view>
+					<view class="intro-item">
+						<view class="title">吃住咋样</view>
+						<view class="content">{{intro.condition}}</view>
+					</view>
+					<view class="intro-item">
+						<view class="title">面试准备</view>
+						<view class="content">{{intro.prepare}}</view>
+					</view>
+					<view class="intro-item">
+						<view class="title">工厂地址</view>
+						<view class="content">{{intro.address}}</view>
+					</view>
+				</view>
+			</view>
+			<view id="show_footer">
+				<view class="right flex1 w-b100 plr15">
+					<view class="r-nav">
+						<view class="r-item r-item-primary">申请报名</view>
+					</view>
+				</view>
+				<view class="left left_w60 plr8">
+					<button class="btn-item" hover-class="none" @click="goto('/pages/index/main',2)">
+						<view class="icon dxi-icon dxi-icon-home4"></view>
+						<view class="txt">附近门店</view>
+					</button>
+					<button class="btn-item" hover-class="none" open-type="share">
+						<view class="icon dxi-icon dxi-icon-share"></view>
+						<view class="txt">分享海报</view>
+					</button>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				company:{
+					name:'江门市东信科技有限公司',
+					address:'江门市蓬江区建设路82号金山大厦之二10楼1001室',
+					time:'企业代发',
+					type:'私营企业',
+					people_num:'5-50'
+				},
+				intro:{
+					info:'公司位于广东中山市火炬高新技术产业开发区内，公司成立于1998年7月2日，1998年12月28日于中山市火炬开发区举行破土典礼，兴建厂房，1999年11月1日顺利完成厂房、写字楼及宿舍的兴建及机器设备的进口与安装，并正式开始量产。本公司是由西萨摩亚富理东公司投资，注册资本1100万美元，总投资1800美元。产品包括桌上型计算机机壳及笔记型电脑前组装（为宏碁计算机公司配套产品），具有精密模具、塑料成型、五金冲压、烤漆及组立等专业制造能力',
+					money:'五金部:20元/小时;涂装、注塑、组装:17元/小时;夜班补贴10元/晚',
+					require:'16-48周岁，男女不限;主要生产笔记本电脑外壳。',
+					condition:'可凭厂牌于厂内超市每日消费25块钱（月底工资扣)。',
+					prepare:'携带本人身份证原件，需要体检，体检费40元，做满7天报销。',
+					address:'江门市蓬江区建设路82号金山大厦之二10楼1001室'
+				}
+			}
+		},
+		onLoad() {
+			
+		},
+		methods: {
+			
+		}
+	}
+</script>
+<style lang="scss">
+@import "index.scss";
+</style>

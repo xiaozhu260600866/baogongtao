@@ -1,0 +1,8 @@
+.edit{
+	::v-deep .textarea{
+		display: block;
+		.dx-text{
+			margin-top: 20rpx;font-size: 30rpx;
+		}
+	}
+}

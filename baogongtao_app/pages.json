@@ -1,0 +1,422 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "包工淘",
+				"enablePullDownRefresh": true
+			}
+		},{
+			"path": "pages/news/lists/index",
+			"style": {
+				"navigationBarTitleText": "动态",
+				"enablePullDownRefresh": true
+			}
+		},{
+			"path": "pages/news/show/index",
+			"style": {
+				"navigationBarTitleText": "动态",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/task/lists/index",
+			"style": {
+				"navigationBarTitleText": "任务",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/task/show/index",
+			"style": {
+				"navigationBarTitleText": "任务详情",
+				"enablePullDownRefresh": true 
+			}
+		},
+		{
+			"path": "pages/task/show/apply",
+			"style": {
+				"navigationBarTitleText": "任务申请"
+			}
+		},
+		{
+			"path": "pages/task/show/apply_success",
+			"style": {
+				"navigationBarTitleText": "任务结果"
+			}
+		},/*
+		{
+			"path": "pages/select/city/index",
+			"style": {
+				"navigationBarTitleText": "城市",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/select/type/index",
+			"style": {
+				"navigationBarTitleText": "任务类型",
+				"enablePullDownRefresh": true
+			}
+		},*/
+		{
+			"path": "pages/user/index/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor": "#55b4f6",
+				"navigationBarTextStyle": "white",
+				"backgroundColorTop": "#55b4f6"
+			}
+		},
+		/*{
+			"path": "pages/user/order/lists/index",
+			"style": {
+				"navigationBarTitleText": "任务",
+				"enablePullDownRefresh": true
+			}
+		},*/
+		{
+			"path": "pages/user/sign/lists",
+			"style": {
+				"navigationBarTitleText": "我的签约",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/sign/show",
+			"style": {
+				"navigationBarTitleText": "签署文件"
+			}
+		},
+		{
+			"path": "pages/user/sign/success",
+			"style": {
+				"navigationBarTitleText": "签约成功"
+			}
+		},
+		{
+			"path": "pages/user/login/index/index",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/login/index/protocol",
+			"style": {
+				"navigationBarTitleText": "用户协议"
+			}
+		},/*
+		{
+			"path": "pages/user/login/register/index",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"enablePullDownRefresh": true
+			}
+		},*/
+		{
+			"path": "pages/user/info/basic/index",
+			"style": {
+				"navigationBarTitleText": "基本资料",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/task/lists",
+			"style": {
+				"navigationBarTitleText": "我的任务",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/task/apply",
+			"style": {
+				"navigationBarTitleText": "我的报名",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/task/show",
+			"style": {
+				"navigationBarTitleText": "任务详情",
+				"enablePullDownRefresh": true
+			}
+		},/*
+		{
+			"path": "pages/user/info/qualification/index",
+			"style": {
+				"navigationBarTitleText": "资质",
+				"enablePullDownRefresh": true
+			}
+		},*/
+		{
+			"path": "pages/user/info/bank_card/lists/index",
+			"style": {
+				"navigationBarTitleText": "银行卡",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/info/bank_card/add/index",
+			"style": {
+				"navigationBarTitleText": "绑定银行卡",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/authenticate/index",
+			"style": {
+				"navigationBarTitleText": "实名认证"
+			}
+		},
+		{
+			"path": "pages/user/authenticate/success",
+			"style": {
+				"navigationBarTitleText": "实名认证"
+			}
+		},
+		{
+			"path": "pages/user/wallet/index",
+			"style": {
+				"navigationBarTitleText": "钱包",
+				"enablePullDownRefresh": true
+			}
+		},
+		/*{
+			"path": "pages/user/hr/setting",
+			"style": {
+				"navigationBarTitleText": "求职信息"
+			}
+		},*/
+		{
+			"path": "pages/company/login/index",
+			"style": {
+				"navigationBarTitleText": "企业登录"
+			}
+		},
+		{
+			"path": "pages/company/index/index",
+			"style": {
+				"navigationBarTitleText": "企业会员"
+			}
+		},
+		/*{
+			"path": "pages/company/transfer/lists",
+			"style": {
+				"navigationBarTitleText": "转账凭证",
+				"enablePullDownRefresh": true
+			}
+		},*/
+		{
+			"path": "pages/company/worker/lists",
+			"style": {
+				"navigationBarTitleText": "我的用工",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/company/worker/transactions",
+			"style": {
+				"navigationBarTitleText": "工资发放记录",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/staff/index/index",
+			"style": {
+				"navigationBarTitleText": "员工中心"
+			}
+		},
+		{
+			"path": "pages/staff/sign/lists",
+			"style": {
+				"navigationBarTitleText": "我的合同",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/staff/sign/show",
+			"style": {
+				"navigationBarTitleText": "合同签署"
+			}
+		},
+		{
+			"path": "pages/staff/sign/success",
+			"style": {
+				"navigationBarTitleText": "签署成功"
+			}
+		},
+		{
+			"path": "pages/info/info",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/merchant/index/index",
+			"style": {
+				"navigationBarTitleText": "商家中心"
+			}
+		},
+		{
+			"path": "pages/merchant/lists/index",
+			"style": {
+				"navigationBarTitleText": "附近的商家"
+			}
+		},
+		{
+			"path": "pages/merchant/show/index",
+			"style": {
+				"navigationBarTitleText": "商家详情"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/lists/index",
+			"style": {
+				"navigationBarTitleText": "优惠券"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/lists/cancel",
+			"style": {
+				"navigationBarTitleText": "优惠核销记录"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/show/index",
+			"style": {
+				"navigationBarTitleText": "优惠券详情"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/created_edit/edit",
+			"style": {
+				"navigationBarTitleText": "优惠券编辑"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/created_edit/lists",
+			"style": {
+				"navigationBarTitleText": "发布优惠券",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/lists/index",
+			"style": {
+				"navigationBarTitleText": "招聘",
+				"enablePullDownRefresh":true,
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/show/index",
+			"style": {
+				"navigationBarTitleText": "招聘信息",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/created_edit/edit",
+			"style": {
+				"navigationBarTitleText": "招聘编辑"
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/created_edit/lists",
+			"style": {
+				"navigationBarTitleText": "发布招聘",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/apply/index",
+			"style": {
+				"navigationBarTitleText": "应聘",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/info/index",
+			"style": {
+				"navigationBarTitleText": "公司资料",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/info/intro",
+			"style": {
+				"navigationBarTitleText": "公司简介",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/coupon/lists/index",
+			"style": {
+				"navigationBarTitleText": "我的优惠券",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/coupon/show/index",
+			"style": {
+				"navigationBarTitleText": "优惠券详情",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/talents/lists",
+			"style": {
+				"navigationBarTitleText": "人才",
+				"enablePullDownRefresh":true,
+				"navigationBarBackgroundColor": "#55b4f6",
+				"navigationBarTextStyle": "white",
+				"backgroundColorTop": "#55b4f6"
+			}
+		},
+		{
+			"path": "pages/user/talents/lists",
+			"style": {
+				"navigationBarTitleText": "应聘记录",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/talents/resume",
+			"style": {
+				"navigationBarTitleText": "我的简介",
+				"enablePullDownRefresh":true
+			}
+		}
+	],
+	"tabBar": {
+		"selectedColor": "#55b4f6",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/images/A1.png",
+				"selectedIconPath": "static/images/A2.png"
+			},{
+				"pagePath": "pages/merchant/coupon/lists/index",
+				"text": "优惠券",
+				"iconPath": "static/images/C1.png",
+				"selectedIconPath": "static/images/C2.png"
+			},{
+				"pagePath": "pages/task/lists/index",
+				"text": "任务",
+				"iconPath": "static/images/B1.png",
+				"selectedIconPath": "static/images/B2.png"
+			},{
+				"pagePath": "pages/user/index/index",
+				"text": "我的",
+				"iconPath": "static/images/D1.png",
+				"selectedIconPath": "static/images/D2.png"
+			}]
+	}, 
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "泡工淘",
+		"navigationBarBackgroundColor": "#55b4f6",
+		"backgroundColor": "#55b4f6"
+	}
+}
