@@ -63,7 +63,7 @@
 				<view class="left left_w60 plr8">
 					<button class="btn-item" hover-class="none" @click="goto('/pages/index/main',2)">
 						<view class="icon dxi-icon dxi-icon-home4"></view>
-						<view class="txt">附近门店</view>
+						<view class="txt">首页</view>
 					</button>
 					<button class="btn-item" hover-class="none" open-type="share">
 						<view class="icon dxi-icon dxi-icon-share"></view>

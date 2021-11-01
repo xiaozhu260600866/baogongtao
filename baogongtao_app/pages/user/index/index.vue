@@ -19,7 +19,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="ugorup-box head-count">
+			<!-- <view class="ugorup-box head-count">
 				<view class="c-item" >
 					<view class="num">100.01<text class="unit">元</text></view>
 					<view class="name">余额</view>
@@ -28,8 +28,8 @@
 					<view class="num">669<text class="unit"></text></view>
 					<view class="name">积分</view>
 				</view>
-			</view>
-			<view class="ugorup-box">
+			</view> -->
+			<!-- <view class="ugorup-box">
 				<view class="black-title">
 					<view class="name">我的订单</view>
 					<view class="all fs-13 fc-6">查看全部
@@ -48,18 +48,15 @@
 					{url:'/pages/order/service/main?historyUrl=del&status=10',type: 1,cover:'https://456.doxinsoft.com//images/wap/order-icon05.png',
 					name:'售后',number:orders10}
 				]" @click="checkAuth" isAuth myclass="bdr12" :num="5" :imgWidth="30" :imgHeight="30" :imgR="0" :nameSize="13" :namePTop="5"></dx-nav-class>
-			</view>
+			</view> -->
 			
 			<view class="ugorup-box">
 				<dx-nav-class :data="[
 					{url:'',type: 1,icon:'dxi-icon dxi-icon-user3',name:'VIP中心'},
 					{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'商家中心'},
-					{url:'',type: 1,icon:'dxi-icon dxi-icon-wallet',name:'我的付款'},
 					{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-					{url:'',type: 1,icon:'dxi-icon dxi-icon-heart',name:'我的收藏'},
 					{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
 					{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
-					{url:'',type: 1,icon:'dxi-icon dxi-icon-location2',name:'收货地址'}
 				]" @click="checkAuth" isAuth myclass="bdr12" :num="4" :iconSize="24" :nameSize="14" :namePTop="10"></dx-nav-class>
 			</view>
 		</view>
