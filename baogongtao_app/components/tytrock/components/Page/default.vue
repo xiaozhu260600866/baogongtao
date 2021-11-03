@@ -19,7 +19,7 @@ import tytToast from "@/components/tytrock/components/Page/toast";
 import pageLoading from "@/components/tytrock/components/Page/loading";
 import tuiLoading from "@/components/ThorUI/loading/loading";
 import tytMessage from "@/components/tytrock/components/message";
-import { sysConfig } from "@/api/base";
+import { sysConfig,wechatUser } from "@/api/base";
 
 import {mapState, mapMutations, mapActions} from 'vuex'
 import {miniOpenid} from "@/api/base";
@@ -88,6 +88,12 @@ export default {
 			if(this.$parent.sysConfig != undefined) this.$parent.sysConfig = res.data.data;
 			this.setSysConfig(res.data.data);
 		})
+		//更新wechat_users
+		if(uni.getStorageSync('wxUser') && uni.getStorageSync('openid')){
+			let wxUser = uni.getStorageSync('wxUser');
+			wxUser.openid = uni.getStorageSync('openid');
+			wechatUser(wxUser);	
+		}
 		
 		if(this.mustOpenid){
 			if(!uni.getStorageSync('openid')){

@@ -23,6 +23,10 @@
 		components:{recruitLists},
 		data() {
 			return {
+				formAction: '/api/company/recruits',
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
 				height: 64, //header高度
 				top: 0, //标题图标距离顶部距离
 				search:'',
@@ -80,9 +84,14 @@
 					this.scrollH = res.windowWidth
 				}
 			});
+			this.ajax();
 		},
 		methods: {
-			
+			ajax() {
+				this.getAjax(this).then(msg => {
+					
+				});
+			}
 		}
 	}
 </script>

@@ -4,16 +4,26 @@
 		<view>
 			<view class="head-info main-bg">
 				<view class="utop">
-					<view class="uinfo">
+					<view class="uinfo" v-if="!userInfo.nickName">
 						<view class="header-img">
-							<image class="img" src="/static/images/logo.png" />
+							<image class="img" src="https://456.doxinsoft.com/images/nouser01.png" />
+						</view>
+						<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="wechatInfoCallBack">
+							<view slot="content">
+								<view class="login-nav pl20 pr15 lh-28 fc-white fs-14 mlr15 bdr14">立即登录<text class="iconfont icon-right fs-10 fc-white pl3"></text></view>
+							</view>
+						</myform>
+					</view>
+					<view class="uinfo" v-else>
+						<view class="header-img">
+							<image class="img" :src="userInfo.avatarUrl" />
 						</view>
 						<view class="pl15 fc-white right info">
 							<view class="fc-white lh-24 fs-15">
 								<view class="group">
-									<view>东信科技-梅</view>
+									<view>{{userInfo.nickName}}</view>
 								</view>
-								<view>电话号码：<text class="Arial">13318639080</text></view>
+								<!-- <view>电话号码：<text class="Arial">13318639080</text></view> -->
 							</view>
 						</view>
 					</view>
@@ -65,21 +75,34 @@
 
 <script>
 	import dxNavClass from "doxinui/components/nav-class/nav-class"
+		import {userinfo} from "@/api/user";
 	export default {
 		components:{dxNavClass},
 		data() {
 			return {
+				ruleform:{},
+				vaildate:{},
 				orders1:'',
 				orders3:'',
 				orders5:'',
 				orders9:'',
-				orders10:''
+				orders10:'',
+				userInfo:{}
 			}
 		},
 		onLoad() {
-			
+			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+				
+				
+			})
+			this.userInfo = uni.getStorageSync("wxUser");
 		},
 		methods: {
+			
+			wechatInfoCallBack(userInfo){
+				this.userInfo = userInfo;
+				return this.linkTo("/pages/user/login/index/index",0);
+			},
 			checkAuth(v){
 				return this.linkTo(v.url,v.type);
 			},

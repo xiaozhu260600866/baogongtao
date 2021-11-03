@@ -138,7 +138,9 @@ export default {
 							}
 							this.setUserInfo(userInfo);
 							this.msgSuccess('登录成功');
-							if(userInfo.data.status!=1) return this.timeoutLinkTo(this,'/pages/user/authenticate/index');
+							//if(userInfo.data.status!=1) return this.timeoutLinkTo(this,'/pages/user/authenticate/index');
+						   //return this.timeoutLinkTo(this,'/pages/user/authenticate/index');
+						   return this.linkTo("/pages/user/index/index",2);
 						}else if(res.data.role == 6){
 							let userInfo = {
 								data: res.data.staff

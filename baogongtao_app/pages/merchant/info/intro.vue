@@ -8,7 +8,7 @@
 			</view>
 			<view class="block-sec edit-write" v-if="type == 'company'">
 				<weui-input v-model="ruleform.remark_company" label="介绍内容" type="textarea" name="remark_company"></weui-input>
-				<weui-input v-model="ruleform.remark_pic_company" label="介绍图片" type="upload" upurl='user' allowUpLoadNum="5" name="remark_pic_company"></weui-input>
+				<weui-input v-model="ruleform.remark_pic_company" label="介绍图片" type="upload" upurl='logo' allowUpLoadNum="5" name="remark_pic_company"></weui-input>
 			</view>
 			<dxftButton type="primary" size="lg" round @click="submit">确认</dxftButton>
 		</view>
@@ -17,11 +17,12 @@
 
 <script>
 	import dxftButton from "doxinui/components/button/footer-button"
+	import {userinfo, action, logout} from "@/api/user";
 	export default {
 		components:{dxftButton},
 		data() {
 			return {
-				formAction: '/shop/user',
+				formAction: '/api/company/store',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
@@ -35,12 +36,13 @@
 		},
 		methods: {
 			submit(){
-				this.vaildForm(this, res => {
-					if(res){
-						this.postAjax("/user/info",this.ruleform).then(msg=>{
-							this.back();
-						});
-					}
+				this.ruleform.token = uni.getStorageSync('token');
+				this.vaildForm(this, res => {	
+					this.postAjax(this.formAction, this.ruleform).then(msg => {
+						if (msg.data.code == 0) {
+							return this.back();
+						}
+					});
 				})
 			},
 			ajax() {
@@ -59,7 +61,11 @@
 			}else{
 				this.setTitle('公司简介');
 			}
-			//this.ajax();
+			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+			   this.ruleform =res.data.company;
+			   this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
+			   this.ruleform.remark_pic_company = this.ruleform.remark_pic_company ? this.ruleform.remark_pic_company.split(",") : [];
+			})
 		},
 		onShareAppMessage() {
 			return this.shareSource(this, '商城');

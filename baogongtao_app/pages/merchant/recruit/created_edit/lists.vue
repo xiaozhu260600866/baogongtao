@@ -15,6 +15,10 @@
 		components:{dxftButton,recruitLists},
 		data() {
 			return {
+				formAction: '/api/company/recruits',
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
 				jobsLists:[{
 					name:'PHP开发工程师',
 					city:'江门',
@@ -35,10 +39,14 @@
 			}
 		},
 		onLoad() {
-			
+			this.ajax();
 		},
 		methods: {
-			
+			ajax() {
+				this.getAjax(this).then(msg => {
+					
+				});
+			}
 		}
 	}
 </script>

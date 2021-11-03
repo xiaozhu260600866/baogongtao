@@ -310,6 +310,14 @@
 			}
 		},
 		{
+			"path": "pages/merchant/login/index",
+			"style": {
+				"navigationBarTitleText": "商家登录",
+				"enablePullDownRefresh":true,
+				"navigationStyle":"custom"
+			}
+		},
+		{
 			"path": "pages/merchant/recruit/show/index",
 			"style": {
 				"navigationBarTitleText": "招聘信息",
@@ -348,6 +356,20 @@
 			"style": {
 				"navigationBarTitleText": "公司简介",
 				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/worker/lists",
+			"style": {
+				"navigationBarTitleText": "我的用工",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/merchant/worker/transactions",
+			"style": {
+				"navigationBarTitleText": "工资发放记录",
+				"enablePullDownRefresh": true
 			}
 		},
 		{

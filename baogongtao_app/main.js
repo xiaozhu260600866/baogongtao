@@ -18,6 +18,13 @@ Vue.use(message);
 Vue.use(date);
 Vue.use(filter);
 Vue.use(vaildate);
+import myform from '@/components/xiaozhu/myform.vue'
+Vue.component(
+	'myform',
+	myform
+);
+let  siteName = 'https://www.baogongtao.com';
+uni.setStorageSync('siteName', siteName);
 // 强叔
 
 Vue.prototype.$store = store
@@ -45,13 +52,16 @@ Vue.component(
 );
 
 
-// 强叔
+
+
+
 import weui_input from 'xiaozhu/uniapp/components/weui_input'
 Vue.component(
 	'weui-input',
 	weui_input
 );
 
+// 强叔
 uni.removeStorageSync('jsdk');
 uni.removeStorageSync('distribution');
 App.mpType = 'app'
