@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view>
-			<couponLists myclass="edit" :data="couponLists" :type="3" edit></couponLists>
+		<view v-if="data.show">
+			<couponLists myclass="edit" :data="data.data.lists.data" :type="3" edit></couponLists>
 			<dxftButton type="primary" size="lg" @click="linkTo('/pages/merchant/coupon/created_edit/edit',1)">发布</dxftButton>
 		</view>
 	</view>
@@ -11,10 +11,15 @@
 <script>
 	import dxftButton from "doxinui/components/button/footer-button"
 	import couponLists from '@/components/couponLists'
+	
 	export default {
 		components:{dxftButton,couponLists},
 		data() {
 			return {
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
+				formAction: '/api/company/coupons',
 				couponLists:[{
 					name:'寳之林古典红木珍藏馆8.8折优惠券',
 					cover:'/static/images/news/02.jpg',
@@ -39,10 +44,14 @@
 			}
 		},
 		onLoad() {
-			
+			this.ajax();
 		},
 		methods: {
-			
+			ajax() {
+				this.getAjax(this).then(msg => {
+					
+				});
+			}
 		}
 	}
 </script>

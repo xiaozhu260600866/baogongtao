@@ -45,20 +45,20 @@
 		<view class="list_item list_item3" v-for="v in data" v-if="type == 3">
 			<view class="list_box" @click="linkTo('/pages/merchant/coupon/show/index',1)">
 				<view class="item_img">
-					<image class="img" :src="v.cover" mode="aspectFill"></image>
+					<image class="img" :src="v.getCover" mode="aspectFill"></image>
 				</view>
 				<view class="item_right">
 					<view class="w-b100 coupon-title fs-16 lh-20 wrap2">{{ v.name }}</view>
 					<view class="w-b100 ir-bottom fc-6 fs-13 lh-20 mt5">
-						<view class="tips">{{v.getCoupon.abstract}}</view>
+					<!-- 	<view class="tips">{{v.getCoupon.abstract}}</view> -->
 						<view class="Arial">{{v.created_at}}</view>
 						<view v-if="v.location">距离<text class="Arial">{{v.location}}</text>千米</view>
 					</view>
 				</view>
 			</view>
 			<view class="navG flex-right pt12" v-if="edit">
-				<dx-button size="small" round myclass="plr25 mr10">删除</dx-button>
-				<dx-button type="primary" round size="small" myclass="plr25" @click="linkTo('/pages/merchant/coupon/created_edit/edit',1)">编辑</dx-button>
+				<dx-button size="small" round myclass="plr25 mr10" @click="del(v)">删除</dx-button>
+				<dx-button type="primary" round size="small" myclass="plr25" @click="linkTo('/pages/merchant/coupon/created_edit/edit?id='+v.id,1)">编辑</dx-button>
 			</view>
 			<view class="status circle" v-if="v.isEx == 0">
 				<!-- <view class="nav fill">免费领取</view> -->
@@ -80,7 +80,14 @@ export default {
 		}
 	},
 	methods: {
-		
+		del(v){
+			this.getConfirm("是否删除？",msg=>{
+				
+				this.postAjax("/api/company/coupon-del",{id:v.id,token:uni.getStorageSync('token')}).then(msg=>{
+					 this.getParent(this).ajax();
+				});
+			})
+		},
 	}
 }
 

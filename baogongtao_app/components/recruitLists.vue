@@ -3,16 +3,16 @@
 		<view class="jobs_item p15 bg-f mb8" v-for="(v,key) in data">
 			<view @click="linkTo('/pages/merchant/recruit/show/index',1)">
 				<view class="flex-between fs-17 fw-bold">
-					<view class="position">{{v.name}}</view>
+					<view class="position">{{v.job_position}}</view>
 					<view class="main-color Arial">{{v.salary}}</view>
 				</view>
 				<view class="info fs-15 flex-middle lh-1 mt8 fc-6" v-if="type == 1">
-					<view class="tag mr10">{{v.company.name}}</view>
-					<view class="tag mr10 Arial">{{v.company.people_num}}人</view>
-					<view class="tag mr10">{{v.company.status}}</view>
+					<view class="tag mr10">{{v.get_company.name}}</view>
+				<!-- 	<view class="tag mr10 Arial">{{v.get_company.people_num}}人</view>
+					<view class="tag mr10">{{v.get_company.status}}</view> -->
 				</view>
 				<view class="condition">
-					<view class="lab" v-for="item in v.condititon">{{item}}</view>
+					<view class="lab" v-for="item in getTag(v)">{{item}}</view>
 				</view>
 				<view class="userInfo mt10 flex-middle fs-14" v-if="type == 1">
 					<image class="head" :src="v.userInfo.headerPic" mode="aspectFill"></image>
@@ -23,8 +23,8 @@
 				</view>
 			</view>
 			<view class="edit-nav" v-if="type == 2">
-				<dx-button myclass="plr30" type="primary" size="medium" round @click="linkTo('/pages/merchant/recruit/created_edit/edit',1)">编辑</dx-button>
-				<dx-button myclass="ml10 plr30" size="medium" round>删除</dx-button>
+				<dx-button myclass="plr30" type="primary" size="medium" round @click="linkTo('/pages/merchant/recruit/created_edit/edit?id='+v.id,1)">编辑</dx-button>
+				<dx-button myclass="ml10 plr30" size="medium" round @click="del(v)">删除</dx-button>
 			</view>
 		</view>
 	</view>
@@ -40,7 +40,21 @@ export default {
 		}
 	},
 	methods: {
-		
+		del(v){
+			this.getConfirm("是否删除？",msg=>{
+				
+				this.postAjax("/api/company/recruit-del",{id:v.id,token:uni.getStorageSync('token')}).then(msg=>{
+					 this.getParent(this).ajax();
+				});
+			})
+		},
+		getTag(v){
+			let arr = [];
+			arr.push(v.salary)
+			arr.push(v.education)
+			arr.push(v.home_date)
+			return arr;
+		}
 	}
 }
 

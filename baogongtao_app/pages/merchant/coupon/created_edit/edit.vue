@@ -9,11 +9,11 @@
 				<weui-input v-model="ruleform.start_date" label="开始时间" type="date" name="start_date" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.end_date" label="结束时间" type="date" name="end_date" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.cover" label="封面图片" type="upload" upurl='article' allowUpLoadNum="1" name="cover" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.brief" label="简介" type="text" name="brief"></weui-input>
+				<weui-input v-model="ruleform.remark" label="简介" type="text" name="remark"></weui-input>
 				<weui-input v-model="ruleform.detail" myclass="textarea" label="卡券详情" type="textarea" name="detail" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.pic" label="图文图片" type="upload" upurl='article' allowUpLoadNum="5" name="pic" datatype="require"></weui-input>
 			</view>
-			<dxftButton type="primary" size="lg" @click="linkTo('/pages/merchant/recruit/created_edit/lists',1)">提交</dxftButton>
+			<dxftButton type="primary" size="lg" @click="submit()">提交</dxftButton>
 		</view>
 	</view>
 </template>
@@ -25,12 +25,11 @@ export default {
 		data() {
 			return {
 				vaildate: {},
+				formAction: '/api/company/coupon-store',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
-				ruleform:{
-					price:0.00
-				}
+				ruleform:{},
 			}
 		},
 		onReachBottom() {
@@ -44,10 +43,32 @@ export default {
 			this.shareSource(this, '商城');
 		},
 		onLoad(options) {
-			//this.ajax();
+			if(options.id){
+				this.ajax();
+			}
 		},
 		methods: {
-			
+			ajax() {
+				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
+					   this.ruleform = msg.data.data;
+					   this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
+					   this.ruleform.pic = this.ruleform.pic ? this.ruleform.pic.split(",") : [];
+				});
+			},
+			submit(){
+				this.ruleform.token = uni.getStorageSync('token');
+				this.ruleform.company_id = uni.getStorageSync("sysCompany").id;
+				this.vaildForm(this, res => {	
+					if(res){
+						this.postAjax(this.formAction, this.ruleform).then(msg => {
+							if (msg.data.code == 0) {
+								return this.goto("/pages/merchant/index/index");
+							}
+						});
+					}
+					
+				})
+			},
 		}
 	}
 </script>

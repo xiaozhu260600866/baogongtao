@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view>
-			<recruitLists :data="jobsLists" :type="2"></recruitLists>
+		<view v-if="data.show">
+			<recruitLists :data="data.data.lists.data" :type="2"></recruitLists>
 			<dxftButton type="primary" size="lg" @click="linkTo('/pages/merchant/recruit/created_edit/edit',1)">发布</dxftButton>
 		</view>
 	</view>
