@@ -1,7 +1,7 @@
 <template>
 	<view class="jobs_lists" :class="type == 1?'mt12':''">
 		<view class="jobs_item p15 bg-f mb8" v-for="(v,key) in data">
-			<view @click="linkTo('/pages/merchant/recruit/show/index',1)">
+			<view @click="linkTo('/pages/merchant/recruit/show/index?id='+v.id,1)">
 				<view class="flex-between fs-17 fw-bold">
 					<view class="position">{{v.job_position}}</view>
 					<view class="main-color Arial">{{v.salary}}</view>

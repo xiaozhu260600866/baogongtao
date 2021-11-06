@@ -37,6 +37,7 @@
 import { multipleAttributes, multiplePosters } from "@/api/base";
 import { lists } from "@/api/task";
 import { lists as articleLists } from "@/api/news";
+import { recruits as recruitList } from "@/api/company";
 import navBtn from '@/components/navBtn';
 import taskLists from '@/components/taskLists';
 import newsLists from '@/components/newsLists';
@@ -111,9 +112,15 @@ export default {
 			this.pageLoading(this,false);
 			this.getTaskLists();
 			this.getArticleLists();
+			this.getRecruitLists();
 		});
 	},
 	methods: {
+		getRecruitLists(){
+			recruitList({}).then(msg=>{
+				this.jobsLists = msg.data.lists.data;
+			});
+		},
 		checkAuth(v){
 			return this.linkTo(v.url,v.type);
 		},

@@ -21,3 +21,11 @@ export function transferDelete(data) {
     data
   })
 }
+
+export function recruits(data) {
+  return request({
+    url: '/company/recruits',
+    method: 'get',
+    data
+  })
+}

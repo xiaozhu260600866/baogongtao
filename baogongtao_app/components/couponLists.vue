@@ -1,7 +1,7 @@
 <template>
 	<view class="cash-list" :class="[myclass,type==3?'plr15':'p10']">
 		<view class="list_item" :class="[v.status > 0?'used':'']" v-for="v in data" v-if="type == 1">
-			<view class="list_box" @click="linkTo('/pages/user/coupon/show/index',1)">
+			<view class="list_box" @click="linkTo('/pages/user/coupon/show/index?id='+v.id,1)">
 				<view class="item_img">
 					<image class="img" :src="v.getCoupon.logo_url" mode="aspectFill"></image>
 				</view>
@@ -43,7 +43,7 @@
 			
 		</view>
 		<view class="list_item list_item3" v-for="v in data" v-if="type == 3">
-			<view class="list_box" @click="linkTo('/pages/merchant/coupon/show/index',1)">
+			<view class="list_box" @click="linkTo('/pages/merchant/coupon/show/index?id='+v.id,1)">
 				<view class="item_img">
 					<image class="img" :src="v.getCover" mode="aspectFill"></image>
 				</view>

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view class="bg-f pb60">
+		<view class="bg-f pb60" v-if="data.show">
 			<view class="banner">
 				<image class="flex w-b100" src="/static/images/news/03.jpg" mode="widthFix"></image>
 			</view>
@@ -79,6 +79,10 @@
 	export default {
 		data() {
 			return {
+				formAction: '/api/company/recruit-store',
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
 				company:{
 					name:'江门市东信科技有限公司',
 					address:'江门市蓬江区建设路82号金山大厦之二10楼1001室',
@@ -97,10 +101,14 @@
 			}
 		},
 		onLoad() {
-			
+			this.ajax();
 		},
 		methods: {
-			
+			ajax() {
+				this.getAjax(this).then(msg => {
+					
+				});
+			}
 		}
 	}
 </script>

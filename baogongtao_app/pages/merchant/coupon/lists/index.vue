@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view>
-			<couponLists myclass="bg-f" :data="couponLists" :type="3"></couponLists>
+		<view v-if="data.show">
+			<couponLists myclass="bg-f" :data="data.data.lists.data" :type="3"></couponLists>
 		</view>
 	</view>
 </template>
@@ -13,6 +13,10 @@
 		components:{couponLists},
 		data() {
 			return {
+				formAction: '/api/company/coupons',
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
 				couponLists:[{
 					name:'寳之林古典红木珍藏馆8.8折优惠券',
 					cover:'/static/images/news/02.jpg',
@@ -37,10 +41,14 @@
 			}
 		},
 		onLoad() {
-			
+			this.ajax();
 		},
 		methods: {
-			
+			ajax() {
+				this.getAjax(this).then(msg => {
+					
+				});
+			}
 		}
 	}
 </script>

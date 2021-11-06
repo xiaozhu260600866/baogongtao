@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view>
+		<view v-if="data.show">
 			<view class="top-custom main-bg" :style="{paddingTop:top+'px',height:height+'px',}">
 				<view class="left"><text class="dxi-icon dxi-icon-left fc-white fs-18" @tap="back"></text></view>
 				<view class="search-box">
