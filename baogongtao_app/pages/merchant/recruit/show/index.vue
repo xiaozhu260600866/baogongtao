@@ -55,7 +55,7 @@
 				</view>
 			</view>
 			<view id="show_footer">
-				<view class="right flex1 w-b100 plr15">
+				<view class="right flex1 w-b100 plr15" @click="goto('/pages/merchant/recruit/record/index?recruit_id='+data.data.data.id,1)">
 					<view class="r-nav">
 						<view class="r-item r-item-primary">申请报名</view>
 					</view>

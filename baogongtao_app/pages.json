@@ -310,6 +310,14 @@
 			}
 		},
 		{
+			"path": "pages/merchant/recruit/record/index",
+			"style": {
+				"navigationBarTitleText": "申请报名",
+				"enablePullDownRefresh":true,
+				"navigationStyle":"custom"
+			}
+		},
+		{
 			"path": "pages/merchant/login/index",
 			"style": {
 				"navigationBarTitleText": "商家登录",
