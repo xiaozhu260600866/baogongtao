@@ -2,38 +2,22 @@
 	<view>
 		<page ref="page"></page>
 		<view>
-			<view class="title">PHP开发工程师</view>
-			<view class="talents">
-				<view class="talents-item bg-f p15 mb8" v-for="item in talents">
-					<view class="info flex-between">
-						<view class="left">
-							<view class="name fs-18 fw-bold fc-3">{{item.name}}</view>
-							<view class="labG">
-								<view class="lab Arial" v-if="item.year">{{item.year}}年</view>
-								<view class="lab" v-if="item.education">{{item.education}}</view>
-								<view class="lab" v-if="item.money">{{item.money}}</view>
-							</view>
-						</view>
-						<view class="right">
-							<image class="head" :src="item.headerPic" mode="aspectFill"></image>
-						</view>
-					</view>
-					<view class="con flex-middle fs-15 fc-3 ptb15">
-						<view class="company">{{item.company}}</view>
-						<view class="dot"></view>
-						<view class="position">{{item.position}}</view>
-					</view>
-					<view class="intro text-justify wrap2 fs-15 fc-6">{{item.intro}}</view>
-				</view>
-			</view>
+			<recruitLists :data="jobsLists"></recruitLists>
 		</view>
 	</view>
 </template>
 
 <script>
+	import recruitLists from '@/components/recruitLists'
+	import { recruits as recruitList } from "@/api/company";
+	
 	export default {
+		components:{
+			recruitLists
+		},
 		data() {
 			return {
+				jobsLists:[],
 				talents:[{
 					name:'梁先生',
 					year:7,
@@ -56,10 +40,14 @@
 			}
 		},
 		onLoad() {
-			
+				this.getRecruitLists();
 		},
 		methods: {
-			
+			getRecruitLists(){
+				recruitList({}).then(msg=>{
+					this.jobsLists = msg.data.lists.data;
+				});
+			},
 		}
 	}
 </script>

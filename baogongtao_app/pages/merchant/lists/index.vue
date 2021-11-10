@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view>
-			<merchantLists :data="merchant"></merchantLists>
+		<view v-if="data.show">
+			<merchantLists :data="data.lists.data" ></merchantLists>
 		</view>
 	</view>
 </template>
@@ -13,6 +13,10 @@
 		components:{merchantLists},
 		data() {
 			return {
+				formAction: '/api/company/getLists?limit=15',
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
 				merchant:[
 					{
 						headerPic:'/static/images/news/01.jpg',
@@ -27,10 +31,14 @@
 			}
 		},
 		onLoad() {
-			
+			this.ajax();
 		},
 		methods: {
-			
+			ajax() {
+				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
+					
+				});
+			}
 		}
 	}
 </script>

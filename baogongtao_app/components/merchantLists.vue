@@ -2,15 +2,14 @@
 	<view class="merchant">
 		<view class="merchant-item" v-for="v in data" @click="linkTo('/pages/merchant/show/index',1)">
 			<view class="info-left mr10">
-				<image class="img" mode="aspectFill" :src="v.headerPic"></image>
+				<image class="img" mode="aspectFill" :src="v.logoMinUrl"></image>
 			</view>
 			<view class="info-con">
-				<view class="CItem fs-16 nowrap lh-20 fw-bold">{{ v.userInfo.company_name }}</view>
-				<view class="Cmark fs-15 fc-3 wrap2" v-if="v.userInfo.remark">{{ v.userInfo.remark }}</view>
-				<view class="CItem fs-13 nowrap lh-20 mt5 fc-6">{{ v.userInfo.address }}</view>
-				<view class="labelG flex mt5">
-					<view class="class-label main-bg">{{v.userInfo.getIndustry[0]}}</view>
-					<view class="class-label main-bg" v-if="v.userInfo.getIndustry.length ==2">{{v.userInfo.getIndustry[1]}}</view>
+				<view class="CItem fs-16 nowrap lh-20 fw-bold">{{ v.name}}</view>
+				<view class="Cmark fs-15 fc-3 wrap2" ></view>
+				<view class="CItem fs-13 nowrap lh-20 mt5 fc-6"></view>
+				<view class="labelG flex mt5" v-if="v.industry">
+					<view class="class-label main-bg" v-for="item in v.industry.split(',')">{{item}}</view>
 				</view>
 			</view>
 			<view class="num fs-13 fc-9">

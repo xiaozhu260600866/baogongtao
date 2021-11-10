@@ -1,19 +1,19 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view class="pb60">
+		<view class="pb60" v-if="data.show">
 			<view class="showBox top-box">
 				<view class="cover">
-					<image class="img" :src="detail.cover" mode="aspectFill"></image>
+					<image class="img" :src="detail.getCover" mode="aspectFill"></image>
 				</view>
 				<view class="cash-info">
 					<view class="w-b100">
 						<view class="coupon-title fs-16 lh-20 mb5 fc-0">{{detail.name}}</view>
-						<view class="coupon-merchant fs-15 lh-20 mb5 fc-6">{{detail.merchant_names}}</view>
+						<view class="coupon-merchant fs-15 lh-20 mb5 fc-6">{{detail.get_company.name}}</view>
 					</view>
 					<view class="flex-baseline w-b100">
-						<view class="price fs-18"><text class="fs-14">￥</text>{{detail.amount}}</view>
-						<view class="coupon-full fs-12 fc-9 ml10" v-if="detail.full_amount">满<text class="Arial plr3">{{detail.full_amount}}</text>元可使用</view>
+						<view class="price fs-18"><text class="fs-14">￥</text>{{detail.price}}</view>
+						<view class="coupon-full fs-12 fc-9 ml10" v-if="detail.price_full">满<text class="Arial plr3">{{detail.price_full}}</text>元可使用</view>
 					</view>
 				</view>
 			</view>
@@ -21,10 +21,10 @@
 			<view class="con-box showBox">
 				<view class="explain">
 					<dx-title name="现金券介绍" borderColor="#33c45d" borderWidth="30" borderR="4" nameColor="#333" nameSize="16" nameBold="bold" Bline></dx-title>
-					<view class="content"><u-parse :content="detail.content" /></view>
+					<view class="content"><u-parse :content="detail.remark" /></view>
 				</view>
 			</view>
-			<dxftButton type="success" size="lg" round>免费领取</dxftButton>
+			<dxftButton type="success" size="lg" round @click="freeWithdraw">免费领取</dxftButton>
 			<!-- <dxftButton type="info" size="lg" round>已领取</dxftButton> -->
 		</view>
 	</view>
@@ -37,32 +37,34 @@
 		components: {dxTitle,dxftButton},
 		data() {
 			return {
-				detail:{
-					name:'丝域养发凤山水岸100元现金券',
-					cover:'/static/images/news/01.jpg',
-					amount: 0.00,
-					full_amount: 1000,
-					merchant_names:'456在线',
-					content:'寳之林古典红木珍藏馆（零售古玩）\n地址：新会区会城世纪商业街3号139\n电话：18026768862\n1.凭此券即可享受总价的8.8折优惠。\n2.到店使用。\n3.需要提前电话咨询预约。\n4.此活动券为500张，领完即止。\n5.请在9月30日前使用。'
-				},
-				merchant:[
-					{
-						headerPic:'/static/images/news/01.jpg',
-						userInfo:{
-							company_name:'大号干货店',
-							remark:'经营南北干货，参茸海味,食疗食材',
-							address:'天龙一街(江门市蓬江区)美食',
-							getIndustry:['零食商超','干货'],
-						}
-					}
-				]
+				formAction: '/api/company/coupon-store',
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
+				ruleform:{},
+				detail:{}
 			}
 		},
 		onLoad() {
-			
+			this.ajax();
 		},
 		methods: {
-			
+			freeWithdraw(){
+				this.getConfirm("是否领取",msg=>{
+					this.ruleform.token = uni.getStorageSync('token');
+					this.ruleform.coupon_id = this.data.query.id;
+					this.postAjax("/api/company/coupon-order",this.ruleform).then(msg=>{
+						if(msg.data.status == 2){
+							this.ajax();
+						}
+					});
+				})
+			},
+			ajax() {
+				this.getAjax(this).then(msg => {
+					this.detail = msg.data.data;
+				});
+			}
 		}
 	}
 </script>

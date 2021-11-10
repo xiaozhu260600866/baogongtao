@@ -1,16 +1,17 @@
 <template>
 	<view class="cash-list" :class="[myclass,type==3?'plr15':'p10']">
+		<!-- 用户取领的状态 --> 
 		<view class="list_item" :class="[v.status > 0?'used':'']" v-for="v in data" v-if="type == 1">
 			<view class="list_box" @click="linkTo('/pages/user/coupon/show/index?id='+v.id,1)">
 				<view class="item_img">
-					<image class="img" :src="v.getCoupon.logo_url" mode="aspectFill"></image>
+					<image class="img" :src="v.getCover" mode="aspectFill"></image>
 				</view>
 				<view class="item_right">
 					<view class="w-b100 coupon-title fs-16 lh-20 wrap2">{{ v.name }}</view>
 					<view class="w-b100 ir-bottom fc-6 fs-13 lh-20 mt5">
-						<view class="tips">{{v.getCoupon.abstract}}</view>
+						<view class="tips">{{v.remark}}</view>
 						<view class="tips wrap2" v-if="v.merchant_names">使用商家：{{v.merchant_names}}</view>
-						<view class="time Arial">{{ v.start_at }}~{{ v.end_at }}</view>
+						<view class="time Arial">{{ v.start_date }}~{{ v.end_date }}</view>
 					</view>
 				</view>
 				<view class="status">
@@ -22,6 +23,7 @@
 				<image class="img" src="/static/images/date-state.png" v-if="v.status == 2"></image>
 			</view>
 		</view>
+		<!-- 商家看到用户取领的状态 --> 
 		<view class="list_item" :class="[v.status > 0?'used':'']" v-for="v in data" v-if="type == 2">
 			<view class="list_box">
 				<view class="item_img">
@@ -42,6 +44,7 @@
 			</view>
 			
 		</view>
+		<!-- 商家发布优惠券 --> 
 		<view class="list_item list_item3" v-for="v in data" v-if="type == 3">
 			<view class="list_box" @click="linkTo('/pages/merchant/coupon/show/index?id='+v.id,1)">
 				<view class="item_img">

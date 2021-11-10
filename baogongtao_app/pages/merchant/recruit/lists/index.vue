@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view v-if="data.show">
+		<view>
 			<view class="top-custom main-bg" :style="{paddingTop:top+'px',height:height+'px',}">
 				<view class="left"><text class="dxi-icon dxi-icon-left fc-white fs-18" @tap="back"></text></view>
 				<view class="search-box">
@@ -11,7 +11,7 @@
 			</view>
 			<view><!-- :style="{marginTop: height+'px'}" -->
 				<view class="title">推荐职位</view>
-				<recruitLists :data="jobsLists" :type="1"></recruitLists>
+				<recruitLists :data="jobsLists" :type="3"></recruitLists>
 			</view>
 		</view>
 	</view>
@@ -19,6 +19,7 @@
 
 <script>
 	import recruitLists from '@/components/recruitLists'
+	import { recruits as recruitList } from "@/api/company";
 	export default {
 		components:{recruitLists},
 		data() {
@@ -30,39 +31,7 @@
 				height: 64, //header高度
 				top: 0, //标题图标距离顶部距离
 				search:'',
-				jobsLists:[{
-					name:'PHP开发工程师',
-					city:'江门',
-					company:{
-						name:'江门市东信科技有限公司',
-						people_num: '1-50',
-						status:'已上市'
-					},
-					work_place:'新会',
-					salary: '10-15K',
-					condititon:['1-3年','本科','周末双休','钣金工艺'],
-					userInfo:{
-						headerPic:'/static/images/logo.png',
-						name:'林生',
-						position:'经理',
-					}
-				},{
-					name:'PHP开发工程师',
-					city:'江门',
-					company:{
-						name:'江门市东信科技有限公司',
-						people_num: '1-50',
-						status:'已上市'
-					},
-					work_place:'新会',
-					salary: '10-15K',
-					condititon:['1-3年','本科','周末双休','钣金工艺'],
-					userInfo:{
-						headerPic:'/static/images/logo.png',
-						name:'林生',
-						position:'经理',
-					}
-				}]
+				jobsLists:[]
 			}
 		},
 		onLoad() {
@@ -84,14 +53,14 @@
 					this.scrollH = res.windowWidth
 				}
 			});
-			this.ajax();
+				this.getRecruitLists();
 		},
 		methods: {
-			ajax() {
-				this.getAjax(this).then(msg => {
-					
+			getRecruitLists(){
+				recruitList({}).then(msg=>{
+					this.jobsLists = msg.data.lists.data;
 				});
-			}
+			},
 		}
 	}
 </script>

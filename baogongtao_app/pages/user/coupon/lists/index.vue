@@ -6,8 +6,8 @@
 				{value: 0,name: '待使用'},
 				{value: 1,name: '已使用'},
 				{value: 2,name: '已过期'},
-				{value: 12,name: '全部'}]" @change="ajax" v-model="status" selectedColor="#57C734" sliderBgColor="#57C734" :selectedSize="32" :size="32" :height="92"></dx-tabs>
-			<couponLists myclass="bg-f" :data="couponLists" :type="1"></couponLists>
+				{value: 12,name: '全部'}]" @change="ajax" v-model="data.query.status" selectedColor="#57C734" sliderBgColor="#57C734" :selectedSize="32" :size="32" :height="92"></dx-tabs>
+			<couponLists myclass="bg-f" :data="data.lists.data" :type="1"></couponLists>
 		</view>
 	</view>
 </template>
@@ -19,51 +19,23 @@
 		components:{couponLists,dxTabs},
 		data() {
 			return {
+				formAction: '/api/company/coupon-orderLists',
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
 				status: 0,
-				couponLists:[{
-					name:'寳之林古典红木珍藏馆8.8折优惠券',
-					cover:'/static/images/news/02.jpg',
-					getCoupon:{
-						logo_url:'/static/images/news/01.jpg',
-						abstract: '林古典红木珍藏馆8.8折优惠券'
-					},
-					merchant_names:'456在线',
-					created_at:'2021-08-21 17:44:33',
-					start_at: '2021-10-01',
-					end_at:'2021-10-31',
-					status: 0,
-				},{
-					name:'日与夜．烧烤．鸡子煲9折优惠券',
-					cover:'/static/images/news/03.jpg',
-					getCoupon:{
-						logo_url:'/static/images/news/02.jpg',
-						abstract: '日与夜．烧烤．鸡子煲 9折优惠券'
-					},
-					merchant_names:'456在线',
-					created_at:'2021-08-21 17:20:56',
-					start_at: '2021-10-01',
-					end_at:'2021-10-31',
-					status: 1,
-				},{
-					name:'日与夜．烧烤．鸡子煲9折优惠券',
-					cover:'/static/images/news/01.jpg',
-					getCoupon:{
-						logo_url:'/static/images/news/02.jpg',
-						abstract: '日与夜．烧烤．鸡子煲 9折优惠券'
-					},
-					merchant_names:'456在线',
-					created_at:'2021-08-21 17:20:56',
-					start_at: '2021-10-01',
-					end_at:'2021-10-31',
-					status: 2,
-				}]
+				couponLists:[]
 			}
 		},
 		onLoad() {
-			
+			this.ajax();
 		},
 		methods: {
-			
+			ajax() {
+				this.getAjax(this,{token:uni.getStorageSync('token'),type:'my'}).then(msg => {
+					
+				});
+			}
 		}
 	}
 </script>
