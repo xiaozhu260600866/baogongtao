@@ -1,0 +1,23 @@
+// 头部
+.Huser{
+	position: relative;z-index: 1;
+	.con{
+		padding: 80rpx 40rpx;display: flex;width: 100%;min-height: 260rpx;align-items: center;
+		.head .img{
+			width: 148rpx;height: 148rpx;display: flex;border: 4rpx #f1f1f1 solid;border-radius: 50%;
+		}
+		.info{
+			padding-left: 30rpx;flex: 1;overflow: hidden;color: $color-white;line-height: 1;
+			.row{
+				display: flex;align-items: center;margin-top: 20rpx;
+				.name{padding-right: 30rpx;}
+			}
+		}
+	}
+}
+
+
+.block-title{
+	display: flex;justify-content: space-between;padding: 20upx 30upx;align-items: center;
+	.name{font-size: 30upx;line-height: 48upx;font-weight: bold;color: #333;}
+}

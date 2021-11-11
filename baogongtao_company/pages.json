@@ -1,0 +1,140 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
+		{
+			"path": "pages/merchant/index/index",
+			"style": {
+				"navigationBarTitleText": "商家中心"
+			}
+		},
+		{
+			"path": "pages/merchant/lists/index",
+			"style": {
+				"navigationBarTitleText": "附近的商家"
+			}
+		},
+		{
+			"path": "pages/merchant/show/index",
+			"style": {
+				"navigationBarTitleText": "商家详情"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/lists/index",
+			"style": {
+				"navigationBarTitleText": "优惠券"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/lists/cancel",
+			"style": {
+				"navigationBarTitleText": "优惠核销记录"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/show/index",
+			"style": {
+				"navigationBarTitleText": "优惠券详情"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/created_edit/edit",
+			"style": {
+				"navigationBarTitleText": "优惠券编辑"
+			}
+		},
+		{
+			"path": "pages/merchant/coupon/created_edit/lists",
+			"style": {
+				"navigationBarTitleText": "发布优惠券",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/lists/index",
+			"style": {
+				"navigationBarTitleText": "招聘",
+				"enablePullDownRefresh":true,
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/record/index",
+			"style": {
+				"navigationBarTitleText": "申请报名",
+				"enablePullDownRefresh":true,
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/merchant/login/index",
+			"style": {
+				"navigationBarTitleText": "商家登录",
+				"enablePullDownRefresh":true,
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/show/index",
+			"style": {
+				"navigationBarTitleText": "招聘信息",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/created_edit/edit",
+			"style": {
+				"navigationBarTitleText": "招聘编辑"
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/created_edit/lists",
+			"style": {
+				"navigationBarTitleText": "发布招聘",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/recruit/apply/index",
+			"style": {
+				"navigationBarTitleText": "应聘",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/info/index",
+			"style": {
+				"navigationBarTitleText": "公司资料",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/info/intro",
+			"style": {
+				"navigationBarTitleText": "公司简介",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/worker/lists",
+			"style": {
+				"navigationBarTitleText": "我的用工",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/merchant/worker/transactions",
+			"style": {
+				"navigationBarTitleText": "工资发放记录",
+				"enablePullDownRefresh": true
+			}
+		}
+	],
+
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "泡工淘",
+		"navigationBarBackgroundColor": "#55b4f6",
+		"backgroundColor": "#55b4f6"
+	}
+}

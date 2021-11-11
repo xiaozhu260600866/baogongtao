@@ -1,0 +1,14 @@
+.edit-write-title{padding: 30rpx;font-size: 32rpx;line-height: 1;display: flex;justify-content: space-between;align-items: center;}
+.edit-write-title .edit-nav{border: 1rpx #387ef8 solid;padding: 16rpx 30rpx;border-radius: 8rpx;font-size: 26rpx;}
+.edit-write ::v-deep .dx-label{color: #666;}
+.edit-write .add-info{border: 1rpx #eee solid;margin: 0 30rpx 30rpx;text-align: center;padding: 60rpx 0;}
+.edit-write ::v-deep .headerPic .img{width: 80rpx;height: 80rpx;display: flex;border-radius: 8rpx;}
+.edit-write ::v-deep .cardTemplate .dx-cell_bd,
+.edit-write ::v-deep .headerPic .dx-cell_bd{display: none;}
+.edit-write ::v-deep .cardTemplate .img{width: 120rpx;display: flex;border-radius: 8rpx;border: 1rpx #f2f2f2 solid;}
+.edit-write ::v-deep .dx-select .dx-label{text-align: left!important;}
+
+
+/* 个人简介内容 */
+.detail-info{padding: 0 30rpx 30rpx;}
+.detail-info .content{font-size: 30rpx;text-align: justify;line-height: 1.75;}

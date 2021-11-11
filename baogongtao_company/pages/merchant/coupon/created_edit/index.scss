@@ -1,0 +1,12 @@
+.edit{padding: 0 24rpx;}
+.edit ::v-deep .list_item{margin: 24rpx 0;padding: 24rpx 30rpx;}
+
+
+.edit{
+	::v-deep .textarea{
+		display: block;
+		.dx-text{
+			margin-top: 20rpx;font-size: 30rpx;
+		}
+	}
+}

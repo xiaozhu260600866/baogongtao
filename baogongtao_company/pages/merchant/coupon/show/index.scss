@@ -1,0 +1,11 @@
+/* 整体 */
+.showBox{background-color: #fff;border-radius: 12rpx;margin: 24rpx;overflow: hidden;}
+.top-box{display: flex;padding: 30rpx;}
+.top-box .cover{border: 1rpx #f9f9f9 solid;margin-right: 30rpx;}
+.top-box .cover .img{width: 220rpx;height: 220rpx;display: flex;}
+.top-box .cash-info{flex: 1;display: flex;align-content: space-between;flex-wrap: wrap;min-height: 220rpx;}
+
+/* 说明 */
+.explain{border-top: 2rpx solid #eee;padding-bottom: 40rpx;}
+.explain .title{font-size: 30rpx;color: #333;line-height: 48rpx;}
+.explain .content{font-size: 30rpx;color: #333;line-height: 1.4;padding: 0 40rpx;margin-top: 40rpx;}

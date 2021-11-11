@@ -1,0 +1,134 @@
+/* 头部 */
+.Uinfo{width: 100%;position: relative;z-index: 1;text-align: center;}
+.Uinfo .header-img .img{width: 120upx;height: 120upx;border-radius: 50%;}
+.Uinfo .info{flex: 1;overflow: hidden;}
+.Uinfo .htag{display: flex;align-items: center;}
+.Uinfo .htag .tab{background-color: rgba(0,0,0,0.5);color: #fff;padding: 0 10upx;margin-right: 16upx;}
+.Uinfo .logout{position: absolute;top: 20rpx;right: 20rpx;color:#fff;font-size: 26rpx;}
+
+
+/* 统计 */
+.head-count{display: flex;}
+.head-count myform,.head-count section{width: 100%;}
+.head-count .c-item{text-align: center;padding: 30upx 0;}
+.head-count .num{line-height: 44upx;font-size: 44upx;margin-bottom: 16upx;}
+.head-count .name{line-height: 36upx;}
+
+
+/* 列表 */
+.ulist-group{margin-bottom: 16upx;background-color: #fff;}
+.first-list{margin-top: -40upx;padding-top: 30upx;border-radius: 40upx 40upx 0 0;position: relative;z-index: 2;}
+.ulist-group myform{display: block;position: relative;}
+.ulist-group myform::before{content: '';display: block;position: absolute;left: 0;border-bottom: 1upx #e6e7ec solid;bottom: 0;width: 100%;}
+.ulist-group>.weui-cell{position: relative;}
+.ulist-group>.weui-cell::after{position: absolute;bottom: 0;left: 90upx;right: 0;content: "";border-bottom: #f2f2f2 1px solid;}
+.ulist-group>.weui-cell.last::after{border-bottom:none;}
+.ulist-group>.weui-cell::before{border: 0;}
+.ulist-group .weui-cell__bd{font-size: 15px;line-height: 30px;}
+.ulist-group .weui-cells .weui-cell{padding: 15px!important;}
+.ulist-group .weui-cell_active {background-color:inherit!important;}
+.ulist-group .weui-cell__hd .iconfont{display: flex;width: 20px;font-size: 20px;margin-right: 12px;text-align: center;height: 20px;line-height: 20px;color: red;}
+.ulist-group .weui-cell__ft.iconfont{font-size: 13px;color: #aaa;}
+.ulist-group .weui-cell__ft:after {height: 5px;width: 5px;border-width: 1px 1px 0 0;border-color: #5d5f6a;top: -2px;top: 50%;margin-top: -4px;right: 2px;}
+
+.tui-list-content::before{border: none !important;}
+
+	.tui-list-cell-name {
+		padding-left: 20upx;
+		vertical-align: middle;
+		line-height: 30upx;
+	}
+
+	.tui-list::after {
+		left: 94upx !important
+	}
+
+	.tui-right {
+		margin-left: auto;
+		margin-right: 34upx;
+		font-size: 26upx;
+		line-height: 1;
+		color: #999;
+	}
+
+	.logo {
+		height: 40upx;
+		width: 40upx;
+	}
+
+	.tui-flex {
+		display: flex;
+		align-items: center;
+	}
+
+	.tui-msg-box {
+		display: flex;
+		align-items: center;
+	}
+
+	.tui-msg-pic {
+		width: 100upx;
+		height: 100upx;
+		border-radius: 50%;
+		display: block;
+		margin-right: 24upx;
+	}
+
+	.tui-msg-item {
+		max-width: 500upx;
+		min-height: 80upx;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.tui-msg-name {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size: 34upx;
+		line-height: 1;
+		color: #262b3a;
+	}
+
+	.tui-msg-content {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size: 26upx;
+		line-height: 1;
+		color: #9397a4;
+	}
+
+	.tui-msg-right {
+		max-width: 120upx;
+		height: 88upx;
+		margin-left: auto;
+		text-align: right;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+
+	.tui-msg-right.tui-right-dot {
+		height: 76upx;
+		padding-bottom: 10upx;
+
+	}
+
+	.tui-msg-time {
+		width: 100%;
+		font-size: 24upx;
+		line-height: 24upx;
+		color: #9397a4;
+	}
+
+	.tui-badge {
+		width: auto
+	}
+
+	.tui-msg::after {
+		left: 154upx !important
+	}

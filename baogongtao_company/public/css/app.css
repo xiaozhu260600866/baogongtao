@@ -1,0 +1,80 @@
+/* app.wxss */
+page{background: #f2f2f2;}
+view,sroll-view,swiper,icon,text,progress,button,checkbox,form,input,label,input,picker,radio,slider,switch,action-sheet,modal,toast,loading,navigator,audio,image,video,map,canvas,div,span,p,section,scroll-view {box-sizing: border-box;}
+button::after{border: 0;}
+
+
+.share-overlay {position: fixed;top: 0px;right: 0;bottom: 0;left: 0;z-index: 100;width: 100%;height: 800px;background: #333;filter: alpha(opacity=70);-moz-opacity: 0.7;opacity: 0.7;}
+
+
+.dxi-btn-primary {color:#fff!important;background-color:#55b4f6!important;border-color:#55b4f6!important;}
+.dxi-btn-primary:focus,.dxi-btn-primary:hover {background:#66b1ff!important;border-color:#66b1ff!important;color:#fff!important;}
+.dxi-btn-primary.is-plain {color:#55b4f6!important;background-color:#e7f4f6!important;border-color:#55b4f6!important;}
+.dxi-btn-primary.is-plain:focus,.dxi-btn-primary.is-plain:hover {background:#e7f4f6!important;border-color:#66b1ff!important;color:#66b1ff!important;}
+.dxi-btn-primary.is-disabled,
+.dxi-btn-primary.is-disabled:active,
+.dxi-btn-primary.is-disabled:focus,
+.dxi-btn-primary.is-disabled:hover,
+.dxi-btn-primary.is-disabled[disabled]{
+	color:#fff!important;
+	background-color:#a0cfff!important;
+	border-color:#a0cfff!important;
+}
+
+/* 主色调 */
+.main-color{color: #55b4f6;}
+.main-bg{background-color: #55b4f6;}
+.main-bd{border-color: #55b4f6;}
+.dx-btn-blue{background-color: #55b4f6;border-color: #55b4f6;}
+.dx-btn-blue-o{border-color: #55b4f6;color: #55b4f6;}
+.sys-btn{background: #55b4f6;color: #fff;border-radius: 10upx;}
+
+
+/* 定位底部 */
+.b_fixed {position: fixed;bottom: 0;left: 0;}
+
+
+/* banner轮播 */
+.swiper_box image {width: 100%;}
+
+
+/* 按钮组:start */
+	/* 脚部按钮 */
+	#footer-btn{position: fixed;bottom: 0;left: 0;height: 56px;display: flex;padding: 5px 10px;width: 100%;box-sizing: border-box;background: #fff;z-index: 10;}
+	#footer-btn myform{width: 100%;}
+	#footer-btn .f-dx-btn{line-height: 46px!important;height: 46px!important;font-size: 17px!important;}
+	#footer-btn .f-btn-red{height: 46px;line-height: 46px;width: 100%;text-align: center;border-radius: 4px;color: #fff;font-size: 16px;background: #FE4543;}
+	#footer-btn .f-btn-blue{height: 46px;line-height: 46px;width: 100%;text-align: center;border-radius: 4px;color:  #fff;font-size: 16px;
+		background: -webkit-linear-gradient(left, #279EF9 , #1678F3);
+		background: -o-linear-gradient(right, #279EF9 , #1678F3);
+		background: -moz-linear-gradient(right, #279EF9 , #1678F3);
+		background: linear-gradient(to right, #279EF9 , #1678F3);
+	}
+	#footer-btn .f-btn-orange{height: 46px;line-height: 46px;width: 100%;text-align: center;border-radius: 4px;color:  #fff;font-size: 16px;background: #ff721f;}
+	#footer-btn .f-btn-green{height: 46px;line-height: 46px;width: 100%;text-align: center;border-radius: 40px;color: #fff;font-size: 16px;background: #13cc0c;}
+
+	.float-group{position: fixed;z-index:15;right: 15px;bottom: 65px;}
+/* 按钮组:ending */
+
+
+/* 详情脚部 */
+#show_footer{height: 100upx;position: fixed;left: 0;bottom: 0;width: 100%;background: #fff;z-index:99;display: flex;}
+#show_footer:before{content: '';position: absolute;top: 0;right: 0;left: 0;border-top: 1upx solid #eaeef1;-webkit-transform: scaleY(0.5);-ms-transform: scaleY(0.5);transform: scaleY(0.5);}
+#show_footer .left{display: flex;}
+#show_footer .left .btn-item{padding: 8upx 0;margin: 0;width: 100upx;text-align: center;background: transparent;}
+#show_footer .left_w40 .btn-item{width: 80upx;}
+#show_footer .left_w60 .btn-item{width: 120upx;}
+#show_footer .left .icon{height: 52upx;line-height: 56upx;font-size: 40upx;color: #666;display: block;}
+#show_footer .left .txt{height: 32upx;line-height: 32upx;font-size: 24upx;color: #666;}
+#show_footer .left .cart{position: relative;}
+#show_footer .left .cart .sum{position: absolute;top: 0px;right: 6upx;background: #FF7900;color: #fff;font-size: 20upx;border-radius: 50%;height: 32upx;width: 32upx;text-aling:center;line-height: 32upx;}
+#show_footer .right{line-height: 100upx;display: flex;flex: 1;overflow: hidden;align-items: center;}
+#show_footer .right myform{width: 100%;}
+#show_footer .right .r-nav{width: 100%;padding: 10upx 6upx;}
+#show_footer .right .r-item{text-align: center;font-size: 32upx;color: #fff;height: 80upx;line-height: 80upx;border-radius: 40upx;}
+#show_footer .right .r-item-yellow{background-color: #FF7900;} 
+#show_footer .right .r-item-red{background-color: #f30600;}
+#show_footer .right .r-item-green{background-color: #387ef8;}
+#show_footer .right .r-item-primary{background-color: #387ef8;}
+#show_footer .right .r-item-default{background-color: #eee;color: #999;}
+#show_footer .right .r-opacity{opacity: 0.5;}
