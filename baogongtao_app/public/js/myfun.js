@@ -1,13 +1,12 @@
 const myfun = function() {};
 myfun.install = (Vue, options) => {
-	Vue.prototype.cancelAfterOrder = (order,callBack)=>{
-		Vue.prototype.getConfirm("是否确认取消售后？",msg=>{
-			Vue.prototype.postAjax("/shop/order/cancel-after",{id:order.id}).then(msg=>{
-				if(msg.data.status == 2){
-					callBack(msg);
-				}
-			});
-		})
+	Vue.prototype.checkUser = (url)=>{
+		let sysUser = uni.getStorageSync('sysUser');
+		if(!sysUser){
+			return Vue.prototype.goto("/pages/user/login/index/index");
+		}else{
+			return Vue.prototype.goto(url,1)
+		}
 	},
 	Vue.prototype.updateHistory=()=>{
 		Vue.prototype.updateUrl(["/pages/shop/index/index","/pages/shop/product/class/index","/pages/shop/user/cart/index",'/pages/shop/user/index/index','/pages/index/main']);

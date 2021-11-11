@@ -50,6 +50,8 @@
 		},
 		methods: {
 			freeWithdraw(){
+				let sysUser = uni.getStorageSync('sysUser');
+				if(!sysUser)return this.goto("/pages/user/login/index/index");
 				this.getConfirm("是否领取",msg=>{
 					this.ruleform.token = uni.getStorageSync('token');
 					this.ruleform.coupon_id = this.data.query.id;

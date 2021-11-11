@@ -6,17 +6,18 @@
 				<image class="flex w-b100" src="/static/images/news/03.jpg" mode="widthFix"></image>
 			</view>
 			<view class="info plr15">
-				<view class="name fw-bold fs-17 pt20 pb10">{{company.name}}</view>
+				<view class="name fw-bold fs-17 pt20 pb10">{{detail.get_company.name}}</view>
 				<view class="info-lists">
 					<view class="row cell">
 						<view class="icon dxi-icon dxi-icon-location fs-16"></view>
-						<view class="txt">工作地点：{{company.address}}</view>
+						<view class="txt">工作地点：{{detail.get_company.address}}</view>
 					</view>
 					<view class="row cell">
 						<view class="icon dxi-icon dxi-icon-time fs-14"></view>
-						<view class="txt">发薪日期：{{company.time}}</view>
+						<view class="txt">发薪日期：{{detail.salary_date}}</view>
 					</view>
-					<view class="row">
+					
+				<!-- 	<view class="row">
 						<view class="cell">
 							<view class="icon iconfont icon-merchant"></view>
 							<view class="txt">{{company.type}}</view>
@@ -25,37 +26,43 @@
 							<view class="icon iconfont icon-people"></view>
 							<view class="txt Arial ">{{company.people_num}}人</view>
 						</view>
-					</view>
+					</view> -->
+					
+					
 				</view>
 				<view class="intro">
 					<view class="intro-item">
 						<view class="title">企业简介</view>
-						<view class="content">{{intro.info}}</view>
+						<view class="content">{{detail.get_company.remark_company}}</view>
 					</view>
 					<view class="intro-item">
+						<!-- work_hour -->
 						<view class="title">拿多少钱</view>
-						<view class="content">{{intro.money}}</view>
+						<view class="content">{{detail.work_hour}}</view>
 					</view>
 					<view class="intro-item">
+						<!-- need -->
 						<view class="title">有啥要求</view>
-						<view class="content">{{intro.require}}</view>
+						<view class="content">{{detail.need}}</view>
 					</view>
 					<view class="intro-item">
+						<!-- live -->
 						<view class="title">吃住咋样</view>
-						<view class="content">{{intro.condition}}</view>
+						<view class="content">{{detail.live}}</view>
 					</view>
 					<view class="intro-item">
+						<!-- interview -->
 						<view class="title">面试准备</view>
-						<view class="content">{{intro.prepare}}</view>
+						<view class="content">{{detail.interview}}</view>
 					</view>
 					<view class="intro-item">
 						<view class="title">工厂地址</view>
-						<view class="content">{{intro.address}}</view>
+						<view class="content">{{detail.get_company.address}}</view>
 					</view>
 				</view>
 			</view>
 			<view id="show_footer">
-				<view class="right flex1 w-b100 plr15" @click="goto('/pages/merchant/recruit/record/index?recruit_id='+data.data.data.id,1)">
+				<view class="right flex1 w-b100 plr15" @click="checkUser('/pages/merchant/recruit/record/index?recruit_id='+data.data.data.id)">
 					<view class="r-nav">
 						<view class="r-item r-item-primary">申请报名</view>
 					</view>
@@ -83,6 +90,7 @@
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
+				detail:{},
 				company:{
 					name:'江门市东信科技有限公司',
 					address:'江门市蓬江区建设路82号金山大厦之二10楼1001室',
@@ -106,7 +114,7 @@
 		methods: {
 			ajax() {
 				this.getAjax(this).then(msg => {
-					
+					this.detail = msg.data.data;
 				});
 			}
 		}

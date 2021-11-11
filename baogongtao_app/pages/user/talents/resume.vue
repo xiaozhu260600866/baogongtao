@@ -5,12 +5,12 @@
 			<view class="bg-f edit mb12">
 				<view class="plr15 pt15 pb5 fw-bold">个人信息</view>
 				<weui-input v-model="ruleform.name" label="姓名" type="text" name="name" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.sexs" label="性别" name="sexs" changeField="value" type="radio" dataKey="sexsArr"
+				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr"
 				 :radioType="true"></weui-input>
-				<weui-input v-model="ruleform.status" label="身份" name="status" changeField="value" type="radio" dataKey="statusArr"
+				<weui-input v-model="ruleform.work_status" label="身份" name="work_status" changeField="value" type="radio" dataKey="statusArr"
 				 :radioType="true"></weui-input>
-				<weui-input v-model="ruleform.working_date" label="参加工作时间" type="text" name="working_date" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.birthday" label="出生日期" type="text" name="birthday" datatype="require"></weui-input>
+				<weui-input v-model="ruleform.working_date" label="参加工作时间" type="date" name="working_date" datatype="require"></weui-input>
+				<weui-input v-model="ruleform.birthday" label="出生日期" type="date" name="birthday" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.wechat" label="微信号" type="text" name="wechat"></weui-input>
 				<weui-input v-model="ruleform.email" label="邮箱" type="text" name="email"></weui-input>
 				<weui-input v-model="ruleform.education" label="学历" placeholder="请选择" type="select" name="education" dataKey="educationArr"
@@ -20,20 +20,22 @@
 				<view class="plr15 pt15 pb5 fw-bold">求聘信息</view>
 				<weui-input v-model="ruleform.apply_status" label="求职状态" placeholder="请选择" name="apply_status" type="select"
 				 changeField="value" dataKey="applyStatusArr"></weui-input>
-				<weui-input v-model="ruleform.class_value" label="行业" placeholder="请选择" name="class_value" type="manyselect"
-				 dataKey="positionCalss" changeField="value" datatype="require"></weui-input>
+				<weui-input v-model="ruleform.industry" label="行业" placeholder="请选择" name="industry" type="manyselect"
+				 dataKey="industryData" changeField="value" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.salary" label="薪资范围" placeholder="请选择" name="salary" changeField="value" type="select"
 				 dataKey="emolumentArr"></weui-input>
 				<weui-input v-model="ruleform.advantage" myclass="textarea" label="个人优势" type="textarea" name="advantage" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.remark" myclass="textarea" label="备注" type="textarea" name="remark"></weui-input>
 			</view>
-			<dxftButton type="primary" size="lg" @click="linkTo('/pages/merchant/recruit/created_edit/lists',1)">提交</dxftButton>
+			<dxftButton type="primary" size="lg" @click="submit()">提交</dxftButton>
 		</view>
 	</view>
 </template>
 
 <script>
 import dxftButton from "doxinui/components/button/footer-button"
+import {userinfo} from "@/api/user";
+	import {attributes } from "@/api/base";
 export default {
 	components: {dxftButton},
 		data() {
@@ -54,6 +56,7 @@ export default {
 					{label: '职场人',value: 1},
 					{label: '学生',value: 2}
 				],
+				industryData:[],
 				applyStatusArr:[
 					{label:'离职-随时到岗',value: '离职-随时到岗'},
 					{label:'在职-月内到岗',value: '在职-月内到岗'},
@@ -93,10 +96,29 @@ export default {
 			this.shareSource(this, '商城');
 		},
 		onLoad(options) {
+			attributes({type:9,source:'app'}).then(res => {
+				this.industryData = res.data.lists;
+			})
+			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+				this.ruleform = res.data.user.get_user_info;
+				
+			})
 			//this.ajax();
 		},
 		methods: {
-			
+			submit(){
+				this.ruleform.token = uni.getStorageSync('token');
+				this.vaildForm(this, res => {	
+					if(res){
+						this.postAjax("/api/auth/user/update", this.ruleform).then(msg => {
+							if (msg.data.code == 0) {
+								return this.goto("/pages/user/index/index",2);
+							}
+						});
+					}
+					
+				})
+			},
 		}
 	}
 </script>

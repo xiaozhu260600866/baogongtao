@@ -95,6 +95,7 @@
 			location(e){
 				console.log(e);
 			},
+			
 			submit(){
 				this.ruleform.token = uni.getStorageSync('token');
 				this.vaildForm(this, res => {	

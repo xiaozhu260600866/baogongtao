@@ -1,6 +1,6 @@
 <template>
 	<view class="merchant">
-		<view class="merchant-item" v-for="v in data" @click="linkTo('/pages/merchant/show/index',1)">
+		<view class="merchant-item" v-for="v in data" @click="linkTo('/pages/merchant/show/index?id='+v.id,1)">
 			<view class="info-left mr10">
 				<image class="img" mode="aspectFill" :src="v.logoMinUrl"></image>
 			</view>

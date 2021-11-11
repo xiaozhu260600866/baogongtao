@@ -104,7 +104,7 @@
 				return this.linkTo("/pages/user/login/index/index",0);
 			},
 			checkAuth(v){
-				return this.linkTo(v.url,v.type);
+				return this.checkUser(v.url);
 			},
 		}
 	}
