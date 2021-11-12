@@ -417,6 +417,75 @@
 				"navigationBarTitleText": "我的简介",
 				"enablePullDownRefresh":true
 			}
+		},
+		//分销商 
+		{
+			"path": "pages/distribution/login/main",
+			"style": {
+				"navigationBarTitleText": "经销商登录",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/distribution/down/dis/main",
+			"style": {
+				"navigationBarTitleText": "下级代理人",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/distribution/down/client/main",
+			"style": {
+				"navigationBarTitleText": "下级客户",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/distribution/index/main",
+			"style": {
+				"navigationBarTitleText": "VIP中心",
+				"enablePullDownRefresh": true
+			}
+		},
+		
+		
+		{
+			"path": "pages/distribution/add/main",
+			"style": {
+				"navigationBarTitleText": "VIP申请",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/distribution/client/main",
+			"style": {
+				"navigationBarTitleText": "我的客户",
+				"enablePullDownRefresh": true
+			}
+		},
+		
+		
+		
+		{
+			"path": "pages/distribution/team/main",
+			"style": {
+				"navigationBarTitleText": "我的团队",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/distribution/qrcode/main",
+			"style": {
+				"navigationBarTitleText": "我的二维码",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/distribution/qrcode/poster/index",
+			"style": {
+				"navigationBarTitleText": "分享二维码",
+				"enablePullDownRefresh": true
+			}
 		}
 	],
 	"tabBar": {

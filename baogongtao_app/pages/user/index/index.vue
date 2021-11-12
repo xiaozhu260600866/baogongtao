@@ -104,7 +104,22 @@
 				return this.linkTo("/pages/user/login/index/index",0);
 			},
 			checkAuth(v){
-				return this.checkUser(v.url);
+				if(v.name == '商家中心'){
+					uni.navigateToMiniProgram({
+						appId: 'wx72105f5a392bf8c8',
+						path: 'pages/merchant/index/index',
+						extraData: {
+							'data1': 'test'
+						},
+						success(res) {
+						// 打开成功
+						}
+					})
+					return false;
+				}else{
+						return this.checkUser(v.url);
+				}
+			
 			},
 		}
 	}
