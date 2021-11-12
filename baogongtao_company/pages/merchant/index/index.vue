@@ -57,9 +57,6 @@ import dxNavClass from "doxinui/components/nav-class/nav-class"
 			}
 		},
 		onLoad() {
-			
-		},
-		onShow(){
 			if(!uni.getStorageSync('sysCompany')) return this.linkTo('/pages/merchant/login/index');
 			if(uni.getStorageSync('token')){
 				//this.pageLoading(this);
@@ -69,17 +66,44 @@ import dxNavClass from "doxinui/components/nav-class/nav-class"
 					let userInfo = {
 						data: res.data.company
 					}
-					this.setCompanyInfo(userInfo);
+					//this.setCompanyInfo(userInfo);
 					
 				})
 			}else{
 				this.avatarUrl = this.wxUser?this.wxUser.avatarUrl:'/static/images/head.png'
 			}
+		},
+		onShow(){
+			
 			
 		},
 		methods: {
+			scan(){
+				uni.scanCode({
+				    success: res=> {
+						console.log(res)
+						this.scanOrder(res.result);
+				    },
+					fail: res => {
+						console.log(res)
+					}
+				});
+			},
+			scanOrder(code){
+				this.postAjax("/api/company/coupon-order-cancel",{code:code,token:uni.getStorageSync('token')}).then(msg=>{
+					if(msg.data.status == 2){
+						this.ajax();
+
+					}
+				})
+			},
 			checkAuth(v){
-				return this.linkTo(v.url,v.type);
+				if(v.name == '核销优惠券'){
+					return this.scan();
+				}else{
+					return this.linkTo(v.url,v.type);
+				}
+				
 			},
 		}
 	}

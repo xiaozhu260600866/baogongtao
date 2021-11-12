@@ -27,13 +27,13 @@
 		<view class="list_item" :class="[v.status > 0?'used':'']" v-for="v in data" v-if="type == 2">
 			<view class="list_box">
 				<view class="item_img">
-					<image class="img" :src="v.getCoupon.logo_url" mode="aspectFill"></image>
+					<image class="img" :src="v.getCover" mode="aspectFill"></image>
 				</view>
 				<view class="item_right">
 					<view class="w-b100 coupon-title fs-16 lh-20 wrap2 fc-0">{{ v.name }}</view>
 					<view class="w-b100 ir-bottom fc-6 fs-13 lh-20 mt5">
-						<view class="tips">{{v.getCoupon.abstract}}</view>
-						<view class="tips wrap2" v-if="v.getUser.nickname">领取用户：{{v.getUser.nickname}}</view>
+						<view class="tips">{{v.get_coupon.abstract}}</view>
+						<view class="tips wrap2" v-if="v.get_user.username">领取用户：{{v.get_user.username}}</view>
 						<view class="time">领取时间：<text class="Arial">{{ v.created_at }}</text></view>
 						<view class="time" v-if="v.created_at != v.updated_at">核销时间：<text class="Arial">{{ v.updated_at }}</text></view>
 					</view>
