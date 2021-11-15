@@ -62,8 +62,8 @@
 			
 			<view class="ugorup-box">
 				<dx-nav-class :data="[
-					{url:'',type: 1,icon:'dxi-icon dxi-icon-user3',name:'VIP中心'},
-					{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'商家中心'},
+					{url:'',type: 1,icon:'dxi-icon dxi-icon-user3',name:'分享达人'},
+					{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
 					{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
 					{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
 					{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},

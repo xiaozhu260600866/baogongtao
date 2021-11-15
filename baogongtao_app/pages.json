@@ -261,7 +261,7 @@
 		{
 			"path": "pages/merchant/lists/index",
 			"style": {
-				"navigationBarTitleText": "附近的商家"
+				"navigationBarTitleText": "附近的企业"
 			}
 		},
 		{

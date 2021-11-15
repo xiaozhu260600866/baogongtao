@@ -12,7 +12,7 @@
 			<dx-nav-class :data="[
 				{url:'/pages/merchant/recruit/lists/index',type:1,cover:'/static/images/logo.png',name:'招聘'},
 				{url:'/pages/talents/lists',type:1,cover:'/static/images/logo.png',name:'人才'},
-				{url:'/pages/merchant/lists/index',type:1,cover:'/static/images/logo.png',name:'附近商家'},
+				{url:'/pages/merchant/lists/index',type:1,cover:'/static/images/logo.png',name:'企业'},
 				{url:'/pages/merchant/coupon/lists/index',type:2,cover:'/static/images/logo.png',name:'优惠券'},
 			]" @click="checkAuth" myclass="mtb10" :num="4" :nameSize="15" :namePTop="10"></dx-nav-class>
 			<view v-if="!examining">
