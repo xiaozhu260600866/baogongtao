@@ -42,6 +42,8 @@ page {
 	width: 100%;
 	padding: 128upx 104upx 0 104upx;
 	box-sizing: border-box;
+	position: relative;
+	z-index: 5;
 }
 
 .tui-input {

@@ -21,8 +21,8 @@
 					<view class="name">我的记录</view>
 				</view>
 				<dx-nav-class :data="[
-					{url:'/pages/merchant/recruit/apply/index',type:1,cover:'/static/images/logo.png',name:'应聘记录'},
-					{url:'/pages/merchant/coupon/lists/cancel',type:1,cover:'/static/images/logo.png',name:'核销记录'},
+					{url:'/pages/merchant/recruit/apply/index',type:1,cover:'https://www.baogongtao.com/images/wap/A01.jpg',name:'应聘记录'},
+					{url:'/pages/merchant/coupon/lists/cancel',type:1,cover:'https://www.baogongtao.com/images/wap/A02.jpg',name:'核销记录'},
 				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10"></dx-nav-class>
 			</view>
 			<view class="block-sec">
@@ -30,12 +30,12 @@
 					<view class="name">常用工具</view>
 				</view>
 				<dx-nav-class :data="[
-					{url:'/pages/merchant/recruit/created_edit/lists',type:1,cover:'/static/images/logo.png',name:'发布招聘'},
-					{url:'/pages/merchant/coupon/created_edit/lists',type:1,cover:'/static/images/logo.png',name:'发布优惠券'},
-					{url:'/pages/merchant/coupon/cancel/cancel',type:1,cover:'/static/images/logo.png',name:'核销优惠券'},
-					{url:'/pages/merchant/info/index',type:1,cover:'/static/images/logo.png',name:'我的资料'},
-					{url:'/pages/merchant/worker/lists',type:1,cover:'/static/images/logo.png',name:'我的用工'},
-					{url:'/pages/company/worker/transactions',type:1,cover:'/static/images/logo.png',name:'工资发放记录'},
+					{url:'/pages/merchant/recruit/created_edit/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B01.jpg',name:'发布招聘'},
+					{url:'/pages/merchant/coupon/created_edit/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B02.jpg',name:'发布优惠券'},
+					{url:'/pages/merchant/coupon/cancel/cancel',type:1,cover:'https://www.baogongtao.com/images/wap/B03.jpg',name:'核销优惠券'},
+					{url:'/pages/merchant/info/index',type:1,cover:'https://www.baogongtao.com/images/wap/B04.jpg',name:'我的资料'},
+					{url:'/pages/merchant/worker/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B05.jpg',name:'我的用工'},
+					{url:'/pages/company/worker/transactions',type:1,cover:'https://www.baogongtao.com/images/wap/B06.jpg',name:'工资发放记录'},
 				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10"></dx-nav-class>
 			</view>
 		</view>

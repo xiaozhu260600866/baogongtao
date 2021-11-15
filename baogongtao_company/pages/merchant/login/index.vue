@@ -7,7 +7,10 @@
 			<view class="tui-login-name">{{wxUser.nickName}}</view>
 		</view>
 		<form @submit="formLogin">
-			<view class="tui-login-from">
+			<view class="tui-login-from pt0">
+				<view class="logo">
+					<image class="img" src="https://www.baogongtao.com/images/logo.jpg"></image>
+				</view>
 				<view class="tui-line-cell">
 					<tui-icon name="people" size="20" color='#5677fc'></tui-icon>
 					<input placeholder-class="phcolor" class="tui-input" name="mobile" placeholder="请输入登录账号" v-model="username" type="text" />
@@ -41,6 +44,7 @@ export default {
 	data() {
 		return {
 			wxUser:uni.getStorageSync('wxUser'),
+			getSiteName: this.getSiteName(),
 			username: "",
 			password: '',
 		}
@@ -96,4 +100,6 @@ export default {
 
 <style>
 @import "/pages/user/login/index/index.css";
+.logo{display: flex;justify-content: center;margin-bottom: 60rpx;}
+.logo .img{width: 200rpx;height: 200rpx;border-radius: 8rpx;display: flex;box-shadow: 0 0 12rpx rgba(0,0,0,0.15);}
 </style>
