@@ -45,7 +45,7 @@
 		},
 		methods: {
 			ajax() {
-				this.getAjax(this).then(msg => {
+				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
 					
 				});
 			}

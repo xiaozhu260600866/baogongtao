@@ -15,7 +15,7 @@
 		components:{dxftButton,recruitLists},
 		data() {
 			return {
-				formAction: '/api/company/recruits',
+				formAction: '/api/company/recruits2?type=my',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
@@ -43,7 +43,7 @@
 		},
 		methods: {
 			ajax() {
-				this.getAjax(this).then(msg => {
+				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
 					
 				});
 			}
