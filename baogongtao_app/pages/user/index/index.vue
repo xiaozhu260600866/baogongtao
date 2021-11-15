@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view>
+		<view v-if="show">
 			<view class="head-info main-bg">
 				<view class="utop">
 					<view class="uinfo" v-if="!userInfo.nickName">
@@ -59,15 +59,9 @@
 					name:'售后',number:orders10}
 				]" @click="checkAuth" isAuth myclass="bdr12" :num="5" :imgWidth="30" :imgHeight="30" :imgR="0" :nameSize="13" :namePTop="5"></dx-nav-class>
 			</view> -->
-			
-			<view class="ugorup-box">
-				<dx-nav-class :data="[
-					{url:'',type: 1,icon:'dxi-icon dxi-icon-user3',name:'分享达人'},
-					{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
-					{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-					{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
-					{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
-				]" @click="checkAuth" isAuth myclass="bdr12" :num="4" :iconSize="24" :nameSize="14" :namePTop="10"></dx-nav-class>
+		<!-- 	{url:'',type: 1,icon:'dxi-icon dxi-icon-user3',name:'分享达人'}, -->
+			<view class="ugorup-box" >
+				<dx-nav-class :data="menuArr" @click="checkAuth" isAuth myclass="bdr12" :num="4" :iconSize="24" :nameSize="14" :namePTop="10"></dx-nav-class>
 			</view>
 		</view>
 	</view>
@@ -82,17 +76,40 @@
 			return {
 				ruleform:{},
 				vaildate:{},
+				menuArr:[
+					{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
+					{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
+					{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+					{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
+				],
 				orders1:'',
 				orders3:'',
 				orders5:'',
 				orders9:'',
 				orders10:'',
-				userInfo:{}
+				userInfo:{},
+				pushing:0,
+				show:false,
 			}
 		},
 		onLoad() {
 			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
-				
+				this.pushing = res.data.push;
+				if(this.pushing){
+					this.menuArr = [
+						{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}
+						
+					]
+				}else{
+					this.menuArr = [
+						{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
+						{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
+						{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+						{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
+						
+					]
+				}
+				this.show = true;
 				
 			})
 			this.userInfo = uni.getStorageSync("wxUser");
