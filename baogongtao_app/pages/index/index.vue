@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view>
+		<view v-if="show">
 			<view class="banner">
 				<tyt-swiper :data="sliders" indicatorDotsActColor="#009966"></tyt-swiper>
 			</view>
@@ -14,7 +14,7 @@
 				{url:'/pages/talents/lists',type:1,cover:'/static/images/logo.png',name:'人才'},
 				{url:'/pages/merchant/lists/index',type:1,cover:'/static/images/logo.png',name:'企业'},
 				{url:'/pages/merchant/coupon/lists/index',type:2,cover:'/static/images/logo.png',name:'优惠券'},
-			]" @click="checkAuth" myclass="mtb10" :num="4" :nameSize="15" :namePTop="10"></dx-nav-class>
+			]" @click="checkAuth" myclass="mtb10" :num="4" :nameSize="15" :namePTop="10" v-if="!examining"></dx-nav-class>
 			<view v-if="!examining">
 				<view>
 					<view class="mll_tabs">
@@ -45,6 +45,7 @@ import tytSwiper from '@/components/tytrock/components/swiper'
 import tytLoadmore from "@/components/tytrock/components/loadmore"
 import dxNavClass from "doxinui/components/nav-class/nav-class"
 import recruitLists from '@/components/recruitLists'
+import {userinfo} from "@/api/user";
 export default {
 	components:{
 		navBtn,
@@ -67,42 +68,16 @@ export default {
 			page: 1,
 			newsData: [],
 			examining: true,
-			jobsLists:[{
-				name:'PHP开发工程师',
-				city:'江门',
-				company:{
-					name:'江门市东信科技有限公司',
-					people_num: '1-50',
-					status:'已上市'
-				},
-				work_place:'新会',
-				salary: '10-15K',
-				condititon:['1-3年','本科','周末双休','钣金工艺'],
-				userInfo:{
-					headerPic:'/static/images/logo.png',
-					name:'林生',
-					position:'经理',
-				}
-			},{
-				name:'PHP开发工程师',
-				city:'江门',
-				company:{
-					name:'江门市东信科技有限公司',
-					people_num: '1-50',
-					status:'已上市'
-				},
-				work_place:'新会',
-				salary: '10-15K',
-				condititon:['1-3年','本科','周末双休','钣金工艺'],
-				userInfo:{
-					headerPic:'/static/images/logo.png',
-					name:'林生',
-					position:'经理',
-				}
-			}]
+			jobsLists:[],
+			show:false,
 		}
 	},
 	onLoad() {
+		userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+			this.examining = res.data.push;
+			this.show = true;
+			
+		})
 		this.pageLoading(this);
 		multiplePosters({types:"5,6,7",nums:"5,4,1"}).then((res)=>{
 			this.sliders = res.data.data[5];
