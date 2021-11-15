@@ -67,13 +67,13 @@ export default {
 			pullUpOn: true,
 			page: 1,
 			newsData: [],
-			examining: true,
+			examining: false,
 			jobsLists:[],
 			show:false,
 		}
 	},
 	onLoad() {
-		userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+		recruitList({token:uni.getStorageSync('token')}).then((res)=>{
 			this.examining = res.data.push;
 			this.show = true;
 			

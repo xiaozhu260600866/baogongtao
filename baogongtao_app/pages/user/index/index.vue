@@ -69,7 +69,7 @@
 
 <script>
 	import dxNavClass from "doxinui/components/nav-class/nav-class"
-		import {userinfo} from "@/api/user";
+import { recruits as recruitList } from "@/api/company";
 	export default {
 		components:{dxNavClass},
 		data() {
@@ -93,7 +93,7 @@
 			}
 		},
 		onLoad() {
-			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+			recruitList({token:uni.getStorageSync('token')}).then((res)=>{
 				this.pushing = res.data.push;
 				if(this.pushing){
 					this.menuArr = [
