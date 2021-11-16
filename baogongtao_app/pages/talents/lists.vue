@@ -1,23 +1,43 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view>
-			<recruitLists :data="jobsLists"></recruitLists>
+		<view v-if="data.show">
+		<!-- 	<view class="title">PHP开发工程师</view> -->
+			<view class="talents">
+				<view class="talents-item bg-f p15 mb8" v-for="item in data.data.lists.data">
+					<view class="info flex-between">
+						<view class="left">
+							<view class="name fs-18 fw-bold fc-3">{{item.name}}</view>
+							<view class="labG">
+								<view class="lab Arial" >{{item.get_user_info.working_date}}年</view>
+								<view class="lab" v-if="item.get_user_info.education">{{item.education}}</view>
+								<view class="lab" v-if="item.get_user_info.salary">{{item.get_user_info.salary}}</view>
+							</view>
+						</view>
+						<view class="right">
+							<image class="head" :src="item.get_wechat_user.avatarUrl" mode="aspectFill"></image>
+						</view>
+					</view>
+					<view class="con flex-middle fs-15 fc-3 ptb15">
+						 <view class="company">{{item.get_user_info.company_name}}</view>
+						<view class="dot"></view>
+						<view class="position">{{item.get_user_info.industry}}</view>
+					</view>
+					<view class="intro text-justify wrap2 fs-15 fc-6">{{item.get_user_info.advantage}}</view>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import recruitLists from '@/components/recruitLists'
-	import { recruits as recruitList } from "@/api/company";
-	
 	export default {
-		components:{
-			recruitLists
-		},
 		data() {
 			return {
-				jobsLists:[],
+				formAction: '/api/user/lists?role=12&industry_not_null=1',
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
 				talents:[{
 					name:'梁先生',
 					year:7,
@@ -40,14 +60,14 @@
 			}
 		},
 		onLoad() {
-				this.getRecruitLists();
+			this.ajax();
 		},
 		methods: {
-			getRecruitLists(){
-				recruitList({}).then(msg=>{
-					this.jobsLists = msg.data.lists.data;
+			ajax() {
+				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
+					
 				});
-			},
+			}
 		}
 	}
 </script>

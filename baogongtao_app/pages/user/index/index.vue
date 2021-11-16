@@ -102,6 +102,7 @@ import { recruits as recruitList } from "@/api/company";
 					]
 				}else{
 					this.menuArr = [
+						{url:'/pages/distribution/add/main',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'分享达人'},
 						{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
 						{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
 						{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},

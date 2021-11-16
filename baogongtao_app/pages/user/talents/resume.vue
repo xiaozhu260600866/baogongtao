@@ -9,7 +9,7 @@
 				 :radioType="true"></weui-input>
 				<weui-input v-model="ruleform.work_status" label="身份" name="work_status" changeField="value" type="radio" dataKey="statusArr"
 				 :radioType="true"></weui-input>
-				<weui-input v-model="ruleform.working_date" label="参加工作时间" type="date" name="working_date" datatype="require"></weui-input>
+				<weui-input v-model="ruleform.working_date" label="参加工作年龄" type="number" name="working_date" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.birthday" label="出生日期" type="date" name="birthday" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.wechat" label="微信号" type="text" name="wechat"></weui-input>
 				<weui-input v-model="ruleform.email" label="邮箱" type="text" name="email"></weui-input>

@@ -124,6 +124,9 @@ export default {
 			})
 		},
 	},
+	onShareAppMessage() {
+		this.shareSource(this, '商城');
+	},
 	onReachBottom: function() {
 		if (!this.pullUpOn) return;
 		this.listLoadding = true;
