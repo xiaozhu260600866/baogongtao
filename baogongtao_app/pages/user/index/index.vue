@@ -70,6 +70,7 @@
 <script>
 	import dxNavClass from "doxinui/components/nav-class/nav-class"
 import { recruits as recruitList } from "@/api/company";
+	import {userinfo, action, logout} from "@/api/user";
 	export default {
 		components:{dxNavClass},
 		data() {
@@ -88,31 +89,60 @@ import { recruits as recruitList } from "@/api/company";
 				orders9:'',
 				orders10:'',
 				userInfo:{},
+				
 				pushing:0,
-				show:false,
+				show:true,
 			}
 		},
 		onLoad() {
-			recruitList({token:uni.getStorageSync('token')}).then((res)=>{
-				this.pushing = res.data.push;
-				if(this.pushing){
-					this.menuArr = [
-						{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}
-						
-					]
-				}else{
-					this.menuArr = [
-						{url:'/pages/distribution/add/main',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'分享达人'},
-						{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
-						{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-						{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
-						{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
-						
-					]
-				}
-				this.show = true;
-				
-			})
+			if(uni.getStorageSync('sysUser')){
+				userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+					this.pushing = res.data.push;
+					if(this.pushing){
+						this.menuArr = [
+							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}
+							
+						]
+					}else{
+						let disUrl = res.data.dis ? '/pages/distribution/index/main' :'/pages/distribution/add/main'
+						this.menuArr = [
+							{url:disUrl,type: 1,icon:'dxi-icon dxi-icon-shop3',name:'分享达人'},
+							{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
+							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
+							{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+							{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
+							
+						]
+					}
+					this.show = true;
+					
+				})
+			}else{
+				recruits({token:uni.getStorageSync('token')}).then((res)=>{
+					this.pushing = res.data.push;
+					if(this.pushing){
+						this.menuArr = [
+							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}
+							
+						]
+					}else{
+						let disUrl = res.data.dis ? '/pages/distribution/index/main' :'/pages/distribution/add/main'
+						this.menuArr = [
+							{url:disUrl,type: 1,icon:'dxi-icon dxi-icon-shop3',name:'分享达人'},
+							{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
+							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
+							{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+							{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
+							
+						]
+					}
+					this.show = true;
+					
+				})
+					this.show = true;
+			}
+			
+			
 			this.userInfo = uni.getStorageSync("wxUser");
 		},
 		methods: {

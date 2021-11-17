@@ -58,6 +58,11 @@ export default {
 	},
 	data() {
 		return {
+			formAction: '/checkDis',
+			mpType: 'page', //用来分清父和子组件
+			data: this.formatData(this),
+			selectType: 'toDay',
+			getSiteName: this.getSiteName(),
 			sliders: [],
 			navs: [],
 			banners: [],
@@ -73,6 +78,7 @@ export default {
 		}
 	},
 	onLoad() {
+		this.ajax();
 		recruitList({token:uni.getStorageSync('token')}).then((res)=>{
 			this.examining = res.data.push;
 			this.show = true;
@@ -91,6 +97,11 @@ export default {
 		});
 	},
 	methods: {
+		ajax() {
+			this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
+				console.log(this.data);
+			});
+		},
 		getRecruitLists(){
 			recruitList({}).then(msg=>{
 				this.jobsLists = msg.data.lists.data;

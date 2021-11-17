@@ -62,8 +62,8 @@ Vue.component(
 );
 
 // 强叔
-uni.removeStorageSync('jsdk');
-uni.removeStorageSync('distribution');
+// uni.removeStorageSync('jsdk');
+// uni.removeStorageSync('distribution');
 App.mpType = 'app'
 
 import 'doxinui/css/global_upx.css';

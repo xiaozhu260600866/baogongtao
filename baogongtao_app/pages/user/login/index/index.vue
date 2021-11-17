@@ -119,7 +119,8 @@ export default {
 			
 			let postData = {
 				phone:this.phone,
-				code:this.smsCode
+				code:this.smsCode,
+				distribution:uni.getStorageSync('distribution'),
 			};
 			
 			this.submitLoading = true;
