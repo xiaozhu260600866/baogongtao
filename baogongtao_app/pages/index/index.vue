@@ -9,6 +9,7 @@
 			<view class="banner_ad bg-f mb10">
 				<image class="w-b100 flex" :src="banners[0].coverUrl" mode="widthFix"></image>
 			</view> -->
+			
 			<dx-nav-class :data="[
 				{url:'/pages/merchant/recruit/lists/index',type:1,cover:'/static/images/logo.png',name:'招聘'},
 				{url:'/pages/talents/lists',type:1,cover:'/static/images/logo.png',name:'人才'},
