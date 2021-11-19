@@ -1,0 +1,20 @@
+page{padding-bottom: 20rpx!important;}
+
+/* 滚动标题 */
+.msc_tabs {white-space: nowrap; display: flex;background: #fff;}
+.msc_tabs .liNav {display: inline-block;position: relative;padding: 20rpx 0;margin: 0 30rpx;font-size: 30rpx;color: #666;line-height: 52rpx;}
+.msc_tabs .cur{color: #33c45d;}
+.msc_tabs .cur:before{content: "";display: block;position: absolute;bottom: 0;left: 50%;height: 6rpx;width: 60rpx;margin-left: -30rpx;background: #33c45d;}
+.msc_tabs .between{width: 100%;display: flex;}
+.msc_tabs .between .liNav{width: 100%;text-align: center;}
+
+
+.time-date{top: 184rpx;}
+
+
+.order-list{margin: 20rpx;background-color: #fff;border-radius: 12rpx;}
+.order-list .title{display: flex;align-items: center;}
+.order-list .title .head{width: 60rpx;height: 60rpx;border-radius: 50%;display: flex;}
+.order-list .title .name{flex: 1;overflow: hidden;width: 100%;}
+.order-list .pro-info .row{display: flex;justify-content: space-between;padding: 20rpx 0;border-top: 1rpx #f2f2f2 solid;}
+.order-list .pro-info .row:first-child{border-top: 0;}

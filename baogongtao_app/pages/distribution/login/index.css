@@ -1,0 +1,18 @@
+page{background: #fff;}
+
+.logo{display: flex;justify-content: center;}
+.logo .img{width: 180upx;height: 180upx;border-radius: 20upx;display: flex;}
+
+.type{display: flex;justify-content: center;}
+.type .type-name{padding: 5px 15px;}
+.type .cur{font-weight: bold;position: relative;}
+.type .cur:before{content: "";display: block;position: absolute;bottom: 0;left: 50%;width: 30px;height: 3px;background: #33c45d;margin-left: -15px;}
+
+.login-list{padding: 30upx 30upx 0;}
+
+/* 信息填写 */
+.login-info .dx-cell{border-color: #ddd;}
+.login-info .slot-icon .iconfont{font-size: 36upx;color: #666;padding-right: 30upx;}
+.login-info .dx-input{font-size: 32upx!important;}
+
+.mark{position: fixed;bottom: 60upx;width: 100%;padding: 0 60upx;left: 0;line-height: 1.8;text-align: center;}

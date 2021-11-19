@@ -1,0 +1,15 @@
+
+.dis-header {position: relative;}
+.dis-header .item {font-size: 15px;color: #fff;}
+.dis-header .num {align-items: center;display: flex;justify-content: space-between;}
+.dis-header .n-price{color: #fff;font-size: 40px;font-family: Arial;height: 50px;line-height: 50px;}
+.dis-header .a {display: inline-block;width: 70px;border-radius: 6px;border: 1px solid #fff;color: #fff;height: 36px;line-height: 34px;text-align: center;background-color: transparent;}
+.dis-header .a:hover {background: transparent;}
+
+
+.stuff-sec .sec-group {width: 50%;border-right: 1px #e5e5e5 solid;border-bottom: 1px #e5e5e5 solid;box-sizing: border-box;float: left;text-align: center;padding: 30px 0;}
+.stuff-sec .sec-group:nth-child(2n) {border-right: none;}
+.stuff-sec .sec-group .img {width: 40px;height: 40px;margin-bottom: 15px;}
+.stuff-sec .sec-group .img01{width: 45px;height: 45px;margin-bottom: 10px;}
+.stuff-sec .sec-group .p {font-size: 16px;color: #353535;}
+.stuff-sec .sec-group .num{height: 24px;line-height: 24px;}
