@@ -9,10 +9,10 @@
 				<view class="gray Arial"><text class="iconfont icon-time-o"></text>{{ item.started_date }} 至 {{ item.ended_date }}</view>
 				<view class="nav">
 					<tyt-navigator :wxAuth="true" @callBack="linkTo('/pages/user/task/show?id=' + item.id,1)" v-if="self">
-						<view slot="content"><dx-button type="primary" block round size="mini">查看任务</dx-button></view>
+						<view slot="content" class="plr30"><dx-button type="primary" size="medium" block round>查看任务</dx-button></view>
 					</tyt-navigator>
 					<tyt-navigator :wxAuth="true" @callBack="linkTo('/pages/task/show/index?id=' + item.id,1)" v-else>
-						<view slot="content"><dx-button type="primary" block round size="mini">查看任务</dx-button></view>
+						<view slot="content" class="plr30"><dx-button type="primary" size="medium" block round>查看任务</dx-button></view>
 					</tyt-navigator>
 				</view>
 				<view class="type">{{ item.typeName }}</view>
@@ -48,14 +48,14 @@ export default {
 }
 
 </script>
-<style>
-.task_lists{padding: 20upx;}
-.task_item{background-color: #fff;border-radius: 12upx;margin-bottom: 20upx;padding: 30upx;position: relative;}
-.task_item .name{font-size: 36upx;padding-bottom: 16upx;padding-right: 140upx;}
-.task_item .price{font-size: 34upx;padding-bottom: 8upx;}
-.task_item .gray{color: #999;font-size: 24upx;line-height: 40upx;}
-.task_item .gray .iconfont{font-size: 24upx;padding-right: 12upx;}
-.task_item .nav{margin: 0 30upx;margin-top: 16upx;}
+<style lang="scss">
+.task_lists{padding: 20rpx;}
+.task_item{background-color: #fff;border-radius: 12rpx;margin-bottom: 20rpx;padding: 30rpx;position: relative;}
+.task_item .name{font-size: 36rpx;padding-bottom: 16rpx;padding-right: 140rpx;}
+.task_item .price{font-size: 34rpx;padding-bottom: 8rpx;}
+.task_item .gray{color: #999;font-size: 28rpx;line-height: 1.6;}
+.task_item .gray .iconfont{font-size: 28rpx;padding-right: 12rpx;}
+.task_item .nav{margin: 0 30rpx;margin-top: 16rpx;}
 .task_item .nav .dx-btn{width: 100%;}
-.task_item .type{position: absolute;top: 40upx;right: 30upx;height: 40upx;line-height: 38upx;padding: 0 10upx;border: 1upx #55b4f6 solid;color: #55b4f6;font-size: 24upx;}
+.task_item .type{position: absolute;top: 40rpx;right: 30rpx;height: 40rpx;line-height: 38rpx;padding: 0 10rpx;border: 1rpx $color-primary solid;color: $color-primary;font-size: 24rpx;}
 </style>

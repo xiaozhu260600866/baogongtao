@@ -99,7 +99,7 @@ export default {
 .cash-list .list_item{position: relative;border-radius: 12rpx;overflow: hidden;background-color: #fff;margin-bottom: 24rpx;color: #333;}
 .cash-list .list_box{display: flex;}
 .cash-list .list_item:last-child{margin-bottom: 0;}
-.cash-list .item_left{width: 180rpx;padding: 20rpx 0;display: flex;align-items: center;justify-content: center;flex-wrap: wrap;text-align: center;background-color: #33c45d;position: relative;background-image: linear-gradient(to bottom right, #57C734 , #33c45d);}
+.cash-list .item_left{width: 180rpx;padding: 20rpx 0;display: flex;align-items: center;justify-content: center;flex-wrap: wrap;text-align: center;background-color: $color-primary;position: relative;background-image: linear-gradient(to bottom right, $color-primary , $color-primary);}
 .cash-list .item_img .img{width: 200rpx;height: 100%;display: flex;}
 .cash-list .item_left::before{content: '';display: block;border-left: dotted #fff 14rpx;position: absolute;top: -8rpx;bottom: -8rpx;left: -8rpx;}
 .cash-list .item_right{display: flex;flex-wrap: wrap;align-content: space-between;position: relative;z-index: 2;padding: 20rpx 10rpx 20rpx 20rpx;flex: 1;z-index: 2;min-height: 160rpx;}
@@ -107,9 +107,9 @@ export default {
 .cash-list .ir-bottom .time{font-family: Calibri;}
 .cash-list .status{position: relative;display: flex;align-items: center;z-index: 2;}
 .cash-list .status .icon{width: 200rpx;}
-.cash-list .status .nav{font-size: 24rpx;color: #33C45D;border: 1rpx #33C45D solid;border-radius: 64rpx;width: 128rpx;height: 56rpx;line-height: 54rpx;text-align: center;margin-right: 20rpx;}
+.cash-list .status .nav{font-size: 24rpx;color: $color-primary;border: 1rpx $color-primary solid;border-radius: 64rpx;width: 128rpx;height: 56rpx;line-height: 54rpx;text-align: center;margin-right: 20rpx;}
 .cash-list .status .nav.no{color: #999;border-color: #ddd;background-color: #f5f5f5;}
-.cash-list .status .nav.fill{color: #fff;background-color: #33C45D;}
+.cash-list .status .nav.fill{color: #fff;background-color: $color-primary;}
 .cash-list .status-icon{position: absolute;top: 0;right: 0;z-index: 1;}
 .cash-list .status-icon .img{width: 180rpx;height: 180rpx;}
 

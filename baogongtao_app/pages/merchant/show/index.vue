@@ -7,7 +7,7 @@
 				<tyt-swiper :data="sliders" indicatorDotsActColor="#fff"></tyt-swiper>
 			</view>
 			<view class="block-sec detail-show">
-				<dx-title name="商家简介" borderColor="#33c45d" nameColor="#333" nameSize="16" nameBold="bold" line Lline></dx-title>
+				<dx-title name="商家简介" borderColor="#1e97ff" nameColor="#333" nameSize="16" nameBold="bold" line Lline></dx-title>
 				<view class="con p12 fs-15">
 					<!-- remark_company -->
 					<view v-if="detail.remark_company">{{ detail.remark_company }}</view>
@@ -16,7 +16,7 @@
 				</view>
 			</view>
 			<view class="block-sec bus-info">
-				<dx-list-cell name="地址" iconName="location-fill" iconSize="18" iconColor="#33c45d"
+				<dx-list-cell name="地址" iconName="location-fill" iconSize="18" iconColor="#1e97ff"
 				 @click="location(detail.location_x,detail.location_y,detail.address)">
 				　　<view slot="right" class="right-box">{{ detail.address }}</view>
 				</dx-list-cell>

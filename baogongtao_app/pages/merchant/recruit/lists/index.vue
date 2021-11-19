@@ -11,7 +11,7 @@
 			</view>
 			<view><!-- :style="{marginTop: height+'px'}" -->
 				<view class="title">推荐职位</view>
-				<recruitLists :data="jobsLists" :type="3"></recruitLists>
+				<recruitLists :data="jobsLists"></recruitLists>
 			</view>
 		</view>
 	</view>

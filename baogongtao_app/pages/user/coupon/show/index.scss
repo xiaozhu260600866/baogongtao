@@ -1,6 +1,6 @@
 /* 整体 */
 .showBox{background-color: #fff;border-radius: 12rpx;margin: 24rpx;overflow: hidden;}
-.top-box{background-color: #33c45d;color: #fff;position: relative;}
+.top-box{background-color: $color-primary;color: #fff;position: relative;}
 .top-box::before{content: '';display: block;position: absolute;bottom: -10rpx;left: 20rpx;right: 20rpx;border-bottom: dotted #fff 20rpx;}
 
 /* 券信息 */

@@ -3,7 +3,7 @@
 
 
 /* 头部 */
-.head-info{position: relative;}
+.head-info{position: relative;background-image: url('../../../static/images/user-bg.jpg');background-size: 100% auto;background-position: bottom center;}
 .head-bg .img{width: 100%;display: flex;}
 .utop{padding: 60rpx 30rpx 130rpx;}
 .utop .uinfo{display: flex;align-items: center;}

@@ -150,6 +150,6 @@ export default {
 }
 </script>
 
-<style>
-@import "./index.css";
+<style lang="scss">
+@import "./index.scss";
 </style>

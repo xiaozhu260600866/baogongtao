@@ -22,21 +22,21 @@
 						<view class="txt">电子券码：<text class="Arial">{{detail.id}}</text></view>
 					</view>
 					<view class="explain">
-						<dx-title name="现金券介绍" borderColor="#33c45d" borderWidth="30" borderR="4" nameColor="#333"
+						<dx-title name="现金券介绍" borderColor="#1e97ff" borderWidth="30" borderR="4" nameColor="#333"
 							nameSize="16" nameBold="bold" Bline></dx-title>
 						<view class="content">{{detail.get_coupon.remark}}</view>
 					</view>
 				</view>
 				<view class="con-box bg-f" v-if="detail.get_company">
 					<view class="explain">
-						<dx-title name="附近使用店" borderColor="#33c45d" borderWidth="30" borderR="4" nameColor="#333"
+						<dx-title name="附近使用店" borderColor="#1e97ff" borderWidth="30" borderR="4" nameColor="#333"
 							nameSize="16" nameBold="bold" Bline></dx-title>
 						<merchantLists :data="[detail.get_company]"></merchantLists>
 						
 					</view>
 				</view>
 			</view>
-			<dxftButton type="success" size="lg" round @click="goto('/pages/merchant/show/index?id='+detail.company_id,1)">商家主页</dxftButton>
+			<dxftButton type="primary" size="lg" round @click="goto('/pages/merchant/show/index?id='+detail.company_id,1)">商家主页</dxftButton>
 		</view>
 	</view>
 </template>

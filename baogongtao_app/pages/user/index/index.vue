@@ -3,6 +3,9 @@
 		<page ref="page"></page>
 		<view v-if="show">
 			<view class="head-info main-bg">
+				<!-- <view class="head-bg">
+					<image class="img w-b100 flex" mode="widthFix" src="/static/images/user-bg.jpg"></image>
+				</view> -->
 				<view class="utop">
 					<view class="uinfo" v-if="!userInfo.nickName">
 						<view class="header-img">
@@ -152,9 +155,9 @@ import { recruits as recruitList } from "@/api/company";
 				return this.linkTo("/pages/user/login/index/index",0);
 			},
 			checkAuth(v){
-				if(v.name == '商家中心'){
+				if(v.name == '企业中心'){
 					uni.navigateToMiniProgram({
-						appId: 'wx72105f5a392bf8c8',
+						appId: 'wx8aafd3339235cd5e',
 						path: 'pages/merchant/index/index',
 						extraData: {
 							'data1': 'test'

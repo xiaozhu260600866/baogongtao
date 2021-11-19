@@ -63,9 +63,9 @@
 			"path": "pages/user/index/index",
 			"style": {
 				"navigationBarTitleText": "我的",
-				"navigationBarBackgroundColor": "#55b4f6",
+				"navigationBarBackgroundColor": "#1e97ff",
 				"navigationBarTextStyle": "white",
-				"backgroundColorTop": "#55b4f6"
+				"backgroundColorTop": "#1e97ff"
 			}
 		},
 		/*{
@@ -313,8 +313,7 @@
 			"path": "pages/merchant/recruit/record/index",
 			"style": {
 				"navigationBarTitleText": "申请报名",
-				"enablePullDownRefresh":true,
-				"navigationStyle":"custom"
+				"enablePullDownRefresh":true
 			}
 		},
 		{
@@ -328,7 +327,7 @@
 		{
 			"path": "pages/merchant/recruit/show/index",
 			"style": {
-				"navigationBarTitleText": "招聘信息",
+				"navigationBarTitleText": "职位详情",
 				"enablePullDownRefresh":true
 			}
 		},
@@ -399,9 +398,9 @@
 			"style": {
 				"navigationBarTitleText": "人才",
 				"enablePullDownRefresh":true,
-				"navigationBarBackgroundColor": "#55b4f6",
+				"navigationBarBackgroundColor": "#1e97ff",
 				"navigationBarTextStyle": "white",
-				"backgroundColorTop": "#55b4f6"
+				"backgroundColorTop": "#1e97ff"
 			}
 		},
 		{
@@ -489,7 +488,7 @@
 		}
 	],
 	"tabBar": {
-		"selectedColor": "#55b4f6",
+		"selectedColor": "#1e97ff",
 		"list": [{
 				"pagePath": "pages/index/index",
 				"text": "首页",
@@ -515,7 +514,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "泡工淘",
-		"navigationBarBackgroundColor": "#55b4f6",
-		"backgroundColor": "#55b4f6"
+		"navigationBarBackgroundColor": "#1e97ff",
+		"backgroundColor": "#1e97ff"
 	}
 }

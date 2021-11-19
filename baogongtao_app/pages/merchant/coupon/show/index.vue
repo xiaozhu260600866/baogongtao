@@ -20,11 +20,11 @@
 				
 			<view class="con-box showBox">
 				<view class="explain">
-					<dx-title name="现金券介绍" borderColor="#33c45d" borderWidth="30" borderR="4" nameColor="#333" nameSize="16" nameBold="bold" Bline></dx-title>
+					<dx-title name="现金券介绍" borderColor="#1e97ff" borderWidth="30" borderR="4" nameColor="#333" nameSize="16" nameBold="bold" Bline></dx-title>
 					<view class="content"><u-parse :content="detail.remark" /></view>
 				</view>
 			</view>
-			<dxftButton type="success" size="lg" round @click="freeWithdraw">免费领取</dxftButton>
+			<dxftButton type="primary" size="lg" round @click="freeWithdraw">免费领取</dxftButton>
 			<!-- <dxftButton type="info" size="lg" round>已领取</dxftButton> -->
 		</view>
 	</view>

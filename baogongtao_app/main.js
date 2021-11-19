@@ -51,14 +51,20 @@ Vue.component(
 	tytNavigator
 );
 
-
-
-
-
 import weui_input from 'xiaozhu/uniapp/components/weui_input'
 Vue.component(
 	'weui-input',
 	weui_input
+);
+import hasMore from 'xiaozhu/uniapp/components/hasMore'
+Vue.component(
+	'hasMore',
+	hasMore
+);
+import dxButton from "doxinui/components/button/button"
+Vue.component(
+	'dxButton',
+	dxButton
 );
 
 // 强叔

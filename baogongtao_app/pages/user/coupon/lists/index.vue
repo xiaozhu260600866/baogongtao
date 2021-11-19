@@ -6,7 +6,7 @@
 				{value: 0,name: '待使用'},
 				{value: 1,name: '已使用'},
 				{value: 2,name: '已过期'},
-				{value: 12,name: '全部'}]" @change="ajax" v-model="data.query.status" selectedColor="#57C734" sliderBgColor="#57C734" :selectedSize="32" :size="32" :height="92"></dx-tabs>
+				{value: 12,name: '全部'}]" @change="ajax" v-model="data.query.status" selectedColor="#1e97ff" sliderBgColor="#1e97ff" :selectedSize="32" :size="32" :height="92"></dx-tabs>
 			<couponLists myclass="bg-f" :data="data.lists.data" :type="1"></couponLists>
 		</view>
 	</view>
