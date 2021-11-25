@@ -7,16 +7,16 @@
 					<image class="img w-b100 flex" mode="widthFix" src="/static/images/user-bg.jpg"></image>
 				</view> -->
 				<view class="utop">
-					<view class="uinfo" v-if="!userInfo.nickName">
-						<view class="header-img">
-							<image class="img" src="https://456.doxinsoft.com/images/nouser01.png" />
+					<view class="uinfo" @click="$refs.loginDiag.thisDiag = true" v-if="!userInfo.nickName">
+						<view class="header-img nouser">
+							<image class="img" src="https://bgt.doxinsoft.com/images/user-w.png" />
 						</view>
-						<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="wechatInfoCallBack">
-							<view slot="content">
-								<view class="login-nav pl20 pr15 lh-28 fc-white fs-14 mlr15 bdr14">立即登录<text class="iconfont icon-right fs-10 fc-white pl3"></text></view>
-							</view>
-						</myform>
+						<view class="fc-white lh-1_5 pl15">
+							<view class="fs-22">未登录/注册</view>
+							<view class="fs-12">点击头像可登录/注册</view>
+						</view>
 					</view>
+					
 					<view class="uinfo" v-else>
 						<view class="header-img">
 							<image class="img" :src="userInfo.avatarUrl" />
@@ -64,18 +64,29 @@
 			</view> -->
 		<!-- 	{url:'',type: 1,icon:'dxi-icon dxi-icon-user3',name:'分享达人'}, -->
 			<view class="ugorup-box" >
+				<view class="black-title">
+					<view class="name">常用服务</view>
+				</view>
 				<dx-nav-class :data="menuArr" @click="checkAuth" isAuth myclass="bdr12" :num="4" :iconSize="24" :nameSize="14" :namePTop="10"></dx-nav-class>
 			</view>
+			<dx-diag title="登录或注册" :titBold="false" :bottomOFF="false" ref="loginDiag">
+				<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="wechatInfoCallBack">
+					<view slot="content">
+						<dx-button type="primary" size="lg" myclass="mt15 mlr5" icon="dxi-icon dxi-icon-wechat" block>微信账号快速登录</dx-button>
+					</view>
+				</myform>
+			</dx-diag>
 		</view>
 	</view>
 </template>
 
 <script>
 	import dxNavClass from "doxinui/components/nav-class/nav-class"
-import { recruits as recruitList } from "@/api/company";
+	import { recruits as recruitList } from "@/api/company";
 	import {userinfo, action, logout} from "@/api/user";
+	import dxDiag from "doxinui/components/diag/diag"
 	export default {
-		components:{dxNavClass},
+		components:{dxNavClass,dxDiag},
 		data() {
 			return {
 				ruleform:{},

@@ -1,16 +1,6 @@
 page{background: #fff;}
 
-.header-bg image {width: 100%;}
-.list-group {padding: 20px 30px;}
-.list-group .list-group-item {margin: 15px 0;}
-.list-group .list-group-item .value {font-size: 14px;}
-.list-group .list-group-item input {height: 42px;width: 100%;border: 1px #ddd solid;border-radius: 5px;padding: 4px 15px;}
-.select-item{border: 1px #ddd solid!important;border-radius: 5px;padding: 4px 15px!important;}
-.not-add {width: 85%;margin: 0 auto;min-height: 141px}
-.not-add .not-add2 {height: 61px;margin-top: 30px;}
-.not-add .not-add2 .p {color: #666;font-size: 16px;line-height: 26px;text-align: center;}
-.not-add .not-add2 .p text {color: #F5AB72}
-.not-add .not-add2 button {margin-top: 20px}
-.not-add .fa-shopping-cart {margin-right: 5px;font-size: 18px;}
-.btn {padding: 8px 15px;border-radius: 6px;font-size: 18px;}
-.btn-red {background: #FA4444;color: #fff;}
+.dis-add{padding: 40rpx 60rpx;}
+.dis-add .tips{font-size: 32rpx;margin: 50rpx 0;}
+.dis-add .item{margin: 40rpx 0;}
+.dis-add .input{border: 1rpx #ccc solid;border-radius: 60rpx;padding: 16rpx 40rpx;font-size: 32rpx;height: auto;line-height: 68rpx;}

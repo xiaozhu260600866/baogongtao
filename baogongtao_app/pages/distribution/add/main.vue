@@ -1,41 +1,27 @@
 <template>
 	<view>
 		<page :parentData="data" :formAction="formAction"></page>
-		<view class="container">
-			<view class="validform_ajax">
-				<view class="list-group">
-					<view class="list-group-item">
-						<view class="value">填写真实信息，成为我们的合作伙伴！</view>
-					</view>
-					<view class="list-group-item">
-						<view class="value">
-							<input type="text" placeholder="请填写您的姓名" class="form-control"
-								v-model.lazy="ruleform.name" />
-						</view>
-					</view>
-					<view class="list-group-item">
-						<view class="value">
-							<input type="text" placeholder="请填写您的手机号码" class="form-control"
-								v-model.lazy="ruleform.phone" />
-						</view>
-					</view>
-					<view class="list-group-item">
-						<button @click="formSubmit()">提交</button>
-					</view>
+		<view>
+			<view class="dis-add">
+				<view class="tips">填写真实信息，成为我们的合作伙伴！</view>
+				<view class="item">
+					<input type="text" placeholder="请填写您的姓名" class="input" v-model.lazy="ruleform.name" />
+				</view>
+				<view class="item">
+					<input type="number" placeholder="请填写您的手机号码" class="input" v-model.lazy="ruleform.phone" />
+				</view>
+				<view class="item">
+					<dx-button type="primary" size="lg" block round @click="formSubmit()">提交</dx-button>
 				</view>
 			</view>
 		</view>
 	</view>
 </template>
-<style scoped="">
-	@import url("xiaozhu/uniapp/font/globalFont.css");
-	@import url("xiaozhu/css/dx-input.css");
-	
+<style>
+@import "./index.css";
 </style>
 <script>
 	import {userinfo} from "@/api/user";
-	import "./index.css";
-
 	export default {
 		components: {},
 		data() {

@@ -2,8 +2,19 @@
 	<view>
 		<page :parentData="data" :formAction="formAction"></page>
 		<view v-if="data.show">
-			<dx-tabs-date  :height="50" :size="15" v-model="searchType" @change="chageDate"></dx-tabs-date>
-			<view id="scroller">
+			<view class="plr15 pt10 fs-13 fc-7">邀请好友成为分享达人，推广购买后均可获得奖励</view>
+			<view class="team-group">
+				<view class="team-item block-sec flex" v-for="item in lists">
+					<image class="head mr10" :src="item.headerPic"></image>
+					<view class="info flex1 fs-13 fc-7 lh-1_6">
+						<view class="fs-16 fw-bold fc-black">{{item.name}}</view>
+						<view class="mt3">累计奖励：<text class="Arial main-color">￥{{item.amount}}</text></view>
+						<view>上次奖励：<text class="Arial main-color" v-if="item.last_amount">￥{{item.last_amount}}</text><text v-else>--</text></view>
+					</view>
+				</view>
+			</view>
+			<!-- <dx-tabs-date  :height="50" :size="15" v-model="searchType" @change="chageDate"></dx-tabs-date> -->
+			<!-- <view id="scroller">
 				<view class="top plr15 ptb5 fs-14 fc-3 lh-26" v-if="countShow">
 					<view class="group flex-between">
 						<view>一级分销商：<text class="Arial">{{countData.topOne.length}}</text>人</view>
@@ -45,12 +56,12 @@
 						
 					</view>
 					<view class="infob fs-12 fc-9 plr15 ptb10 bd-te flex-right">
-						<!-- <view class="dx-btn dx-btn-sm dx-btn-orange ml5" @click="goto('/pages/distribution/order-list/main?id='+item.id+'&dateSelect=today&status=-1',1)">订单</view> -->
+						<view class="dx-btn dx-btn-sm dx-btn-orange ml5" @click="goto('/pages/distribution/order-list/main?id='+item.id+'&dateSelect=today&status=-1',1)">订单</view>
 						<view class="dx-btn dx-btn-sm dx-btn-orange ml5" @click="goto('/pages/distribution/down/client/main?id='+item.id,1)">客户</view>
 						<view class="dx-btn dx-btn-sm dx-btn-orange ml5" @click="goto('/pages/distribution/down/dis/main?id='+item.id,1)">下级</view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 			<hasMore :parentData="data" source="nodata"></hasMore>
 		</view>
 	</view>
@@ -69,7 +80,18 @@ import dxTabsDate from "doxinui/components/tabs/tabs_date"
 				lev:0,
 				searchType:'today',
 				countShow:false,
-				countData:{}
+				countData:{},
+				lists:[{
+					headerPic:'http://thirdwx.qlogo.cn/mmopen/vi_32/kzrmgBsECQibKiblwAxN7h9sY9YGlJEzibO4AShmpUzgAYvoNtC6XiaibwCuuZrDbM0TSWhzBhC79uYEwIwhJ3ibZX6Q/132',
+					name:'东信科技-梅',
+					amount:55.00,
+					last_amount: 3.50,
+				},{
+					headerPic:'https://thirdwx.qlogo.cn/mmopen/vi_32/ricBHcHiaUya3OQNGBOI4u9wzEGtwV9MibOrLeZcgtbiaSP5S4ic7dsTCWF7iajM4jjib2T79OhpkC3AAIs8YajD7gWoQ/132',
+					name:'小朱',
+					amount:0,
+					last_amount: 0,
+				}]
 			}
 		},
 		onReachBottom() {

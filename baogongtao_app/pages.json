@@ -442,16 +442,17 @@
 		{
 			"path": "pages/distribution/index/main",
 			"style": {
-				"navigationBarTitleText": "VIP中心",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "分享达人",
+				"enablePullDownRefresh": true,
+				"navigationBarBackgroundColor": "#ffffff",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
 			}
 		},
-		
-		
 		{
 			"path": "pages/distribution/add/main",
 			"style": {
-				"navigationBarTitleText": "VIP申请",
+				"navigationBarTitleText": "分享达人",
 				"enablePullDownRefresh": true
 			}
 		},
@@ -462,9 +463,6 @@
 				"enablePullDownRefresh": true
 			}
 		},
-		
-		
-		
 		{
 			"path": "pages/distribution/team/main",
 			"style": {
@@ -483,6 +481,20 @@
 			"path": "pages/distribution/qrcode/poster/index",
 			"style": {
 				"navigationBarTitleText": "分享二维码",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/distribution/record-list/main",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/distribution/domoney/main",
+			"style": {
+				"navigationBarTitleText": "提现",
 				"enablePullDownRefresh": true
 			}
 		}

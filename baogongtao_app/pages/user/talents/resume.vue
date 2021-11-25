@@ -1,33 +1,49 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view class="pb60">
-			<view class="bg-f edit mb12">
-				<view class="plr15 pt15 pb5 fw-bold">个人信息</view>
-				<weui-input v-model="ruleform.name" label="姓名" type="text" name="name" datatype="require"></weui-input>
+		<view class="pb60 resume">
+			<view class="step1 bg-f" v-if="step == 1">
+				<view class="dx-cell upload-head">
+					<view class="dx-cell_hd flex1">
+						<view class="dx-label fs-14">头像</view>
+						<view class="fs-16 fc-8 mt10">真实的头像更能吸引HR的关注</view>
+					</view>
+					<view class="dx-cell_bd">
+						<image class="img" :src="avatarUrl?avatarUrl:'https://bgt.doxinsoft.com/images/user.png'" mode="aspectFill"
+						 @click="uploadAvatar"></image>
+						<view style="height: 1upx;overflow:hidden;"><avatar @upload="avatarUploaded" ref="avatar"></avatar></view>
+					</view>
+				</view>
+				<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名或填写如：王先生" type="text" name="name"
+				 datatype="require"></weui-input>
 				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr"
 				 :radioType="true"></weui-input>
-				<weui-input v-model="ruleform.work_status" label="身份" name="work_status" changeField="value" type="radio" dataKey="statusArr"
-				 :radioType="true"></weui-input>
-				<weui-input v-model="ruleform.working_date" label="参加工作年龄" type="number" name="working_date" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.birthday" label="出生日期" type="date" name="birthday" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.wechat" label="微信号" type="text" name="wechat"></weui-input>
-				<weui-input v-model="ruleform.email" label="邮箱" type="text" name="email"></weui-input>
-				<weui-input v-model="ruleform.education" label="学历" placeholder="请选择" type="select" name="education" dataKey="educationArr"
+				<weui-input v-model="ruleform.birthday" label="出生年月" type="date" name="birthday" datatype="require"></weui-input>
+				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education" dataKey="educationArr"
 				 changeField="value"></weui-input>
+				<weui-input v-model="ruleform.working_date" label="工作经验" type="number" name="working_date" datatype="require"></weui-input>
+				<dxftButton type="primary" size="lg" @click="step = 2">下一步</dxftButton>
 			</view>
-			<view class="bg-f edit">
-				<view class="plr15 pt15 pb5 fw-bold">求聘信息</view>
-				<weui-input v-model="ruleform.apply_status" label="求职状态" placeholder="请选择" name="apply_status" type="select"
-				 changeField="value" dataKey="applyStatusArr"></weui-input>
-				<weui-input v-model="ruleform.industry" label="行业" placeholder="请选择" name="industry" type="manyselect"
-				 dataKey="industryData" changeField="value" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.salary" label="薪资范围" placeholder="请选择" name="salary" changeField="value" type="select"
-				 dataKey="emolumentArr"></weui-input>
-				<weui-input v-model="ruleform.advantage" myclass="textarea" label="个人优势" type="textarea" name="advantage" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.remark" myclass="textarea" label="备注" type="textarea" name="remark"></weui-input>
+			<view class="stpe2 bg-f" v-if="step == 2">
+				<view class="tips flex-between flex-middle lh-1 fs-14 fc-red plr15 ptb12">
+					<view>距离调薪职位又近了一步哦！</view>
+					<view class="dxi-icon dxi-icon-off fs-12"></view>
+				</view>
+				<view class="fs-16 fc-9 plr15 ptb10">完善的简介更容易获得HR青睐！</view>
+				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="manyselect" dataKey="positionData" changeField="value"
+				 datatype="require"></weui-input>
+				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect" dataKey="industryData" changeField="value"
+				 datatype="require"></weui-input>
+				<weui-input v-model="ruleform.work_place" label="工作城市" name="work_place" type="manyselect" dataKey="workPlaceData" changeField="value"
+				 datatype="require"></weui-input>
+				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="select" dataKey="emolumentArr"
+				 datatype="require"></weui-input>
+				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select" changeField="value" dataKey="applyStatusArr"
+				 datatype="require"></weui-input>
+				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人职业标签(选填)" placeholder="让HR快速了解你" type="textarea"
+				 name="remark"></weui-input>
+				<dxftButton type="primary" size="lg" @click="submit()">提交</dxftButton>
 			</view>
-			<dxftButton type="primary" size="lg" @click="submit()">提交</dxftButton>
 		</view>
 	</view>
 </template>
@@ -44,6 +60,7 @@ export default {
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
+				step: 1,
 				ruleform:{
 					sexs: 1,
 					status: 1,
@@ -83,6 +100,12 @@ export default {
 					{label:'20-30k',value: '20-30k'},
 					{label:'面议',value: '面议'},
 				],
+				positionData:[
+					{label:'技术员',value: '技术员'},
+					{label:'文员',value: '文员'},
+					{label:'机械工程师',value: '机械工程师'},
+					{label:'行政管理',value: '行政管理'},
+				]
 			}
 		},
 		onReachBottom() {
@@ -106,6 +129,33 @@ export default {
 			//this.ajax();
 		},
 		methods: {
+			uploadAvatar(){
+				this.$refs.avatar.fChooseImg(0,{
+					selWidth: "300upx", selHeight: "300upx",
+					expWidth: '260upx', expHeight: '260upx',
+					canRotate: 'false'
+				});
+			},
+			avatarUploaded(rsp) {
+				//console.log(rsp)
+				
+				uni.uploadFile({
+					url: this.$store.state.apiInterfaceUrl + '/base/upload',
+					filePath: rsp.path,
+					name: 'file',
+					formData: {pathname:'user/' + this.sysUser.user_id,type:'image'},
+					success: (uploadFileRes) => {
+						let dataObj = JSON.parse(uploadFileRes.data);
+						console.log(dataObj);
+						if(dataObj.code!=0){
+							return this.msgError(dataObj.msg);
+						}
+						this.formData.avatar = dataObj.data.fileName;
+						this.avatarUrl = rsp.path; //更新头像方式一
+						//rsp.avatar.imgSrc = rsp.path; //更新头像方式二
+					}
+				});
+			},
 			submit(){
 				this.ruleform.token = uni.getStorageSync('token');
 				this.vaildForm(this, res => {	
@@ -124,4 +174,5 @@ export default {
 </script>
 <style lang="scss">
 @import "index.scss";
+@import "xiaozhu/css/dx-input.css";
 </style>

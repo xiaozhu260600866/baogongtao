@@ -1,2 +1,5 @@
 
 .client-list .img {width: 44px;height: 44px;border-radius: 50%;}
+
+.client-item{padding: 30rpx 20rpx;}
+.client-item .head{width: 112rpx;height: 112rpx;border-radius: 50%;display: flex;}

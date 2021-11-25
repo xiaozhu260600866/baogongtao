@@ -1,14 +1,21 @@
 /* 头部 */
-.dis-header {position: relative;padding: 50rpx 30rpx;display: flex;align-items: center;}
+.dis-header {position: relative;padding: 50rpx 30rpx 180rpx;display: flex;align-items: center;background: linear-gradient(270deg,#353535,#212121);}
 .dis-header .head-img .img{width: 120rpx;height: 120rpx;border-radius: 50%;border: 8rpx solid rgba(255,255,255,0.5);margin-right: 30rpx;}
-.dis-header .dis-info{flex: 1;line-height: 1;}
+.dis-header .dis-info{flex: 1;line-height: 1;color: #ffe4c2;}
+
+
+/* 统计数据 */
+.dis-count{background-image: url('https://51shop.doxinsoft.com/images/wap/dis-hbg.png');background-size: 100% 100%;color: #ffe4c2;font-size: 28rpx;padding: 0 24rpx;margin: -130rpx 24rpx 0;position: relative;z-index: 2;}
+.dis-count .top{height: 200rpx;border-bottom: 1rpx solid rgba(235,237,240,0.1);}
+.dis-count ::v-deep .dxi-btn{background: linear-gradient(270deg, rgb(216, 181, 123) 0%, rgb(241, 215, 180) 100%);border: 0;padding: 20rpx 60rpx;}
+.dis-count ::v-deep .dxi-btn-primary:hover{background: linear-gradient(270deg, rgb(216, 181, 123) 0%, rgb(241, 215, 180) 100%)!important;border: 0!important;color: #623d04!important;}
 
 
 /* 项目 */
-.sup-sec {display: flex;flex-wrap: wrap;padding: 20upx;background-color: #fff;margin-bottom: 24upx;}
-.sup-sec .sec-group{width: 25%;text-align: center;padding: 20upx 0;}
-.sup-sec .sec-group .icon{background: #999;width: 92upx;height: 92upx;text-align: center;line-height: 92upx;border-radius: 50%;margin: 0 auto;}
-.sup-sec .sec-group .icon_img .img{width: 92upx;height: 92upx;border-radius: 50%;display: flex;margin: 0 auto;}
+.sup-sec {display: flex;flex-wrap: wrap;padding: 20rpx;background-color: #fff;margin: 24rpx;border-radius: 12rpx;}
+.sup-sec .sec-group{width: 25%;text-align: center;padding: 20rpx 0;}
+.sup-sec .sec-group .icon{background: #999;width: 92rpx;height: 92rpx;text-align: center;line-height: 92rpx;border-radius: 50%;margin: 0 auto;}
+.sup-sec .sec-group .icon_img .img{width: 92rpx;height: 92rpx;border-radius: 50%;display: flex;margin: 0 auto;}
 .sup-sec .sec-group:nth-child(1) .icon{background: #FB6E52;}
 .sup-sec .sec-group:nth-child(2) .icon{background: #359DF6;}
 .sup-sec .sec-group:nth-child(3) .icon{background: #FAA25D;}
@@ -17,5 +24,5 @@
 .sup-sec .sec-group:nth-child(6) .icon{background: #ff6c81;}
 .sup-sec .sec-group:nth-child(7) .icon{background: #6c90d0;}
 .sup-sec .sec-group:nth-child(8) .icon{background: #007AFF;}
-.sup-sec .sec-group .icon .nav{font-size: 52upx;color: #fff;}
-.sup-sec .sec-group .name{font-size: 30upx;color: #353535;margin-top: 16upx;line-height: 48rpx;}
+.sup-sec .sec-group .icon .nav{font-size: 52rpx;color: #fff;}
+.sup-sec .sec-group .name{font-size: 30rpx;color: #353535;margin-top: 16rpx;line-height: 48rpx;}

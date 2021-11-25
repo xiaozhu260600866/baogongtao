@@ -36,3 +36,43 @@
 		}
 	}
 }
+
+// 上传头像
+// 简历
+.resume{
+	::v-deep .dx-cell{
+		display: block!important;font-size: 32rpx!important;
+		.dx-cell_hd{
+			.dx-label{font-size: 28rpx;width: 100%!important;}
+		}
+		.dx-cell_bd{
+			.dx-input{font-size: 32rpx!important;}
+			.picker{
+				text-align: left!important;font-size: 32rpx!important;
+				&.picker-label{color: grey;}
+			}
+			.col_group{
+				justify-content: flex-start;
+				.dx-cell{
+					display: flex!important;
+					margin: 0 30rpx 0 0!important;
+					&::after{display: none;}
+				}
+			}
+			.dx-text{margin-top: 10rpx;}
+		}
+		.dx_ft-access{
+			&::before{top: -34rpx}
+		}
+	}
+	.dx-cell.upload-head{
+		display: flex!important;
+		.dx-cell_bd{
+			flex: initial!important;
+			.img{width: 100rpx;height: 100rpx;border-radius: 50%;display: flex;}
+		}
+	}
+	.tips{
+		background: #DEDFFD;
+	}
+}

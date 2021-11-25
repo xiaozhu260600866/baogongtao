@@ -66,7 +66,7 @@ export default {
 		.lab{background-color: #f5f5f5;padding: 0 16rpx;line-height: 48rpx;color: #666;font-size: 28rpx;margin-right: 12rpx;border-radius: 8rpx;}
 	}
 	.userInfo{
-		.head{width: 60rpx;height: 60rpx;display: flex;border-radius: 50%;background-color: #eee;}
+		.head{width: 60rpx;height: 60rpx;display: flex;border-radius: 50%;}
 	}
 	.edit-nav{display: flex;justify-content: flex-end;border-top: 1rpx #eee solid;padding-top: 20rpx;}
 }

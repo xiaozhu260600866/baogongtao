@@ -8,6 +8,7 @@
 .utop{padding: 60rpx 30rpx 130rpx;}
 .utop .uinfo{display: flex;align-items: center;}
 .utop .uinfo .header-img .img{width: 120rpx;height: 120rpx;border-radius: 50%;border: 4rpx #fff solid;display: flex;}
+.utop .uinfo .nouser .img{border: 0;}
 .utop .uinfo .info{line-height: 44rpx;flex: 1;overflow: hidden;}
 .utop .uinfo .info .group{display: flex;align-items: center;}
 .utop .r-nav .up-nav{border: 1rpx #fff solid;padding: 0 24rpx;border-radius: 30rpx;height: 56rpx;line-height: 54rpx;color: #fff;text-align: center;margin: 16rpx 0;}
