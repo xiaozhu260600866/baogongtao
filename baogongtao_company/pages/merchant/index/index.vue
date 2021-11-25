@@ -16,6 +16,10 @@
 					</view>
 				</view>
 			</view>
+			<view class="tips flex-between fs-15 plr10 ptb8 block-sec">
+				<view class="txt fc-6">您的企业信息未完善，请尽快完善</view>
+				<view class="go fw-bold main-color" @click="goto('/pages/merchant/info/license',1)">去完善</view>
+			</view>
 			<view class="block-sec">
 				<view class="block-title">
 					<view class="name">我的记录</view>
@@ -36,6 +40,7 @@
 					{url:'/pages/merchant/info/index',type:1,cover:'https://www.baogongtao.com/images/wap/B04.jpg',name:'我的资料'},
 					{url:'/pages/merchant/worker/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B05.jpg',name:'我的用工'},
 					{url:'/pages/company/worker/transactions',type:1,cover:'https://www.baogongtao.com/images/wap/B06.jpg',name:'工资发放记录'},
+					{url:'/pages/merchant/company/index',type:1,cover:'https://www.baogongtao.com/images/wap/B06.jpg',name:'企业展示'},
 				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10"></dx-nav-class>
 			</view>
 		</view>

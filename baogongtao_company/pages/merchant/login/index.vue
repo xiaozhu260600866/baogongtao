@@ -24,8 +24,17 @@
 				<view class="tui-protocol" hover-class="opcity" :hover-stay-time="150">点击"登录"即表示已同意
 					<text class="tui-protocol-red" @tap="protocol">《用户协议》</text>
 				</view>
+				
+				<view class="fs-12 text-center mt5 fc-3" @click="$refs.registerDiag.thisDiag = true">立即注册</view>
 			</view>
 		</form>
+		<dx-diag :tbPadding="25" :lrPadding="30" ref="registerDiag">
+			<dx-button type="success" size="lg" icon="dxi-icon dxi-icon-wechat-circle" block @click="goto('/pages/merchant/login/register',1)">微信快捷登录</dx-button>
+			<view class="msg flex-middle fs-13 fc-6 mt10">
+				<radio class="mr5" style="zoom: 75%;" checked="true" />
+				<view>同意<text class="main-color">《隐私政策》</text>和<text class="main-color">《使用协议》</text></view>
+			</view>
+		</dx-diag>
 	</view>
 </template>
 
@@ -35,12 +44,10 @@ import { loginCompany, userinfo } from "@/api/user";
 import tuiIcon from "@/components/ThorUI/icon/icon"
 import tuiButton from "@/components/ThorUI/button/button"
 import formSubmit from "@/components/tytrock/components/form-submit.vue";
+import dxDiag from "doxinui/components/diag/diag"
+import dxButton from "doxinui/components/button/button"　
 export default {
-	components: {
-		tuiIcon,
-		tuiButton,
-		formSubmit
-	},
+	components: {tuiIcon,tuiButton,formSubmit,dxDiag,dxButton},
 	data() {
 		return {
 			wxUser:uni.getStorageSync('wxUser'),
@@ -99,7 +106,7 @@ export default {
 </script>
 
 <style>
-@import "/pages/user/login/index/index.css";
+@import "./index.css";
 .logo{display: flex;justify-content: center;margin-bottom: 60rpx;}
 .logo .img{width: 200rpx;height: 200rpx;border-radius: 8rpx;display: flex;box-shadow: 0 0 12rpx rgba(0,0,0,0.15);}
 </style>

@@ -1,0 +1,44 @@
+page,.container{background: #343D38;}
+
+
+.company-info{
+	padding: 40rpx 30rpx;display: flex;align-items: center;
+	.head{
+		width: 140rpx;height: 140rpx;
+		.img{width: 100%;height: 100%;display: flex;border-radius: 20rpx;}
+	}
+	.info{
+		flex:1;padding-left: 30rpx;line-height: 1;
+		.name{color: $color-white;font-size: 44rpx;}
+		.tag{
+			display: flex;align-items: center;margin-top: 30rpx;
+			.item{
+				font-size: 28rpx;color: #dedede;padding-right: 12rpx;margin-right: 12rpx;position: relative;
+				&::after{content: '';display: block;position: absolute;top: 5%;right: 0;height: 90%;width: 2rpx;background-color: #dedede;}
+				&:last-child::after{display: none;}
+			}
+		}
+	}
+}
+
+.banner ::v-deep .swiper image{width: 100%;}
+.banner ::v-deep .swiper img{width: 100%;}
+
+.address{
+	background-color: #242B27;margin: 20rpx 30rpx;border-radius: 8rpx;color: #dedede;display: flex;line-height: 92rpx;padding: 0 20rpx;
+	.icon{font-size: 24rpx;}
+	.txt{flex: 1;padding: 0 6rpx;}
+}
+
+.company-intro{
+	padding: 0 30rpx;
+	.item{
+		padding: 30rpx 0;border-top: 1rpx #48534d solid;color: #e0e6e2;
+		.title{font-size: 36rpx;font-weight: bold;line-height: 1;margin-bottom: 20rpx;}
+		.content{font-size: 28rpx;line-height: 1.6;}
+	}
+}
+
+.company-edit{
+	position: fixed;z-index: 10;right: 40rpx;bottom: 120rpx;background: $color-primary;width: 80rpx;height: 80rpx;border-radius: 50%;display: flex;justify-content: center;align-items: center;
+}

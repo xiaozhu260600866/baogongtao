@@ -1,8 +1,0 @@
-.Wtop{position: relative;z-index: 1;}
-
-
-.Wcount{margin-top: -40upx;border-radius: 40upx 40upx 0 0;position: relative;z-index: 2;background-color: #fff;display: flex;padding: 20upx 0;margin-bottom: 24upx;}
-.Wcount .Wc-sec{width: 100%;text-align: center;color: #666;}
-.Wcount .Wc-sec:first-child{border-right: 1upx #eee solid;}
-.Wcount .cur{color: #55B4F6;position: relative;}
-.Wcount .cur:before{content: "";display: block;position: absolute;bottom: -20upx;left: 50%;margin-left: -30upx;height: 6upx;width: 60upx;background: #55b4f6;border-radius: 8upx;}

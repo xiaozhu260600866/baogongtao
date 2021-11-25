@@ -1,9 +1,22 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view class="pb60">
-			<view class="block-sec edit-write">
-				<view class="edit-write-title">联系人信息</view>
+		<view class="pb60 bg-f">
+			<view class="edit-write">
+				<view class="fs-26 fw-bold p15 pt30">编辑公司信息</view>
+				<weui-input v-model="ruleform.logo" label="请上传公司logo" type="upload" upurl='logo' allowUpLoadNum="5" name="logo" block></weui-input>
+				<weui-input v-model="ruleform.name" label="公司简称" placeholder="公司简称" type="text" name="name" datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.industry" label="所属行业" placeholder="所属行业" name="industry" type="manyselect" dataKey="industryData" block
+				 changeField="value" datatype="require"></weui-input>
+				<weui-input v-model="ruleform.remark_company" label="公司介绍" type="textarea" name="remark_company" datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.scale" label="公司规模" type="text" name="scale" datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.address" label="公司位置" type="location" name="address" datatype="require" navClass="dx-btn-blue"
+				 @callback="location" block></weui-input>
+				<weui-input v-model="ruleform.cover" label="主页轮播图" type="upload" upurl='logo' allowUpLoadNum="5" name="cover" block></weui-input>
+				<weui-input v-model="ruleform.team" label="团队风采" type="upload" upurl='logo' allowUpLoadNum="5" name="team" block></weui-input>
+				
+				
+				<!-- 
 				<view @click="uploadHeaderImg">
 					<weui-input v-model="ruleform.logoMinUrl" label="头像" type="txt" name="header" myclass="headerPic" >
 						<view slot="right" class="slot-right flex1 flex-between flex-middle">
@@ -14,34 +27,26 @@
 				</view>
 				<weui-input v-model="ruleform.charger_name" label="姓名" type="text" name="charger_name" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.charger_phone" label="电话" type="number" name="charger_phone" datatype="require"></weui-input>
-			</view>
-			<view class="block-sec edit-write">
-				<view class="edit-write-title">公司信息</view>
-				<weui-input v-model="ruleform.name" label="公司" type="text" name="name" datatype="require"></weui-input>
+				
 				<weui-input v-model="ruleform.position" label="职位" type="text" name="position"></weui-input>
-				<weui-input v-model="ruleform.address" label="地址" type="location" name="address" datatype="require" navClass="dx-btn-blue"
-				 @callback="location"></weui-input>
-				<weui-input v-model="ruleform.industry" label="行业" name="industry" type="manyselect" dataKey="industryData"
-				 changeField="value" datatype="require"></weui-input>
-			</view>
-			<view class="block-sec edit-write">
 				<view class="edit-write-title">
 					<text>公司简介</text>
 					<text class="main-color edit-nav" v-if="ruleform.remark_company || ruleform.remark_pic_company.length"
 					 @click="goto('/pages/merchant/info/intro?type=company',1)">编辑</text>
 				</view>
-				<!-- 添加内容后显示 -->
+				添加内容后显示
 				<view class="detail-info" v-if="ruleform.remark_company || ruleform.remark_pic_company.length">
 					<view class="content" v-if="ruleform.remark_company">{{ruleform.remark_company}}</view>
 					<image class="w-b100" :src="getSiteName + '/upload/images/logo/800_'+cover" v-for="cover in ruleform.remark_pic_company" mode="widthFix"></image>
 				</view>
-				<!-- 添加内容前显示 -->
+				添加内容前显示
 				<view class="add-info" @click="goto('/pages/merchant/info/intro?type=company',1)" v-else>
 					<view class="main-color fs-16">+添加公司简介</view>
 					<view class="fs-14 fc-6">让客户更好的了解你</view>
 				</view>
 				
 				<weui-input v-model="ruleform.cover" label="滚动图片" type="upload" upurl='logo' allowUpLoadNum="5" name="cover"></weui-input>
+				 -->
 			</view>
 			<dxftButton type="primary" size="lg" @click="submit()">提交</dxftButton>
 		</view>

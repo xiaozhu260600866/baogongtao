@@ -29,9 +29,7 @@ uni.setStorageSync('siteName', siteName);
 
 Vue.prototype.$store = store
 
-
 Vue.config.productionTip = false
-
 
 //引入自定义方法
 import tytFun from '@/components/tytrock/js/fun.js'
@@ -50,10 +48,6 @@ Vue.component(
 	'tytNavigator',
 	tytNavigator
 );
-
-
-
-
 
 import weui_input from 'xiaozhu/uniapp/components/weui_input'
 Vue.component(

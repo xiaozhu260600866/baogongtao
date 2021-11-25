@@ -75,6 +75,13 @@
 			}
 		},
 		{
+			"path": "pages/merchant/login/register",
+			"style": {
+				"navigationBarTitleText": "商家注册",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
 			"path": "pages/merchant/recruit/show/index",
 			"style": {
 				"navigationBarTitleText": "招聘信息",
@@ -116,6 +123,13 @@
 			}
 		},
 		{
+			"path": "pages/merchant/info/license",
+			"style": {
+				"navigationBarTitleText": "企业认证",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
 			"path": "pages/merchant/worker/lists",
 			"style": {
 				"navigationBarTitleText": "我的用工",
@@ -128,13 +142,24 @@
 				"navigationBarTitleText": "工资发放记录",
 				"enablePullDownRefresh": true
 			}
+		},
+		{
+			"path": "pages/merchant/company/index",
+			"style": {
+				"navigationBarTitleText": "公司信息",
+				"enablePullDownRefresh": true,
+				"navigationBarBackgroundColor": "#343D38",
+				"navigationBarTextStyle": "white",
+				"backgroundColorTop": "#343D38",
+				"backgroundColorBottom": "#343D38"
+			}
 		}
 	],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "泡工淘",
-		"navigationBarBackgroundColor": "#55b4f6",
-		"backgroundColor": "#55b4f6"
+		"navigationBarBackgroundColor": "#007AFF",
+		"backgroundColor": "#007AFF"
 	}
 }
