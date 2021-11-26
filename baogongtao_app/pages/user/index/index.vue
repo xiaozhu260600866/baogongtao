@@ -92,10 +92,7 @@
 				ruleform:{},
 				vaildate:{},
 				menuArr:[
-					{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
-					{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-					{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
-					{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
+					
 				],
 				orders1:'',
 				orders3:'',
@@ -120,11 +117,11 @@
 					}else{
 						let disUrl = res.data.dis ? '/pages/distribution/index/main' :'/pages/distribution/add/main'
 						this.menuArr = [
-							{url:disUrl,type: 1,icon:'dxi-icon dxi-icon-shop3',name:'分享达人'},
-							{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
+							{url:disUrl,type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
+							{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
 							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
 							{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
-							{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
+							{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 							
 						]
 					}
@@ -142,11 +139,11 @@
 					}else{
 						let disUrl = res.data.dis ? '/pages/distribution/index/main' :'/pages/distribution/add/main'
 						this.menuArr = [
-							{url:disUrl,type: 1,icon:'dxi-icon dxi-icon-shop3',name:'分享达人'},
-							{url:'/pages/merchant/index/index',type: 1,icon:'dxi-icon dxi-icon-shop3',name:'企业中心'},
+							{url:disUrl,type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
+							{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
 							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
 							{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
-							{url:'/pages/user/talents/lists',type: 1,icon:'dxi-icon dxi-icon-message2',name:'我的应聘'},
+							{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 							
 						]
 					}

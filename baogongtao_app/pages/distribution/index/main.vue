@@ -38,11 +38,11 @@
 					<view class="name">我的团队</view>
 				</view>
 				<view class="sec-group" @click="goto('/pages/distribution/client/main',1)">
-					<view class="icon"><text class="nav dxi-icon dxi-icon-user-fill1"></text></view>
+					<view class="icon"><text class="nav iconfont icon-dis-client"></text></view>
 					<view class="name">我的客户</view>
 				</view>
 				<view class="sec-group" @click="goto('/pages/distribution/qrcode/main',1)">
-					<view class="icon"><text class="nav dxi-icon dxi-icon-qrcode2 fs-22"></text></view>
+					<view class="icon"><text class="nav iconfont icon-dis-qrcode fs-22"></text></view>
 					<view class="name">我的二维码</view>
 				</view>
 			</view>

@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'iconfont';  /* Project id 1759642 */
-  src: url('//at.alicdn.com/t/font_1759642_sk183eifgt.woff2?t=1637310077383') format('woff2'),
-       url('//at.alicdn.com/t/font_1759642_sk183eifgt.woff?t=1637310077383') format('woff'),
-       url('//at.alicdn.com/t/font_1759642_sk183eifgt.ttf?t=1637310077383') format('truetype');
+  src: url('//at.alicdn.com/t/font_1759642_vygjyud9ss.woff2?t=1637889131353') format('woff2'),
+       url('//at.alicdn.com/t/font_1759642_vygjyud9ss.woff?t=1637889131353') format('woff'),
+       url('//at.alicdn.com/t/font_1759642_vygjyud9ss.ttf?t=1637889131353') format('truetype');
 }
 
 /* 3314024140@qq.com  dx3229010  包工淘 */
@@ -29,7 +29,10 @@
 .icon-del:before{content: "\e63f";}/* 删除 */
 .icon-people:before{content: "\e637";}/* 人员 */
 .icon-merchant:before{content: "\e724";}/* 企业 */
-.icon-dis-team:before{content: "\e62d";}/* 团队 */
+
+.icon-dis-team:before{content: "\e639";}/* 团队 */
+.icon-dis-client:before{content: "\e625";}/* 客户 */
+.icon-dis-qrcode:before{content: "\e601";}/* 二维码 */
 
 .icon-recruit-experience:before{content: "\e60d";}/* 经验 */
 .icon-recruit-education:before{content: "\a63d";}/* 学历 */
@@ -50,6 +53,9 @@
 .icon-user-order:before{content: "\e71a";color: #8545FC;}/* 接单设置 */
 .icon-user-msg:before{content: "\e656";color: #46CA7F;}/* 我的消息 */
 .icon-user-share:before{content: "\e74b";color: #FE4646;}/* 分享小程序 */
+.icon-user-compnay:before{content: "\e613";}/* 我的企业 */
+.icon-user-dis:before{content: "\e620";}/* 分享达人 */
+.icon-user-talents:before{content: "\e60d";}/* 我的应聘 */
 
 
 .icon-task-null:before{content: "\e610";}/* 没有任务 */
