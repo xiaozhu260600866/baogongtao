@@ -1,0 +1,11 @@
+/* 左带线 */
+.mll_tabs{display: flex;padding: 0 30upx;background-color: #fff;}
+.mll_tabs .name{line-height: 32upx;padding: 30upx 0;margin-right: 40upx;position: relative;font-size: 28upx;color: #666;}
+.mll_tabs .cur{font-size: 32upx;color: $color-primary;}
+.mll_tabs .cur:before{content: "";display: block;position: absolute;bottom: 0;left: 50%;margin-left: -30upx;height: 6upx;width: 60upx;background: $color-primary;border-radius: 8upx;}
+
+
+.type_tabs{display: flex;padding: 20upx 0;background-color: #fff;}
+.type_tabs .name{height: 44upx;line-height: 44upx;font-size: 28upx;color: #333;width: 100%;text-align: center;}
+.type_tabs .name:last-child{border-left: 1upx #ddd solid;}
+.type_tabs .iconfont{padding-left: 6upx;font-size: 24upx;color: #999;}
