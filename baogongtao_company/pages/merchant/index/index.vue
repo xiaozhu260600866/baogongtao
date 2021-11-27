@@ -37,12 +37,12 @@
 					{url:'/pages/merchant/recruit/created_edit/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B01.jpg',name:'发布招聘'},
 					{url:'/pages/merchant/coupon/created_edit/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B02.jpg',name:'发布优惠券'},
 					{url:'/pages/merchant/coupon/cancel/cancel',type:1,cover:'https://www.baogongtao.com/images/wap/B03.jpg',name:'核销优惠券'},
-					{url:'/pages/merchant/info/index',type:1,cover:'https://www.baogongtao.com/images/wap/B04.jpg',name:'我的资料'},
 					{url:'/pages/merchant/worker/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B05.jpg',name:'我的用工'},
 					{url:'/pages/company/worker/transactions',type:1,cover:'https://www.baogongtao.com/images/wap/B06.jpg',name:'工资发放记录'},
-					{url:'/pages/merchant/company/index',type:1,cover:'https://www.baogongtao.com/images/wap/B06.jpg',name:'企业展示'},
+					{url:'/pages/merchant/company/index',type:1,cover:'https://www.baogongtao.com/images/wap/B07.jpg',name:'企业展示'},
 				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10"></dx-nav-class>
 			</view>
+			<!-- {url:'/pages/merchant/info/index',type:1,cover:'https://www.baogongtao.com/images/wap/B04.jpg',name:'我的资料'}, -->
 		</view>
 	</view>
 </template>
@@ -50,7 +50,7 @@
 <script>
 	import {mapState, mapMutations, mapActions} from 'vuex'
 	import {userinfo, action, logout} from "@/api/user";
-import dxNavClass from "doxinui/components/nav-class/nav-class"
+	import dxNavClass from "doxinui/components/nav-class/nav-class"
 	export default {
 		components:{dxNavClass},
 		data() {

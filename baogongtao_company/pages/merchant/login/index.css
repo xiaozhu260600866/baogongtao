@@ -1,29 +1,14 @@
-/* 登录logo */
-.logo{padding: 80upx 0;text-align: center;}
-.logo .img{width: 240upx;height: 240upx;border-radius: 12upx;}
-
-
-/* 其他登录方式 */
-.other-type{padding-top: 120upx;}
-.other-type .wechat{text-align: center;}
-.other-type .wechat .dxi-icon{font-size: 40upx;color: #043B9F;display: inline-block;width: 80upx;height: 80upx;text-align: center;line-height: 80upx;border: 1upx #043B9F solid;border-radius: 50%;}
-
-
-/* 信息填写 */
-.login-list /deep/.dx-cell{border-color: #ddd;}
-.login-list /deep/.slot-icon .iconfont{font-size: 36upx;color: #666;padding-right: 30upx;}
-.login-list /deep/.dx-input,
-.info-form /deep/.dx-cell,
-.info-form /deep/.dx-input,
-.info-form /deep/.dx-text
-{font-size: 32upx;}
-
-
-/* 同意条款 */
-.footer-agreement{display: flex;justify-content: center;align-items: center;font-size: 28upx;padding-top: 40upx;}
-.agreement checkbox{zoom: 70%;display: flex;}
-
-
-/* 提交按钮 */
-.info-subBtn /deep/.dxi-btn{border-color: #043B9F;background-color: #043B9F;color: #fff;}
-.info-login /deep/.dxi-btn{border-color: #043B9F;background-color: #ffffff;color: #043B9F;}
+page {background: #fff;}
+.tui-bg-box {width: 100%;box-sizing: border-box;position: relative;padding-top: 44upx;z-index: 1;}
+.tui-photo {height: 138upx;width: 138upx;display: block;margin: 10upx auto 0 auto;border-radius: 50%;position: relative;z-index: 2;}
+.tui-login-name {/* width: 128upx; */height: 40upx;font-size: 30upx;color: #fff;margin: 36upx auto 0 auto;text-align: center;position: relative;z-index: 2;}
+.tui-bg-img {width: 100%;height: 346upx;display: block;position: absolute;top: 0;}
+.tui-login-from {width: 100%;padding: 128upx 104upx 0 104upx;box-sizing: border-box;position: relative;z-index: 2;}
+.tui-input {font-size: 32upx;flex: 1;display: inline-block;padding-left: 32upx;box-sizing: border-box;overflow: hidden;}
+.tui-line-cell {padding: 27upx 0;display: -webkit-flex;display: flex;-webkiit-align-items: center;align-items: center;position: relative;box-sizing: border-box;overflow: hidden;}
+.tui-line-cell::after {content: '';position: absolute;border-bottom: 1upx solid #e0e0e0;-webkit-transform: scaleY(0.5);transform: scaleY(0.5);bottom: 0;right: 0;left: 0;}
+.tui-top28 {margin-top: 28upx;}
+.tui-btn-class {width: 196upx !important;height: 54upx !important;border-radius: 27upx !important;font-size: 28upx !important;padding: 0 !important;line-height: 54upx !important;}
+.tui-btn-submit {margin-top: 100upx;}
+.tui-protocol {color: #333;font-size: 24upx;text-align: center;width: 100%;margin-top: 29upx;}
+.tui-protocol-red {color: #f54f46;}

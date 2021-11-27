@@ -1,8 +1,15 @@
 .edit{
-	::v-deep .textarea{
-		display: block;
-		.dx-text{
-			margin-top: 20rpx;font-size: 30rpx;
+	overflow-x: scroll;
+	::v-deep .dx-cell{
+		&.dx-cell_block{
+			.dx-label{margin-bottom: 12rpx;}
+		}
+		.star{display: none;}
+		.textarea{
+			display: block;
+			.dx-text{
+				margin-top: 20rpx;font-size: 30rpx;
+			}
 		}
 	}
 }

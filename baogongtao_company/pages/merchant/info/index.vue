@@ -13,7 +13,7 @@
 				<weui-input v-model="ruleform.address" label="公司位置" type="location" name="address" datatype="require" navClass="dx-btn-blue"
 				 @callback="location" block></weui-input>
 				<weui-input v-model="ruleform.cover" label="主页轮播图" type="upload" upurl='logo' allowUpLoadNum="5" name="cover" block></weui-input>
-				<weui-input v-model="ruleform.team" label="团队风采" type="upload" upurl='logo' allowUpLoadNum="5" name="team" block></weui-input>
+				<weui-input v-model="ruleform.team" label="公司风采" type="upload" upurl='logo' allowUpLoadNum="5" name="team" block></weui-input>
 				
 				
 				<!-- 
