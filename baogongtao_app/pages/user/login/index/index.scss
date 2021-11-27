@@ -1,0 +1,78 @@
+.title{background-color: $color-primary;color: $color-white;padding: 16rpx 30rpx 30rpx;font-size: 36rpx;line-height: 1;}
+.jobs_item{
+	.condition{
+		display: flex;flex-wrap: wrap;margin: 30rpx 0;
+		.lab{background-color: #f5f5f5;padding: 0 16rpx;line-height: 48rpx;color: #666;font-size: 28rpx;margin-right: 12rpx;border-radius: 8rpx;}
+	}
+	.userInfo{
+		.head{width: 60rpx;height: 60rpx;display: flex;border-radius: 50%;}
+	}
+	.edit-nav{display: flex;justify-content: flex-end;border-top: 1rpx #eee solid;padding-top: 20rpx;}
+}
+.talents-item{
+	.info{
+		.labG{
+			display: flex;align-items: center;
+			.lab{
+				line-height: 1;font-size: 30rpx;color: #666;position: relative;padding-right: 16rpx;margin: 16rpx 16rpx 0 0;
+				&::before{content: '';display: block;position: absolute;width: 1px;height: 80%;right: 0;top: 5%;background-color: #bbb;}
+				&:last-child::before{display: none;}
+			}
+		}
+		.right{
+			.head{width: 100rpx;height: 100rpx;display: flex;border-radius: 50%;}
+		}
+	}
+	.con{
+		.dot{width: 8rpx;height: 8rpx;border-radius: 50%;background-color: #666;margin: 0 10rpx;}
+	}
+}
+
+.edit{
+	::v-deep .textarea{
+		display: block;
+		.dx-text{
+			margin-top: 20rpx;font-size: 30rpx;
+		}
+	}
+}
+
+// 上传头像
+// 简历
+.resume{
+	::v-deep .dx-cell{
+		display: block!important;font-size: 32rpx!important;
+		.dx-cell_hd{
+			.dx-label{font-size: 28rpx;width: 100%!important;}
+		}
+		.dx-cell_bd{
+			.dx-input{font-size: 32rpx!important;}
+			.picker{
+				text-align: left!important;font-size: 32rpx!important;
+				&.picker-label{color: grey;}
+			}
+			.col_group{
+				justify-content: flex-start;
+				.dx-cell{
+					display: flex!important;
+					margin: 0 30rpx 0 0!important;
+					&::after{display: none;}
+				}
+			}
+			.dx-text{margin-top: 10rpx;}
+		}
+		.dx_ft-access{
+			&::before{top: -34rpx}
+		}
+	}
+	.dx-cell.upload-head{
+		display: flex!important;
+		.dx-cell_bd{
+			flex: initial!important;
+			.img{width: 100rpx;height: 100rpx;border-radius: 50%;display: flex;}
+		}
+	}
+	.tips{
+		background: #DEDFFD;
+	}
+}
