@@ -6,7 +6,7 @@
 			display: flex;align-items: center;
 			.lab{
 				line-height: 1;font-size: 30rpx;color: #666;position: relative;padding-right: 16rpx;margin: 16rpx 16rpx 0 0;
-				&::before{content: '';display: block;position: absolute;width: 1px;height: 80%;right: 0;top: 5%;background-color: #bbb;}
+				&::before{content: '';display: block;position: absolute;width: 1px;height: 80%;right: 0;top: 10%;background-color: #bbb;}
 				&:last-child::before{display: none;}
 			}
 		}

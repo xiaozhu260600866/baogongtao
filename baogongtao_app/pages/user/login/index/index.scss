@@ -41,29 +41,14 @@
 // 简历
 .resume{
 	::v-deep .dx-cell{
-		display: block!important;font-size: 32rpx!important;
-		.dx-cell_hd{
-			.dx-label{font-size: 28rpx;width: 100%!important;}
+		font-size: 32rpx!important;
+		&.dx-cell_block{
+			.dx-label{font-size: 28rpx;margin-bottom: 10rpx;}
 		}
 		.dx-cell_bd{
 			.dx-input{font-size: 32rpx!important;}
-			.picker{
-				text-align: left!important;font-size: 32rpx!important;
-				&.picker-label{color: grey;}
-			}
-			.col_group{
-				justify-content: flex-start;
-				.dx-cell{
-					display: flex!important;
-					margin: 0 30rpx 0 0!important;
-					&::after{display: none;}
-				}
-			}
-			.dx-text{margin-top: 10rpx;}
 		}
-		.dx_ft-access{
-			&::before{top: -34rpx}
-		}
+		.sq-nav{position: absolute;bottom: 20rpx;right: 30rpx;z-index: 10;}
 	}
 	.dx-cell.upload-head{
 		display: flex!important;

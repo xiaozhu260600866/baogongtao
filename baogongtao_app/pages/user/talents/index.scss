@@ -76,3 +76,38 @@
 		background: #DEDFFD;
 	}
 }
+
+
+// 我的简历
+.talents-info{
+	padding: 40rpx 30rpx;display: flex;align-items: center;
+	.head{
+		width: 140rpx;height: 140rpx;position: relative;
+		.img{width: 100%;height: 100%;display: flex;border-radius: 50%;}
+		.sex{
+			position: absolute;right: 0;bottom: -10rpx;
+			.item{width: 40rpx;height: 40rpx;display: flex;align-items: center;justify-content: center;border-radius: 50%;color: $color-white;font-size: 22rpx;}
+			.man{background: $uni-color-primary;}
+			.women{background: $uni-color-error;}
+		}
+	}
+	.info{
+		flex:1;padding-left: 30rpx;line-height: 1;
+		.name{font-size: 44rpx;font-weight: bold;}
+		.tag{
+			display: flex;align-items: center;margin-top: 30rpx;
+			.item{
+				font-size: 28rpx;padding-right: 12rpx;margin-right: 12rpx;position: relative;
+				&::after{content: '';display: block;position: absolute;top: 5%;right: 0;height: 90%;width: 2rpx;background-color: #999;}
+				&:last-child::after{display: none;}
+			}
+		}
+	}
+}
+
+.talents-item{
+	margin: 0 30rpx;padding: 30rpx 0;border-top: 1rpx #f5f5f5 solid;position: relative;
+	.item-name{font-size: 36rpx;font-weight: bold;}
+	.item-con{font-size: 28rpx;line-height: 1.5;margin-top: 16rpx;}
+	.item-edit{position: absolute;z-index: 10;top: 20rpx;right: 0;font-size: 40rpx;}
+}

@@ -1,49 +1,55 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view class="pb60 resume">
-			<view class="step1 bg-f" v-if="step == 1">
-				<view class="dx-cell upload-head">
-					<view class="dx-cell_hd flex1">
-						<view class="dx-label fs-14">头像</view>
-						<view class="fs-16 fc-8 mt10">真实的头像更能吸引HR的关注</view>
-					</view>
-					<view class="dx-cell_bd">
-						<image class="img" :src="avatarUrl?avatarUrl:'https://bgt.doxinsoft.com/images/user.png'" mode="aspectFill"
-						 @click="uploadAvatar"></image>
-						<view style="height: 1upx;overflow:hidden;"><avatar @upload="avatarUploaded" ref="avatar"></avatar></view>
+		<view>
+			<view class="talents-info">
+				<view class="head">
+					<image class="img" :src="avatarUrl?avatarUrl:'https://bgt.doxinsoft.com/images/user.png'"></image>
+					<view class="sex">
+						<view class="item man" v-if="ruleform.sex == 1"><text class="iconfont icon-man"></text></view>
+						<view class="item women" v-if="ruleform.sex == 2"><text class="iconfont icon-women"></text></view>
 					</view>
 				</view>
-				<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名或填写如：王先生" type="text" name="name"
-				 datatype="require"></weui-input>
-				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr"
-				 :radioType="true"></weui-input>
-				<weui-input v-model="ruleform.birthday" label="出生年月" type="date" name="birthday" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education" dataKey="educationArr"
-				 changeField="value"></weui-input>
-				<weui-input v-model="ruleform.experience" label="工作经验" type="text" name="experience" ></weui-input>
-				<dxftButton type="primary" size="lg" @click="submit(1)">下一步</dxftButton>
+				<view class="info">
+					<view class="name">{{ruleform.name}}<text class="dxi-icon dxi-icon-edit ml5" @click="goto('/pages/user/talents/resume',1)"></text></view>
+					<view class="tag">
+						<view class="item">{{ruleform.experience?ruleform.experience:'经验不限'}}</view>
+						<view class="item">{{ruleform.birthday?ruleform.birthday:'暂无'}}</view>
+						<view class="item">{{ruleform.education?ruleform.education:'暂无'}}</view>
+					</view>
+				</view>
 			</view>
-			<view class="stpe2 bg-f" v-if="step == 2">
-				<view class="tips flex-between flex-middle lh-1 fs-14 fc-red plr15 ptb12">
-					<view>距离调薪职位又近了一步哦！</view>
-					<view class="dxi-icon dxi-icon-off fs-12"></view>
+			<view class="talents-item">
+				<view class="item-name">求职意向</view>
+				<view class="item-con">
+					<view v-if="ruleform.industry || ruleform.position">{{ruleform.industry}}/{{ruleform.position}}</view>
+					<view v-else>暂无</view>
 				</view>
-				<view class="fs-16 fc-9 plr15 ptb10">完善的简介更容易获得HR青睐！</view>
-				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="manyselect" dataKey="positionData" changeField="value"
-				 datatype="require"></weui-input>
-				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect" dataKey="industryData" changeField="value"
-				 datatype="require"></weui-input>
-			<!-- 	<dx-address v-model="ruleform.work_place" labeltxt="工作城市"></dx-address> -->
-				<div><dx-address v-model="ruleform.address" datatype="require" ref="address" :addressHidden="true"></dx-address></div>
-				
-				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="select" dataKey="emolumentArr"
-				 datatype="require"></weui-input>
-				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select" changeField="value" dataKey="applyStatusArr"
-				 datatype="require"></weui-input>
-				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人介绍(选填)" placeholder="让HR快速了解你" type="textarea"
-				 name="remark"></weui-input>
-				<dxftButton type="primary" size="lg" @click="submit(2)">提交</dxftButton>
+				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
+			</view>
+			<view class="talents-item">
+				<view class="item-name">个人优势</view>
+				<view class="item-con">
+					<view v-if="ruleform.remark">{{ruleform.remark}}</view>
+					<view v-else>暂无</view>
+				</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
+			</view>
+			<view class="talents-item">
+				<view class="item-name">求职状态</view>
+				<view class="item-con">
+					<view v-if="ruleform.apply_status">{{ruleform.apply_status}}</view>
+					<view v-else>暂无</view>
+				</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
+			</view>
+			<view class="talents-item">
+				<view class="item-name">薪资要求</view>
+				<view class="item-con">
+					<view v-if="ruleform.salary">{{ruleform.salary}}</view>
+					<view v-else>暂无</view>
+				</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
 		</view>
 	</view>
@@ -182,6 +188,6 @@ export default {
 	}
 </script>
 <style lang="scss">
+page{background-color: #fff;}
 @import "index.scss";
-@import "xiaozhu/css/dx-input.css";
 </style>

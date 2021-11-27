@@ -21,6 +21,7 @@ button::after{border: 0;}
 	background-color:#a0cfff!important;
 	border-color:#a0cfff!important;
 }
+button[type=primary]{background-color:$color-primary!important;}
 
 /* 主色调 */
 .main-color{color: $color-primary;}

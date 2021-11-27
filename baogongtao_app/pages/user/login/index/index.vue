@@ -16,22 +16,20 @@
 						</view>
 					</view>
 				</view>
-				<weui-input v-model="ruleform.phone" label="手机" placeholder="请一键授权手机号" type="text" name="phone"
-					datatype="require" :disabled="false">
-					<div slot="right">
-						<button hover-class="none" class="fs-12 ml10 dx-btn-blue" open-type="getPhoneNumber"
-							@getphonenumber="getPhoneNumber">一键授权</button>
-					</div>
+				<weui-input v-model="ruleform.phone" label="手机" placeholder="请一键授权手机号" type="text" name="phone" datatype="require"
+				 :disabled="false" block>
+					<view slot="right" class="sq-nav">
+						<button type="primary" size="mini" class="plr5" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">一键授权</button>
+					</view>
 				</weui-input>
 				<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名或填写如：王先生" type="text" name="name"
-					datatype="require"></weui-input>
-				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio"
-					dataKey="sexsArr" :radioType="true"></weui-input>
-				<weui-input v-model="ruleform.birthday" label="出生年月" type="date" name="birthday" datatype="require">
-				</weui-input>
-				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education"
-					dataKey="educationArr" changeField="value"></weui-input>
-				<weui-input v-model="ruleform.experience" label="工作经验" type="text" name="experience"></weui-input>
+				 datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr"
+				 :radioType="true" block></weui-input>
+				<weui-input v-model="ruleform.birthday" label="出生年月" type="date" name="birthday" datatype="require" emptyValue block></weui-input>
+				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education" dataKey="educationArr"
+				 changeField="value" block></weui-input>
+				<weui-input v-model="ruleform.experience" label="工作经验" type="text" placeholder="请填写工作年份如：5年" name="experience" block></weui-input>
 				<dxftButton type="primary" size="lg" @click="submit(1)">下一步</dxftButton>
 			</view>
 			<view class="stpe2 bg-f" v-if="step == 2">
@@ -40,22 +38,17 @@
 					<view class="dxi-icon dxi-icon-off fs-12"></view>
 				</view>
 				<view class="fs-16 fc-9 plr15 ptb10">完善的简介更容易获得HR青睐！</view>
-				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="select"
-					dataKey="positionData" changeField="value" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect"
-					dataKey="industryData" changeField="value" datatype="require"></weui-input>
-				<!-- 	<dx-address v-model="ruleform.work_place" labeltxt="工作城市"></dx-address> -->
-				<div>
-					<dx-address v-model="ruleform.address" datatype="require" ref="address" :addressHidden="true" :emptyValue="true">
-					</dx-address>
-				</div>
-
-				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="select"
-					dataKey="emolumentArr" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select"
-					changeField="value" dataKey="applyStatusArr" datatype="require"></weui-input>
-				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人职业标签(选填)" placeholder="让HR快速了解你"
-					type="textarea" name="remark"></weui-input>
+				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="select" dataKey="positionData" changeField="value"
+				 datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect" dataKey="industryData" changeField="value"
+				 datatype="require" block></weui-input>
+				<dx-address v-model="ruleform.address" datatype="require" ref="address" :addressHidden="true" :emptyValue="true" block></dx-address>
+				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="select" dataKey="emolumentArr"
+				 datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select" changeField="value"
+				 dataKey="applyStatusArr" datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人简介(选填)" placeholder="让HR快速了解你" type="textarea"
+				 name="remark" block></weui-input>
 				<dxftButton type="primary" size="lg" @click="submit(2)">提交</dxftButton>
 			</view>
 		</view>
@@ -64,7 +57,7 @@
 
 <script>
 	import dxftButton from "doxinui/components/button/footer-button"
-import {mapState, mapMutations, mapActions} from 'vuex'
+	import {mapState, mapMutations, mapActions} from 'vuex'
 	import { loginSentMsg, login, userinfo } from "@/api/user";
 	import {
 		attributes
@@ -82,7 +75,7 @@ import {mapState, mapMutations, mapActions} from 'vuex'
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
-				step: 1,
+				step: 2,
 				avatarUrl: '',
 				ruleform: {
 					sex: 1,

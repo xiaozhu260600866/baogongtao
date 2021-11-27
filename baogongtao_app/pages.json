@@ -413,7 +413,14 @@
 		{
 			"path": "pages/user/talents/resume",
 			"style": {
-				"navigationBarTitleText": "我的简介",
+				"navigationBarTitleText": "我的简历",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/talents/show",
+			"style": {
+				"navigationBarTitleText": "我的简历",
 				"enablePullDownRefresh":true
 			}
 		},

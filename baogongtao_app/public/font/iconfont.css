@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'iconfont';  /* Project id 1759642 */
-  src: url('//at.alicdn.com/t/font_1759642_vygjyud9ss.woff2?t=1637889131353') format('woff2'),
-       url('//at.alicdn.com/t/font_1759642_vygjyud9ss.woff?t=1637889131353') format('woff'),
-       url('//at.alicdn.com/t/font_1759642_vygjyud9ss.ttf?t=1637889131353') format('truetype');
+  src: url('//at.alicdn.com/t/font_1759642_naz03b26hh8.woff2?t=1637999377970') format('woff2'),
+       url('//at.alicdn.com/t/font_1759642_naz03b26hh8.woff?t=1637999377970') format('woff'),
+       url('//at.alicdn.com/t/font_1759642_naz03b26hh8.ttf?t=1637999377970') format('truetype');
 }
 
 /* 3314024140@qq.com  dx3229010  包工淘 */
@@ -20,6 +20,9 @@
 .icon-right:before{content: "\f302";}/* 右 */
 .icon-n-right:before{content: "\f305";}/* 右 */
 .icon-add:before{content: "\e85a";}/* 加 */
+
+.icon-man:before{content: "\e601";}/* 男 */
+.icon-women:before{content: "\e602";}/* 女 */
 
 .icon-time-o:before{content: "\e65a";}/* 时间 */
 .icon-location-o:before{content: "\e61c";}/* 定位 */

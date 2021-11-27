@@ -96,7 +96,7 @@
 					{url:"/pages/distribution/add/main",type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
 					{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
 					{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-					// {url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+					{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
 					{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 				],
 				orders1:'',
@@ -126,7 +126,7 @@
 							{url:disUrl,type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
 							{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
 							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-							// {url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+							{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
 							{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 							
 						]
@@ -148,7 +148,7 @@
 							{url:disUrl,type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
 							{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
 							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-							{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+							{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
 							{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 							
 						]

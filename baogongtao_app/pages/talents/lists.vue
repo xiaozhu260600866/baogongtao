@@ -2,15 +2,15 @@
 	<view>
 		<page ref="page"></page>
 		<view v-if="data.show">
-		<!-- 	<view class="title">PHP开发工程师</view> -->
+		<!-- <view class="title">PHP开发工程师</view> -->
 			<view class="talents">
 				<view class="talents-item bg-f p15 mb8" v-for="item in data.data.lists.data">
 					<view class="info flex-between">
 						<view class="left">
 							<view class="name fs-18 fw-bold fc-3">{{item.name}}</view>
 							<view class="labG">
-								<view class="lab Arial" >{{item.get_user_info.working_date}}年</view>
-								<view class="lab" v-if="item.get_user_info.education">{{item.education}}</view>
+								<view class="lab Arial" >{{item.get_user_info.experience}}</view>
+								<view class="lab" v-if="item.get_user_info.education">{{item.get_user_info.education}}</view>
 								<view class="lab" v-if="item.get_user_info.salary">{{item.get_user_info.salary}}</view>
 							</view>
 						</view>
@@ -18,12 +18,12 @@
 							<image class="head" :src="item.get_wechat_user.avatarUrl" mode="aspectFill"></image>
 						</view>
 					</view>
-					<view class="con flex-middle fs-15 fc-3 ptb15">
-						 <view class="company">{{item.get_user_info.company_name}}</view>
-						<view class="dot"></view>
+					<view class="con flex-middle fs-15 fc-3 ptb10">
+						<!-- <view class="company">{{item.get_user_info.company_name}}</view>
+						<view class="dot"></view> -->
 						<view class="position">{{item.get_user_info.industry}}</view>
 					</view>
-					<view class="intro text-justify wrap2 fs-15 fc-6">{{item.get_user_info.advantage}}</view>
+					<view class="intro text-justify wrap2 fs-14 fc-6" v-if="item.get_user_info.remark">{{item.get_user_info.remark}}</view>
 				</view>
 			</view>
 		</view>
