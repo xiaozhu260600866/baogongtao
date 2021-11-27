@@ -24,7 +24,7 @@
 						<view class="pl15 fc-white right info">
 							<view class="fc-white lh-24 fs-15">
 								<view class="group">
-									<view>{{wechatUser.nickName}}</view>
+									<view>{{userInfo ? userInfo.get_user_info.name :wechatUser.nickName}}</view>
 								</view>
 								<!-- <view>电话号码：<text class="Arial">13318639080</text></view> -->
 							</view>
@@ -115,6 +115,9 @@
 				userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 					this.pushing = res.data.push;
 					this.userInfo = res.data.user;
+					if(res.data.user.wechat_user){
+						this.wechatUser = res.data.user.wechat_user
+					}
 					if(this.pushing){
 						this.menuArr = [
 							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}

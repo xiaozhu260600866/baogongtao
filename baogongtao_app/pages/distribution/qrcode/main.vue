@@ -22,7 +22,7 @@
 						<view class="p">
 							<image class="image" :src="getSiteName+'/upload/images/dis/'+data.distribution.id+'.jpg'" v-if="data.distribution" @click="previewImage(data.distribution.id+'.jpg','dis')">
 						</view>
-						<view class="p1">长按识别小程序<br>开启您的购物之旅</view>
+					<!-- 	<view class="p1">长按识别小程序<br>开启您的购物之旅</view> -->
 					</view>
 				<!-- 	<view id="footer-btn"><view class="f-dx-btn dx-btn-blue text-center" @click="poster">生成海报</view></view> -->
 				</view>

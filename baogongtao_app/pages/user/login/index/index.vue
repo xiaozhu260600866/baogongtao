@@ -38,7 +38,7 @@
 					<view class="dxi-icon dxi-icon-off fs-12"></view>
 				</view>
 				<view class="fs-16 fc-9 plr15 ptb10">完善的简介更容易获得HR青睐！</view>
-				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="select" dataKey="positionData" changeField="value"
+				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="manyselect" dataKey="positionData" changeField="value"
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect" dataKey="industryData" changeField="value"
 				 datatype="require" block></weui-input>
@@ -75,7 +75,7 @@
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
-				step: 2,
+				step: 1,
 				avatarUrl: '',
 				ruleform: {
 					sex: 1,
@@ -118,88 +118,11 @@
 						value: '在职-暂不考虑'
 					},
 				],
-				educationArr: [{
-						label: '初中及以下',
-						value: '初中及以下'
-					},
-					{
-						label: '中专/中技',
-						value: '中专/中技'
-					},
-					{
-						label: '高中',
-						value: '高中'
-					},
-					{
-						label: '大专',
-						value: '大专'
-					},
-					{
-						label: '本科',
-						value: '本科'
-					},
-					{
-						label: '硕士',
-						value: '硕士'
-					},
-					{
-						label: '博士',
-						value: '博士'
-					},
+				educationArr: [
 				],
-				emolumentArr: [{
-						label: '不限',
-						value: '不限'
-					},
-					{
-						label: '1-3k',
-						value: '1-3k'
-					},
-					{
-						label: '3-6k',
-						value: '3-6k'
-					},
-					{
-						label: '6-8k',
-						value: '6-8k'
-					},
-					{
-						label: '8-10k',
-						value: '8-10k'
-					},
-					{
-						label: '10-15k',
-						value: '10-15k'
-					},
-					{
-						label: '15-20k',
-						value: '15-20k'
-					},
-					{
-						label: '20-30k',
-						value: '20-30k'
-					},
-					{
-						label: '面议',
-						value: '面议'
-					},
+				emolumentArr: [
 				],
-				positionData: [{
-						label: '技术员',
-						value: '技术员'
-					},
-					{
-						label: '文员',
-						value: '文员'
-					},
-					{
-						label: '机械工程师',
-						value: '机械工程师'
-					},
-					{
-						label: '行政管理',
-						value: '行政管理'
-					},
+				positionData: [
 				]
 			}
 		},
@@ -220,6 +143,15 @@
 				source: 'app'
 			}).then(res => {
 				this.industryData = res.data.lists;
+			})
+			attributes({type:13,source:'app'}).then(res => {
+				this.educationArr = res.data.lists;
+			})
+			attributes({type:12,source:'app'}).then(res => {
+				this.emolumentArr = res.data.lists;
+			})
+			attributes({type:10,source:'app'}).then(res => {
+				this.positionData = res.data.lists;
 			})
 			// userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 			// 	this.ruleform = res.data.user.get_user_info;
