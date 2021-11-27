@@ -18,7 +18,7 @@ Vue.use(message);
 Vue.use(date);
 Vue.use(filter);
 Vue.use(vaildate);
-import myform from '@/components/xiaozhu/myform.vue'
+import myform from 'xiaozhu/uniapp/components/myform.vue'
 Vue.component(
 	'myform',
 	myform
@@ -60,6 +60,11 @@ import hasMore from 'xiaozhu/uniapp/components/hasMore'
 Vue.component(
 	'hasMore',
 	hasMore
+);
+import dxAddress from "xiaozhu/uniapp/components/addressAndCity";
+Vue.component(
+	'dx-address',
+	dxAddress
 );
 import dxButton from "doxinui/components/button/button"
 Vue.component(

@@ -21,8 +21,8 @@
 				<weui-input v-model="ruleform.birthday" label="出生年月" type="date" name="birthday" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education" dataKey="educationArr"
 				 changeField="value"></weui-input>
-				<weui-input v-model="ruleform.working_date" label="工作经验" type="number" name="working_date" datatype="require"></weui-input>
-				<dxftButton type="primary" size="lg" @click="step = 2">下一步</dxftButton>
+				<weui-input v-model="ruleform.experience" label="工作经验" type="text" name="experience" ></weui-input>
+				<dxftButton type="primary" size="lg" @click="submit(1)">下一步</dxftButton>
 			</view>
 			<view class="stpe2 bg-f" v-if="step == 2">
 				<view class="tips flex-between flex-middle lh-1 fs-14 fc-red plr15 ptb12">
@@ -34,15 +34,16 @@
 				 datatype="require"></weui-input>
 				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect" dataKey="industryData" changeField="value"
 				 datatype="require"></weui-input>
-				<weui-input v-model="ruleform.work_place" label="工作城市" name="work_place" type="manyselect" dataKey="workPlaceData" changeField="value"
-				 datatype="require"></weui-input>
+			<!-- 	<dx-address v-model="ruleform.work_place" labeltxt="工作城市"></dx-address> -->
+				<div><dx-address v-model="ruleform.address" datatype="require" ref="address" :addressHidden="true"></dx-address></div>
+				
 				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="select" dataKey="emolumentArr"
 				 datatype="require"></weui-input>
 				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select" changeField="value" dataKey="applyStatusArr"
 				 datatype="require"></weui-input>
 				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人职业标签(选填)" placeholder="让HR快速了解你" type="textarea"
 				 name="remark"></weui-input>
-				<dxftButton type="primary" size="lg" @click="submit()">提交</dxftButton>
+				<dxftButton type="primary" size="lg" @click="submit(2)">提交</dxftButton>
 			</view>
 		</view>
 	</view>
@@ -51,18 +52,21 @@
 <script>
 import dxftButton from "doxinui/components/button/footer-button"
 import {userinfo} from "@/api/user";
-	import {attributes } from "@/api/base";
+import {attributes } from "@/api/base";
+import avatar from "@/components/yq-avatar/yq-avatar.vue";
 export default {
-	components: {dxftButton},
+	components: {dxftButton,avatar},
 		data() {
 			return {
+				sysUser: uni.getStorageSync('sysUser'),
 				vaildate: {},
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
-				step: 1,
+				step: 2,
+				avatarUrl:'',
 				ruleform:{
-					sexs: 1,
+					sex: 1,
 					status: 1,
 				},
 				sexsArr: [
@@ -150,21 +154,26 @@ export default {
 						if(dataObj.code!=0){
 							return this.msgError(dataObj.msg);
 						}
-						this.formData.avatar = dataObj.data.fileName;
+						this.ruleform.avatar = dataObj.data.fileName;
 						this.avatarUrl = rsp.path; //更新头像方式一
 						//rsp.avatar.imgSrc = rsp.path; //更新头像方式二
 					}
 				});
 			},
-			submit(){
+			submit(step){
 				this.ruleform.token = uni.getStorageSync('token');
 				this.vaildForm(this, res => {	
 					if(res){
-						this.postAjax("/api/auth/user/update", this.ruleform).then(msg => {
-							if (msg.data.code == 0) {
-								return this.goto("/pages/user/index/index",2);
-							}
-						});
+						if(step ==2){
+							this.postAjax("/api/auth/user/update", this.ruleform).then(msg => {
+								if (msg.data.code == 0) {
+									return this.goto("/pages/user/index/index",2);
+								}
+							});
+						}else{
+							this.step =2;
+						}
+						
 					}
 					
 				})

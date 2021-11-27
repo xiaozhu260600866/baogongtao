@@ -7,9 +7,9 @@
 					<image class="img w-b100 flex" mode="widthFix" src="/static/images/user-bg.jpg"></image>
 				</view> -->
 				<view class="utop">
-					<view class="uinfo" @click="$refs.loginDiag.thisDiag = true" v-if="!userInfo.nickName">
+					<view class="uinfo" @click="$refs.loginDiag.thisDiag = true" v-if="!userInfo">
 						<view class="header-img nouser">
-							<image class="img" src="https://bgt.doxinsoft.com/images/user-w.png" />
+							<image class="img" :src="wechatUser ? wechatUser.avatarUrl : 'https://bgt.doxinsoft.com/images/user-w.png'" />
 						</view>
 						<view class="fc-white lh-1_5 pl15">
 							<view class="fs-22">未登录/注册</view>
@@ -19,12 +19,12 @@
 					
 					<view class="uinfo" v-else>
 						<view class="header-img">
-							<image class="img" :src="userInfo.avatarUrl" />
+							<image class="img" :src="userInfo.get_user_info.avatarUrl ? userInfo.get_user_info.avatarUrl : wechatUser.avatarUrl" />
 						</view>
 						<view class="pl15 fc-white right info">
 							<view class="fc-white lh-24 fs-15">
 								<view class="group">
-									<view>{{userInfo.nickName}}</view>
+									<view>{{wechatUser.nickName}}</view>
 								</view>
 								<!-- <view>电话号码：<text class="Arial">13318639080</text></view> -->
 							</view>
@@ -82,6 +82,7 @@
 
 <script>
 	import dxNavClass from "doxinui/components/nav-class/nav-class"
+	
 	import { recruits as recruitList } from "@/api/company";
 	import {userinfo, action, logout} from "@/api/user";
 	import dxDiag from "doxinui/components/diag/diag"
@@ -92,23 +93,28 @@
 				ruleform:{},
 				vaildate:{},
 				menuArr:[
-					
+					{url:"/pages/distribution/add/main",type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
+					{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
+					{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
+					// {url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+					{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 				],
 				orders1:'',
 				orders3:'',
 				orders5:'',
 				orders9:'',
 				orders10:'',
-				userInfo:{},
-				
+				wechatUser:'',
 				pushing:0,
-				show:true,
+				userInfo:'',
+				show:false,
 			}
 		},
 		onLoad() {
 			if(uni.getStorageSync('sysUser')){
 				userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 					this.pushing = res.data.push;
+					this.userInfo = res.data.user;
 					if(this.pushing){
 						this.menuArr = [
 							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}
@@ -120,7 +126,7 @@
 							{url:disUrl,type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
 							{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
 							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-							{url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+							// {url:'/pages/user/talents/resume',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
 							{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 							
 						]
@@ -129,7 +135,7 @@
 					
 				})
 			}else{
-				recruits({token:uni.getStorageSync('token')}).then((res)=>{
+				recruitList({token:uni.getStorageSync('token')}).then((res)=>{
 					this.pushing = res.data.push;
 					if(this.pushing){
 						this.menuArr = [
@@ -150,16 +156,16 @@
 					this.show = true;
 					
 				})
-					this.show = true;
+				this.show = true;
 			}
 			
 			
-			this.userInfo = uni.getStorageSync("wxUser");
+			this.wechatUser = uni.getStorageSync("userInfo");
 		},
 		methods: {
 			
 			wechatInfoCallBack(userInfo){
-				this.userInfo = userInfo;
+				this.wechatUser = userInfo;
 				return this.linkTo("/pages/user/login/index/index",0);
 			},
 			checkAuth(v){
