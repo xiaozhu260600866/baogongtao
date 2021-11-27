@@ -16,7 +16,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="tips flex-between fs-15 plr10 ptb8 block-sec">
+			<view class="tips flex-between fs-15 plr10 ptb8 block-sec" v-if="sysCompany.license">
 				<view class="txt fc-6">您的企业信息未完善，请尽快完善</view>
 				<view class="go fw-bold main-color" @click="goto('/pages/merchant/info/license',1)">去完善</view>
 			</view>
