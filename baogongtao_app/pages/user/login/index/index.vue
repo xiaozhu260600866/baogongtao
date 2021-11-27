@@ -277,6 +277,9 @@ import {mapState, mapMutations, mapActions} from 'vuex'
 			},
 			submit(step) {
 				this.ruleform.token = uni.getStorageSync('token');
+				if(uni.getStorageSync('distribution')){
+					this.ruleform.distribution = uni.getStorageSync('distribution')
+				}
 				this.vaildForm(this, res => {
 					if (res) {
 						if (step == 2) {
