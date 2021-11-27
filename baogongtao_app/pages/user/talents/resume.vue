@@ -31,10 +31,7 @@
 				<dxftButton type="primary" size="lg" ></dxftButton>
 			</view>
 			<view class="stpe2 bg-f" >
-				<view class="tips flex-between flex-middle lh-1 fs-14 fc-red plr15 ptb12">
-					<view>距离调薪职位又近了一步哦！</view>
-					<view class="dxi-icon dxi-icon-off fs-12"></view>
-				</view>
+				
 				<view class="fs-16 fc-9 plr15 ptb10">完善的简介更容易获得HR青睐！</view>
 				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="manyselect" dataKey="positionData" changeField="value"
 				 datatype="require" block></weui-input>

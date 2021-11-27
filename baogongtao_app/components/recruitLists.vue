@@ -17,9 +17,9 @@
 				<view class="userInfo mt10 flex-middle fs-14" v-if="v.get_company">
 					<image class="head" :src="v.get_company.logoMinUrl" mode="aspectFill"></image>
 					<view class="left flex1 ml10">
-						<view class="name">{{v.get_company.charger_name}} {{v.get_company.position}}</view>
+						<view class="name">{{v.get_company.name}} {{v.get_company.charger_name  ? v.get_company.charger_name :null }}</view>
 					</view>
-					<view class="place fc-b">{{v.work_place}}</view>
+					<view class="place fc-b">{{v.get_company.address}}</view>
 				</view>
 			</view><!-- 
 			<view class="edit-nav" v-if="type == 2">
@@ -52,7 +52,12 @@ export default {
 			let arr = [];
 			arr.push(v.salary)
 			arr.push(v.education)
-			arr.push(v.home_date)
+			let tag = v.job_tab ? v.job_tab.split(",") :[ ];
+			if(tag.length){
+				tag.forEach(e=>{
+					arr.push(e)
+				})	
+			}
 			return arr;
 		}
 	}

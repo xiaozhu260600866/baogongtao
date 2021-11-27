@@ -22,7 +22,7 @@
 							<image class="img" :src="userInfo.get_user_info.avatarUrl ? userInfo.get_user_info.avatarUrl : wechatUser.avatarUrl" />
 						</view>
 						<view class="pl15 fc-white right info">
-							<view class="fc-white lh-24 fs-15">
+							<view class="fc-white lh-24 fs-18">
 								<view class="group">
 									<view>{{userInfo ? userInfo.get_user_info.name :wechatUser.nickName}}</view>
 								</view>
