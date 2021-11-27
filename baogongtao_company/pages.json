@@ -82,6 +82,13 @@
 			}
 		},
 		{
+			"path": "pages/merchant/login/success",
+			"style": {
+				"navigationBarTitleText": "注册成功",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
 			"path": "pages/merchant/recruit/show/index",
 			"style": {
 				"navigationBarTitleText": "招聘信息",

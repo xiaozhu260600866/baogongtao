@@ -20,7 +20,7 @@
 				<view class="txt fc-6">您的企业信息未完善，请尽快完善</view>
 				<view class="go fw-bold main-color" @click="goto('/pages/merchant/info/license',1)">去完善</view>
 			</view>
-			<view class="block-sec">
+			<!-- <view class="block-sec">
 				<view class="block-title">
 					<view class="name">我的记录</view>
 				</view>
@@ -28,19 +28,18 @@
 					{url:'/pages/merchant/recruit/apply/index',type:1,cover:'https://www.baogongtao.com/images/wap/A01.jpg',name:'应聘记录'},
 					{url:'/pages/merchant/coupon/lists/cancel',type:1,cover:'https://www.baogongtao.com/images/wap/A02.jpg',name:'核销记录'},
 				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10"></dx-nav-class>
-			</view>
+			</view> -->
 			<view class="block-sec">
-				<view class="block-title">
-					<view class="name">常用工具</view>
-				</view>
 				<dx-nav-class :data="[
-					{url:'/pages/merchant/recruit/created_edit/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B01.jpg',name:'发布招聘'},
-					{url:'/pages/merchant/coupon/created_edit/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B02.jpg',name:'发布优惠券'},
-					{url:'/pages/merchant/coupon/cancel/cancel',type:1,cover:'https://www.baogongtao.com/images/wap/B03.jpg',name:'核销优惠券'},
-					{url:'/pages/merchant/worker/lists',type:1,cover:'https://www.baogongtao.com/images/wap/B05.jpg',name:'我的用工'},
-					{url:'/pages/company/worker/transactions',type:1,cover:'https://www.baogongtao.com/images/wap/B06.jpg',name:'工资发放记录'},
-					{url:'/pages/merchant/company/index',type:1,cover:'https://www.baogongtao.com/images/wap/B07.jpg',name:'企业展示'},
-				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10"></dx-nav-class>
+					{url:'/pages/merchant/recruit/created_edit/lists',type:1,icon:'iconfont icon-user-recruit',name:'招聘管理'},
+					{url:'/pages/merchant/recruit/apply/index',type:1,icon:'iconfont icon-user-apply',name:'简历管理'},
+					{url:'/pages/merchant/coupon/created_edit/lists',type:1,icon:'iconfont icon-user-coupon',name:'优惠券管理'},
+					{url:'/pages/merchant/coupon/lists/cancel',type:1,icon:'iconfont icon-user-cancel',name:'核销信息'},
+					{url:'/pages/merchant/worker/lists',type:1,icon:'iconfont icon-user-worker',name:'用工管理'},
+					{url:'/pages/company/worker/transactions',type:1,icon:'iconfont icon-user-transactions',name:'工资发放'},
+					{url:'/pages/merchant/company/index',type:1,icon:'iconfont icon-user-company',name:'企业展示'},
+					{url:'/pages/merchant/coupon/cancel/cancel',type:1,icon:'iconfont icon-user-scan',name:'扫一扫'},
+				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10" :iconSize="30" iconColor="#666"></dx-nav-class>
 			</view>
 			<!-- {url:'/pages/merchant/info/index',type:1,cover:'https://www.baogongtao.com/images/wap/B04.jpg',name:'我的资料'}, -->
 		</view>

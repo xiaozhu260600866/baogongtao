@@ -8,7 +8,7 @@
 			<weui-input v-model="ruleform.name" label="负责人姓名" type="text" name="name" datatype="require" block></weui-input>
 			<weui-input v-model="ruleform.phone" label="负责人手机" type="text" name="phone" block></weui-input>
 			<weui-input v-model="ruleform.password" label="登录密码" type="password" name="password" block></weui-input>
-			<dxftButton type="primary" size="lg" @click="goto('/pages/merchant/login/index',1)">注册</dxftButton>
+			<dxftButton type="primary" size="lg" @click="goto('/pages/merchant/login/success',1)">注册</dxftButton>
 		</view>
 	</view>
 </template>

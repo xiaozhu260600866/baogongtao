@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'iconfont';  /* Project id 1759642 */
-  src: url('//at.alicdn.com/t/font_1759642_cayd3hnma3g.woff2?t=1634800005741') format('woff2'),
-       url('//at.alicdn.com/t/font_1759642_cayd3hnma3g.woff?t=1634800005741') format('woff'),
-       url('//at.alicdn.com/t/font_1759642_cayd3hnma3g.ttf?t=1634800005741') format('truetype');
+  src: url('//at.alicdn.com/t/font_1759642_een3bnnfhdv.woff2?t=1637977511355') format('woff2'),
+       url('//at.alicdn.com/t/font_1759642_een3bnnfhdv.woff?t=1637977511355') format('woff'),
+       url('//at.alicdn.com/t/font_1759642_een3bnnfhdv.ttf?t=1637977511355') format('truetype');
 }
 
 /* 3314024140@qq.com  dx3229010  包工淘 */
@@ -39,14 +39,14 @@
 .icon-trends-evalute:before{content: "\e604";}/* 评价 */
 
 
-.icon-user-detail:before{content: "\e653";color: #46CA7F;}/* 个人资料 */
-.icon-user-zz:before{content: "\e66f";color: #FE4646;}/*个人资质 */
-.icon-user-agreement:before{content: "\ed84";color: #457AE3;}/* 我的协议 */
-.icon-user-wallet:before{content: "\e6cb";color: #FDBF3E;}/* 我的钱包 */
-.icon-user-bankcard:before{content: "\e600";color: #F64D44;}/* 我的银行卡 */
-.icon-user-order:before{content: "\e71a";color: #8545FC;}/* 接单设置 */
-.icon-user-msg:before{content: "\e656";color: #46CA7F;}/* 我的消息 */
-.icon-user-share:before{content: "\e74b";color: #FE4646;}/* 分享小程序 */
+.icon-user-recruit:before{content: "\e660";}/* 招聘管理 */
+.icon-user-apply:before{content: "\e617";}/* 简历管理 */
+.icon-user-coupon:before{content: "\e633";}/* 优惠券管理 */
+.icon-user-cancel:before{content: "\e64b";}/* 核销信息 */
+.icon-user-worker:before{content: "\e650";}/* 用工管理 */
+.icon-user-transactions:before{content: "\e63e";}/* 工资发放 */
+.icon-user-company:before{content: "\e613";}/* 企业展示 */
+.icon-user-scan:before{content: "\e626";}/* 扫一扫 */
 
 
 .icon-task-null:before{content: "\e610";}/* 没有任务 */

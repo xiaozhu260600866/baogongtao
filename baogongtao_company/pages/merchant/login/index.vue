@@ -21,11 +21,11 @@
 				</view>
 				<form-submit className="tui-btn-submit" :vaildate="false" @callBack="submit" name="登录"></form-submit>
 
-				<view class="tui-protocol" hover-class="opcity" :hover-stay-time="150">点击"登录"即表示已同意
+				<!-- <view class="tui-protocol" hover-class="opcity" :hover-stay-time="150">点击"登录"即表示已同意
 					<text class="tui-protocol-red" @tap="protocol">《用户协议》</text>
-				</view>
+				</view> -->
 				
-				<view class="fs-12 text-center mt5 fc-3" @click="$refs.registerDiag.thisDiag = true">立即注册</view>
+				<view class="fs-15 text-right mt10 fc-3" @click="$refs.registerDiag.thisDiag = true">立即注册</view>
 			</view>
 		</form>
 		<dx-diag :tbPadding="25" :lrPadding="30" ref="registerDiag">
