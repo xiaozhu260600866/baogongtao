@@ -52,7 +52,12 @@ export default {
 			let arr = [];
 			arr.push(v.salary)
 			arr.push(v.education)
-			arr.push(v.home_date)
+			let tag = v.job_tab ? v.job_tab.split(",") :[ ];
+			if(tag.length){
+				tag.forEach(e=>{
+					arr.push(e)
+				})	
+			}
 			return arr;
 		}
 	}

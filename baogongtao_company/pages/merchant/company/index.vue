@@ -4,37 +4,34 @@
 		<view class="container">
 			<view class="company-info">
 				<view class="head">
-					<image class="img" src="/static/images/news.jpg"></image>
+					<image class="img" :src="ruleform.logoMinUrl"></image>
 				</view>
 				<view class="info">
-					<view class="name">{{detail.company_name}}</view>
+					<view class="name">{{ruleform.name}}</view>
 					<view class="tag">
 						<view class="item">{{detail.city}}</view>
-						<view class="item Arial">{{detail.scale?detail.scale:'暂无'}}</view>
-						<view class="item">{{detail.industry?detail.industry:'暂无'}}</view>
+						<view class="item Arial">{{ruleform.scale?ruleform.scale:'暂无'}}</view>
+						<view class="item">{{ruleform.industry?ruleform.industry:'暂无'}}</view>
 					</view>
 				</view>
 			</view>
 			<view class="banner">
-				<dx-swiper :data="[
-				　　{cover: '/static/images/news.jpg'},
-				　　{cover: '/static/images/news.jpg'}
-				]"></dx-swiper>
+				<xiaozhuSwiper :data="ruleform.logo" purl="logo"></xiaozhuSwiper>
 			</view>
 			<view class="address">
 				<view class="icon dxi-icon dxi-icon-location-fill"></view>
-				<view class="txt nowrap">{{detail.address?detail.address:'暂无'}}</view>
+				<view class="txt nowrap">{{ruleform.address?ruleform.address:'暂无'}}</view>
 				<view class="icon dxi-icon dxi-icon-right2"></view>
 			</view>
 			<view class="company-intro">
 				<view class="item">
 					<view class="title">公司介绍</view>
-					<view class="content" v-if="detail.company_remark">{{detail.company_remark}}</view>
+					<view class="content" v-if="ruleform.remark_company">{{ruleform.remark_company}}</view>
 					<view class="content" v-else>暂无</view>
 				</view>
 				<view class="item">
 					<view class="title">公司风采</view>
-					<dx-images :data="detail.team" bgColor="transparent" :imgR="6" v-if="detail.team.length"></dx-images>
+					<dx-images :data="remark_pic_company" bgColor="transparent" :imgR="6" v-if="remark_pic_company.length"></dx-images>
 					<view class="content" v-else>暂无</view>
 				</view>
 			</view>
@@ -48,10 +45,21 @@
 <script>
 	import dxImages from "doxinui/components/images/images"
 	import dxSwiper from "doxinui/components/swiper/swiper"
+	import xiaozhuSwiper from "xiaozhu/uniapp/components/swiper"
+	import {userinfo, action, logout} from "@/api/user";
 	export default {
-		components:{dxImages,dxSwiper},
+		components:{dxImages,dxSwiper,xiaozhuSwiper},
 		data() {
 			return {
+				formAction: '/api/company/store',
+				mpType: 'page', //用来分清父和子组件
+				data: this.formatData(this),
+				getSiteName: this.getSiteName(),
+				ruleform:{
+					remark_company:'',
+					remark_pic_company:[],
+				},
+				remark_pic_company:[],
 				detail:{
 					company_name:'广盈科技',
 					city:'江门',
@@ -64,7 +72,19 @@
 			}
 		},
 		onLoad() {
-			
+			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+			 this.ruleform =res.data.company;
+			  this.ruleform.license =  this.ruleform.license ? this.ruleform.license.split(",") : [],
+			  this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
+			  this.ruleform.logo = this.ruleform.logo ? this.ruleform.logo.split(",") : [];
+			  this.ruleform.remark_pic_company = this.ruleform.remark_pic_company ? this.ruleform.remark_pic_company.split(",") : [];
+			  if(this.ruleform.remark_pic_company.length){
+					this.ruleform.remark_pic_company.forEach(v=>{
+						this.remark_pic_company.push({img:this.getSiteName + '/upload/images/logo/'+v});			  
+					})
+			  }
+			  
+			})
 		},
 		methods: {
 			

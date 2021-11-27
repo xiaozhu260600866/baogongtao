@@ -95,8 +95,7 @@ export default {
 			wechatUser(wxUser);	
 		}
 		
-		if(this.mustOpenid){
-			if(!uni.getStorageSync('openid')){
+	
 				let that = this;
 				uni.login({
 					success: function (loginRes) {
@@ -104,6 +103,7 @@ export default {
 							miniOpenid({code:loginRes.code}).then(res=>{
 								console.log(res)
 								uni.setStorageSync('openid',res.data.openid)
+								uni.setStorageSync('session_key', res.data.session_key)
 								if(res.data.wechatUser){
 									uni.setStorageSync("wxUser", res.data.wechatUser);
 								}
@@ -131,8 +131,8 @@ export default {
 						}
 					},
 				})
-			}
-		}
+		
+		
 	}
 }
 </script>

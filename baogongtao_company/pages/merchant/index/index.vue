@@ -36,7 +36,7 @@
 					{url:'/pages/merchant/coupon/created_edit/lists',type:1,icon:'iconfont icon-user-coupon',name:'优惠券管理'},
 					{url:'/pages/merchant/coupon/lists/cancel',type:1,icon:'iconfont icon-user-cancel',name:'核销信息'},
 					{url:'/pages/merchant/worker/lists',type:1,icon:'iconfont icon-user-worker',name:'用工管理'},
-					{url:'/pages/company/worker/transactions',type:1,icon:'iconfont icon-user-transactions',name:'工资发放'},
+					{url:'/pages/merchant/worker/transactions',type:1,icon:'iconfont icon-user-transactions',name:'工资发放'},
 					{url:'/pages/merchant/company/index',type:1,icon:'iconfont icon-user-company',name:'企业展示'},
 					{url:'/pages/merchant/coupon/cancel/cancel',type:1,icon:'iconfont icon-user-scan',name:'扫一扫'},
 				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10" :iconSize="30" iconColor="#666"></dx-nav-class>

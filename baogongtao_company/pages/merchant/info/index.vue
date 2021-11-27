@@ -13,7 +13,7 @@
 				<weui-input v-model="ruleform.address" label="公司位置" type="location" name="address" datatype="require" navClass="dx-btn-blue"
 				 @callback="location" block></weui-input>
 				<weui-input v-model="ruleform.cover" label="主页轮播图" type="upload" upurl='logo' allowUpLoadNum="5" name="cover" block></weui-input>
-				<weui-input v-model="ruleform.team" label="公司风采" type="upload" upurl='logo' allowUpLoadNum="5" name="team" block></weui-input>
+				<weui-input v-model="ruleform.remark_pic_company" label="公司风采" type="upload" upurl='logo' allowUpLoadNum="5" name="remark_pic_company" block></weui-input>
 				
 				
 				<!-- 
@@ -90,8 +90,10 @@
 			})
 			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 			   this.ruleform =res.data.company;
-			   this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
-			   this.ruleform.remark_pic_company = this.ruleform.remark_pic_company ? this.ruleform.remark_pic_company.split(",") : [];
+			  this.ruleform.license =  this.ruleform.license ? this.ruleform.license.split(",") : [],
+			  this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
+			  this.ruleform.logo = this.ruleform.logo ? this.ruleform.logo.split(",") : [];
+			  this.ruleform.remark_pic_company = this.ruleform.remark_pic_company ? this.ruleform.remark_pic_company.split(",") : [];
 			   
 				
 			})
@@ -138,9 +140,6 @@
 								 let file = data.data.filename;
 								 this.ruleform.logoMinUrl = this.getSiteName + "/upload/images/logo/" +file;
 								 this.ruleform.logo = file;
-								 console.log("success",res);
-								
-				                
 				             },
 				             fail: function(res) {
 				                 console.log(res);

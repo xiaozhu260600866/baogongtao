@@ -29,11 +29,11 @@
 			</view>
 		</form>
 		<dx-diag :tbPadding="25" :lrPadding="30" ref="registerDiag">
-			<dx-button type="success" size="lg" icon="dxi-icon dxi-icon-wechat-circle" block @click="goto('/pages/merchant/login/register',1)">微信快捷登录</dx-button>
-			<view class="msg flex-middle fs-13 fc-6 mt10">
+			<dx-button type="success" size="lg" icon="dxi-icon dxi-icon-wechat-circle" block @getPhoneNumber="getPhoneNumber2" open-type="getPhoneNumber">微信快捷登录</dx-button>
+			<!-- <view class="msg flex-middle fs-13 fc-6 mt10">
 				<radio class="mr5" style="zoom: 75%;" checked="true" />
 				<view>同意<text class="main-color">《隐私政策》</text>和<text class="main-color">《使用协议》</text></view>
-			</view>
+			</view> -->	
 		</dx-diag>
 	</view>
 </template>
@@ -63,6 +63,15 @@ export default {
 		...mapMutations(['login','setCompanyInfo']),
 		protocol(){
 			this.linkTo('/pages/user/login/index/protocol',1);
+		},
+		getPhoneNumber2(e){
+			 console.log(e);
+			this.getAuthPhoneNumber(e, msg => {
+				uni.setStorageSync('phone',msg.data.phoneNumber);
+				return this.goto("/pages/merchant/login/register",1);
+			}, () => {
+			
+			});
 		},
 		submit(){
 			if (this.isNullOrEmpty(this.username)) {

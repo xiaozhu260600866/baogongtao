@@ -6,7 +6,7 @@
 				<weui-input v-model="ruleform.job_position" label="职位名称" type="text" name="job_position" datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.job_remark" myclass="textarea" label="职位描述" type="textarea" name="job_remark"
 				 datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.address" label="工作地址" type="location" name="address" navClass="main-bg fc-white"
+				<weui-input v-model="ruleform.work_place" label="工作地址" type="location" name="work_place" navClass="main-bg fc-white"
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.job_category" label="职位类型" name="job_category" type="manyselect" dataKey="positionCalss"
 				 changeField="label" datatype="require" block></weui-input>
@@ -39,6 +39,7 @@
 <script>
 import dxftButton from "doxinui/components/button/footer-button"
 import {attributes } from "@/api/base";
+import {userinfo, action, logout} from "@/api/user";
 export default {
 	components: {dxftButton},
 		data() {
@@ -50,6 +51,7 @@ export default {
 				getSiteName: this.getSiteName(),
 				ruleform:{},
 				positionCalss:[],
+				remark_pic_company:[],
 				experienceArr:[
 				
 				],
@@ -83,6 +85,9 @@ export default {
 			})
 			attributes({type:13,source:'app'}).then(res => {
 				this.educationArr = res.data.lists;
+			})
+			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+				  this.ruleform.work_place = res.data.company.address;
 			})
 			if(options.id){
 				this.ajax();
