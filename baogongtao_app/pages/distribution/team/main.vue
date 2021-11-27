@@ -2,7 +2,7 @@
 	<view>
 		<page :parentData="data" :formAction="formAction"></page>
 		<view v-if="data.show">
-			<view class="plr15 pt10 fs-13 fc-7">邀请好友成为分享达人，推广购买后均可获得奖励</view>
+		<!-- 	<view class="plr15 pt10 fs-13 fc-7">邀请好友成为分享达人，推广购买后均可获得奖励</view>
 			<view class="team-group">
 				<view class="team-item block-sec flex" v-for="item in lists">
 					<image class="head mr10" :src="item.headerPic"></image>
@@ -12,9 +12,9 @@
 						<view>上次奖励：<text class="Arial main-color" v-if="item.last_amount">￥{{item.last_amount}}</text><text v-else>--</text></view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 			<!-- <dx-tabs-date  :height="50" :size="15" v-model="searchType" @change="chageDate"></dx-tabs-date> -->
-			<!-- <view id="scroller">
+			<view id="scroller">
 				<view class="top plr15 ptb5 fs-14 fc-3 lh-26" v-if="countShow">
 					<view class="group flex-between">
 						<view>一级分销商：<text class="Arial">{{countData.topOne.length}}</text>人</view>
@@ -61,7 +61,7 @@
 						<view class="dx-btn dx-btn-sm dx-btn-orange ml5" @click="goto('/pages/distribution/down/dis/main?id='+item.id,1)">下级</view>
 					</view>
 				</view>
-			</view> -->
+			</view>
 			<hasMore :parentData="data" source="nodata"></hasMore>
 		</view>
 	</view>
