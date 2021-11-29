@@ -4,7 +4,7 @@
 		<view>
 			<view class="talents-info">
 				<view class="head">
-					<image class="img" :src="avatarUrl?avatarUrl:'https://bgt.doxinsoft.com/images/user.png'"></image>
+					<image class="img" :src="avatarUrl?avatarUrl:'https://www.baogongtao.com/images/user.png'"></image>
 					<view class="sex">
 						<view class="item man" v-if="ruleform.sex == 1"><text class="iconfont icon-man"></text></view>
 						<view class="item women" v-if="ruleform.sex == 2"><text class="iconfont icon-women"></text></view>

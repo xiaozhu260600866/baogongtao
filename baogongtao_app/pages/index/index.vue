@@ -2,24 +2,23 @@
 	<view>
 		<page ref="page"></page>
 		<view v-if="show">
-			<view class="banner">
-				<tyt-swiper :data="sliders" indicatorDotsActColor="#009966"></tyt-swiper>
+			<view class="banner bg-f">
+				<dxSwiper :data="sliders" :imageField="coverUrl" indicatorDotsActColor="#1e97ff"></dxSwiper>
 			</view>
 			<!-- <navBtn :data='navs' myclass="pt0 mb10"></navBtn>
 			<view class="banner_ad bg-f mb10">
 				<image class="w-b100 flex" :src="banners[0].coverUrl" mode="widthFix"></image>
 			</view> -->
-			
 			<dx-nav-class :data="[
-				{url:'/pages/merchant/recruit/lists/index',type:1,cover:'/static/images/logo.png',name:'招聘'},
-				{url:'/pages/talents/lists',type:1,cover:'/static/images/logo.png',name:'人才'},
-				{url:'/pages/merchant/lists/index',type:1,cover:'/static/images/logo.png',name:'企业'},
-				{url:'/pages/merchant/coupon/lists/index',type:2,cover:'/static/images/logo.png',name:'优惠券'},
-			]" @click="checkAuth" myclass="mtb10" :num="4" :nameSize="15" :namePTop="10" v-if="!examining"></dx-nav-class>
+				{url:'/pages/merchant/recruit/lists/index',type:1,cover:getSiteName+'/images/wap/index-wap-icon01.jpg',name:'招聘'},
+				{url:'/pages/talents/lists',type:1,cover:getSiteName+'/images/wap/index-wap-icon02.jpg',name:'人才'},
+				{url:'/pages/merchant/lists/index',type:1,cover:getSiteName+'/images/wap/index-wap-icon03.jpg',name:'企业'},
+				{url:'/pages/merchant/coupon/lists/index',type:2,cover:getSiteName+'/images/wap/index-wap-icon04.jpg',name:'优惠券'},
+			]" @click="checkAuth" myclass="mb10" :num="4" :nameSize="15" :namePTop="10" :imgR="20" v-if="!examining"></dx-nav-class>
 			<view v-if="!examining">
 				<view>
 					<view class="mll_tabs">
-						<view class="name cur">推荐招聘</view>
+						<view class="name fw-bold cur">为您推荐</view>
 						<!-- <view class="name">指派任务</view> -->
 					</view>
 				</view>
@@ -43,6 +42,7 @@ import navBtn from '@/components/navBtn';
 import taskLists from '@/components/taskLists';
 import newsLists from '@/components/newsLists';
 import tytSwiper from '@/components/tytrock/components/swiper'
+import dxSwiper from "@/components/swiper/swiper"
 import tytLoadmore from "@/components/tytrock/components/loadmore"
 import dxNavClass from "doxinui/components/nav-class/nav-class"
 import recruitLists from '@/components/recruitLists'
@@ -55,7 +55,7 @@ export default {
 		tytSwiper,
 		tytLoadmore,
 		dxNavClass,
-		recruitLists
+		recruitLists,dxSwiper
 	},
 	data() {
 		return {

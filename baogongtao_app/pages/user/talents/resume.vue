@@ -9,17 +9,15 @@
 						<view class="fs-16 fc-8 mt10">真实的头像更能吸引HR的关注</view>
 					</view>
 					<view class="dx-cell_bd">
-						<image class="img" :src="avatarUrl?avatarUrl:'https://bgt.doxinsoft.com/images/user.png'"
-							mode="aspectFill" @click="uploadAvatar"></image>
+						<image class="img" :src="avatarUrl?avatarUrl:'https://www.baogongtao.com/images/user.png'" mode="aspectFill"
+						 @click="uploadAvatar"></image>
 						<view style="height: 1upx;overflow:hidden;">
 							<avatar @upload="avatarUploaded" ref="avatar"></avatar>
 						</view>
 					</view>
 				</view>
 				<weui-input v-model="ruleform.phone" label="手机" placeholder="请一键授权手机号" type="txt" name="phone" datatype="require"
-				 :disabled="false" block>
-					
-				</weui-input>
+				 :disabled="false" block></weui-input>
 				<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名或填写如：王先生" type="text" name="name"
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr"
@@ -30,8 +28,7 @@
 				<weui-input v-model="ruleform.experience" label="工作经验" type="text" placeholder="请填写工作年份如：5年" name="experience" block></weui-input>
 				<dxftButton type="primary" size="lg" ></dxftButton>
 			</view>
-			<view class="stpe2 bg-f" >
-				
+			<view class="stpe2 bg-f">
 				<view class="fs-16 fc-9 plr15 ptb10">完善的简介更容易获得HR青睐！</view>
 				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="manyselect" dataKey="positionData" changeField="value"
 				 datatype="require" block></weui-input>
