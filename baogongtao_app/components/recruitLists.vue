@@ -19,7 +19,7 @@
 					<view class="left flex1 ml10">
 						<view class="name">{{v.get_company.name}} {{v.get_company.charger_name  ? v.get_company.charger_name :null }}</view>
 					</view>
-					<view class="place fc-b">{{v.get_company.address}}</view>
+					<view class="place fc-b" v-if="v.get_company.province">{{v.get_company.province}} {{v.get_company.city}} {{v.get_company.area}}</view>
 				</view>
 			</view><!-- 
 			<view class="edit-nav" v-if="type == 2">

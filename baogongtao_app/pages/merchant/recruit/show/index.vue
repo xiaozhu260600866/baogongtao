@@ -29,7 +29,7 @@
 				<image class="head" :src="detail.get_company.logoMinUrl" mode="aspectFill"></image>
 				<view class="left flex1 ml10 lh-1">
 					<view class="fs-16 fw-bold">{{detail.get_company.charger_name}}</view>
-					<view class="fs-15 fc-3 mt8">{{detail.get_company.position}}</view>
+					<view class="fs-15 fc-3 mt8" v-if="detail.get_company.position">{{detail.get_company.position}}</view>
 				</view>
 			</view>
 			<view class="company-info">

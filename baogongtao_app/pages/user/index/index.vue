@@ -9,7 +9,7 @@
 				<view class="utop">
 					<view class="uinfo" @click="$refs.loginDiag.thisDiag = true" v-if="!userInfo">
 						<view class="header-img nouser">
-							<image class="img" :src="wechatUser ? wechatUser.avatarUrl : 'https://bgt.doxinsoft.com/images/user-w.png'" />
+							<image class="img" :src="wechatUser ? wechatUser.avatarUrl : 'https://www.baogongtao.com/images/user-w.png'" />
 						</view>
 						<view class="fc-white lh-1_5 pl15">
 							<view class="fs-22">未登录/注册</view>
@@ -111,62 +111,66 @@
 			}
 		},
 		onLoad() {
-			if(uni.getStorageSync('sysUser')){
-				userinfo({token:uni.getStorageSync('token')}).then((res)=>{
-					this.pushing = res.data.push;
-					this.userInfo = res.data.user;
-					if(res.data.user.wechat_user){
-						this.wechatUser = res.data.user.wechat_user
-					}
-					if(this.pushing){
-						this.menuArr = [
-							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}
-							
-						]
-					}else{
-						let disUrl = res.data.dis ? '/pages/distribution/index/main' :'/pages/distribution/add/main'
-						this.menuArr = [
-							{url:disUrl,type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
-							{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
-							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-							{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
-							{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
-							
-						]
-					}
-					this.show = true;
-					
-				})
-			}else{
-				recruitList({token:uni.getStorageSync('token')}).then((res)=>{
-					this.pushing = res.data.push;
-					if(this.pushing){
-						this.menuArr = [
-							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}
-							
-						]
-					}else{
-						let disUrl = res.data.dis ? '/pages/distribution/index/main' :'/pages/distribution/add/main'
-						this.menuArr = [
-							{url:disUrl,type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
-							{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
-							{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
-							{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
-							{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
-							
-						]
-					}
-					this.show = true;
-					
-				})
-				this.show = true;
-			}
-			
-			
-			this.wechatUser = uni.getStorageSync("userInfo");
+			this.init();
+		},
+		onShow(){
+			this.init();
 		},
 		methods: {
-			
+			init(){
+				if(uni.getStorageSync('sysUser')){
+					userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+						this.pushing = res.data.push;
+						this.userInfo = res.data.user;
+						if(res.data.user.wechat_user){
+							this.wechatUser = res.data.user.wechat_user
+						}
+						if(this.pushing){
+							this.menuArr = [
+								{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}
+							]
+						}else{
+							let disUrl = res.data.dis ? '/pages/distribution/index/main' :'/pages/distribution/add/main'
+							this.menuArr = [
+								{url:disUrl,type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
+								{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
+								{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
+								{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+								{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
+								
+							]
+						}
+						this.show = true;
+						
+					})
+				}else{
+					recruitList({token:uni.getStorageSync('token')}).then((res)=>{
+						this.pushing = res.data.push;
+						if(this.pushing){
+							this.menuArr = [
+								{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'}
+								
+							]
+						}else{
+							let disUrl = res.data.dis ? '/pages/distribution/index/main' :'/pages/distribution/add/main'
+							this.menuArr = [
+								{url:disUrl,type: 1,icon:'iconfont icon-user-dis',name:'分享达人'},
+								{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
+								{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
+								{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+								{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
+								
+							]
+						}
+						this.show = true;
+						
+					})
+					this.show = true;
+				}
+				
+				
+				this.wechatUser = uni.getStorageSync("userInfo");
+			},
 			wechatInfoCallBack(userInfo){
 				this.wechatUser = userInfo;
 				return this.linkTo("/pages/user/login/index/index",0);
@@ -184,8 +188,9 @@
 						}
 					})
 					return false;
+					
 				}else{
-						return this.checkUser(v.url);
+						return  v.name == '分享达人' ? this.goto(v.url,1) : this.checkUser(v.url,1);
 				}
 			
 			},
