@@ -1,13 +1,18 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view class="register">
+		<view class="register pb65">
 			<view class="p15 fs-17 fw-bold">账号主体</view>
 			<weui-input v-model="ruleform.name" label="商家名称" type="text" name="name" datatype="require" block></weui-input>
 			<view class="p15 fs-17 fw-bold">账号信息</view>
 			<weui-input v-model="ruleform.charger_name" label="负责人姓名" type="text" name="charger_name" datatype="require" block></weui-input>
 			<weui-input v-model="ruleform.charger_phone" label="负责人手机" type="txt" name="charger_phone" block></weui-input>
 			<weui-input v-model="ruleform.password" label="登录密码" type="password" name="password" block></weui-input>
+			<weui-input v-model="ruleform.license" label="企业营业执照" type="upload" upurl='logo' allowUpLoadNum="1" name="license" block></weui-input>
+			<view class="explain p15">
+				<view class="fs-15">营业执照示例图:<text class="fc-7 fs-14">(图片最大不超过10M)</text></view>
+				<image class="mt15" src="/static/images/explain-license.jpg" mode="widthFix" style="width: 240rpx;"></image>
+			</view>
 			<dxftButton type="primary" size="lg" @click="submit">注册</dxftButton>
 		</view>
 	</view>
@@ -50,5 +55,6 @@
 	}
 </script>
 <style lang="scss">
+page{background: $color-white;overflow-x: hidden;}
 @import "index.scss";
 </style>
