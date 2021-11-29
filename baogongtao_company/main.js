@@ -54,6 +54,11 @@ Vue.component(
 	'weui-input',
 	weui_input
 );
+import dxAddress from "xiaozhu/uniapp/components/addressAndCity";
+Vue.component(
+	'dx-address',
+	dxAddress
+);
 
 // 强叔
 uni.removeStorageSync('jsdk');

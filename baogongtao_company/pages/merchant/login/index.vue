@@ -13,11 +13,11 @@
 				</view>
 				<view class="tui-line-cell">
 					<tui-icon name="people" size="20" color='#5677fc'></tui-icon>
-					<input placeholder-class="phcolor" class="tui-input" name="mobile" placeholder="请输入登录账号" v-model="username" type="text" />
+					<input placeholder-class="phcolor" class="tui-input" name="mobile" placeholder="请输入手机号" v-model="username" type="text" />
 				</view>
 				<view class="tui-line-cell tui-top28 mb20">
 					<tui-icon name="pwd" size="20" color='#5677fc'></tui-icon>
-					<input type="password" placeholder-class="phcolor" class="tui-input" name="smsCode" placeholder="请输入登录密码" maxlength="6" v-model="password" />
+					<input type="password" placeholder-class="phcolor" class="tui-input" name="smsCode" placeholder="请输入登录密码" maxlength="10" v-model="password" />
 				</view>
 				<form-submit className="tui-btn-submit" :vaildate="false" @callBack="submit" name="登录"></form-submit>
 

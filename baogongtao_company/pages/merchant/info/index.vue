@@ -10,8 +10,12 @@
 				 changeField="value" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.remark_company" label="公司介绍" type="textarea" name="remark_company" datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.scale" label="公司规模" type="text" name="scale" datatype="require" block></weui-input>
+				
+				<dx-address v-model="ruleform.addressData" datatype="require" ref="address" :addressHidden="true" :emptyValue="true" block></dx-address>
+				
 				<weui-input v-model="ruleform.address" label="公司位置" type="location" name="address" datatype="require" navClass="dx-btn-blue"
 				 @callback="location" block></weui-input>
+				 
 				<weui-input v-model="ruleform.cover" label="主页轮播图" type="upload" upurl='logo' allowUpLoadNum="5" name="cover" block></weui-input>
 				<weui-input v-model="ruleform.remark_pic_company" label="公司风采" type="upload" upurl='logo' allowUpLoadNum="5" name="remark_pic_company" block></weui-input>
 				
@@ -70,6 +74,7 @@
 					remark_company:'',
 					remark_pic_company:[],
 				},
+			
 				
 				industryData: [],
 			}
@@ -90,6 +95,12 @@
 			})
 			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 			   this.ruleform =res.data.company;
+			   if(this.ruleform.province){
+				     this.$set(this.ruleform,"addressData",this.ruleform.province + this.ruleform.city + this.ruleform.area);
+			   }else{
+				      this.$set(this.ruleform,"addressData","");
+			   }
+			
 			  this.ruleform.license =  this.ruleform.license ? this.ruleform.license.split(",") : [],
 			  this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
 			  this.ruleform.logo = this.ruleform.logo ? this.ruleform.logo.split(",") : [];
@@ -104,13 +115,22 @@
 			},
 			
 			submit(){
+				if(!this.$refs.address.lotusAddressData.provinceName){
+					return this.getError("请选择省市区");
+				}
+				this.ruleform.province = this.$refs.address.lotusAddressData.provinceName;
+				this.ruleform.city = this.$refs.address.lotusAddressData.cityName;
+				this.ruleform.area = this.$refs.address.lotusAddressData.townName;
 				this.ruleform.token = uni.getStorageSync('token');
 				this.vaildForm(this, res => {	
-					this.postAjax(this.formAction, this.ruleform).then(msg => {
-						if (msg.data.code == 0) {
-							return this.goto("/pages/merchant/index/index");
-						}
-					});
+					if(res){
+						this.postAjax(this.formAction, this.ruleform).then(msg => {
+							if (msg.data.code == 0) {
+								return this.goto("/pages/merchant/index/index");
+							}
+						});
+					}
+					
 				})
 			},
 			uploadHeaderImg(){

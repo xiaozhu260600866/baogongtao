@@ -9,7 +9,7 @@
 				<view class="info">
 					<view class="name">{{ruleform.name}}</view>
 					<view class="tag">
-						<view class="item">{{detail.city}}</view>
+						<view class="item" v-if="ruleform.city">{{ruleform.city}}</view>
 						<view class="item Arial">{{ruleform.scale?ruleform.scale:'暂无'}}</view>
 						<view class="item">{{ruleform.industry?ruleform.industry:'暂无'}}</view>
 					</view>
