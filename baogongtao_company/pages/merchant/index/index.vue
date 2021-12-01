@@ -20,16 +20,26 @@
 				<view class="txt fc-6">您的企业信息未完善，请尽快完善</view>
 				<view class="go fw-bold main-color" @click="goto('/pages/merchant/info/license',1)">去完善</view>
 			</view>
+			
+			<view class="bg-f">
+				<dx-list-cell arrow name="简历管理" iconName="iconfont icon-user-apply" :iconSize="18"
+				 @click="goto('/pages/merchant/recruit/apply/index',1)"></dx-list-cell>
+				<dx-list-cell arrow name="优惠券管理" iconName="iconfont icon-user-coupon" :iconSize="18"
+				 @click="goto('/pages/merchant/coupon/created_edit/lists',1)"></dx-list-cell>
+				<dx-list-cell arrow name="核销信息" iconName="iconfont icon-user-cancel" :iconSize="18"
+				 @click="goto('/pages/merchant/coupon/lists/cancel',1)"></dx-list-cell>
+				<dx-list-cell arrow name="用工管理" iconName="iconfont icon-user-worker" :iconSize="18"
+				 @click="goto('/pages/merchant/worker/lists',1)"></dx-list-cell>
+				<dx-list-cell arrow name="工资发放" iconName="iconfont icon-user-transactions" :iconSize="18"
+				 @click="goto('/pages/merchant/worker/transactions',1)"></dx-list-cell>
+				<dx-list-cell arrow name="企业展示" iconName="iconfont icon-user-company" :iconSize="18"
+				 @click="goto('/pages/merchant/company/index',1)"></dx-list-cell>
+				<dx-list-cell arrow name="扫一扫" iconName="iconfont icon-user-scan" :iconSize="18"
+				 @click="goto('/pages/merchant/coupon/cancel/cancel',1)"></dx-list-cell>
+			</view>
+			
+			
 			<!-- <view class="block-sec">
-				<view class="block-title">
-					<view class="name">我的记录</view>
-				</view>
-				<dx-nav-class :data="[
-					{url:'/pages/merchant/recruit/apply/index',type:1,cover:'https://www.baogongtao.com/images/wap/A01.jpg',name:'应聘记录'},
-					{url:'/pages/merchant/coupon/lists/cancel',type:1,cover:'https://www.baogongtao.com/images/wap/A02.jpg',name:'核销记录'},
-				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10"></dx-nav-class>
-			</view> -->
-			<view class="block-sec">
 				<dx-nav-class :data="[
 					{url:'/pages/merchant/recruit/created_edit/lists',type:1,icon:'iconfont icon-user-recruit',name:'招聘管理'},
 					{url:'/pages/merchant/recruit/apply/index',type:1,icon:'iconfont icon-user-apply',name:'简历管理'},
@@ -40,7 +50,7 @@
 					{url:'/pages/merchant/company/index',type:1,icon:'iconfont icon-user-company',name:'企业展示'},
 					{url:'/pages/merchant/coupon/cancel/cancel',type:1,icon:'iconfont icon-user-scan',name:'扫一扫'},
 				]" @click="checkAuth" :num="4" :nameSize="15" :namePTop="10" :iconSize="30" iconColor="#666"></dx-nav-class>
-			</view>
+			</view> -->
 			<!-- {url:'/pages/merchant/info/index',type:1,cover:'https://www.baogongtao.com/images/wap/B04.jpg',name:'我的资料'}, -->
 		</view>
 	</view>
@@ -50,8 +60,9 @@
 	import {mapState, mapMutations, mapActions} from 'vuex'
 	import {userinfo, action, logout} from "@/api/user";
 	import dxNavClass from "doxinui/components/nav-class/nav-class"
+	import dxListCell from "doxinui/components/list-cell/list-cell"
 	export default {
-		components:{dxNavClass},
+		components:{dxNavClass,dxListCell},
 		data() {
 			return {
 				sysCompany: uni.getStorageSync('sysCompany'),

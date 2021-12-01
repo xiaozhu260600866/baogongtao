@@ -2,8 +2,19 @@
 	<view>
 		<page ref="page"></page>
 		<view v-if="data.show">
-			<recruitLists :data="data.data.lists.data" :type="2"></recruitLists>
-			<dxftButton type="primary" size="lg" @click="linkTo('/pages/merchant/recruit/created_edit/edit',1)">发布</dxftButton>
+			<dx-tabs-scroll :tabs="[
+				{value: 0,name: '在线职位'},
+				{value: 1,name: '待发布'},
+				{value: 2,name: '已下架'},
+			]" :height="52" borderColor="#409eff" :curSize="16" curColor="#000" curBold="bold" :nameSize="15" nameColor="#333"></dx-tabs-scroll>
+			<view v-if="data.data.lists.data"><recruitLists :data="data.data.lists.data" :type="2"></recruitLists></view>
+			<view class="fs-14 fc-9 ptb80 text-center">
+				您还没发布职位<br>点击「发布职位」，更多人才等您选~
+			</view>
+			<dx-float-group>
+				<dx-float-btn type="primary" icon="dxi-icon dxi-icon-edit2" @click="linkTo('/pages/merchant/recruit/created_edit/edit',1)"></dx-float-btn>
+			</dx-float-group>
+			<!-- <dxftButton type="primary" size="lg" @click="linkTo('/pages/merchant/recruit/created_edit/edit',1)">发布</dxftButton> -->
 		</view>
 	</view>
 </template>
@@ -11,8 +22,12 @@
 <script>
 	import recruitLists from '@/components/recruitLists'
 	import dxftButton from "doxinui/components/button/footer-button"
+	import dxFloatGroup from "doxinui/components/zhu/floatGroup"
+	import dxFloatBtn from "doxinui/components/zhu/floatBtn"
+	import tytLoadmore from "@/components/tytrock/components/loadmore"
+	import dxTabsScroll from "doxinui/components/tabs/tabs_scroll"
 	export default {
-		components:{dxftButton,recruitLists},
+		components:{dxftButton,recruitLists,dxFloatGroup,dxFloatBtn,tytLoadmore,dxTabsScroll},
 		data() {
 			return {
 				formAction: '/api/company/recruits2?type=my',

@@ -1,22 +1,28 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		
+		{
+			"path": "pages/merchant/recruit/created_edit/lists",
+			"style": {
+				"navigationBarTitleText": "职位设置",
+				"enablePullDownRefresh":true
+			}
+		},
 		{
 			"path": "pages/merchant/index/index",
 			"style": {
-				"navigationBarTitleText": "商家中心"
+				"navigationBarTitleText": "企业中心"
 			}
 		},
 		{
 			"path": "pages/merchant/lists/index",
 			"style": {
-				"navigationBarTitleText": "附近的商家"
+				"navigationBarTitleText": "附近的企业"
 			}
 		},
 		{
 			"path": "pages/merchant/show/index",
 			"style": {
-				"navigationBarTitleText": "商家详情"
+				"navigationBarTitleText": "企业详情"
 			}
 		},
 		{
@@ -69,7 +75,7 @@
 		{
 			"path": "pages/merchant/login/index",
 			"style": {
-				"navigationBarTitleText": "商家登录",
+				"navigationBarTitleText": "企业登录",
 				"enablePullDownRefresh":true,
 				"navigationStyle":"custom"
 			}
@@ -77,7 +83,7 @@
 		{
 			"path": "pages/merchant/login/register",
 			"style": {
-				"navigationBarTitleText": "商家注册",
+				"navigationBarTitleText": "企业注册",
 				"enablePullDownRefresh":true
 			}
 		},
@@ -98,14 +104,7 @@
 		{
 			"path": "pages/merchant/recruit/created_edit/edit",
 			"style": {
-				"navigationBarTitleText": "招聘编辑"
-			}
-		},
-		{
-			"path": "pages/merchant/recruit/created_edit/lists",
-			"style": {
-				"navigationBarTitleText": "发布招聘",
-				"enablePullDownRefresh":true
+				"navigationBarTitleText": "发布职位"
 			}
 		},
 		{
@@ -162,10 +161,23 @@
 			}
 		}
 	],
-
+	"tabBar": {
+		"selectedColor": "#1e97ff",
+		"list": [{
+			"pagePath": "pages/merchant/recruit/created_edit/lists",
+			"text": "职位设置",
+			"iconPath": "static/images/A01.png",
+			"selectedIconPath": "static/images/A02.png"
+		},{
+			"pagePath": "pages/merchant/index/index",
+			"text": "我的",
+			"iconPath": "static/images/D01.png",
+			"selectedIconPath": "static/images/D02.png"
+		}]
+	}, 
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "泡工淘",
+		"navigationBarTitleText": "包工淘",
 		"navigationBarBackgroundColor": "#007AFF",
 		"backgroundColor": "#007AFF"
 	}

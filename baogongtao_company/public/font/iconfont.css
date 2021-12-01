@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'iconfont';  /* Project id 1759642 */
-  src: url('//at.alicdn.com/t/font_1759642_een3bnnfhdv.woff2?t=1637977511355') format('woff2'),
-       url('//at.alicdn.com/t/font_1759642_een3bnnfhdv.woff?t=1637977511355') format('woff'),
-       url('//at.alicdn.com/t/font_1759642_een3bnnfhdv.ttf?t=1637977511355') format('truetype');
+  src: url('//at.alicdn.com/t/font_1759642_naz03b26hh8.woff2?t=1637999377970') format('woff2'),
+       url('//at.alicdn.com/t/font_1759642_naz03b26hh8.woff?t=1637999377970') format('woff'),
+       url('//at.alicdn.com/t/font_1759642_naz03b26hh8.ttf?t=1637999377970') format('truetype');
 }
 
 /* 3314024140@qq.com  dx3229010  包工淘 */
@@ -29,6 +29,9 @@
 .icon-del:before{content: "\e63f";}/* 删除 */
 .icon-people:before{content: "\e637";}/* 人员 */
 .icon-merchant:before{content: "\e724";}/* 企业 */
+
+.icon-recruit-experience:before{content: "\e60d";}/* 经验 */
+.icon-recruit-education:before{content: "\a63d";}/* 学历 */
 
 
 .icon-pay-no:before{content: "\e988";color: #E84335;}/* 支付失败 */

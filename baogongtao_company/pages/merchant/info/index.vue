@@ -3,7 +3,7 @@
 		<page ref="page"></page>
 		<view class="pb60 bg-f">
 			<view class="edit-write">
-				<view class="fs-26 fw-bold p15 pt30">编辑公司信息</view>
+				<view class="fs-22 fw-bold p15 pt30">编辑公司信息</view>
 				<weui-input v-model="ruleform.logo" label="请上传公司logo" type="upload" upurl='logo' allowUpLoadNum="5" name="logo" block></weui-input>
 				<weui-input v-model="ruleform.name" label="公司简称" placeholder="公司简称" type="text" name="name" datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.industry" label="所属行业" placeholder="所属行业" name="industry" type="manyselect" dataKey="industryData" block

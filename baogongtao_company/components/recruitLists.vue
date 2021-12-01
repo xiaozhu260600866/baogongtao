@@ -32,11 +32,12 @@
 <script>
 import dxButton from "doxinui/components/button/button"
 export default {
+	name:'recruitLists',
 	components: {dxButton},
 	props: ['data','type'],
 	data() {
 		return {
-			type: 2,
+			// type: 2,
 		}
 	},
 	methods: {
@@ -68,7 +69,7 @@ export default {
 .jobs_item{
 	.condition{
 		display: flex;flex-wrap: wrap;margin: 30rpx 0;
-		.lab{background-color: #f5f5f5;padding: 0 16rpx;line-height: 48rpx;color: #666;font-size: 28rpx;margin-right: 12rpx;border-radius: 8rpx;}
+		.lab{background-color: #f5f5f5;padding: 0 16rpx;line-height: 48rpx;color: #666;font-size: 28rpx;margin: 0 12rpx 12rpx 0;border-radius: 8rpx;}
 	}
 	.userInfo{
 		.head{width: 60rpx;height: 60rpx;display: flex;border-radius: 50%;}

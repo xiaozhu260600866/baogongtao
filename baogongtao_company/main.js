@@ -60,6 +60,12 @@ Vue.component(
 	dxAddress
 );
 
+import hasMore from 'xiaozhu/uniapp/components/hasMore'
+Vue.component(
+	'hasMore',
+	hasMore
+);
+
 // 强叔
 uni.removeStorageSync('jsdk');
 uni.removeStorageSync('distribution');

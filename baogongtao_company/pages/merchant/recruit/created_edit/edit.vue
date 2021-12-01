@@ -2,23 +2,36 @@
 	<view>
 		<page ref="page"></page>
 		<view class="pb65">
-			<view class="bg-f edit">
-				<weui-input v-model="ruleform.job_position" label="职位名称" type="text" name="job_position" datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.job_remark" myclass="textarea" label="职位描述" type="textarea" name="job_remark"
-				 datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.work_place" label="工作地址" type="location" name="work_place" navClass="main-bg fc-white"
-				 datatype="require" block></weui-input>
+			<view class="bg-f edit" v-if="step == 1">
+				<view class="fs-12 pt15 pb5 plr15">人才，与你的距离只差一个职位</view>
+				<weui-input v-model="ruleform.job_type" label="招聘类型" type="select" name="job_type" dataKey="jobTypeArr"
+				 changeField="label" datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.job_category" label="职位类型" name="job_category" type="manyselect" dataKey="positionCalss"
 				 changeField="label" datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.experience" label="经验要求" type="select" name="experience" dataKey="experienceArr"
+				<weui-input v-model="ruleform.job_position" label="职位名称" type="text" name="job_position" datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.salary" label="薪资范围" placeholder="请选择合理的薪资范围" name="salary" changeField="label" type="select"
+				 dataKey="emolumentArr" datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.job_tab" label="职位标签(福利待遇)" type="text" name="job_tab" datatype="require" block
+				 placeholder="请用英文','分隔标签"></weui-input>
+				<weui-input v-model="ruleform.job_remark" myclass="textarea" label="职位描述" type="textarea" name="job_remark"
+				 datatype="require" block></weui-input>
+				 
+				<dxftButton type="primary" size="lg" @click="step = 2">下一步</dxftButton>
+			</view>
+			<view class="bg-f edit" v-if="step == 2">
+				<weui-input v-model="ruleform.experience" label="工作经验" type="select" name="experience" dataKey="experienceArr"
 				 changeField="label" datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.education" label="最低学历" placeholder="请选择学历" type="select" name="education" dataKey="educationArr"
 				 changeField="label" datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.salary" label="薪资范围" placeholder="请选择合理的薪资范围" name="salary" changeField="label" type="select"
-				 dataKey="emolumentArr" datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.job_tab" label="职位标签" type="text" name="job_tab" datatype="require" block
-				 placeholder="请用英文','分隔标签"></weui-input>
-				 
+				<weui-input v-model="ruleform.needArr" label="年龄要求" name="needArr" type="manyselect" dataKey="needArr"
+				 changeField="value" block></weui-input>
+				<weui-input v-model="ruleform.job_showArea" label="职位展示区域" type="select" name="job_showArea" dataKey="jobShowAreaArr"
+				 changeField="label" datatype="require" block></weui-input>
+				<view class="fs-12 fc-9 plr15">职位会在选择展示地区生效并展示~</view>
+				<weui-input v-model="ruleform.work_place" label="工作地址" type="location" name="work_place" navClass="main-bg fc-white"
+				 datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.contact_name" label="联系人姓名" type="text" name="contact_name" datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.contact_phone" label="联系号码" type="number" name="contact_phone" datatype="require" block></weui-input>
 				<!-- <weui-input v-model="ruleform.work_place" label="工作区域" type="text" name="work_place" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.salary_date" label="发薪日期" type="text" name="salary_date"></weui-input>
 				
@@ -30,8 +43,8 @@
 				 datatype="require"></weui-input>
 				<weui-input v-model="ruleform.interview" myclass="textarea" label="面试准备" placeholder="面试需要提供什么材料" type="textarea" name="interview"
 				 datatype="require"></weui-input> -->
+				<dxftButton type="primary" size="lg" @click="submit()">提交</dxftButton>
 			</view>
-			<dxftButton type="primary" size="lg" @click="submit()">提交</dxftButton>
 		</view>
 	</view>
 </template>
@@ -50,17 +63,33 @@ export default {
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
 				ruleform:{},
+				step: 1,
 				positionCalss:[],
 				remark_pic_company:[],
-				experienceArr:[
-				
+				experienceArr:[],
+				educationArr:[],
+				emolumentArr:[],
+				jobTypeArr: [
+					{value: 1,label: '社招全职'},
+					{value: 2,label: '社招兼职'},
+					{value: 3,label: '校招全职'},
+					{value: 4,label: '校招兼职'},
 				],
-				educationArr:[
-					
+				jobShowAreaArr: [
+					{value: 1,label: '普通职位'},
+					{value: 2,label: '跨区职位'},
 				],
-				emolumentArr:[
-					
-				],
+				needArr: [{
+					label: '服务类',value: '服务类',
+					children: [
+						{label: '工商财税法律',value: '工商财税法律'},
+					]
+				}, {
+					label: '产品类',value: '产品类',
+					children: [
+						{label: '电子电工',value: '7'},
+					]
+				}],
 			}
 		},
 		onReachBottom() {
@@ -119,5 +148,6 @@ export default {
 	}
 </script>
 <style lang="scss">
+page{background: $color-white;}
 @import "index.scss";
 </style>

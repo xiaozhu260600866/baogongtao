@@ -9,9 +9,9 @@ button::after{border: 0;}
 
 
 .dxi-btn-primary {color:#fff!important;background-color:$color-primary!important;border-color:$color-primary!important;}
-.dxi-btn-primary:focus,.dxi-btn-primary:hover {background:#66b1ff!important;border-color:#66b1ff!important;color:#fff!important;}
+.dxi-btn-primary:focus,.dxi-btn-primary:hover {background:$color-primary!important;border-color:$color-primary!important;color:#fff!important;}
 .dxi-btn-primary.is-plain {color:$color-primary!important;background-color:#e7f4f6!important;border-color:$color-primary!important;}
-.dxi-btn-primary.is-plain:focus,.dxi-btn-primary.is-plain:hover {background:#e7f4f6!important;border-color:#66b1ff!important;color:#66b1ff!important;}
+.dxi-btn-primary.is-plain:focus,.dxi-btn-primary.is-plain:hover {background:#e7f4f6!important;border-color:$color-primary!important;color:$color-primary!important;}
 .dxi-btn-primary.is-disabled,
 .dxi-btn-primary.is-disabled:active,
 .dxi-btn-primary.is-disabled:focus,
@@ -22,6 +22,8 @@ button::after{border: 0;}
 	border-color:#a0cfff!important;
 }
 
+.dxi-float-nav-primary{background-color:$color-primary!important;border-color:$color-primary!important;}
+
 /* 主色调 */
 .main-color{color: $color-primary;}
 .main-bg{background-color: $color-primary;}
@@ -29,6 +31,7 @@ button::after{border: 0;}
 .dx-btn-blue{background-color: $color-primary;border-color: $color-primary;}
 .dx-btn-blue-o{border-color: $color-primary;color: $color-primary;}
 .sys-btn{background: $color-primary;color: #fff;border-radius: 10upx;}
+.dx-cell::after{background-color: #ddd!important;}
 
 
 /* 定位底部 */

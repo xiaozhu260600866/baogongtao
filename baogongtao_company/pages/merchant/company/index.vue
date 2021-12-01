@@ -15,7 +15,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="banner">
+			<view class="banner" v-if="ruleform.logo">
 				<xiaozhuSwiper :data="ruleform.logo" purl="logo"></xiaozhuSwiper>
 			</view>
 			<view class="address">
@@ -73,17 +73,16 @@
 		},
 		onLoad() {
 			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
-			 this.ruleform =res.data.company;
-			  this.ruleform.license =  this.ruleform.license ? this.ruleform.license.split(",") : [],
-			  this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
-			  this.ruleform.logo = this.ruleform.logo ? this.ruleform.logo.split(",") : [];
-			  this.ruleform.remark_pic_company = this.ruleform.remark_pic_company ? this.ruleform.remark_pic_company.split(",") : [];
-			  if(this.ruleform.remark_pic_company.length){
+				this.ruleform =res.data.company;
+				this.ruleform.license =  this.ruleform.license ? this.ruleform.license.split(",") : [],
+				this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
+				this.ruleform.logo = this.ruleform.logo ? this.ruleform.logo.split(",") : [];
+				this.ruleform.remark_pic_company = this.ruleform.remark_pic_company ? this.ruleform.remark_pic_company.split(",") : [];
+				if(this.ruleform.remark_pic_company.length){
 					this.ruleform.remark_pic_company.forEach(v=>{
-						this.remark_pic_company.push({img:this.getSiteName + '/upload/images/logo/'+v});			  
+						this.remark_pic_company.push({img:this.getSiteName + '/upload/images/logo/'+v});
 					})
-			  }
-			  
+				}
 			})
 		},
 		methods: {

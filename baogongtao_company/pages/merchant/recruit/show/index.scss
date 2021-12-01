@@ -1,3 +1,35 @@
+// 招聘信息
+.recruit-info{
+	margin: 0 30rpx;padding: 30rpx 0;border-bottom: 1rpx #ebebeb solid;
+	.tag{
+		.item{margin-right: 20rpx;
+			.icon{margin-right: 10rpx;}
+		}
+	}
+}
+
+// 管理员信息
+.charger-info{
+	margin: 0 30rpx;padding: 30rpx 0;border-bottom: 1rpx #ebebeb solid;
+	.head{width: 120rpx;height: 120rpx;display: flex;border-radius: 50%;background-color: #eee;}
+}
+
+// 职位详情
+.company-info{
+	margin: 0 30rpx;padding: 30rpx 0;border-bottom: 1rpx #ebebeb solid;
+	&:last-child{border-bottom: 0;}
+	.lists{
+		.item{font-size: 30rpx;line-height: 1.5;padding-bottom: 20rpx;
+			.icon{padding-right: 20rpx;}
+		}
+	}
+	.boonTag{
+		display: flex;flex-wrap: wrap;
+		.tag{background-color: #f3f3f3;height: 48rpx;line-height: 48rpx;padding: 0 20rpx;border-radius: 8rpx;font-size: 24rpx;margin: 0 20rpx 20rpx 0;}
+	}
+	.content{text-align: justify;}
+}
+
 .info{
 	.info-lists{
 		.row{

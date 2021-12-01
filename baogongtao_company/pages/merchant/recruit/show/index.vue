@@ -1,81 +1,79 @@
 <template>
-	<view>
+	<view class="pb60">
 		<page ref="page"></page>
-		<view class="bg-f pb60" v-if="data.show">
-			<view class="banner">
-				<image class="flex w-b100" src="/static/images/news/03.jpg" mode="widthFix"></image>
-			</view>
-			<view class="info plr15">
-				<view class="name fw-bold fs-17 pt20 pb10">{{detail.get_company.name}}</view>
-				<view class="info-lists">
-					<view class="row cell">
-						<view class="icon dxi-icon dxi-icon-location fs-16"></view>
-						<view class="txt">工作地点：{{detail.get_company.address}}</view>
-					</view>
-					<view class="row cell">
-						<view class="icon dxi-icon dxi-icon-time fs-14"></view>
-						<view class="txt">发薪日期：{{detail.salary_date}}</view>
-					</view>
-					
-				<!-- 	<view class="row">
-						<view class="cell">
-							<view class="icon iconfont icon-merchant"></view>
-							<view class="txt">{{company.type}}</view>
-						</view>
-						<view class="cell">
-							<view class="icon iconfont icon-people"></view>
-							<view class="txt Arial ">{{company.people_num}}人</view>
-						</view>
-					</view> -->
-					
-					
+		<view class="bg-f" v-if="data.show">
+			<view class="recruit-info">
+				<view class="top lh-1 flex-between flex-middle">
+					<view class="name fs-26 fw-bold flex1 mr15">{{detail.job_position}}</view>
+					<view class="salary fs-18 main-color Arial">{{detail.salary}}</view>
 				</view>
-				<view class="intro">
-					<view class="intro-item">
-						<view class="title">企业简介</view>
-						<view class="content">{{detail.get_company.remark_company}}</view>
+				<view class="tag flex-middle lh-1 mt20 fs-14">
+					<view class="item">
+						<text class="icon iconfont icon-location-o"></text>
+						<text class="txt">{{detail.work_place}}</text>
 					</view>
-					<view class="intro-item">
-						<!-- work_hour -->
-						<view class="title">拿多少钱</view>
-						<view class="content">{{detail.work_hour}}</view>
+					<view class="item">
+						<text class="icon iconfont icon-recruit-experience"></text>
+						<text class="txt">{{detail.experience}}</text>
 					</view>
-					<view class="intro-item">
-						<!-- need -->
-						<view class="title">有啥要求</view>
-						<view class="content">{{detail.need}}</view>
+					<view class="item">
+						<text class="icon iconfont icon-recruit-education"></text>
+						<text class="txt">{{detail.education}}</text>
 					</view>
-					<view class="intro-item">
-						<!-- live -->
-						<view class="title">吃住咋样</view>
-						<view class="content">{{detail.live}}</view>
+				</view>
+			</view>
+			<view class="charger-info flex-middle">
+				<image class="head" :src="detail.get_company.logoMinUrl" mode="aspectFill"></image>
+				<view class="left flex1 ml10 lh-1">
+					<view class="fs-16 fw-bold">{{detail.get_company.charger_name}}</view>
+					<view class="fs-15 fc-3 mt8" v-if="detail.get_company.position">{{detail.get_company.position}}</view>
+				</view>
+			</view>
+			<view class="company-info">
+				<view class="title fs-17 pb15 fw-bold">职位描述</view>
+				<view class="con fs-15 fc-6">
+					<view class="boonTag">
+						<view class="tag" v-for="item in boonTag">{{item}}</view>
 					</view>
-					<view class="intro-item">
-						<!-- interview -->
-						<view class="title">面试准备</view>
-						<view class="content">{{detail.interview}}</view>
+					<view class="content" v-if="detail.job_remark">{{detail.job_remark}}</view>
+					<view class="content" v-else>暂无</view>
+				</view>
+			</view>
+			<view class="company-info">
+				<view class="title fs-17 pb15 fw-bold">工作环境</view>
+				<view class="con fs-15 fc-6">
+					<dx-images :data="companyPic" bgColor="transparent" :imgR="6" v-if="companyPic.length"></dx-images>
+					<view class="content" v-else>暂无</view>
+				</view>
+			</view>
+			<view class="company-info">
+				<view class="title fs-17 pb15 fw-bold">公司信息</view>
+				<view class="lists">
+					<view class="item">
+						<text class="icon iconfont icon-merchant"></text>
+						<text class="txt">{{detail.get_company.name}}</text>
 					</view>
-					<view class="intro-item">
-						<view class="title">工厂地址</view>
-						<view class="content">{{detail.get_company.address}}</view>
+					<view class="item" v-if="detail.get_company.address">
+						<text class="icon iconfont icon-location-o"></text>
+						<text class="txt">{{detail.get_company.address}}</text>
 					</view>
 				</view>
 			</view>
 			<view id="show_footer">
-				<view class="right flex1 w-b100 plr15" @click="checkUser('/pages/merchant/recruit/record/index?recruit_id='+data.data.data.id)">
+				<view class="left plr8">
+					<button class="btn-item" hover-class="none" open-type="share">
+						<view class="icon dxi-icon dxi-icon-share2 fs-17"></view>
+						<view class="txt">分享</view>
+					</button>
+					<button class="btn-item" hover-class="none" @click="collect=!collect">
+						<view :class="['icon dxi-icon',collect==false?'dxi-icon-star':'dxi-icon-star-fill main-color']"></view>
+						<view class="txt">收藏</view>
+					</button>
+				</view>
+				<view class="right flex1 w-b100 pr15" @click="checkUser('/pages/merchant/recruit/record/index?recruit_id='+data.data.data.id)">
 					<view class="r-nav">
 						<view class="r-item r-item-primary">申请报名</view>
 					</view>
-				</view>
-				<view class="left left_w60 plr8">
-					<button class="btn-item" hover-class="none" @click="goto('/pages/index/main',2)">
-						<view class="icon dxi-icon dxi-icon-home4"></view>
-						<view class="txt">首页</view>
-					</button>
-					<button class="btn-item" hover-class="none" open-type="share">
-						<view class="icon dxi-icon dxi-icon-share"></view>
-						<view class="txt">分享海报</view>
-					</button>
 				</view>
 			</view>
 		</view>
@@ -83,7 +81,9 @@
 </template>
 
 <script>
+	import dxImages from "doxinui/components/images/images"
 	export default {
+		components:{dxImages},
 		data() {
 			return {
 				formAction: '/api/company/recruit-store',
@@ -91,6 +91,9 @@
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
 				detail:{},
+				collect: false,
+				boonTag:[],
+				companyPic:[],
 				company:{
 					name:'江门市东信科技有限公司',
 					address:'江门市蓬江区建设路82号金山大厦之二10楼1001室',
@@ -115,6 +118,14 @@
 			ajax() {
 				this.getAjax(this).then(msg => {
 					this.detail = msg.data.data;
+					this.boonTag = this.detail.job_tab.split(",");
+					// this.companyPic = msg.data.data.get_company.remark_pic_company.split(",");
+					let companyPic2 = this.detail.get_company.remark_pic_company ? this.detail.get_company.remark_pic_company.split(",") : [];
+					if(companyPic2.length){
+						companyPic2.forEach(v=>{
+							this.companyPic.push({img:this.getSiteName + '/upload/images/logo/'+v});
+						})
+					}
 				});
 			}
 		}
