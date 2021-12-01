@@ -3,4 +3,8 @@ page{background: #fff;}
 .dis-add{padding: 40rpx 60rpx;}
 .dis-add .tips{font-size: 32rpx;margin: 50rpx 0;}
 .dis-add .item{margin: 40rpx 0;}
-.dis-add .input{border: 1rpx #ccc solid;border-radius: 60rpx;padding: 16rpx 40rpx;font-size: 32rpx;height: auto;line-height: 68rpx;}
+.dis-add ::v-deep .dx-cell,
+.dis-add .inputG{border: 1rpx #ccc solid;border-radius: 60rpx;padding: 16rpx 40rpx;}
+.dis-add .inputG .input{font-size: 32rpx;height: 68rpx;line-height: 68rpx;}
+.dis-add ::v-deep .dx-cel{font-size: 32rpx!important;}
+.dis-add ::v-deep .dx-cell .sq-nav button{height: 68rpx;display: flex;line-height: 68rpx;}

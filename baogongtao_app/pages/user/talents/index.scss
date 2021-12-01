@@ -40,26 +40,16 @@
 // 上传头像
 // 简历
 .resume{
+	::v-deep .dx-cell_block{
+		.dx-label{margin-bottom: 16rpx;}
+	}
 	::v-deep .dx-cell{
-		display: block!important;font-size: 32rpx!important;
-		.dx-cell_hd{
-			.dx-label{font-size: 28rpx;width: 100%!important;}
-		}
+		display: block!important;font-size: 36rpx!important;
 		.dx-cell_bd{
-			.dx-input{font-size: 32rpx!important;}
+			.dx-input{font-size: 36rpx!important;margin-bottom: 10rpx;}
 			.picker{
-				text-align: left!important;font-size: 32rpx!important;
-				&.picker-label{color: grey;}
+				text-align: left!important;font-size: 36rpx!important;
 			}
-			.col_group{
-				justify-content: flex-start;
-				.dx-cell{
-					display: flex!important;
-					margin: 0 30rpx 0 0!important;
-					&::after{display: none;}
-				}
-			}
-			.dx-text{margin-top: 10rpx;}
 		}
 		.dx_ft-access{
 			&::before{top: -34rpx}

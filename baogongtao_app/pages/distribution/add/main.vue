@@ -4,14 +4,13 @@
 		<view>
 			<view class="dis-add">
 				<view class="tips">填写真实信息，成为我们的合作伙伴！</view>
-				<view class="item">
+				<view class="item inputG">
 					<input type="text" placeholder="请填写您的姓名" class="input" v-model.lazy="ruleform.name" />
 				</view>
 			<!-- 	<view class="item">
 					<input type="number" placeholder="请填写您的手机号码" class="input" v-model.lazy="ruleform.phone" />
 				</view> -->
-				<weui-input v-model="ruleform.phone" label="手机" placeholder="请一键授权手机号" type="text" name="phone" datatype="require"
-				 :disabled="false" block>
+				<weui-input v-model="ruleform.phone" placeholder="请一键授权手机号" type="text" myclass="inputG" name="phone" datatype="require" :disabled="false">
 					<view slot="right" class="sq-nav">
 						<button type="primary" size="mini" class="plr5" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">一键授权</button>
 					</view>

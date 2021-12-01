@@ -35,8 +35,8 @@
 			<view class="company-info">
 				<view class="title fs-18 pb15 fw-bold">职位详情</view>
 				<view class="con fs-15 fc-6">
-					<view class="name">公司简介：</view>
-					<view class="content">{{detail.get_company.remark_company}}</view>
+					<view class="content" v-if="detail.job_remark">{{detail.job_remark}}</view>
+					<view class="content" v-else>暂无</view>
 				</view>
 			</view>
 			<view class="company-info">

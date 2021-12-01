@@ -5,8 +5,8 @@
 			<view class="step1 bg-f" v-if="step == 1">
 				<view class="dx-cell upload-head">
 					<view class="dx-cell_hd flex1">
-						<view class="dx-label fs-14">头像</view>
-						<view class="fs-16 fc-8 mt10">真实的头像更能吸引HR的关注</view>
+						<view class="dx-label fs-15">头像</view>
+						<view class="fs-18 fc-8 mt10">真实的头像更能吸引HR的关注</view>
 					</view>
 					<view class="dx-cell_bd">
 						<image class="img" :src="avatarUrl?avatarUrl:'https://www.baogongtao.com/images/user.png'" mode="aspectFill"
@@ -23,7 +23,7 @@
 				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr"
 				 :radioType="true" block></weui-input>
 				<weui-input v-model="ruleform.birthday" label="出生年月" type="date" name="birthday" datatype="require" emptyValue block></weui-input>
-				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education" dataKey="educationArr"
+				<weui-input v-model="ruleform.education" label="最低学历" type="select" name="education" dataKey="educationArr"
 				 changeField="value" block></weui-input>
 				<weui-input v-model="ruleform.experience" label="工作经验" type="text" placeholder="请填写工作年份如：5年" name="experience" block></weui-input>
 				<dxftButton type="primary" size="lg" ></dxftButton>

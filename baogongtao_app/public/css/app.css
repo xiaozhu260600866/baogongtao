@@ -28,6 +28,7 @@ button::after{border: 0;}
 .dx-btn-blue{background-color: #55b4f6;border-color: #55b4f6;}
 .dx-btn-blue-o{border-color: #55b4f6;color: #55b4f6;}
 .sys-btn{background: #55b4f6;color: #fff;border-radius: 10upx;}
+.dx-cell::after{background-color: #ddd!important;}
 
 
 /* 定位底部 */

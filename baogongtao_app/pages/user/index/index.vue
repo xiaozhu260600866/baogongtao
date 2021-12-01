@@ -173,7 +173,7 @@
 			},
 			wechatInfoCallBack(userInfo){
 				this.wechatUser = userInfo;
-				return this.linkTo("/pages/user/login/index/index",0);
+				return this.linkTo("/pages/user/login/index/index",1);
 			},
 			checkAuth(v){
 				if(v.name == '企业中心'){

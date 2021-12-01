@@ -30,6 +30,7 @@ button[type=primary]{background-color:$color-primary!important;}
 .dx-btn-blue{background-color: $color-primary;border-color: $color-primary;}
 .dx-btn-blue-o{border-color: $color-primary;color: $color-primary;}
 .sys-btn{background: $color-primary;color: #fff;border-radius: 10upx;}
+.dx-cell::after{background-color: #ddd!important;}
 
 
 /* 定位底部 */
