@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view>
+		<view class="pb30">
 			<view class="talents-info">
 				<view class="head">
 					<image class="img" :src="avatarUrl?avatarUrl:'https://www.baogongtao.com/images/user.png'"></image>
@@ -22,16 +22,15 @@
 			<view class="talents-item">
 				<view class="item-name">求职意向</view>
 				<view class="item-con">
-					<view v-if="ruleform.industry || ruleform.position">{{ruleform.industry}}/{{ruleform.position}}</view>
-					<view v-else>暂无</view>
-				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
-			</view>
-			<view class="talents-item">
-				<view class="item-name">个人优势</view>
-				<view class="item-con">
-					<view v-if="ruleform.remark">{{ruleform.remark}}</view>
-					<view v-else>暂无</view>
+					<view class="fs-16 fw-bold">
+						<text v-if="ruleform.industry">{{ruleform.industry}}</text>
+						<text class="pl10" v-if="ruleform.salary">{{ruleform.salary}}</text>
+					</view>
+					<view class="fs-15 fc-6 mt5">
+						<text v-if="ruleform.address">{{ruleform.address}}</text>
+						<text class="pl10" v-if="ruleform.position">{{ruleform.position}}</text>
+					</view>
+					<view v-if="!ruleform.industry && !ruleform.salary && !ruleform.address && !ruleform.position">暂无</view>
 				</view>
 				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
@@ -51,6 +50,24 @@
 				</view>
 				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
+			<view class="talents-item">
+				<view class="item-name">个人职业标签</view>
+				<view class="item-con">
+					<view v-if="profession_tag.length">
+						<dx-tag myclass="mr10 mb10" hollow v-for="item in profession_tag">{{item}}</dx-tag>
+					</view>
+					<view v-else>暂无</view>
+				</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/professionTag',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
+			</view>
+			<view class="talents-item">
+				<view class="item-name">个人简介</view>
+				<view class="item-con">
+					<view v-if="ruleform.remark">{{ruleform.remark}}</view>
+					<view v-else>暂无</view>
+				</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -60,8 +77,9 @@ import dxftButton from "doxinui/components/button/footer-button"
 import {userinfo} from "@/api/user";
 import {attributes } from "@/api/base";
 import avatar from "@/components/yq-avatar/yq-avatar.vue";
+import dxTag from "doxinui/components/tag/tag"
 export default {
-	components: {dxftButton,avatar},
+	components: {dxftButton,avatar,dxTag},
 		data() {
 			return {
 				sysUser: uni.getStorageSync('sysUser'),
@@ -115,7 +133,8 @@ export default {
 					{label:'文员',value: '文员'},
 					{label:'机械工程师',value: '机械工程师'},
 					{label:'行政管理',value: '行政管理'},
-				]
+				],
+				profession_tag:['前端开发','人事经理','文员'],
 			}
 		},
 		onReachBottom() {

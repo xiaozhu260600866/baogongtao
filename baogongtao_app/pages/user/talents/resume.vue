@@ -8,10 +8,10 @@
 						<view class="dx-label fs-15">头像</view>
 						<view class="fs-18 fc-8 mt10">真实的头像更能吸引HR的关注</view>
 					</view>
-					<view class="dx-cell_bd">
+					<view class="dx-cell_bd flex">
 						<image class="img" :src="avatarUrl?avatarUrl:'https://www.baogongtao.com/images/user.png'" mode="aspectFill"
 						 @click="uploadAvatar"></image>
-						<view style="height: 1upx;overflow:hidden;">
+						<view style="height: 1upx;overflow:hidden;width: 100rpx;">
 							<avatar @upload="avatarUploaded" ref="avatar"></avatar>
 						</view>
 					</view>

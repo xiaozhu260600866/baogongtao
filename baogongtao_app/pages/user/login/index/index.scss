@@ -47,8 +47,15 @@
 		}
 		.dx-cell_bd{
 			.dx-input{font-size: 32rpx!important;}
+			.dx-text{border: 1rpx #eee solid;border-radius: 8rpx;padding: 20rpx;min-height: 240rpx;height: 240rpx;}
 		}
 		.sq-nav{position: absolute;bottom: 20rpx;right: 30rpx;z-index: 10;}
+		// &.sex{
+		// 	.dx-check_label{border: 1rpx #999 solid;position: relative;width: 120rpx;justify-content: center;
+		// 		.dx-checkbox{position: absolute;left: 0;top: 0;z-index: 1;}
+		// 		.dx-checktxt{position: relative;z-index: 2;}
+		// 	}
+		// }
 	}
 	.dx-cell.upload-head{
 		display: flex!important;

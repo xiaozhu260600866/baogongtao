@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view class="pb60 resume">
+		<view class="pb70 resume">
 			<view class="step1 bg-f" v-if="step == 1">
 				<view class="dx-cell upload-head">
 					<view class="dx-cell_hd flex1">
@@ -9,9 +9,8 @@
 						<view class="fs-16 fc-8 mt10">真实的头像更能吸引HR的关注</view>
 					</view>
 					<view class="dx-cell_bd">
-						<image class="img" :src="avatarUrl?avatarUrl:'https://www.baogongtao.com/images/user.png'"
-							mode="aspectFill" @click="uploadAvatar"></image>
-						<view style="height: 1upx;overflow:hidden;">
+						<image class="img" :src="avatarUrl?avatarUrl:userInfo.avatarUrl" mode="aspectFill" @click="uploadAvatar"></image>
+						<view style="height: 1upx;overflow:hidden;width: 100rpx;">
 							<avatar @upload="avatarUploaded" ref="avatar"></avatar>
 						</view>
 					</view>
@@ -24,8 +23,8 @@
 				</weui-input>
 				<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名或填写如：王先生" type="text" name="name"
 				 datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr"
-				 :radioType="true" block></weui-input>
+				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr" datatype="require"
+				 :radioType="true" myclass="sex" right></weui-input>
 				<weui-input v-model="ruleform.birthday" label="出生年月" type="date" name="birthday" datatype="require" emptyValue block></weui-input>
 				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education" dataKey="educationArr"
 				 changeField="value" block></weui-input>
@@ -33,21 +32,22 @@
 				<dxftButton type="primary" size="lg" @click="submit(1)">下一步</dxftButton>
 			</view>
 			<view class="stpe2 bg-f" v-if="step == 2">
-				<view class="tips flex-between flex-middle lh-1 fs-14 fc-red plr15 ptb12">
+				<!-- <view class="tips flex-between flex-middle lh-1 fs-14 fc-red plr15 ptb12">
 					<view>距离调薪职位又近了一步哦！</view>
 					<view class="dxi-icon dxi-icon-off fs-12"></view>
-				</view>
+				</view> -->
 				<view class="fs-16 fc-9 plr15 ptb10">完善的简介更容易获得HR青睐！</view>
 				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="manyselect" dataKey="positionData" changeField="value"
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect" dataKey="industryData" changeField="value"
 				 datatype="require" block></weui-input>
-				<dx-address v-model="ruleform.address" datatype="require" ref="address" :addressHidden="true" :emptyValue="true" block></dx-address>
+				<dx-address v-model="ruleform.address" labletxt="工作城市" datatype="require" ref="address" :addressHidden="true" :emptyValue="true"
+				 block></dx-address>
 				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="select" dataKey="emolumentArr"
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select" changeField="value"
 				 dataKey="applyStatusArr" datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人简介(选填)" placeholder="让HR快速了解你" type="textarea"
+				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人简介" placeholder="让HR快速了解你" type="textarea"
 				 name="remark" block></weui-input>
 				<dxftButton type="primary" size="lg" @click="submit(2)">提交</dxftButton>
 			</view>
@@ -60,7 +60,7 @@
 	import {mapState, mapMutations, mapActions} from 'vuex'
 	import { loginSentMsg, login, userinfo } from "@/api/user";
 	import {
-		attributes
+		attributes,wechatUser
 	} from "@/api/base";
 	import avatar from "@/components/yq-avatar/yq-avatar.vue";
 	export default {
@@ -78,52 +78,30 @@
 				step: 1,
 				avatarUrl: '',
 				ruleform: {
-					sex: 1,
+					sex: 0,
 					status: 1,
-					avatar:''
+					avatar:'',
+					address:'广东省江门市蓬江区'
 				},
-				sexsArr: [{
-						label: '男',
-						value: 1
-					},
-					{
-						label: '女',
-						value: 2
-					}
+				sexsArr: [
+					{label: '男',value: 1},
+					{label: '女',value: 2}
 				],
-				statusArr: [{
-						label: '职场人',
-						value: 1
-					},
-					{
-						label: '学生',
-						value: 2
-					}
+				statusArr: [
+					{label: '职场人',value: 1},
+					{label: '学生',value: 2}
 				],
 				industryData: [],
-				applyStatusArr: [{
-						label: '离职-随时到岗',
-						value: '离职-随时到岗'
-					},
-					{
-						label: '在职-月内到岗',
-						value: '在职-月内到岗'
-					},
-					{
-						label: '在职-考虑机会',
-						value: '在职-考虑机会'
-					},
-					{
-						label: '在职-暂不考虑',
-						value: '在职-暂不考虑'
-					},
+				applyStatusArr: [
+					{label: '离职-随时到岗',value: '离职-随时到岗'},
+					{label: '在职-月内到岗',value: '在职-月内到岗'},
+					{label: '在职-考虑机会',value: '在职-考虑机会'},
+					{label: '在职-暂不考虑',value: '在职-暂不考虑'},
 				],
-				educationArr: [
-				],
-				emolumentArr: [
-				],
-				positionData: [
-				]
+				educationArr: [],
+				emolumentArr: [],
+				positionData: [],
+				userInfo:{},
 			}
 		},
 		onReachBottom() {
@@ -138,10 +116,7 @@
 		},
 		onLoad(options) {
 			
-			attributes({
-				type: 9,
-				source: 'app'
-			}).then(res => {
+			attributes({type: 9,source: 'app'}).then(res => {
 				this.industryData = res.data.lists;
 			})
 			attributes({type:13,source:'app'}).then(res => {
@@ -152,6 +127,9 @@
 			})
 			attributes({type:10,source:'app'}).then(res => {
 				this.positionData = res.data.lists;
+			})
+			wechatUser().then(res=>{
+				this.userInfo = res.data.wechatUser
 			})
 			// userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 			// 	this.ruleform = res.data.user.get_user_info;
