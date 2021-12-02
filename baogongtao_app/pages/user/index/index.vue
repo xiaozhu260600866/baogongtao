@@ -7,13 +7,14 @@
 					<image class="img w-b100 flex" mode="widthFix" src="/static/images/user-bg.jpg"></image>
 				</view> -->
 				<view class="utop">
-					<view class="uinfo" @click="$refs.loginDiag.thisDiag = true" v-if="!userInfo">
+					<view class="uinfo" @click="wechatUser ? goto('/pages/user/login/index/index',1):$refs.loginDiag.thisDiag = true" v-if="!userInfo">
 						<view class="header-img nouser">
 							<image class="img" :src="wechatUser ? wechatUser.avatarUrl : 'https://www.baogongtao.com/images/user-w.png'" />
 						</view>
 						<view class="fc-white lh-1_5 pl15">
-							<view class="fs-22">未登录/注册</view>
-							<view class="fs-12">点击头像可登录/注册</view>
+							<view class="fs-22">{{wechatUser ? wechatUser.nickName : '未登录/注册'}}</view>
+							<view class="fs-12" v-if="!wechatUser">点击头像可登录/注册</view>
+							<view class="editIntro fs-15 mt5" v-if="wechatUser"><text class="dxi-icon dxi-icon-edit2 fs-13 mr5"></text>我的在线简历</view>
 						</view>
 					</view>
 					
@@ -23,7 +24,7 @@
 						</view>
 						<view class="pl15 fc-white right info">
 							<view class="lh-24 fs-18">{{userInfo ? userInfo.get_user_info.name :wechatUser.nickName}}</view>
-							<view class="editIntro fs-15 mt5" @click="goto('/pages/user/talents/show',1)"><text class="dxi-icon dxi-icon-edit2 fs-13 mr5"></text>我的在线简历</view>
+						
 							<!-- <view>电话号码：<text class="Arial">13318639080</text></view> -->
 						</view>
 					</view>

@@ -25,10 +25,12 @@
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr" datatype="require"
 				 :radioType="true" myclass="sex" right></weui-input>
-				<weui-input v-model="ruleform.birthday" label="出生年月" type="date" name="birthday" datatype="require" emptyValue block></weui-input>
+				<weui-input v-model="ruleform.birthday" startDate="1920-01-01" label="出生年月" type="date" name="birthday" datatype="require" emptyValue block></weui-input>
 				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education" dataKey="educationArr"
 				 changeField="value" block></weui-input>
-				<weui-input v-model="ruleform.experience" label="工作经验" type="text" placeholder="请填写工作年份如：5年" name="experience" block></weui-input>
+				 <weui-input v-model="ruleform.experience" label="工作经验" name="experience" changeField="value" type="select" dataKey="experienceYear" datatype="require"
+				   placeholder="请选择工作年份如：5年"></weui-input>
+			
 				<dxftButton type="primary" size="lg" @click="submit(1)">下一步</dxftButton>
 			</view>
 			<view class="stpe2 bg-f" v-if="step == 2">
@@ -41,7 +43,7 @@
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect" dataKey="industryData" changeField="value"
 				 datatype="require" block></weui-input>
-				<dx-address v-model="ruleform.address" labletxt="工作城市" datatype="require" ref="address" :addressHidden="true" :emptyValue="true"
+				<dx-address v-model="ruleform.address" labeltxt="工作城市" datatype="require" ref="address" :addressHidden="true" 
 				 block></dx-address>
 				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="select" dataKey="emolumentArr"
 				 datatype="require" block></weui-input>
@@ -87,6 +89,19 @@
 					{label: '男',value: 1},
 					{label: '女',value: 2}
 				],
+				experienceYear: [
+					{label: '1年',value: "1年"},
+					{label: '2年',value: "2年"},
+					{label: '3年',value: "3年"},
+					{label: '4年',value: "4年"},
+					{label: '5年',value: "5年"},
+					{label: '6年',value: "6年"},
+					{label: '7年',value: "7年"},
+					{label: '8年',value: "8年"},
+					{label: '9年',value: "9年"},
+					{label: '10年',value: "10年"},
+					{label: '10年以上',value: "10年以上"}
+				],
 				statusArr: [
 					{label: '职场人',value: 1},
 					{label: '学生',value: 2}
@@ -129,7 +144,7 @@
 				this.positionData = res.data.lists;
 			})
 			wechatUser().then(res=>{
-				this.userInfo = res.data.wechatUser
+				this.userInfo = uni.getStorageSync('wxUser')
 			})
 			// userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 			// 	this.ruleform = res.data.user.get_user_info;

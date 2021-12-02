@@ -53,8 +53,8 @@
 			<view class="talents-item">
 				<view class="item-name">个人职业标签</view>
 				<view class="item-con">
-					<view v-if="profession_tag.length">
-						<dx-tag myclass="mr10 mb10" hollow v-for="item in profession_tag">{{item}}</dx-tag>
+					<view v-if="ruleform.tags && ruleform.tags.split(',').length">
+						<dx-tag myclass="mr10 mb10" hollow v-for="item in ruleform.tags.split(',')">{{item}}</dx-tag>
 					</view>
 					<view v-else>暂无</view>
 				</view>
