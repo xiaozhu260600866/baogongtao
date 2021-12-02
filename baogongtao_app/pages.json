@@ -404,6 +404,13 @@
 			}
 		},
 		{
+			"path": "pages/talents/show",
+			"style": {
+				"navigationBarTitleText": "简历",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
 			"path": "pages/user/talents/lists",
 			"style": {
 				"navigationBarTitleText": "应聘记录",
@@ -421,6 +428,13 @@
 			"path": "pages/user/talents/show",
 			"style": {
 				"navigationBarTitleText": "我的简历",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/talents/layouts/label",
+			"style": {
+				"navigationBarTitleText": "职业标签",
 				"enablePullDownRefresh":true
 			}
 		},
