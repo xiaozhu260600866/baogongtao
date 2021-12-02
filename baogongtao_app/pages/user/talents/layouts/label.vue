@@ -67,15 +67,18 @@
 					this.ruleform.token = uni.getStorageSync('token');
 					this.ruleform.tags = this.labelCur.join(",");
 				if(this.labelCur.length ==0 || this.labelCur.length>5){
-					return this.getError("数据错误，请重新填定");
+					return this.getError("标签数量已满");
 				}
 				this.postAjax("/api/auth/user/update", this.ruleform).then(msg => {
 					if (msg.data.code == 0) {
-					 return this.goto("/pages/user/index/index",2);
+					 return this.goto("/pages/user/talents/show",1);
 					}
 				});
 			},
 			canPush(name){
+				if(this.labelCur.length>4){
+					return this.getError("标签数量已满");
+				}
 				for (var i = 0; i < this.labelCur.length; i++) {
 					if(this.labelCur[i] == name) return false;
 				}

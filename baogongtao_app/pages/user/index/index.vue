@@ -24,8 +24,7 @@
 						</view>
 						<view class="pl15 fc-white right info">
 							<view class="lh-24 fs-18">{{userInfo ? userInfo.get_user_info.name :wechatUser.nickName}}</view>
-						
-							<!-- <view>电话号码：<text class="Arial">13318639080</text></view> -->
+							<view class="fs-15 Arial">{{userInfo.get_user_info.phone}}</view>
 						</view>
 					</view>
 				</view>

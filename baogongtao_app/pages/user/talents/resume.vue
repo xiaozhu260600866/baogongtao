@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<page ref="page"></page>
-		<view class="pb60 resume">
+		<view class="pb70 resume">
 			<view class="step1 bg-f" v-if="step == 1">
 				<view class="dx-cell upload-head">
 					<view class="dx-cell_hd flex1">
@@ -25,7 +25,9 @@
 				<weui-input v-model="ruleform.birthday" label="出生年月" type="date" name="birthday" datatype="require" emptyValue block></weui-input>
 				<weui-input v-model="ruleform.education" label="最低学历" type="select" name="education" dataKey="educationArr"
 				 changeField="value" block></weui-input>
-				<weui-input v-model="ruleform.experience" label="工作经验" type="text" placeholder="请填写工作年份如：5年" name="experience" block></weui-input>
+				<!-- <weui-input v-model="ruleform.experience" label="工作经验" type="text" placeholder="请填写工作年份如：5年" name="experience" block></weui-input> -->
+				<weui-input v-model="ruleform.experience" label="工作经验" name="experience" changeField="value" type="select" dataKey="experienceYear"
+				 datatype="require" placeholder="请选择工作年份如：5年" block></weui-input>
 				<dxftButton type="primary" size="lg" ></dxftButton>
 			</view>
 			<view class="stpe2 bg-f">
@@ -74,13 +76,22 @@
 					status: 1,
 					avatar:''
 				},
-				sexsArr: [{
-						label: '男',
-						value: 1
+				experienceYear: [
+					{label: '1年',value: "1年"},
+					{label: '2年',value: "2年"},
+					{label: '3年',value: "3年"},
+					{label: '4年',value: "4年"},
+					{label: '5年',value: "5年"},
+					{label: '6年',value: "6年"},
+					{label: '7年',value: "7年"},
+					{label: '8年',value: "8年"},
+					{label: '9年',value: "9年"},
+					{label: '10年',value: "10年"},
+					{label: '10年以上',value: "10年以上"}
+				],
+				sexsArr: [{label: '男',value: 1
 					},
-					{
-						label: '女',
-						value: 2
+					{label: '女',value: 2
 					}
 				],
 				statusArr: [{

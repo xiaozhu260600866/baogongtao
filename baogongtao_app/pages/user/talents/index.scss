@@ -34,6 +34,7 @@
 			.picker{
 				text-align: left!important;font-size: 36rpx!important;
 			}
+			.dx-text{font-size: 36rpx!important;line-height: 1.6!important;height: 240rpx!important;}
 		}
 		.dx_ft-access{
 			&::before{top: -34rpx}
@@ -103,7 +104,7 @@
 	&::before{content: '';display: block;position: absolute;left: 0;right: 0;top: 0;width: 100%;height: 2rpx;transform: scaleY(.5);background-color: #dedede;}
 	.item-name{font-size: 36rpx;font-weight: bold;}
 	.item-con{font-size: 30rpx;line-height: 1.6;margin-top: 16rpx;text-align: justify;}
-	.item-edit{position: absolute;z-index: 10;top: 20rpx;right: 0;font-size: 40rpx;}
+	.item-edit{position: absolute;z-index: 99;top: 20rpx;right: -30rpx;font-size: 40rpx;display: flex;width: 80rpx;height: 80rpx;justify-content: center;align-items: center;}
 }
 
 // label

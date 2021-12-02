@@ -25,12 +25,12 @@
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr" datatype="require"
 				 :radioType="true" myclass="sex" right></weui-input>
-				<weui-input v-model="ruleform.birthday" startDate="1920-01-01" label="出生年月" type="date" name="birthday" datatype="require" emptyValue block></weui-input>
+				<weui-input v-model="ruleform.birthday" startDate="1920-01-01" label="出生年月" type="date" name="birthday" datatype="require"
+				 emptyValue block></weui-input>
 				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education" dataKey="educationArr"
 				 changeField="value" block></weui-input>
-				 <weui-input v-model="ruleform.experience" label="工作经验" name="experience" changeField="value" type="select" dataKey="experienceYear" datatype="require"
-				   placeholder="请选择工作年份如：5年"></weui-input>
-			
+				<weui-input v-model="ruleform.experience" label="工作经验" name="experience" changeField="value" type="select" dataKey="experienceYear"
+				 datatype="require" placeholder="请选择工作年份如：5年" block></weui-input>
 				<dxftButton type="primary" size="lg" @click="submit(1)">下一步</dxftButton>
 			</view>
 			<view class="stpe2 bg-f" v-if="step == 2">
