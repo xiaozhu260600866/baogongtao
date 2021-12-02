@@ -1,20 +1,57 @@
 .title{background-color: $color-primary;color: $color-white;padding: 16rpx 30rpx 30rpx;font-size: 36rpx;line-height: 1;}
 
-.talents-item{
-	.info{
-		.labG{
-			display: flex;align-items: center;
-			.lab{
-				line-height: 1;font-size: 30rpx;color: #666;position: relative;padding-right: 16rpx;margin: 16rpx 16rpx 0 0;
-				&::before{content: '';display: block;position: absolute;width: 1px;height: 80%;right: 0;top: 10%;background-color: #bbb;}
-				&:last-child::before{display: none;}
+.talents{
+	.talents-lists{
+		.info{
+			.labG{
+				display: flex;align-items: center;
+				.lab{
+					line-height: 1;font-size: 30rpx;color: #666;position: relative;padding-right: 16rpx;margin: 16rpx 16rpx 0 0;
+					&::before{content: '';display: block;position: absolute;width: 1px;height: 80%;right: 0;top: 10%;background-color: #bbb;}
+					&:last-child::before{display: none;}
+				}
+			}
+			.right{
+				.head{width: 100rpx;height: 100rpx;display: flex;border-radius: 50%;}
 			}
 		}
-		.right{
-			.head{width: 100rpx;height: 100rpx;display: flex;border-radius: 50%;}
+		.con{
+			.dot{width: 8rpx;height: 8rpx;border-radius: 50%;background-color: #666;margin: 0 10rpx;}
 		}
 	}
-	.con{
-		.dot{width: 8rpx;height: 8rpx;border-radius: 50%;background-color: #666;margin: 0 10rpx;}
+}
+
+
+// 简历展示，show
+.talents-info{
+	padding: 40rpx 30rpx;display: flex;align-items: center;
+	.head{
+		width: 140rpx;height: 140rpx;position: relative;
+		.img{width: 100%;height: 100%;display: flex;border-radius: 50%;}
+		.sex{
+			position: absolute;right: 0;bottom: -10rpx;
+			.item{width: 40rpx;height: 40rpx;display: flex;align-items: center;justify-content: center;border-radius: 50%;color: $color-white;font-size: 22rpx;}
+			.man{background: $uni-color-primary;}
+			.women{background: $uni-color-error;}
+		}
 	}
+	.info{
+		flex:1;padding-left: 30rpx;line-height: 1;
+		.name{font-size: 44rpx;font-weight: bold;}
+		.tag{
+			display: flex;align-items: center;margin-top: 30rpx;
+			.item{
+				font-size: 28rpx;padding-right: 12rpx;margin-right: 12rpx;position: relative;
+				&::after{content: '';display: block;position: absolute;top: 5%;right: 0;height: 90%;width: 2rpx;background-color: #999;}
+				&:last-child::after{display: none;}
+			}
+		}
+	}
+}
+.talents-item{
+	margin: 0 30rpx;padding: 30rpx 0;position: relative;
+	&::before{content: '';display: block;position: absolute;left: 0;right: 0;top: 0;width: 100%;height: 2rpx;transform: scaleY(.5);background-color: #dedede;}
+	.item-name{font-size: 34rpx;font-weight: bold;}
+	.item-con{font-size: 30rpx;line-height: 1.6;margin-top: 16rpx;text-align: justify;color: #343434;}
+	.item-edit{position: absolute;z-index: 10;top: 20rpx;right: 0;font-size: 40rpx;}
 }

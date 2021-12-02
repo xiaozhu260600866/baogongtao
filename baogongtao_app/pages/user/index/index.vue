@@ -22,12 +22,9 @@
 							<image class="img" :src="userInfo.get_user_info.avatarUrl ? userInfo.get_user_info.avatarUrl : wechatUser.avatarUrl" />
 						</view>
 						<view class="pl15 fc-white right info">
-							<view class="fc-white lh-24 fs-18">
-								<view class="group">
-									<view>{{userInfo ? userInfo.get_user_info.name :wechatUser.nickName}}</view>
-								</view>
-								<!-- <view>电话号码：<text class="Arial">13318639080</text></view> -->
-							</view>
+							<view class="lh-24 fs-18">{{userInfo ? userInfo.get_user_info.name :wechatUser.nickName}}</view>
+							<view class="editIntro fs-15 mt5" @click="goto('/pages/user/talents/show',1)"><text class="dxi-icon dxi-icon-edit2 fs-13 mr5"></text>我的在线简历</view>
+							<!-- <view>电话号码：<text class="Arial">13318639080</text></view> -->
 						</view>
 					</view>
 				</view>

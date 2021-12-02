@@ -4,7 +4,7 @@
 		<view v-if="data.show">
 		<!-- <view class="title">PHP开发工程师</view> -->
 			<view class="talents">
-				<view class="talents-item bg-f p15 mb8" v-for="item in data.data.lists.data">
+				<view class="talents-lists bg-f p15 mb8" v-for="item in data.data.lists.data" @click="goto('/pages/talents/show',1)">
 					<view class="info flex-between">
 						<view class="left">
 							<view class="name fs-18 fw-bold fc-3">{{item.name}}</view>

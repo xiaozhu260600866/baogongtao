@@ -4,14 +4,14 @@
 		<view class="pb30">
 			<view class="talents-info">
 				<view class="head">
-					<image class="img" :src="avatarUrl?avatarUrl:'https://www.baogongtao.com/images/user.png'"></image>
+					<image class="img" :src="avatarUrl?avatarUrl:userInfo.avatarUrl"></image>
 					<view class="sex">
 						<view class="item man" v-if="ruleform.sex == 1"><text class="iconfont icon-man"></text></view>
 						<view class="item women" v-if="ruleform.sex == 2"><text class="iconfont icon-women"></text></view>
 					</view>
 				</view>
 				<view class="info">
-					<view class="name">{{ruleform.name}}<text class="dxi-icon dxi-icon-edit ml5" @click="goto('/pages/user/talents/resume',1)"></text></view>
+					<view class="name">{{ruleform.name}}</view>
 					<view class="tag">
 						<view class="item">{{ruleform.experience?ruleform.experience:'经验不限'}}</view>
 						<view class="item">{{ruleform.birthday?ruleform.birthday:'暂无'}}</view>
@@ -22,17 +22,16 @@
 			<view class="talents-item">
 				<view class="item-name">求职意向</view>
 				<view class="item-con">
-					<view class="fs-16 fw-bold">
+					<view class="fs-15 fw-bold">
 						<text v-if="ruleform.industry">{{ruleform.industry}}</text>
 						<text class="pl10" v-if="ruleform.salary">{{ruleform.salary}}</text>
 					</view>
-					<view class="fs-15 fc-6 mt5">
+					<view class="fs-14 fc-6 mt5">
 						<text v-if="ruleform.address">{{ruleform.address}}</text>
 						<text class="pl10" v-if="ruleform.position">{{ruleform.position}}</text>
 					</view>
 					<view v-if="!ruleform.industry && !ruleform.salary && !ruleform.address && !ruleform.position">暂无</view>
 				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">求职状态</view>
@@ -40,7 +39,6 @@
 					<view v-if="ruleform.apply_status">{{ruleform.apply_status}}</view>
 					<view v-else>暂无</view>
 				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">薪资要求</view>
@@ -48,7 +46,6 @@
 					<view v-if="ruleform.salary">{{ruleform.salary}}</view>
 					<view v-else>暂无</view>
 				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">个人职业标签</view>
@@ -58,7 +55,6 @@
 					</view>
 					<view v-else>暂无</view>
 				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/layouts/label',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">个人简介</view>
@@ -66,7 +62,6 @@
 					<view v-if="ruleform.remark">{{ruleform.remark}}</view>
 					<view v-else>暂无</view>
 				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
 		</view>
 	</view>
@@ -75,7 +70,7 @@
 <script>
 import dxftButton from "doxinui/components/button/footer-button"
 import {userinfo} from "@/api/user";
-import {attributes } from "@/api/base";
+import {attributes,wechatUser } from "@/api/base";
 import avatar from "@/components/yq-avatar/yq-avatar.vue";
 import dxTag from "doxinui/components/tag/tag"
 export default {
@@ -93,6 +88,7 @@ export default {
 					sex: 1,
 					status: 1,
 				},
+				userInfo:{},
 				sexsArr: [
 					{label: '男',value: 1},
 					{label: '女',value: 2}
@@ -153,7 +149,9 @@ export default {
 			})
 			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 				this.ruleform = res.data.user.get_user_info;
-				
+			})
+			wechatUser({token:uni.getStorageSync('token')}).then(res=>{
+				this.userInfo = res.data.wechatUser
 			})
 			//this.ajax();
 		},
