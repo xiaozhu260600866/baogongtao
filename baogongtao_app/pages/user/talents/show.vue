@@ -156,7 +156,7 @@ export default {
 			})
 			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 				this.ruleform = res.data.user.get_user_info;
-				
+					this.avatarUrl = this.ruleform.avatarUrl
 			})
 			//this.ajax();
 		},

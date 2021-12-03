@@ -18,7 +18,7 @@
 						</view>
 					</view>
 					
-					<view class="uinfo" v-else>
+					<view class="uinfo" v-else @click="goto('/pages/user/talents/show',1)">
 						<view class="header-img">
 							<image class="img" :src="userInfo.get_user_info.avatarUrl ? userInfo.get_user_info.avatarUrl : wechatUser.avatarUrl" />
 						</view>
