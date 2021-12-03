@@ -16,10 +16,12 @@
 				</view>
 				<view class="userInfo mt10 flex-middle fs-14" v-if="v.get_company">
 					<image class="head" :src="v.get_company.logoMinUrl" mode="aspectFill"></image>
-					<view class="left flex1 ml10">
-						<view class="name">{{v.get_company.name}} {{v.get_company.charger_name  ? v.get_company.charger_name :null }}</view>
+					<view class="left flex1 ml10 flex-middle">
+						<view class="name">{{v.get_company.charger_name ? v.get_company.charger_name :'暂无' }}</view>
+						<view class="dot mlr5"></view>
+						<view class="position">{{v.get_company.position ? v.get_company.position :'暂无' }}</view>
 					</view>
-					<view class="place fc-b" v-if="v.get_company.province">{{v.get_company.province}} {{v.get_company.city}} {{v.get_company.area}}</view>
+					<view class="place fc-b" v-if="v.get_company.province">{{v.get_company.city}} {{v.get_company.area}}</view>
 				</view>
 			</view><!-- 
 			<view class="edit-nav" v-if="type == 2">
@@ -50,7 +52,7 @@ export default {
 		},
 		getTag(v){
 			let arr = [];
-			arr.push(v.salary)
+			// arr.push(v.salary)
 			arr.push(v.education)
 			let tag = v.job_tab ? v.job_tab.split(",") :[ ];
 			if(tag.length){
@@ -68,7 +70,7 @@ export default {
 .jobs_item{
 	.condition{
 		display: flex;flex-wrap: wrap;margin: 30rpx 0;
-		.lab{background-color: #f5f5f5;padding: 0 16rpx;line-height: 48rpx;color: #666;font-size: 28rpx;margin-right: 12rpx;border-radius: 8rpx;}
+		.lab{background-color: #f5f5f5;padding: 0 16rpx;line-height: 48rpx;color: #666;font-size: 28rpx;margin: 0 12rpx 12rpx 0;border-radius: 8rpx;}
 	}
 	.userInfo{
 		.head{width: 60rpx;height: 60rpx;display: flex;border-radius: 50%;}
