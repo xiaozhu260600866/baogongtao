@@ -4,7 +4,7 @@
 		<view>
 			<view class="Huser main-bg">
 				<view class="con">
-					<view class="head">
+					<view class="head" @click="goto('/pages/user/info/index',1)">
 						<image class="img" :src="avatarUrl"></image>
 					</view>
 					<view class="info">
