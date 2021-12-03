@@ -1,0 +1,25 @@
+.info{
+	::v-deep .dx-cell_block{
+		.dx-label{margin-bottom: 16rpx;font-size: 32rpx!important;}
+	}
+	::v-deep .dx-cell{
+		display: block!important;font-size: 36rpx!important;
+		.dx-cell_bd{
+			.dx-input{font-size: 36rpx!important;margin-bottom: 10rpx;}
+			.picker{
+				font-size: 36rpx!important;
+			}
+			.dx-text{font-size: 36rpx!important;line-height: 1.6!important;height: 240rpx!important;}
+		}
+	}
+	.dx-cell.upload-head{
+		display: flex!important;
+		.dx-cell_bd{
+			flex: initial!important;width: 100rpx;
+			.img{width: 100%;height: 100rpx;border-radius: 50%;display: flex;}
+		}
+	}
+	.tips{
+		background: #DEDFFD;
+	}
+}
