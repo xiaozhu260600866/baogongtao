@@ -11,13 +11,17 @@
 					</view>
 				</view>
 				<view class="info">
-					<view class="name">{{ruleform.name}}<text class="dxi-icon dxi-icon-edit ml5" @click="goto('/pages/user/talents/resume',1)"></text></view>
-					<view class="tag">
+					<view class="name">{{ruleform.name}}</view>
+					<!-- <text class="dxi-icon dxi-icon-edit ml5" @click="goto('/pages/user/talents/resume',1)"></text> -->
+					<view class="tag flex-wrap">
 						<view class="item">{{ruleform.experience?ruleform.experience:'经验不限'}}</view>
 						<view class="item">{{ruleform.birthday?ruleform.birthday:'暂无'}}</view>
 						<view class="item">{{ruleform.education?ruleform.education:'暂无'}}</view>
 					</view>
 				</view>
+				<view class="edit" @click="goto('/pages/user/talents/resume',1)">
+					<dx-button type="primary" size="mini" myclass="plr10" icon="dxi-icon dxi-icon-edit2">编辑</dx-button>
+					</view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">求职意向</view>
@@ -32,7 +36,7 @@
 					</view>
 					<view v-if="!ruleform.industry && !ruleform.salary && !ruleform.address && !ruleform.position">暂无</view>
 				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
+				<!-- <view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view> -->
 			</view>
 			<view class="talents-item">
 				<view class="item-name">求职状态</view>
@@ -40,7 +44,6 @@
 					<view v-if="ruleform.apply_status">{{ruleform.apply_status}}</view>
 					<view v-else>暂无</view>
 				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">薪资要求</view>
@@ -48,13 +51,14 @@
 					<view v-if="ruleform.salary">{{ruleform.salary}}</view>
 					<view v-else>暂无</view>
 				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">个人职业标签</view>
 				<view class="item-con">
-					<view v-if="ruleform.tags && ruleform.tags.split(',').length">
-						<dx-tag myclass="mr10 mb10" hollow v-for="item in ruleform.tags.split(',')">{{item}}</dx-tag>
+					<view v-if="ruleform.tags">
+						<view v-if="ruleform.tags.split(',').length">
+							<dx-tag myclass="mr10 mb10" hollow v-for="item in ruleform.tags.split(',')">{{item}}</dx-tag>
+						</view>
 					</view>
 					<view v-else>暂无</view>
 				</view>
@@ -66,7 +70,6 @@
 					<view v-if="ruleform.remark">{{ruleform.remark}}</view>
 					<view v-else>暂无</view>
 				</view>
-				<view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
 		</view>
 	</view>

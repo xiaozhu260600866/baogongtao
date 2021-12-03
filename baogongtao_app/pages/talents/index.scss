@@ -4,10 +4,10 @@
 	.talents-lists{
 		.info{
 			.labG{
-				display: flex;align-items: center;
+				display: flex;align-items: center;flex-wrap: wrap;
 				.lab{
 					line-height: 1;font-size: 30rpx;color: #666;position: relative;padding-right: 16rpx;margin: 16rpx 16rpx 0 0;
-					&::before{content: '';display: block;position: absolute;width: 1px;height: 80%;right: 0;top: 10%;background-color: #bbb;}
+					&::before{content: '';display: block;position: absolute;width: 1px;height: 28rpx;right: 0;top: 50%;margin-top: -14rpx;background-color: #bbb;}
 					&:last-child::before{display: none;}
 				}
 			}
