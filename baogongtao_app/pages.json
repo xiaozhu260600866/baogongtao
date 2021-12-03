@@ -149,20 +149,20 @@
 				"enablePullDownRefresh": true
 			}
 		},*/
-		{
-			"path": "pages/user/info/bank_card/lists/index",
-			"style": {
-				"navigationBarTitleText": "银行卡",
-				"enablePullDownRefresh": true
-			}
-		},
-		{
-			"path": "pages/user/info/bank_card/add/index",
-			"style": {
-				"navigationBarTitleText": "绑定银行卡",
-				"enablePullDownRefresh": true
-			}
-		},
+		// {
+		// 	"path": "pages/user/info/bank_card/lists/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "银行卡",
+		// 		"enablePullDownRefresh": true
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/user/info/bank_card/add/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "绑定银行卡",
+		// 		"enablePullDownRefresh": true
+		// 	}
+		// },
 		{
 			"path": "pages/user/authenticate/index",
 			"style": {
