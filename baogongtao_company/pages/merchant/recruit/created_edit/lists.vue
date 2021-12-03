@@ -8,7 +8,7 @@
 				{value: 2,name: '已下架'},
 			]" :height="52" borderColor="#409eff" :curSize="16" curColor="#000" curBold="bold" :nameSize="15" nameColor="#333"></dx-tabs-scroll>
 			<view v-if="data.data.lists.data"><recruitLists :data="data.data.lists.data" :type="2"></recruitLists></view>
-			<view class="fs-14 fc-9 ptb80 text-center">
+			<view class="fs-14 fc-9 ptb80 text-center" v-if="data.data.lists.data.length == 0">
 				您还没发布职位<br>点击「发布职位」，更多人才等您选~
 			</view>
 			<dx-float-group>
@@ -54,6 +54,11 @@
 			}
 		},
 		onLoad() {
+			if(!uni.getStorageSync('sysCompany')) return this.linkTo('/pages/merchant/login/index');
+			this.ajax();
+		},
+		onShow(){
+			if(!uni.getStorageSync('sysCompany')) return this.linkTo('/pages/merchant/login/index');
 			this.ajax();
 		},
 		methods: {

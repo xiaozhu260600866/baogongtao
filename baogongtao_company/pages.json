@@ -73,6 +73,14 @@
 			}
 		},
 		{
+			"path": "pages/merchant/recruit/created_edit/layouts/label",
+			"style": {
+				"navigationBarTitleText": "标签",
+				"enablePullDownRefresh":true,
+				"navigationStyle":"custom"
+			}
+		},
+		{
 			"path": "pages/merchant/login/index",
 			"style": {
 				"navigationBarTitleText": "企业登录",
