@@ -102,13 +102,13 @@
 				"enablePullDownRefresh":true
 			}
 		},
-		{
-			"path": "pages/merchant/recruit/show/index",
-			"style": {
-				"navigationBarTitleText": "招聘信息",
-				"enablePullDownRefresh":true
-			}
-		},
+		// {
+		// 	"path": "pages/merchant/recruit/show/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "招聘信息",
+		// 		"enablePullDownRefresh":true
+		// 	}
+		// },
 		{
 			"path": "pages/merchant/recruit/created_edit/edit",
 			"style": {

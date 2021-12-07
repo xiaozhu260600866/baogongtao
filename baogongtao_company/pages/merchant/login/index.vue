@@ -101,7 +101,7 @@ export default {
 						this.setCompanyInfo(userInfo);
 						this.submitLoading = false;
 						this.msgSuccess('登录成功');
-						return this.timeoutLinkTo(this,'/pages/merchant/index/index');
+						return this.timeoutLinkTo(this,'/pages/merchant/recruit/created_edit/lists',2);
 						//setTimeout(()=>{uni.navigateBack()},1000)
 					})
 				}else{

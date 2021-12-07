@@ -18,7 +18,7 @@
 			<weui-input v-model="ruleform.name" label="姓名" type="text" name="name" datatype="require" block></weui-input>
 			<weui-input v-model="ruleform.email" label="邮箱" type="text" name="email" datatype="require" block></weui-input>
 			<weui-input v-model="ruleform.position" label="我的职务" type="text" name="position" datatype="require" block></weui-input>
-			<weui-input v-model="ruleform.company" label="我的公司" type="text" name="company" datatype="require" block></weui-input>
+			<weui-input v-model="company.name" label="我的公司" type="txt" name="company" datatype="require" block></weui-input>
 			<dxftButton type="primary" size="lg" @click="submit">保存</dxftButton>
 		</view>
 	</view>
@@ -27,18 +27,38 @@
 <script>
 	import dxftButton from "doxinui/components/button/footer-button"
 	import avatar from "@/components/yq-avatar/yq-avatar.vue";
+	import { loginSentMsg, login, userinfo } from "@/api/user";
 	export default {
 		components: {dxftButton,avatar},
 		data() {
 			return {
 				avatarUrl: '',
 				ruleform: {},
+				company:{}
 			}
 		},
 		onLoad() {
+			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+				this.ruleform = res.data.user.get_user_info;
+				this.avatarUrl = this.ruleform.avatarUrl
+				this.company = res.data.company
 			
+			})
 		},
 		methods: {
+			submit(){
+				this.vaildForm(this, res => {
+					if (res) {
+						this.ruleform.token = uni.getStorageSync('token');
+						this.postAjax("/api/auth/user/update", this.ruleform).then(msg => {
+							if (msg.data.code == 0) {
+							 return this.goto("/pages/user/index/index",2);
+							}
+						});
+					}
+				
+				})
+			},
 			uploadAvatar() {
 				this.$refs.avatar.fChooseImg(0, {
 					selWidth: "300upx",
