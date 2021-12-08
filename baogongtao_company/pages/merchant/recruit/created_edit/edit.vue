@@ -216,6 +216,8 @@
 			})
 			if (options.id) {
 				this.ajax();
+			}else{
+				this.data.show = true;
 			}
 			//this.getError("aaaqq")
 			//this.ajax();

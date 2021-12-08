@@ -126,7 +126,7 @@
 					if(res){
 						this.postAjax(this.formAction, this.ruleform).then(msg => {
 							if (msg.data.code == 0) {
-								return this.goto("/pages/merchant/index/index");
+								return this.goto("/pages/merchant/recruit/created_edit/lists",2);
 							}
 						});
 					}
