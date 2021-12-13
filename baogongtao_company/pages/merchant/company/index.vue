@@ -15,8 +15,8 @@
 					</view>
 				</view>
 			</view>
-			<view class="banner" v-if="ruleform.logo">
-				<xiaozhuSwiper :data="ruleform.logo" purl="logo"></xiaozhuSwiper>
+			<view class="banner" v-if="sliders">
+				<dxSwiper :data="sliders"></dxSwiper>
 			</view>
 			<view class="address">
 				<view class="icon dxi-icon dxi-icon-location-fill"></view>
@@ -46,7 +46,7 @@
 	import dxImages from "doxinui/components/images/images"
 	import dxSwiper from "doxinui/components/swiper/swiper"
 	import xiaozhuSwiper from "xiaozhu/uniapp/components/swiper"
-	import {userinfo, action, logout} from "@/api/user";
+	import {userinfo, action, logout,sliders} from "@/api/user";
 	export default {
 		components:{dxImages,dxSwiper,xiaozhuSwiper},
 		data() {
@@ -68,19 +68,25 @@
 					address:'广东省江门市蓬江区建设路82号老广新意(新之城店)',
 					company_remark:'广盈科技',
 					team:[{img:'/static/images/news.jpg'}]
-				}
+				},
+				sliders:[]
 			}
 		},
 		onLoad() {
 			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 				this.ruleform =res.data.company;
 				this.ruleform.license =  this.ruleform.license ? this.ruleform.license.split(",") : [],
-				this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
+				// this.ruleform.cover = this.ruleform.cover ? this.ruleform.cover.split(",") : [];
 				this.ruleform.logo = this.ruleform.logo ? this.ruleform.logo.split(",") : [];
 				this.ruleform.remark_pic_company = this.ruleform.remark_pic_company ? this.ruleform.remark_pic_company.split(",") : [];
 				if(this.ruleform.remark_pic_company.length){
 					this.ruleform.remark_pic_company.forEach(v=>{
 						this.remark_pic_company.push({img:this.getSiteName + '/upload/images/logo/'+v});
+					})
+				}
+				if(this.ruleform.cover.length){
+					this.ruleform.cover.split(",").forEach(v=>{
+						this.sliders.push({cover:this.getSiteName + '/upload/images/logo/800_'+v});
 					})
 				}
 			})
