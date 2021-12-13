@@ -7,7 +7,7 @@
 					<view class="cash-info">
 						<!-- <view class="price fc-white"><text class="fs-14">￥</text>{{detail.amount}}</view> -->
 						<view class="cover">
-							<image class="img" :src="detail.get_coupon.getCover" mode="aspectFill"></image>
+							<image class="img" :src="detail.getCover" mode="aspectFill"></image>
 						</view>
 						<view class="info">
 							<view class="coupon-title w-b100 fs-16 lh-1_5 wrap2">{{detail.name}}</view>
@@ -24,7 +24,7 @@
 					<view class="explain">
 						<dx-title name="现金券介绍" borderColor="#1e97ff" borderWidth="30" borderR="4" nameColor="#333"
 							nameSize="16" nameBold="bold" Bline></dx-title>
-						<view class="content">{{detail.get_coupon.remark}}</view>
+						<view class="content">{{detail.detail}}</view>
 					</view>
 				</view>
 				<view class="con-box bg-f" v-if="detail.get_company">
@@ -32,7 +32,6 @@
 						<dx-title name="附近使用店" borderColor="#1e97ff" borderWidth="30" borderR="4" nameColor="#333"
 							nameSize="16" nameBold="bold" Bline></dx-title>
 						<merchantLists :data="[detail.get_company]"></merchantLists>
-						
 					</view>
 				</view>
 			</view>
@@ -92,7 +91,17 @@
 						this.detail = msg.detail;
 				});
 			}
-		}
+		},
+		onReachBottom() {
+			this.hasMore(this);
+		},
+		onPullDownRefresh() {
+			this.data.nextPage = 1;
+			this.ajax();
+		},
+		onShareAppMessage() {
+			return this.shareSource(this, '包工淘');
+		},
 	}
 </script>
 <style lang="scss">

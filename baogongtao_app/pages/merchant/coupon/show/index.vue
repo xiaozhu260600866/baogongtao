@@ -21,7 +21,7 @@
 			<view class="con-box showBox">
 				<view class="explain">
 					<dx-title name="现金券介绍" borderColor="#1e97ff" borderWidth="30" borderR="4" nameColor="#333" nameSize="16" nameBold="bold" Bline></dx-title>
-					<view class="content"><u-parse :content="detail.remark" /></view>
+					<view class="content">{{detail.detail}}</view>
 				</view>
 			</view>
 			<dxftButton type="primary" size="lg" round @click="freeWithdraw">免费领取</dxftButton>
@@ -44,6 +44,16 @@
 				ruleform:{},
 				detail:{}
 			}
+		},
+		onReachBottom() {
+			this.hasMore(this);
+		},
+		onPullDownRefresh() {
+			this.data.nextPage = 1;
+			this.ajax();
+		},
+		onShareAppMessage() {
+			return this.shareSource(this, '包工淘');
 		},
 		onLoad() {
 			this.ajax();

@@ -255,25 +255,27 @@
 		{
 			"path": "pages/merchant/index/index",
 			"style": {
-				"navigationBarTitleText": "商家中心"
+				"navigationBarTitleText": "企业中心"
 			}
 		},
 		{
 			"path": "pages/merchant/lists/index",
 			"style": {
-				"navigationBarTitleText": "附近的企业"
+				"navigationBarTitleText": "企业"
 			}
 		},
 		{
 			"path": "pages/merchant/show/index",
 			"style": {
-				"navigationBarTitleText": "商家详情"
+				"navigationBarTitleText": "企业介绍",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/merchant/coupon/lists/index",
 			"style": {
-				"navigationBarTitleText": "优惠券"
+				"navigationBarTitleText": "优惠券",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
@@ -285,15 +287,16 @@
 		{
 			"path": "pages/merchant/coupon/show/index",
 			"style": {
-				"navigationBarTitleText": "优惠券详情"
+				"navigationBarTitleText": "优惠券详情",
+				"enablePullDownRefresh": true
 			}
 		},
-		{
-			"path": "pages/merchant/coupon/created_edit/edit",
-			"style": {
-				"navigationBarTitleText": "优惠券编辑"
-			}
-		},
+		// {
+		// 	"path": "pages/merchant/coupon/created_edit/edit",
+		// 	"style": {
+		// 		"navigationBarTitleText": "优惠券编辑"
+		// 	}
+		// },
 		{
 			"path": "pages/merchant/coupon/created_edit/lists",
 			"style": {
