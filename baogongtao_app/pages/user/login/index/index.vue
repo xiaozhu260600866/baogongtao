@@ -9,7 +9,8 @@
 						<view class="fs-16 fc-8 mt10">真实的头像更能吸引HR的关注</view>
 					</view>
 					<view class="dx-cell_bd">
-						<image class="img" :src="avatarUrl?avatarUrl:userInfo.avatarUrl" mode="aspectFill" @click="uploadAvatar"></image>
+						<image class="img" :src="avatarUrl?avatarUrl:userInfo.avatarUrl" mode="aspectFill" @click="uploadAvatar" v-if="avatarUrl || userInfo.avatarUrl"></image>
+						<image class="img" src="https://www.baogongtao.com/images/user.png" mode="aspectFill" @click="uploadAvatar" v-else></image>
 						<view style="height: 1upx;overflow:hidden;width: 100rpx;">
 							<avatar @upload="avatarUploaded" ref="avatar"></avatar>
 						</view>
@@ -21,7 +22,7 @@
 						<button type="primary" size="mini" class="plr5" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">一键授权</button>
 					</view>
 				</weui-input>
-				<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名或填写如：王先生" type="text" name="name"
+				<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名" type="text" name="name"
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr" datatype="require"
 				 :radioType="true" myclass="sex" right></weui-input>
@@ -45,13 +46,16 @@
 				 datatype="require" block></weui-input>
 				<dx-address v-model="ruleform.address" labeltxt="工作城市" datatype="require" ref="address" :addressHidden="true" 
 				 block></dx-address>
-				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="select" dataKey="emolumentArr"
-				 datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="manyselect" dataKey="emolumentArr"
+				 datatype="require" block splitWord="-"></weui-input>
 				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select" changeField="value"
 				 dataKey="applyStatusArr" datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人简介" placeholder="让HR快速了解你" type="textarea"
 				 name="remark" block></weui-input>
 				<dxftButton type="primary" size="lg" @click="submit(2)">提交</dxftButton>
+			</view>
+			<view v-if="step == 3">
+				<dx-results txt="简历提交完成" @click="goto('/pages/user/index/index',2)" ></dx-results>
 			</view>
 		</view>
 	</view>
@@ -61,6 +65,7 @@
 	import dxftButton from "doxinui/components/button/footer-button"
 	import {mapState, mapMutations, mapActions} from 'vuex'
 	import { loginSentMsg, login, userinfo } from "@/api/user";
+	import dxResults from "doxinui/components/results/results"
 	import {
 		attributes,wechatUser
 	} from "@/api/base";
@@ -68,7 +73,8 @@
 	export default {
 		components: {
 			dxftButton,
-			avatar
+			avatar,
+			dxResults
 		},
 		data() {
 			return {
@@ -100,7 +106,9 @@
 					{label: '8年',value: "8年"},
 					{label: '9年',value: "9年"},
 					{label: '10年',value: "10年"},
-					{label: '10年以上',value: "10年以上"}
+					{label: '10年-15年',value: "10年-15年"},
+					{label: '15年-20年',value: "15年-20年"},
+					{label: '25年以上',value: "25年以上"},
 				],
 				statusArr: [
 					{label: '职场人',value: 1},
@@ -217,10 +225,14 @@
 												data: res.data.worker
 											}
 											this.setUserInfo(userInfo);
-											this.msgSuccess('登录成功');
+										
 											//if(userInfo.data.status!=1) return this.timeoutLinkTo(this,'/pages/user/authenticate/index');
 											//return this.timeoutLinkTo(this,'/pages/user/authenticate/index');
-											return this.linkTo("/pages/user/index/index", 2);
+											this.getSuccess('简历提交完成');
+											 setTimeout(()=>{
+													return this.linkTo("/pages/user/index/index", 2);
+											 },1000)
+										
 										} else if (res.data.role == 6) {
 											let userInfo = {
 												data: res.data.staff

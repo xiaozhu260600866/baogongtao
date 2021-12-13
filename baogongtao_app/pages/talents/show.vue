@@ -13,7 +13,7 @@
 				<view class="info">
 					<view class="name">{{ruleform.name}}</view>
 					<view class="tag">
-						<view class="item">{{ruleform.experience?ruleform.experience:'经验不限'}}</view>
+						<view class="item">{{ruleform.experience?ruleform.experience+'工作经验':'经验不限'}}</view>
 						<view class="item">{{ruleform.birthday?ruleform.birthday:'暂无'}}</view>
 						<view class="item">{{ruleform.education?ruleform.education:'暂无'}}</view>
 					</view>

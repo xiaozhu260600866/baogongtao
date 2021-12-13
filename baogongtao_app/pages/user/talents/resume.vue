@@ -36,7 +36,8 @@
 				 datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect" dataKey="industryData" changeField="value"
 				 datatype="require" block></weui-input>
-				<dx-address v-model="ruleform.address" datatype="require" ref="address" :addressHidden="true" :emptyValue="true" block></dx-address>
+				 <weui-input v-model="ruleform.address" label="省市区" name="address" type="txt" datatype="require" block></weui-input>
+			<!-- 	<dx-address v-model="ruleform.address" datatype="require" ref="address" :addressHidden="true" :emptyValue="true" block></dx-address> -->
 				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="manyselect" dataKey="emolumentArr"
 				 datatype="require" block splitWord="-"></weui-input>
 				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select" changeField="value"
@@ -158,7 +159,11 @@
 			})
 			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 				this.ruleform = res.data.user.get_user_info;
-				this.avatarUrl = this.ruleform.avatarUrl
+				if(!this.ruleform.avatarUrl){
+					this.avatarUrl = res.data.user.get_wechat_user ? res.data.user.get_wechat_user.avatarUrl : 'https://www.baogongtao.com/images/user.png';	
+				}else{
+					this.avatarUrl = this.ruleform.avatarUrl
+				}
 
 			})
 			//this.ajax();

@@ -156,7 +156,12 @@ export default {
 			})
 			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 				this.ruleform = res.data.user.get_user_info;
+				if(!this.ruleform.avatarUrl){
+					this.avatarUrl = res.data.user.get_wechat_user ? res.data.user.get_wechat_user.avatarUrl : 'https://www.baogongtao.com/images/user.png';	
+				}else{
 					this.avatarUrl = this.ruleform.avatarUrl
+				}
+					
 			})
 			//this.ajax();
 		},

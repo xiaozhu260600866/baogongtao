@@ -9,13 +9,13 @@
 						<view class="left">
 							<view class="name fs-18 fw-bold fc-3">{{item.name}}</view>
 							<view class="labG">
-								<view class="lab Arial" v-if="item.get_user_info.experience">{{item.get_user_info.experience}}</view>
+								<view class="lab Arial" v-if="item.get_user_info.experience">{{item.get_user_info.experience}}工作经验</view>
 								<view class="lab" v-if="item.get_user_info.education">{{item.get_user_info.education}}</view>
 								<view class="lab" v-if="item.get_user_info.salary">{{item.get_user_info.salary}}</view>
 							</view>
 						</view>
 						<view class="right">
-							<image class="head" :src="item.get_wechat_user.avatarUrl" mode="aspectFill"></image>
+							<image class="head" :src="item.get_user_info.avatarUrl ? item.get_user_info.avatarUrl : item.get_wechat_user.avatarUrl" mode="aspectFill"></image>
 						</view>
 					</view>
 					<view class="con flex-middle fs-15 fc-3 pt10">

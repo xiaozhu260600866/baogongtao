@@ -97,7 +97,7 @@
 		{
 			"path": "pages/user/login/index/index",
 			"style": {
-				"navigationBarTitleText": "登录",
+				"navigationBarTitleText": "简历",
 				"enablePullDownRefresh": true
 			}
 		},
