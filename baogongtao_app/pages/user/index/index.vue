@@ -25,6 +25,7 @@
 						<view class="pl15 fc-white right info">
 							<view class="lh-24 fs-18">{{userInfo ? userInfo.get_user_info.name :wechatUser.nickName}}</view>
 							<view class="fs-15 Arial">{{userInfo.get_user_info.phone}}</view>
+							<view class="editIntro fs-15 mt5" v-if="wechatUser"><text class="dxi-icon dxi-icon-edit2 fs-13 mr5"></text>我的在线简历</view>
 						</view>
 					</view>
 				</view>
