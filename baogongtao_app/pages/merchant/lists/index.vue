@@ -5,18 +5,14 @@
 			<view class="banner bg-f">
 				<dxSwiper :data="sliders" :imageField="coverUrl" indicatorDotsActColor="#1e97ff"></dxSwiper>
 			</view>
-			<dx-nav-class :data="[
-				{url:'',type:1,cover:getSiteName+'/images/wap/index-wap-icon01.jpg',name:'热门'},
-				{url:'',type:1,cover:getSiteName+'/images/wap/index-wap-icon02.jpg',name:'最新'},
-				{url:'',type:1,cover:getSiteName+'/images/wap/index-wap-icon03.jpg',name:'附近'},
-				{url:'',type:2,cover:getSiteName+'/images/wap/index-wap-icon04.jpg',name:'综合'},
-			]" @click="checkAuth" myclass="mb10" :num="4" :nameSize="15" :namePTop="10" :imgR="20"></dx-nav-class>
+			<dx-nav-class :data="navs" @click="checkAuth" myclass="mb10" :num="4" :nameSize="15" :namePTop="10" :imgR="20"></dx-nav-class>
 			<merchantLists :data="data.lists.data" ></merchantLists>
 		</view>
 	</view>
 </template>
 
 <script>
+	import { multipleAttributes, multiplePosters } from "@/api/base";
 	import merchantLists from '@/components/merchantLists'
 	import dxSwiper from "@/components/swiper/swiper"
 	import dxNavClass from "doxinui/components/nav-class/nav-class"
@@ -24,13 +20,13 @@
 		components:{merchantLists,dxSwiper,dxNavClass},
 		data() {
 			return {
-				formAction: '/api/company/getLists?limit=15',
+				formAction: '/api/company/getLists?limit=15&shop_status=1',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
 				sliders:[
-					{coverUrl:'https://www.baogongtao.com/upload/images/poster/qaM33EeDK6.jpg'},
 				],
+				navs:[],
 				merchant:[
 					{
 						headerPic:'/static/images/news/01.jpg',
@@ -45,6 +41,16 @@
 			}
 		},
 		onLoad() {
+			multiplePosters({types:"12,13,7",nums:"5,4,1"}).then((res)=>{
+				this.sliders = res.data.data[12];
+				this.navs = res.data.data[13];
+				if(this.navs.length){
+					this.navs.forEach(v=>{
+						this.$set(v,"cover",v.coverMinUrl);
+					})
+				}
+				
+			});
 			this.ajax();
 		},
 		methods: {

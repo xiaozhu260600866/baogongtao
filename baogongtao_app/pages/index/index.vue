@@ -9,12 +9,7 @@
 			<view class="banner_ad bg-f mb10">
 				<image class="w-b100 flex" :src="banners[0].coverUrl" mode="widthFix"></image>
 			</view> -->
-			<dx-nav-class :data="[
-				{url:'/pages/merchant/recruit/lists/index',type:1,cover:getSiteName+'/images/wap/index-wap-icon01.jpg',name:'招聘'},
-				{url:'/pages/talents/lists',type:1,cover:getSiteName+'/images/wap/index-wap-icon02.jpg',name:'人才'},
-				{url:'/pages/merchant/lists/index',type:1,cover:getSiteName+'/images/wap/index-wap-icon03.jpg',name:'企业'},
-				{url:'/pages/merchant/coupon/lists/index',type:2,cover:getSiteName+'/images/wap/index-wap-icon04.jpg',name:'优惠券'},
-			]" @click="checkAuth" myclass="mb10" :num="4" :nameSize="15" :namePTop="10" :imgR="20" v-if="!examining"></dx-nav-class>
+			<dx-nav-class :data="navs" @click="checkAuth" myclass="mb10" :num="4" :nameSize="15" :namePTop="10" :imgR="20" v-if="!examining"></dx-nav-class>
 			<view v-if="!examining">
 				<view>
 					<view class="mll_tabs">
@@ -86,9 +81,16 @@ export default {
 			
 		})
 		this.pageLoading(this);
-		multiplePosters({types:"5,6,7",nums:"5,4,1"}).then((res)=>{
-			this.sliders = res.data.data[5];
-			this.navs = res.data.data[6];
+		
+		
+		multiplePosters({types:"8,9,7",nums:"5,4,1"}).then((res)=>{
+			this.sliders = res.data.data[8];
+			this.navs = res.data.data[9];
+			if(this.navs.length){
+				this.navs.forEach(v=>{
+					this.$set(v,"cover",v.coverMinUrl);
+				})
+			}
 			this.banners = res.data.data[7];
 			
 			this.pageLoading(this,false);
@@ -109,7 +111,12 @@ export default {
 			});
 		},
 		checkAuth(v){
-			return this.linkTo(v.url,v.type);
+			if(v.name == "优惠券"){
+				return this.linkTo(v.url,2);
+			}else{
+				return this.linkTo(v.url,v.type);
+			}
+			
 		},
 		getTaskLists(reload=0){
 			if(reload){

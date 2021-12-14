@@ -112,6 +112,13 @@
 			this.init();
 		},
 		onShow(){
+			this.$nextTick(()=>{
+				if(this.$refs.loginDiag){
+						this.$refs.loginDiag.thisDiag = false;
+				}
+			
+			})
+			
 			this.init();
 		},
 		methods: {

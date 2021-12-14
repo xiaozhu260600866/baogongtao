@@ -5,18 +5,14 @@
 			<view class="banner bg-f">
 				<dxSwiper :data="sliders" :imageField="coverUrl" indicatorDotsActColor="#1e97ff"></dxSwiper>
 			</view>
-			<dx-nav-class :data="[
-				{url:'',type:1,cover:getSiteName+'/images/wap/index-wap-icon01.jpg',name:'热门'},
-				{url:'',type:1,cover:getSiteName+'/images/wap/index-wap-icon02.jpg',name:'最新'},
-				{url:'',type:1,cover:getSiteName+'/images/wap/index-wap-icon03.jpg',name:'附近'},
-				{url:'',type:2,cover:getSiteName+'/images/wap/index-wap-icon04.jpg',name:'综合'},
-			]" @click="checkAuth" myclass="mb10" :num="4" :nameSize="15" :namePTop="10" :imgR="20"></dx-nav-class>
+			<dx-nav-class :data="navs" @click="checkAuth" myclass="mb10" :num="4" :nameSize="15" :namePTop="10" :imgR="20"></dx-nav-class>
 			<couponLists myclass="bg-f" :data="data.data.lists.data" :type="3"></couponLists>
 		</view>
 	</view>
 </template>
 
 <script>
+	import { multipleAttributes, multiplePosters } from "@/api/base";
 	import couponLists from '@/components/couponLists'
 	import dxSwiper from "@/components/swiper/swiper"
 	import dxNavClass from "doxinui/components/nav-class/nav-class"
@@ -24,10 +20,11 @@
 			components:{couponLists,dxSwiper,dxNavClass},
 			data() {
 				return {
-					formAction: '/api/company/coupons',
+					formAction: '/api/company/coupons?shop_status=1',
 					mpType: 'page', //用来分清父和子组件
 					data: this.formatData(this),
 					getSiteName: this.getSiteName(),
+					navs:[],
 					sliders:[
 						{coverUrl:'https://www.baogongtao.com/upload/images/poster/qaM33EeDK6.jpg'},
 					],
@@ -65,6 +62,18 @@
 				return this.shareSource(this, '包工淘');
 			},
 			onLoad() {
+				multiplePosters({types:"10,11,7",nums:"5,4,1"}).then((res)=>{
+					this.sliders = res.data.data[11];
+					this.navs = res.data.data[10];
+					if(this.navs.length){
+						this.navs.forEach(v=>{
+							this.$set(v,"cover",v.coverMinUrl);
+						})
+					}
+					
+					
+					
+				});
 				this.ajax();
 			},
 			methods: {

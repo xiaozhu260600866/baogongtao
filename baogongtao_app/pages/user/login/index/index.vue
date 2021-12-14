@@ -96,19 +96,6 @@
 					{label: '女',value: 2}
 				],
 				experienceYear: [
-					{label: '1年',value: "1年"},
-					{label: '2年',value: "2年"},
-					{label: '3年',value: "3年"},
-					{label: '4年',value: "4年"},
-					{label: '5年',value: "5年"},
-					{label: '6年',value: "6年"},
-					{label: '7年',value: "7年"},
-					{label: '8年',value: "8年"},
-					{label: '9年',value: "9年"},
-					{label: '10年',value: "10年"},
-					{label: '10年-15年',value: "10年-15年"},
-					{label: '15年-20年',value: "15年-20年"},
-					{label: '25年以上',value: "25年以上"},
 				],
 				statusArr: [
 					{label: '职场人',value: 1},
@@ -151,8 +138,11 @@
 			attributes({type:10,source:'app'}).then(res => {
 				this.positionData = res.data.lists;
 			})
+			attributes({type:11,source:'app'}).then(res => {
+				this.experienceYear = res.data.lists;
+			})
 			wechatUser().then(res=>{
-				this.userInfo = uni.getStorageSync('wxUser')
+				this.userInfo = uni.getStorageSync('userInfo')
 			})
 			// userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 			// 	this.ruleform = res.data.user.get_user_info;
