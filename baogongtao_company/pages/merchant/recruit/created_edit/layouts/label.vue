@@ -18,7 +18,7 @@
 				</view>
 			</view>
 			<view class="labelG">
-				<view class="fs-15 mtb15">热门标签1</view>
+				<view class="fs-15 mtb15">热门标签</view>
 				<dx-tag :type="changeStatus(item.label) ?'primary':'info'" myclass="mr5 mb5" hollow v-for="(item,key) in labelG" @click="canPush(item.label)">{{item.label}}</dx-tag>
 			</view>
 			<dxftButton type="primary" size="lg" @click="submit()">提交</dxftButton>

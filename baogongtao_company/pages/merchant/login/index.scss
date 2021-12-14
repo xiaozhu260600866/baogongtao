@@ -3,7 +3,9 @@ page{background: $color-white;}
 .register{
 	::v-deep .dx-cell{
 		.dx-label{
+			font-size: 32rpx;margin-bottom: 10rpx;
 			.star{display: none;}
 		}
+		.dx-input{font-size: 36rpx!important;}
 	}
 }

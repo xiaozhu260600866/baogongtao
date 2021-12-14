@@ -28,8 +28,8 @@
 				<view class="fs-15 text-right mt10 fc-3" @click="$refs.registerDiag.thisDiag = true">立即注册</view>
 			</view>
 		</form>
-		<dx-diag :tbPadding="25" :lrPadding="30" ref="registerDiag">
-			<dx-button type="success" size="lg" icon="dxi-icon dxi-icon-wechat-circle" block @getPhoneNumber="getPhoneNumber2" open-type="getPhoneNumber">微信快捷登录</dx-button>
+		<dx-diag :tbPadding="45" :lrPadding="40" ref="registerDiag" :bottomOFF="false">
+			<dx-button type="primary" size="lg" icon="dxi-icon dxi-icon-wechat-circle" block @getPhoneNumber="getPhoneNumber2" open-type="getPhoneNumber">微信快捷登录</dx-button>
 			<!-- <view class="msg flex-middle fs-13 fc-6 mt10">
 				<radio class="mr5" style="zoom: 75%;" checked="true" />
 				<view>同意<text class="main-color">《隐私政策》</text>和<text class="main-color">《使用协议》</text></view>

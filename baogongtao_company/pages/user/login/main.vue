@@ -28,7 +28,7 @@
 							 ></myform>
 
 				</view>
-				<view class="flex-between flex-right mt15 fc-6 fs-14">
+				<view class="flex-between flex-right mt15 fc-6 fs-14" :bottomOFF="false">
 					<view @click="goto('/pages/user/register/index',1)">快速注册</view>
 				</view>
 				<!-- <view class="mt15 other-type">
