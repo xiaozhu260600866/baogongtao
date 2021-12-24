@@ -1,0 +1,11 @@
+
+.integral-head{padding: 20rpx 20rpx 50rpx 40rpx;position: relative;}
+.integral-head .name{margin-bottom: 50rpx;}
+.integral-head .count-num{font-size: 92rpx;color: #fff;font-family: Arial;line-height: 1;}
+.integral-head .record{position: absolute;top: 20rpx;right: 20rpx;border: 1rpx #fff solid;display: block;height: 60rpx;line-height: 58rpx;text-align: center;padding: 0 30rpx;border-radius: 30rpx;margin: 0 auto;}
+
+.list-group{}
+.list-group-item{padding: 30rpx;display: flex;align-items: center;border-bottom: 1rpx #eee solid;}
+.list-group-item .img{width: 36rpx;height: 36rpx;display: flex;margin-right: 16rpx;}
+.list-group-item .name{flex: 1;overflow: hidden;font-size: 30rpx;}
+.list-group-item .icon{font-size: 24rpx;color: #999;}

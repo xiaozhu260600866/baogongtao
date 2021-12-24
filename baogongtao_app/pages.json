@@ -521,6 +521,55 @@
 				"navigationBarTitleText": "提现",
 				"enablePullDownRefresh": true
 			}
+		},
+		{
+			"path": "pages/integral/lists/main",
+			"style": {
+				"navigationBarTitleText": "积分商城",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/integral/order/buy",
+			"style": {
+				"navigationBarTitleText": "积分兑换",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/integral/show/main",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/integral/index/index",
+			"style": {
+				"navigationBarTitleText": "我的积分",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/integral/list/main",
+			"style": {
+				"navigationBarTitleText": "积分明细",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/integral/order/lists",
+			"style": {
+				"navigationBarTitleText": "积分订单",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/integral/sign/main",
+			"style": {
+				"navigationBarTitleText": "积分签到",
+				"enablePullDownRefresh": true
+			}
 		}
 	],
 	"tabBar": {

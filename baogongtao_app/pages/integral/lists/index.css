@@ -1,0 +1,17 @@
+/* 头部 */
+.info-header {width: 100%;display: flex;}
+.info-header .ih-item {width: 100%;text-align: center;}
+
+
+/* 竖排列表*/
+.pro-col {display: flex;justify-content: space-between;flex-direction: row;flex-wrap: wrap;box-sizing: border-box;padding: 20rpx 0;}
+.pro-col-item {flex: 1;margin: 0 16rpx;}
+.pro-col-item:last-child {margin-left: 0;}
+.pro-col-box {width: 100%;margin-bottom: 16rpx;background: #fff;box-sizing: border-box;border-radius: 12rpx;overflow: hidden;transition: all 0.15s ease-in-out;}
+.pro-col-box .img {width: 100%;display: block;min-height: ;}
+.pro-col-box .content {display: flex;flex-direction: column;justify-content: space-between;box-sizing: border-box;padding: 20rpx;position: relative;}
+.pro-col-box .tit {color: #2e2e2e;font-size: 32rpx;word-break: break-all;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;z-index: 2;text-align: justify;}
+.pro-col-box .priceG {margin-top: 16rpx;}
+.pro-col-box .price {font-size: 40rpx;font-weight: 500;color: #e41f19;}
+.pro-col-box .unit {font-size: 24rpx;color: #999;padding-left: 12rpx;}
+/* 竖排列表*/
