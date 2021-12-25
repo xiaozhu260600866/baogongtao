@@ -3,6 +3,10 @@
 		<page ref="page"></page>
 		<view class="pb70 resume">
 			<view class="step1 bg-f" v-if="step == 1">
+				<view class="tips lh-1 fs-14 plr15 ptb20 lh-1">
+					<view class="fs-24 fw-bold mb15">填写基本信息</view>
+					<view class="fs-17">快速创建简历，包工淘帮你升职加薪！</view>
+				</view>
 				<view class="dx-cell upload-head">
 					<view class="dx-cell_hd flex1">
 						<view class="dx-label fs-14">头像</view>
@@ -32,7 +36,7 @@
 				 changeField="value" block></weui-input>
 				<weui-input v-model="ruleform.experience" label="工作经验" name="experience" changeField="value" type="select" dataKey="experienceYear"
 				 datatype="require" placeholder="请选择工作年份如：5年" block></weui-input>
-				<dxftButton type="primary" size="lg" @click="submit(1)">下一步</dxftButton>
+				<dxftButton type="primary" size="lg" round myclass="big-btn" @click="submit(1)">下一步</dxftButton>
 			</view>
 			<view class="stpe2 bg-f" v-if="step == 2">
 				<!-- <view class="tips flex-between flex-middle lh-1 fs-14 fc-red plr15 ptb12">
@@ -50,9 +54,8 @@
 				 datatype="require" block splitWord="-"></weui-input>
 				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select" changeField="value"
 				 dataKey="applyStatusArr" datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人简介" placeholder="让HR快速了解你" type="textarea"
-				 name="remark" block></weui-input>
-				<dxftButton type="primary" size="lg" @click="submit(2)">提交</dxftButton>
+				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人简介" placeholder="我主要负责***工作，取得***结果；具体工作为：1、负责***；2、参与***；3、完成***" type="textarea" name="remark" block></weui-input>
+				<dxftButton type="primary" size="lg" myclass="big-btn" round @click="submit(2)">提交</dxftButton>
 			</view>
 			<view v-if="step == 3">
 				<dx-results txt="简历提交完成" @click="goto('/pages/user/index/index',2)" ></dx-results>

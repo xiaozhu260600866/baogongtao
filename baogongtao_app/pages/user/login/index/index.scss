@@ -41,21 +41,18 @@
 // 简历
 .resume{
 	::v-deep .dx-cell{
-		font-size: 32rpx!important;
-		&.dx-cell_block{
-			.dx-label{font-size: 28rpx;margin-bottom: 10rpx;}
+		font-size: 36rpx!important;
+		.dx-cell_hd{
+			.dx-label{font-size: 30rpx;margin-bottom: 10rpx;}
 		}
 		.dx-cell_bd{
-			.dx-input{font-size: 32rpx!important;}
-			.dx-text{border: 1rpx #ddd solid;border-radius: 8rpx;padding: 20rpx;min-height: 240rpx;height: 240rpx;line-height: 1.6;}
+			.dx-input{font-size: 36rpx!important;}
+			.dx-text{border: 1rpx #ddd solid;border-radius: 8rpx;padding: 20rpx;min-height: 360rpx;height: 360rpx;line-height: 1.6;margin-bottom: 10rpx;font-size: 36rpx!important;}
 		}
 		.sq-nav{position: absolute;bottom: 20rpx;right: 30rpx;z-index: 10;}
-		// &.sex{
-		// 	.dx-check_label{border: 1rpx #999 solid;position: relative;width: 120rpx;justify-content: center;
-		// 		.dx-checkbox{position: absolute;left: 0;top: 0;z-index: 1;}
-		// 		.dx-checktxt{position: relative;z-index: 2;}
-		// 	}
-		// }
+		&.sex{
+			.dx-cell_bd{line-height: 80rpx!important;;min-height: 80rpx!important;}
+		}
 	}
 	.dx-cell.upload-head{
 		display: flex!important;
@@ -64,7 +61,15 @@
 			.img{width: 100rpx;height: 100rpx;border-radius: 50%;display: flex;}
 		}
 	}
+	&::after{transition: all 0.5s}
+	&:hover::after,
+	&:focus::after{background-color: $color-primary!important;}
+	.sq-nav{display: flex;
+		button{line-height: 2.6!important;padding: 0 30rpx!important;font-size: 30rpx!important;}
+	}
 	.tips{
-		background: #DEDFFD;
+		// background: #DEDFFD;
 	}
 }
+
+.dx-cell .dx-input,.dx-cell .order-picker,.dx-cell .picker{line-height: 80rpx!important;;min-height: 80rpx!important;height: 80rpx!important;}

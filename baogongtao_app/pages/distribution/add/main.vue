@@ -3,7 +3,7 @@
 		<page :parentData="data" :formAction="formAction"></page>
 		<view>
 			<view class="dis-add">
-				<view class="tips">填写真实信息，成为我们的合作伙伴！</view>
+				<view class="tips">分享达人注册</view>
 				<view class="item inputG">
 					<input type="text" placeholder="请填写您的姓名" class="input" v-model.lazy="ruleform.name" />
 				</view>
@@ -12,13 +12,13 @@
 				</view> -->
 				<weui-input v-model="ruleform.phone" placeholder="请一键授权手机号" type="text" myclass="inputG" name="phone" datatype="require" :disabled="false">
 					<view slot="right" class="sq-nav">
-						<button type="primary" size="mini" class="plr5" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">一键授权</button>
+						<button type="primary" size="mini" class="plr10 bdr20" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">一键授权</button>
 					</view>
 				</weui-input>
 				<view class="item">
 					<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="formSubmit()">
 						<view slot="content">
-							<dx-button type="primary" size="lg" myclass="mt15 mlr5" icon="dxi-icon dxi-icon-wechat" block>提交</dx-button>
+							<dx-button type="primary" size="lg" myclass="mt15 mlr5 ptb15" round block>提交</dx-button>
 						</view>
 					</myform>
 				</view>
