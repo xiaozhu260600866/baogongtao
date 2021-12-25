@@ -32,6 +32,7 @@ button::after{border: 0;}
 .dx-btn-blue-o{border-color: $color-primary;color: $color-primary;}
 .sys-btn{background: $color-primary;color: #fff;border-radius: 10upx;}
 .dx-cell::after{background-color: #ddd!important;}
+.big-btn .dxi-btn{padding: 30rpx 46rpx!important;border-radius: 60rpx;font-size: 36rpx!important;}
 
 
 /* 定位底部 */

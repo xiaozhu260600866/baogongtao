@@ -1,25 +1,28 @@
 <template>
 	<view class="container">
 		<page ref="page"></page>
-		<view class="tui-bg-box">
+		<!-- <view class="tui-bg-box">
 			<image src="/static/images/login/bg_login.png" class="tui-bg-img"></image>
 			<image :src="wxUser.avatarUrl" class="tui-photo"></image>
 			<view class="tui-login-name">{{wxUser.nickName}}</view>
-		</view>
+		</view> -->
 		<form @submit="formLogin">
-			<view class="tui-login-from pt0">
-				<view class="logo">
+			<view class="tui-login-from">
+				<!-- <view class="logo">
 					<image class="img" src="https://www.baogongtao.com/images/logo.jpg"></image>
-				</view>
+				</view> -->
+				<view class="tips fs-26 mb30">包工淘企业端</view>
 				<view class="tui-line-cell">
-					<tui-icon name="people" size="20" color='#5677fc'></tui-icon>
+					<!-- <tui-icon name="people" size="20" color='#5677fc'></tui-icon> -->
 					<input placeholder-class="phcolor" class="tui-input" name="mobile" placeholder="请输入手机号" v-model="username" type="text" />
 				</view>
 				<view class="tui-line-cell tui-top28 mb20">
-					<tui-icon name="pwd" size="20" color='#5677fc'></tui-icon>
+					<!-- <tui-icon name="pwd" size="20" color='#5677fc'></tui-icon> -->
 					<input type="password" placeholder-class="phcolor" class="tui-input" name="smsCode" placeholder="请输入登录密码" maxlength="10" v-model="password" />
 				</view>
-				<form-submit className="tui-btn-submit" :vaildate="false" @callBack="submit" name="登录"></form-submit>
+				<view class="tui-btn-submit">
+					<form-submit :vaildate="false" @callBack="submit" name="登录"></form-submit>
+				</view>
 
 				<!-- <view class="tui-protocol" hover-class="opcity" :hover-stay-time="150">点击"登录"即表示已同意
 					<text class="tui-protocol-red" @tap="protocol">《用户协议》</text>
@@ -28,8 +31,8 @@
 				<view class="fs-15 text-right mt10 fc-3" @click="$refs.registerDiag.thisDiag = true">立即注册</view>
 			</view>
 		</form>
-		<dx-diag :tbPadding="45" :lrPadding="40" ref="registerDiag" :bottomOFF="false">
-			<dx-button type="primary" size="lg" icon="dxi-icon dxi-icon-wechat-circle" block @getPhoneNumber="getPhoneNumber2" open-type="getPhoneNumber">微信快捷登录</dx-button>
+		<dx-diag title="登录或注册" ref="registerDiag" :bottomOFF="false">
+			<dx-button type="primary" size="lg" myclass="mt15 mlr5" round icon="dxi-icon dxi-icon-wechat-circle" block @getPhoneNumber="getPhoneNumber2" open-type="getPhoneNumber">微信快捷登录</dx-button>
 			<!-- <view class="msg flex-middle fs-13 fc-6 mt10">
 				<radio class="mr5" style="zoom: 75%;" checked="true" />
 				<view>同意<text class="main-color">《隐私政策》</text>和<text class="main-color">《使用协议》</text></view>

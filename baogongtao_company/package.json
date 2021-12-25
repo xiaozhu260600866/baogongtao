@@ -24,6 +24,7 @@
   ],
   "dependencies": {
     "axios": "^0.19.0",
-    "doxinui": "^2021.10.4"
+    "doxinui": "^2021.12.16",
+    "xiaozhu": "^2021.12.17"
   }
 }

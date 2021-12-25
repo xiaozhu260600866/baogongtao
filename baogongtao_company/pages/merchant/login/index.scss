@@ -3,9 +3,15 @@ page{background: $color-white;}
 .register{
 	::v-deep .dx-cell{
 		.dx-label{
-			font-size: 32rpx;margin-bottom: 10rpx;
+			font-size: 30rpx;margin-bottom: 10rpx;
 			.star{display: none;}
 		}
 		.dx-input{font-size: 36rpx!important;}
+		&::after{transition: all 0.5s}
+		&:hover::after,
+		&:focus::after{background-color: $color-primary!important;}
 	}
 }
+
+
+.dx-cell .dx-input,.dx-cell .dx-txt,.dx-cell .order-picker,.dx-cell .picker{line-height: 80rpx!important;;min-height: 80rpx!important;height: 80rpx!important;}
