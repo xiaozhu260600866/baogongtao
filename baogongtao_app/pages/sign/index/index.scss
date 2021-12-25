@@ -1,0 +1,36 @@
+.sign-box{
+	.sign-item{
+		background-color: #fff;margin-bottom: 24rpx;
+		::v-deep .dx-cell{
+			border-bottom: 0!important;
+		}
+		&:first-child{margin-top: 0;}
+	}
+}
+
+.sign-time{
+	::v-deep .dxi-list-msg{
+		.msg-box{flex: none!important;}
+		.msg-right{
+			flex: 1;
+			.slot-right{
+				display: flex;align-items: center;
+				.left{flex: 1;padding-right: 20rpx;line-height: 1.4;}
+				.right{
+					.dxi-btn{font-size: 36rpx;padding: 20rpx 0;font-family: Arial;width: 144rpx;justify-content: center;}
+					.dxi-btn-time{color: #ff0000;font-size: 40rpx;}
+				}
+			}
+		}
+	}
+}
+
+#location{
+	height: 300rpx;position: relative;
+	map{width: 100%;height: 100%;display: flex;}
+}
+
+#sign{position: relative;width: 40%;margin: 50upx auto;border: #5585f1 8px solid;border-radius: 50%;}
+#sign #con{position: absolute;top: 18%;left: 0;right: 0;text-align: center;}
+#sign #timer{font-size: 38px;color: #d67e0b;}
+#sign .txt{font-size: 16px;color: #999;}

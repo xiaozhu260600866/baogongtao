@@ -570,6 +570,20 @@
 				"navigationBarTitleText": "积分签到",
 				"enablePullDownRefresh": true
 			}
+		},
+		{
+			"path": "pages/sign/index/index",
+			"style": {
+				"navigationBarTitleText": "签到",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/sign/lists/index",
+			"style": {
+				"navigationBarTitleText": "打卡记录",
+				"enablePullDownRefresh": true
+			}
 		}
 	],
 	"tabBar": {

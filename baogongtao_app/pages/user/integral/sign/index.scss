@@ -1,4 +1,4 @@
-.sign-top{text-align: center;position: relative;padding: 20px 0;display: flex;-webkit-justify-content: center;align-items: center;background: #33c45d;}
+.sign-top{text-align: center;position: relative;padding: 20px 0;display: flex;-webkit-justify-content: center;align-items: center;background: $color-primary;}
 .sign-top .header-img{width: 60px;height: 60px;margin: 0 auto;border-radius: 50%;border: 2px #fff solid;}
 .sign-top .header-img image{width: 56px;height: 56px;border-radius: 50%;display: flex;}
 .sign-top .sign-btn{border: 1px #fff solid;display: block;height: 30px;line-height: 30px;width: 110px;border-radius: 30px;color: #fff;font-size: 16px;margin: 0 auto;padding: 0;background: transparent;}
@@ -25,10 +25,10 @@
 .runing .progress:before,.runing .progress ._p:before{content: "";display: block;position: absolute;left: 0;right: 0;top: 50%;margin-top: -3px;height: 6px;width: 100%;background: #fff;z-index: 0;}
 .runing .progress .circular{display: inline-block;width: 30px;height: 30px;background: #fff;border-radius: 50%;position: relative;z-index: 9;}
 .runing .status .nav{border: 1px #999 solid;}
-.runing .cur .circular{background: #24B2F2;}
-.runing .add-cale .cur{background: #24B2F2!important;}
+.runing .cur .circular{background: $color-primary;}
+.runing .add-cale .cur{background: $color-primary!important;}
 .runing .add-cale .cur ._p{color: #fff!important;}
-.runing .add-cale .cur:before{border-top-color: #24B2F2;}
-.runing .status .cur ._p{color: #24B2F2!important;}
-.runing .status .cur .nav{border-color: #24B2F2;}
-.runing .progress .cur:before{background: #24B2F2;}
+.runing .add-cale .cur:before{border-top-color: $color-primary;}
+.runing .status .cur ._p{color: $color-primary!important;}
+.runing .status .cur .nav{border-color: $color-primary;}
+.runing .progress .cur:before{background: $color-primary;}
