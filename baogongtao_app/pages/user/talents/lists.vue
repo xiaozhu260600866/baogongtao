@@ -6,22 +6,31 @@
 				<view class="jobs_item p15 bg-f mb8" v-for="(v,key) in data.data.lists.data">
 					<view @click="linkTo('/pages/merchant/recruit/show/index?id='+v.id,1)">
 						<view class="flex-between fs-17 fw-bold">
-							<view class="position">{{v.get_recruit.job_position}}</view>
+							<view class="position fc-3">{{v.get_recruit.job_position}}</view>
 							<view class="main-color Arial">{{v.get_recruit.salary}}</view>
 						</view>
-						<view class="info fs-15 flex-middle lh-1 mt8 fc-6" v-if="type == 1">
-							<view class="tag mr10">{{v.get_company.name}}</view>
-						<!-- 	<view class="tag mr10 Arial">{{v.get_company.people_num}}人</view>
-							<view class="tag mr10">{{v.get_company.status}}</view> -->
+						<view class="info fs-15 flex-middle lh-1 mt8 fc-6" v-if="v.get_recruit">
+							<view class="tag mr10">{{v.get_recruit.name}}</view>
+							<!-- <view class="tag mr10 Arial">{{v.get_recruit.people_num}}人</view>
+							<view class="tag mr10">{{v.get_recruit.status}}</view> -->
 						</view>
 						<view class="condition">
-							<view class="lab" v-for="item in getTag(v.get_recruit)">{{item}}</view>
+							<view class="lab" v-for="item in getTag(v)">{{item}}</view>
+						</view>
+						<view class="userInfo mt10 flex-middle fs-14" v-if="v.get_recruit">
+							<image class="head" :src="v.get_recruit.logoMinUrl" mode="aspectFill"></image>
+							<view class="left flex1 ml10 flex-middle">
+								<view class="name">{{v.get_recruit.charger_name ? v.get_recruit.charger_name :'暂无' }}</view>
+								<view class="dot mlr5"></view>
+								<view class="position">{{v.get_recruit.position ? v.get_recruit.position :'暂无' }}</view>
+							</view>
+							<view class="place fc-b" v-if="v.get_recruit.province">{{v.get_recruit.city}} {{v.get_recruit.area}}</view>
 						</view>
 					</view>
-					<dx-button myclass="plr30" type="primary" size="medium" round @click="linkTo('/pages/merchant/recruit/record/index?id='+v.id+'&recruit_id='+v.recruit_id,1)">编辑</dx-button>
-					<dx-button myclass="ml10 plr30" size="medium" round @click="del(v)">删除</dx-button>
+					<dx-button myclass="ml10 plr30" size="medium" round @click="del(v)">取消应聘</dx-button>
 				</view>
 			</view>
+			<view class="p50 fs-14 fc-9 text-center" v-if="data.data.lists.data.length == 0">暂无记录</view>
 		</view>
 	</view>
 </template>

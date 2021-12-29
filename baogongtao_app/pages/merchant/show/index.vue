@@ -70,11 +70,8 @@ import dxListCell from "doxinui/components/list-cell/list-cell"
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
-				sliders: [
-				],
-				detail:{
-					
-				}
+				sliders: [],
+				detail:{}
 			}
 		},
 		onLoad() {

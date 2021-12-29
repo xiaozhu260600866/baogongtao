@@ -67,7 +67,7 @@
 				</view>
 				<dx-nav-class :data="menuArr" @click="checkAuth" isAuth myclass="bdr12" :num="4" :iconSize="24" :nameSize="14" :namePTop="10"></dx-nav-class>
 			</view>
-			<dx-diag title="登录或注册" :titBold="false" :bottomOFF="false" ref="loginDiag">
+			<dx-diag title="登录或注册简历" :titBold="false" :bottomOFF="false" ref="loginDiag">
 				<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="wechatInfoCallBack">
 					<view slot="content">
 						<dx-button type="primary" size="lg" myclass="mt15 mlr5" icon="dxi-icon dxi-icon-wechat" block>微信账号快速登录</dx-button>
