@@ -13,7 +13,21 @@ const userRouter = {
         component: () => import('@/views/company/lists'),
         name: 'CompanyLists',
         meta: { title: '企业', icon: 'dx-company' }
-    }, {
+    },
+	{
+	    path: 'recruit_lists',
+	    component: () => import('@/views/company/recruit'),
+	    name: 'CompanyLists',
+	    meta: { title: '企业招聘', icon: 'dx-company' }
+	},
+	{
+	    path: 'coupon_lists',
+	    component: () => import('@/views/company/coupon'),
+	    name: 'CompanyLists',
+	    meta: { title: '企业优惠券', icon: 'dx-company' }
+	},
+
+	{
         path: '/company/create',
         component: () => import('@/views/company/create'),
         name: 'CompanyCreate',

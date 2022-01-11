@@ -8,12 +8,16 @@ const companyRouter = {
     redirect: 'noRedirect',
     name: 'Company',
     meta: { title: '企业管理', icon: 'dx-company' },
-    children: [{
+    children: [
+
+		{
         path: 'lists',
         component: () => import('@/views/company/lists'),
         name: 'CompanyLists',
         meta: { title: '企业管理', icon: 'dx-company' }
-    }, {
+    },
+
+	{
         path: 'create',
         component: () => import('@/views/company/create'),
         name: 'CompanyCreate',

@@ -28,6 +28,41 @@ export function del(data) {
         data
     })
 }
+export function recruitLists(data) {
+    return request({
+        url: '/company/recruits',
+        method: 'post',
+        data
+    })
+}
+export function recruitDel(data) {
+    return request({
+        url: '/company/recruit-del',
+        method: 'post',
+        data
+    })
+}
+export function couponLists(data) {
+    return request({
+        url: '/company/coupons',
+        method: 'post',
+        data
+    })
+}
+export function couponStore(data) {
+    return request({
+        url: '/company/coupon-store',
+        method: 'post',
+        data
+    })
+}
+export function couponDel(data) {
+    return request({
+        url: '/company/coupon-del',
+        method: 'post',
+        data
+    })
+}
 export function transfers(data) {
     return request({
         url: '/company/transfers',
