@@ -198,7 +198,7 @@
 					return false;
 					
 				}else{
-						return  v.name == '分享达人' ? this.goto(v.url,1) : this.checkUser(v.url,1);
+						return  v.name == '分享达人'  || v.name == '签到'? this.goto(v.url,1) : this.checkUser(v.url,1);
 				}
 			
 			},

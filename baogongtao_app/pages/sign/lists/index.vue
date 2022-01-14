@@ -7,7 +7,7 @@
 			<view class="duty-count">
 				<view class="dc-item" v-for="(item,key) in data.lists.data">
 					<!-- <view class="title">客户：{{ item.user_name }}</view>签{{item.type == 0 ? '到' :'退'}} -->
-					<view class="title">{{item.getType}}</view>
+					<view class="title">{{item.type == 0 ? '上班' : '下班'}}</view>
 					<view class="mark">地址：{{ item.address }}</view>
 					<view class="mark">时间：<text class="Arial">{{ item.created_at }}</text></view>
 					<view class="mark" v-if="item.remark">备注：{{ item.remark }}</view>
@@ -28,7 +28,7 @@
 		components:{dxTabsDate},
 		data() {
 			return {
-				formAction: '/staff/sign-lists',
+				formAction: '/api/user/sign-lists',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
@@ -77,7 +77,7 @@
 				})
 			},
 			ajax() {
-				this.getAjax(this,{searchType:this.searchType}).then(msg => {
+				this.getAjax(this,{searchType:this.searchType,token:uni.getStorageSync('token')}).then(msg => {
 					console.log(this.data);
 				});
 			}
