@@ -9,3 +9,18 @@
 	}
 	.img{display: flex;width: 140rpx;height: 140rpx;border-radius: 6rpx;}
 }
+
+.sign_block{
+	margin: 24rpx;background-color: #fff;border-radius: 12rpx;
+	.title{
+		font-size: 32rpx;line-height: 80rpx;padding: 0 30rpx;position: relative;
+		&::after{content: '';display: block;position: absolute;left: 30rpx;right: 30rpx;bottom: 0;height: 2rpx;transform: scaleY(.5);background-color: #eee;}
+	}
+	.item{
+		display: flex;position: relative;align-items: center;height: 120rpx;padding: 20rpx 30rpx;
+		&::after{content: '';display: block;position: absolute;left: 30rpx;right: 0;bottom: 0;height: 2rpx;transform: scaleY(.5);background-color: #eee;}
+		.dateAtime{
+			font-size: 40rpx;
+		}
+	}
+}

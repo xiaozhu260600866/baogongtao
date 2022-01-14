@@ -1,58 +1,100 @@
 <template>
 	<view class="pb60">
 		<view class="sign-box" v-if="show">
-			<view v-if="loginDiv">
-				<dx-button type="primary" size="lg" round open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">
-					一键授权登录</dx-button>
+			<view class="plr20" v-if="loginDiv">
+				<view class="head">
+					<image class="img" src="/static/images/news/01.jpg"></image>
+				</view>
+				<dx-button type="primary" size="lg" block round open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">一键授权登录</dx-button>
 			</view>
-			<view v-else>
-				<view id="location" class="sign-item mb0">
-					<map style="width: 100%;" :latitude="ruleform.location_x" :longitude="ruleform.location_y"
-						:enable-zoom="false" :enable-scroll="false"></map>
+			<view class="sign_info" v-else>
+				<view class="map-item">
+					<map class="map" :latitude="ruleform.location_x" :longitude="ruleform.location_y" :enable-zoom="false" :enable-scroll="false"></map>
 				</view>
-				<view class="sign-item">
-					<view class="title pt15 plr15 lh-1">上传图片</view>
-					<weui-input v-model="ruleform.cover" type="upload" upurl='sign' allowUpLoadNum="4" name="cover"
-						datatype="array" :sourceType="1"></weui-input>
+				<view class="location-info">
+					<view class="headPic">
+						<image class="img" src="/static/images/news/01.jpg"></image>
+					</view>
+					<view class="area">{{ruleform.area}}</view>
+					<view class="address">{{ruleform.address}}</view>
+					
 				</view>
-				<view class="sign-item">
-					<weui-input v-model="ruleform.remark" placeholder="请填写备注信息" type="textarea" name="remark">
-					</weui-input>
+				<!-- 如果是外出:start -->
+				<view class="sign_write" v-if="goout">
+					<view class="remark text-center fs-15 ptb10 lh-1" @click="goto('/pages/sign/index/layouts/remark',1)">添加备注...</view>
+					<weui-input v-model="ruleform.cover" type="upload" upurl='sign' allowUpLoadNum="4" name="cover" datatype="array" :sourceType="1"></weui-input>
 				</view>
-				<!-- <view id="sign">
-				<image class="w-b100" src="/static/image/square.png" mode="widthFix"></image>
-				<view id="con">
-					<view id="timer">{{ timeHour }}<text :class="[timePointer?'fc-white':'']">:</text>{{ timeMinute }}</view>
-					<view class="txt">{{ locationStatus?'打卡':'定位中...' }}</view>
+				<!-- 如果是外出:end -->
+				<!-- <view class="sign-item">
+					<weui-input v-model="ruleform.remark" placeholder="请填写备注信息" type="textarea" name="remark"></weui-input>
 				</view>
-			</view> -->
-				<button  @click="goto('/pages/sign/lists/index',1)">打卡记录</button>
-
-				<dxftButton type="primary" size="lg" round @click="signIn()">打卡</dxftButton>
+				<view id="sign">
+					<image class="w-b100" src="/static/image/square.png" mode="widthFix"></image>
+					<view id="con">
+						<view id="timer">{{ timeHour }}<text :class="[timePointer?'fc-white':'']">:</text>{{ timeMinute }}</view>
+						<view class="txt">{{ locationStatus?'打卡':'定位中...' }}</view>
+					</view>
+				</view> -->
+				<view class="sign_time" @click="signIn()">
+					<view class="time">
+						<text class="Arial">14</text>
+						<text class="plr3">:</text>
+						<text class="Arial">15</text>
+					</view>
+					<view class="txt">
+						<!-- 如果是外出 -->
+						<view v-if="goout">第<text class="plr2 Arial">1</text>次外出</view>
+						<!-- 如果是上下班 -->
+						<view v-else>{{up?'上':'下'}}班</view>
+					</view>
+				</view>
+				<view class="sign_record" @click="goto('/pages/sign/lists/index',1)">打卡记录</view>
+				<!-- <dxftButton type="primary" size="lg" round @click="signIn()">打卡</dxftButton> -->
 				<!-- <dxftButton type="primary" size="lg" round @click="goto('/pages/sign/lists/index',1)">打卡记录</dxftButton> -->
+			</view>
+			<view class="sign_results" v-if="singResults">
+				<view class="icon"><text class="dxi-icon dxi-icon-success"></text></view>
+				<view class="txt">
+					<!-- 如果是外出 -->
+					<text v-if="goout">外出打卡成功</text>
+					<!-- 如果是上下班 -->
+					<text v-else>{{up?'上':'下'}}班打卡成功</text>
+				</view>
+				<view class="results-info">
+					<view class="row">
+						<view class="llabel">时间</view>
+						<view class="rvalue Arial">09:31</view>
+					</view>
+					<view class="row">
+						<view class="llabel">位置</view>
+						<view class="rvalue">{{ruleform.area}}</view>
+					</view>
+					<!-- 如果是外出:start -->
+					<block v-if="goout">
+						<view class="row">
+							<view class="llabel">备注</view>
+							<view class="rvalue">备注内容</view>
+						</view>
+						<view class="row">
+							<view class="llabel">图片</view>
+							<view class="rvalue">
+								<image class="img" :src="remarkImg" mode="aspectFill" @click="previewImage(remarkImg)"></image>
+							</view>
+						</view>
+					</block>
+					<!-- 如果是外出:end -->
+				</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import dxListMsg from "doxinui/components/list-cell/list-msg"
 	import dxftButton from "doxinui/components/button/footer-button"
-	import {
-		mapState,
-		mapMutations,
-		mapActions
-	} from 'vuex'
-	import {
-		userinfo,
-		action,
-		logout
-	} from "@/api/user";
+	import {mapState,mapMutations,mapActions} from 'vuex'
+	import {userinfo,action,logout} from "@/api/user";
 	export default {
-		components: {
-			dxListMsg,
-			dxftButton
-		},
+		components: {dxftButton},
 		data() {
 			return {
 				formAction: '/api/user/signIn',
@@ -76,6 +118,10 @@
 				amX: 3,
 				pmS: 1,
 				pmX: 1,
+				remarkImg:'../../../static/images/news/03.jpg',
+				singResults:false,
+				goout:true,
+				up:true,
 			}
 		},
 
@@ -88,10 +134,8 @@
 					this.getThisAddress(res, false);
 				},
 				fail: res => {
-			
 				},
 				cancel: res => {
-			
 				}
 			});
 			if(!uni.getStorageSync('sysStaff')){
@@ -107,10 +151,8 @@
 						this.loginDiv = false;
 					}
 					this.show = true;
-				
 				})
 			}
-			
 			//this.ajax();
 		},
 		onPullDownRefresh() {
@@ -142,18 +184,19 @@
 				});
 			},
 			signIn(type) {
-				if (this.ruleform.cover.length == 0) {
-					return this.getError("必须上传图片");
-				}
-				this.ruleform.type = type;
-				this.ruleform.token = uni.getStorageSync('token');
-				this.postAjax(this.formAction, this.ruleform).then(msg => {
-					if(msg.data.status == 2){
-						this.ruleform.cover = [];
-						this.ruleform.remark = "";
-					}
+				this.singResults = true;
+				// if (this.ruleform.cover.length == 0) {
+				// 	return this.getError("必须上传图片");
+				// }
+				// this.ruleform.type = type;
+				// this.ruleform.token = uni.getStorageSync('token');
+				// this.postAjax(this.formAction, this.ruleform).then(msg => {
+				// 	if(msg.data.status == 2){
+				// 		this.ruleform.cover = [];
+				// 		this.ruleform.remark = "";
+				// 	}
 					
-				})
+				// })
 			},
 			getThisAddress(res) {
 				uni.request({
@@ -165,6 +208,7 @@
 						this.ruleform.location_y = res.longitude;
 						this.ruleform.address = res2.data.result.address;
 						this.ruleform.city = res2.data.result.address_component.city;
+						this.ruleform.area = res2.data.result.formatted_addresses.rough;
 						console.log(res2.data.result.address_component.city)
 					}
 				});
@@ -188,21 +232,22 @@
 				this.timePointer = !this.timePointer;
 
 			},
+			previewImage:function(url){
+				uni.previewImage({
+					urls: [url]
+				})
+			},
 			ajax() {
 
 				this.getAjax(this).then(msg => {
 					let morningData = [];
 					let afterroomData = [];
-
-
-
-					
-
 				});
 			}
 		}
 	}
 </script>
-<style scoped="" lang="scss">
-	@import "./index.scss";
+<style lang="scss">
+page{background-color: #fff;}
+@import "./index.scss";
 </style>

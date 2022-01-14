@@ -579,6 +579,13 @@
 			}
 		},
 		{
+			"path": "pages/sign/index/layouts/remark",
+			"style": {
+				"navigationBarTitleText": "备注",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
 			"path": "pages/sign/lists/index",
 			"style": {
 				"navigationBarTitleText": "打卡记录",
