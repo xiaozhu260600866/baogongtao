@@ -65,7 +65,8 @@
 				"navigationBarTitleText": "我的",
 				"navigationBarBackgroundColor": "#1e97ff",
 				"navigationBarTextStyle": "white",
-				"backgroundColorTop": "#1e97ff"
+				"backgroundColorTop": "#1e97ff",
+				"enablePullDownRefresh": true
 			}
 		},
 		/*{

@@ -109,6 +109,16 @@
 				show:false,
 			}
 		},
+		onReachBottom() {
+			this.hasMore(this);
+		},
+		onPullDownRefresh() {
+			this.data.nextPage = 1;
+			this.ajax();
+		},
+		onShareAppMessage() {
+			return this.shareSource(this, '包工淘');
+		},
 		onLoad() {
 			this.init();
 		},
