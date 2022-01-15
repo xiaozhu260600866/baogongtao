@@ -22,7 +22,7 @@
 				<!-- 如果是外出:start -->
 				<view class="sign_write" v-if="goout">
 					<view class="remark text-center fs-15 ptb10 lh-1" @click="goto('/pages/sign/index/layouts/remark',1)">添加备注...</view>
-					<weui-input v-model="ruleform.cover" type="upload" upurl='sign' allowUpLoadNum="4" name="cover" datatype="array" :sourceType="1"></weui-input>
+				
 				</view>
 				<!-- 如果是外出:end -->
 				<!-- <view class="sign-item">
@@ -37,15 +37,15 @@
 				</view> -->
 				<view class="sign_time" @click="signIn()">
 					<view class="time">
-						<text class="Arial">14</text>
+						<text class="Arial">{{data.h}}</text>
 						<text class="plr3">:</text>
-						<text class="Arial">15</text>
+						<text class="Arial">{{data.m}}</text>
 					</view>
 					<view class="txt">
 						<!-- 如果是外出 -->
-						<view v-if="goout">第<text class="plr2 Arial">1</text>次外出</view>
+						<view v-if="goout">第<text class="plr2 Arial">{{data.count +1 }}</text>次外出</view>
 						<!-- 如果是上下班 -->
-						<view v-else>{{up?'上':'下'}}班</view>
+						<view v-else-if="data.count < 2">{{up?'上':'下'}}班</view>
 					</view>
 				</view>
 				<view class="sign_record" @click="goto('/pages/sign/lists/index',1)">打卡记录</view>
@@ -58,12 +58,12 @@
 					<!-- 如果是外出 -->
 					<text v-if="goout">外出打卡成功</text>
 					<!-- 如果是上下班 -->
-					<text v-else>{{up?'上':'下'}}班打卡成功</text>
+					<text v-else>{{singResultData.type == 0?'上':'下'}}班打卡成功</text>
 				</view>
 				<view class="results-info">
 					<view class="row">
 						<view class="llabel">时间</view>
-						<view class="rvalue Arial">09:31</view>
+						<view class="rvalue Arial">{{data.h}}:{{data.m}}</view>
 					</view>
 					<view class="row">
 						<view class="llabel">位置</view>
@@ -106,7 +106,9 @@
 					location_y: '',
 					address: '',
 					city: '',
-					type: 0
+					type: 0,
+					cover:"",
+					remark:""
 				},
 				timeHour: '',
 				timeMinute: '',
@@ -121,6 +123,7 @@
 				remarkImg:'../../../static/images/news/03.jpg',
 				singResults:false,
 				goout:true,
+				singResultData:{},
 				up:true,
 			}
 		},
@@ -138,26 +141,35 @@
 				cancel: res => {
 				}
 			});
-			if(!uni.getStorageSync('sysStaff')){
+			if(!uni.getStorageSync('sysUser')){
 				this.loginDiv = true;
 				this.show = true;
 			}else{
 				userinfo({
 					token: uni.getStorageSync('token')
 				}).then((res) => {
-					if (res.data.user.role != 6) {
+					if (!res.data.worker.company_id) {
 						this.loginDiv = true;
 					} else {
 						this.loginDiv = false;
 					}
-					this.show = true;
+					this.$set(this.ruleform,"sign_type",res.data.worker.sign_type);
+					
 				})
 			}
-			//this.ajax();
+			this.ajax();
 		},
 		onPullDownRefresh() {
 			this.data.nextPage = 1;
 			this.ajax();
+		},
+		onShow(){
+			if(uni.getStorageSync('remark')){
+				this.ruleform.remark = uni.getStorageSync('remark');
+				this.ruleform.cover = uni.getStorageSync('cover');
+				uni.removeStorageSync('remark');
+				uni.removeStorageSync('cover');
+			};
 		},
 		methods: {
 			...mapMutations(['login', 'setUserInfo', 'setStaffInfo']),
@@ -184,19 +196,21 @@
 				});
 			},
 			signIn(type) {
-				this.singResults = true;
-				// if (this.ruleform.cover.length == 0) {
-				// 	return this.getError("必须上传图片");
-				// }
-				// this.ruleform.type = type;
-				// this.ruleform.token = uni.getStorageSync('token');
-				// this.postAjax(this.formAction, this.ruleform).then(msg => {
-				// 	if(msg.data.status == 2){
-				// 		this.ruleform.cover = [];
-				// 		this.ruleform.remark = "";
-				// 	}
+				
+				if (this.ruleform.sign_type == 1 && this.ruleform.cover.length == 0) {
+					return this.getError("必须上传图片");
+				}
+				this.ruleform.type = type;
+				this.ruleform.token = uni.getStorageSync('token');
+				this.postAjax(this.formAction, this.ruleform).then(msg => {
+					if(msg.data.status == 2){
+						this.singResults = true;
+						this.singResultData = msg.data.signData;
+						this.ruleform.cover = [];
+						this.ruleform.remark = "";
+					}
 					
-				// })
+				})
 			},
 			getThisAddress(res) {
 				uni.request({
@@ -238,10 +252,13 @@
 				})
 			},
 			ajax() {
-
-				this.getAjax(this).then(msg => {
+				
+				this.getAjax(this,{token: uni.getStorageSync('token')}).then(msg => {
 					let morningData = [];
 					let afterroomData = [];
+					this.goout = msg.goout;
+					this.up = msg.up;
+					this.show = true;
 				});
 			}
 		}
