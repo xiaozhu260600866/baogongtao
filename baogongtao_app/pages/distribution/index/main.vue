@@ -45,6 +45,10 @@
 					<view class="icon"><text class="nav iconfont icon-dis-qrcode fs-22"></text></view>
 					<view class="name">我的二维码</view>
 				</view>
+				<view class="sec-group" @click="goto('/pages/distribution/share/index',1)">
+					<view class="icon"><text class="nav dxi-icon dxi-icon-share"></text></view>
+					<view class="name">我的分享</view>
+				</view>
 			</view>
 		</view>
 	</view>

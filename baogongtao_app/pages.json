@@ -496,6 +496,13 @@
 			}
 		},
 		{
+			"path": "pages/distribution/share/index",
+			"style": {
+				"navigationBarTitleText": "我的分享",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
 			"path": "pages/distribution/qrcode/main",
 			"style": {
 				"navigationBarTitleText": "我的二维码",
