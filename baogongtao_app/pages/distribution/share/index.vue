@@ -3,10 +3,10 @@
 		<page :parentData="data" :formAction="formAction"></page>
 		<view>
 			<view class="team-group">
-				<view class="team-item block-sec flex-middle" v-for="item in lists">
+				<view class="team-item block-sec flex-middle" v-for="item in data.lists.data">
 					<view class="info flex1 lh-1_2 fs-16">
-						<view class="fw-bold">{{item.timer}}</view>
-						<view class="mt8">{{item.name}}</view>
+						<view class="fw-bold">{{item.getYearAndMonth}}</view>
+						<view class="mt8">{{item.getWork.name}}</view>
 					</view>
 					<view class="price fs-14 pl15">+<text class="fs-20 plr3">{{item.amount}}</text>元</view>
 				</view>
@@ -22,7 +22,7 @@ import dxTabsDate from "doxinui/components/tabs/tabs_date"
 		components:{dxTabsDate},
 		data() {
 			return {
-				formAction: '/api/dis/team',
+				formAction: '/api/dis/order-lists',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
@@ -47,10 +47,7 @@ import dxTabsDate from "doxinui/components/tabs/tabs_date"
 		onPullDownRefresh() {
 			this.data.nextPage = 1;
 			
-			this.postAjax("/api/dis/dis-count",{searchType:this.searchType,token:uni.getStorageSync('token')}).then(msg=>{
-				this.countShow = true;
-				this.countData = msg.data;
-			});
+			this.ajax();
 		},
 		onShareAppMessage() {
 			this.shareSource(this, '商城');
@@ -74,11 +71,8 @@ import dxTabsDate from "doxinui/components/tabs/tabs_date"
 				 }
 			},
 			ajax() {
-				this.getAjax(this,{lev:this.lev,token:uni.getStorageSync('token')}).then(msg => {
-					this.postAjax("/api/dis/dis-count",{searchType:this.searchType,token:uni.getStorageSync('token')}).then(msg=>{
-						this.countShow = true;
-						this.countData = msg.data;
-					});
+				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
+					
 				});
 			},
 			changeLev: function(lev) {

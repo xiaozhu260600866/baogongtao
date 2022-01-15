@@ -13,7 +13,7 @@
 				</view>
 				<view class="location-info">
 					<view class="headPic">
-						<image class="img" src="/static/images/news/01.jpg"></image>
+						<image class="img" :src="wechatUser ? wechatUser.avatarUrl :'/static/images/news/01.jpg'"></image>
 					</view>
 					<view class="area">{{ruleform.area}}</view>
 					<view class="address">{{ruleform.address}}</view>
@@ -73,12 +73,12 @@
 					<block v-if="goout">
 						<view class="row">
 							<view class="llabel">备注</view>
-							<view class="rvalue">备注内容</view>
+							<view class="rvalue">{{singResultData.remark}}</view>
 						</view>
 						<view class="row">
 							<view class="llabel">图片</view>
 							<view class="rvalue">
-								<image class="img" :src="remarkImg" mode="aspectFill" @click="previewImage(remarkImg)"></image>
+								<image class="img" :src="getSiteName + '/upload/images/sign/300_'+singResultData.cover" mode="aspectFill" @click="previewImage(getSiteName + '/upload/images/sign/'+singResultData.cover)"></image>
 							</view>
 						</view>
 					</block>
@@ -116,6 +116,7 @@
 				loginDiv: false,
 				timePointer: true,
 				locationStatus: false,
+				wechatUser: uni.getStorageSync('wxUser'),
 				amS: 2,
 				amX: 3,
 				pmS: 1,
@@ -156,8 +157,9 @@
 					this.$set(this.ruleform,"sign_type",res.data.worker.sign_type);
 					
 				})
+				this.ajax();
 			}
-			this.ajax();
+			
 		},
 		onPullDownRefresh() {
 			this.data.nextPage = 1;
@@ -176,7 +178,7 @@
 			getPhoneNumber(e) {
 				this.getAuthPhoneNumber(e, msg => {
 					this.ruleform.phone = msg.data.phoneNumber;
-					this.postAjax("/api/auth/loginForStaff", this.ruleform).then(res => {
+					this.postAjax("/api/auth/loginForWorker", this.ruleform).then(res => {
 						if (res.data.code == 0) {
 							console.log("token", res.data.data.token)
 							let state = {
@@ -186,9 +188,10 @@
 							this.login(state);
 							this.loginDiv = false;
 							let userInfo = {
-								data: res.data.data.staff
+								data: res.data.data.worker
 							}
-							this.setStaffInfo(userInfo);
+							this.setUserInfo(userInfo);
+							this.ajax();
 						}
 					})
 				}, () => {
