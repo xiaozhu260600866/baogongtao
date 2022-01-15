@@ -65,7 +65,20 @@
 				<view class="black-title">
 					<view class="name">常用服务</view>
 				</view>
-				<dx-nav-class :data="menuArr" @click="checkAuth" isAuth myclass="bdr12" :num="4" :iconSize="24" :nameSize="14" :namePTop="10"></dx-nav-class>
+				<!-- <dx-nav-class :data="menuArr" @click="checkAuth" isAuth myclass="bdr12" :num="4" :iconSize="24" :nameSize="14" :namePTop="10"></dx-nav-class> -->
+				<view class="ulist_group ptb8 plr5">
+					<myform :ruleform="ruleform" :vaildate="vaildate" :append="true" @callBack="checkAuth(item)" v-for="item in menuArr">
+						<view slot="content">
+							<view class="ulist-item">
+								<view class="item-icon">
+									<text :class="['icon',item.icon]"></text>
+								</view>
+								<view class="item-name">{{item.name}}</view>
+							</view>
+						</view>
+					</myform>
+					
+				</view>
 			</view>
 			<dx-diag title="登录或注册简历" :titBold="false" :bottomOFF="false" ref="loginDiag">
 				<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="wechatInfoCallBack">
