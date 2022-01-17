@@ -152,6 +152,7 @@
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
 				detail:{},
+				ruleform:{},
 				company:{
 					name:'江门市东信科技有限公司',
 					address:'江门市蓬江区建设路82号金山大厦之二10楼1001室',
@@ -182,8 +183,22 @@
 			},
 			checkTo(){
 				if(this.type == 1){
+					this.ruleform.token = uni.getStorageSync('token');
+					this.ruleform.company_id = this.detail.get_company.id;
+					this.ruleform.recruit_id =  this.detail.id;
+					this.vaildForm(this, res => {	
+						if(res){
+							this.postAjax("/api/company/recruit-record-store", this.ruleform).then(msg => {
+								if (msg.data.code == 0) {
+									return this.applySuccess = true;
+								}
+							});
+						}
+						
+					})
+					
 					// return this.linkTo("/pages/merchant/recruit/record/index?recruit_id="+this.data.data.data.id,1);
-					return this.applySuccess = true;
+					
 				}else{
 					return this.$refs.loginDiag.thisDiag = true;
 				}
