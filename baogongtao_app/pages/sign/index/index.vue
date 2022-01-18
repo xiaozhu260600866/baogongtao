@@ -26,17 +26,7 @@
 				
 				</view>
 				<!-- 如果是外出:end -->
-				<!-- <view class="sign-item">
-					<weui-input v-model="ruleform.remark" placeholder="请填写备注信息" type="textarea" name="remark"></weui-input>
-				</view>
-				<view id="sign">
-					<image class="w-b100" src="/static/image/square.png" mode="widthFix"></image>
-					<view id="con">
-						<view id="timer">{{ timeHour }}<text :class="[timePointer?'fc-white':'']">:</text>{{ timeMinute }}</view>
-						<view class="txt">{{ locationStatus?'打卡':'定位中...' }}</view>
-					</view>
-				</view> -->
-				<view class="sign_time" @click="signIn()">
+				<view class="sign_time" :class="[data.count < 2?'mt80':'']" @click="signIn()">
 					<view class="time">
 						<text class="Arial">{{data.h}}</text>
 						<text class="plr3">:</text>
@@ -46,12 +36,10 @@
 						<!-- 如果是外出 -->
 						<view v-if="goout">第<text class="plr2 Arial">{{data.count +1 }}</text>次外出</view>
 						<!-- 如果是上下班 -->
-						<view v-else-if="data.count < 2">{{up?'上':'下'}}班</view>
+						<view v-else-if="data.count < 2">{{up?'上':'下'}}班打卡</view>
 					</view>
 				</view>
 				<view class="sign_record" @click="goto('/pages/sign/lists/index',1)">打卡记录</view>
-				<!-- <dxftButton type="primary" size="lg" round @click="signIn()">打卡</dxftButton> -->
-				<!-- <dxftButton type="primary" size="lg" round @click="goto('/pages/sign/lists/index',1)">打卡记录</dxftButton> -->
 			</view>
 			<view class="sign_results" v-if="singResults">
 				<view class="icon"><text class="dxi-icon dxi-icon-success"></text></view>
@@ -69,6 +57,10 @@
 					<view class="row">
 						<view class="llabel">位置</view>
 						<view class="rvalue">{{ruleform.area}}</view>
+					</view>
+					<view class="row">
+						<view class="llabel">公司</view>
+						<view class="rvalue">{{singResultData.getWork.companyName}}</view>
 					</view>
 					<!-- 如果是外出:start -->
 					<block v-if="goout">

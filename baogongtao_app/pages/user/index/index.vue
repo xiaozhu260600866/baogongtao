@@ -30,16 +30,20 @@
 					</view>
 				</view>
 			</view>
-			<!-- <view class="ugorup-box head-count">
-				<view class="c-item" >
+			<view class="ugorup-box head-count">
+				<!-- <view class="c-item" >
 					<view class="num">100.01<text class="unit">元</text></view>
 					<view class="name">余额</view>
-				</view>
+				</view> -->
 				<view class="c-item" >
-					<view class="num">669<text class="unit"></text></view>
+					<view class="num">{{userInfo.integral}}</view>
 					<view class="name">积分</view>
 				</view>
-			</view> -->
+				<view class="c-item" >
+					<view class="num">0</view>
+					<view class="name">优惠券</view>
+				</view>
+			</view>
 			<!-- <view class="ugorup-box">
 				<view class="black-title">
 					<view class="name">我的订单</view>
@@ -167,7 +171,7 @@
 								{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
 								{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 								{url:'/pages/integral/lists/main',type: 1,icon:'dxi-icon dxi-icon-shopping-bag',name:'积分商城'},
-								{url:'/pages/sign/index/index',type: 1,icon:'dxi-icon dxi-icon-signin',name:'签到'},
+								{url:'/pages/sign/index/index',type: 1,icon:'dxi-icon dxi-icon-signin',name:'打卡'},
 							]
 						}
 						this.show = true;
@@ -190,7 +194,7 @@
 								{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
 								{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 								{url:'/pages/integral/lists/main',type: 1,icon:'dxi-icon dxi-icon-shopping-bag',name:'积分商城'},
-								{url:'/pages/sign/index/index',type: 1,icon:'dxi-icon dxi-icon-signin',name:'签到'},
+								{url:'/pages/sign/index/index',type: 1,icon:'dxi-icon dxi-icon-signin',name:'打卡'},
 							]
 						}
 						this.show = true;

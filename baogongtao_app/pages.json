@@ -582,7 +582,7 @@
 		{
 			"path": "pages/sign/index/index",
 			"style": {
-				"navigationBarTitleText": "签到",
+				"navigationBarTitleText": "打卡",
 				"enablePullDownRefresh": true
 			}
 		},
