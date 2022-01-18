@@ -12,7 +12,7 @@
 						<view class="name fs-26 fw-bold flex1 mr15">{{detail.job_position}}</view>
 						<view class="salary fs-18 main-color Arial">{{detail.salary}}</view>
 					</view>
-					<view class="tag flex-middle lh-1 mt20 fs-14">
+					<view class="tag flex-middle flex-wrap lh-1 mt15 fs-14">
 						<view class="item">
 							<text class="icon iconfont icon-location-o"></text>
 							<text class="txt">{{detail.work_place}}</text>
@@ -109,7 +109,7 @@
 							<view class="icon dxi-icon dxi-icon-home4"></view>
 							<view class="txt">首页</view>
 						</button>
-						<button class="btn-item" hover-class="none" open-type="share">
+						<button class="btn-item" hover-class="none" @click="$refs.shareShow.shareBtn = true">
 							<view class="icon dxi-icon dxi-icon-share2 fs-17"></view>
 							<view class="txt">分享</view>
 						</button>
@@ -137,14 +137,16 @@
 			<!-- 如果已有简历 -->
 			<dx-results txt="申请成功" @click="goto('/pages/index/index',2)" v-if="applySuccess"></dx-results>
 		</view>
+		<shareResume ref="shareShow" :data="detail"></shareResume>
 	</view>
 </template>
 
 <script>
 	import dxDiag from "doxinui/components/diag/diag"
 	import dxResults from "doxinui/components/results/results"
+	import shareResume from "@/components/poster/shareResume"
 	export default {
-		components:{dxDiag,dxResults},
+		components:{dxDiag,dxResults,shareResume},
 		data() {
 			return {
 				formAction: '/api/company/recruit-store',
@@ -175,6 +177,16 @@
 		},
 		onLoad() {
 			this.ajax();
+		},
+		onReachBottom() {
+			this.hasMore(this);
+		},
+		onPullDownRefresh() {
+			this.data.nextPage = 1;
+			this.ajax();
+		},
+		onShareAppMessage() {
+			return this.shareSource(this, '包工淘');
 		},
 		methods: {
 			wechatInfoCallBack(userInfo){
