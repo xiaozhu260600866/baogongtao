@@ -15,7 +15,7 @@
 				<view class="top flex-between flex-middle plr12" @click="goto('/pages/distribution/record-list/main',1)">
 					<view class="left text-center">
 						<view class="txt">可提现金额(元)</view>
-						<view class="num fs-24 ">0</view>
+						<view class="num fs-24 ">{{data.distribution.amount}}</view>
 					</view>
 					<view class="right">
 						<dx-button type="primary" myclass="plr25" size="small" txtColor="#623d04" round>去提现</dx-button>
@@ -24,11 +24,11 @@
 				<view class="bottom flex-middle plr12 ptb20 fs-13">
 					<view class="row w-b65">
 						<text class="txt">累计收益(含未到账)</text>
-						<text class="num pl5 fs-20">{{toFixed(0)}}</text>
+						<text class="num pl5 fs-20">{{toFixed(data.distribution.amount)}}</text>
 					</view>
 					<view class="row w-b35">
 						<text class="txt">累计订单</text>
-						<text class="num pl5 fs-20">0</text>
+						<text class="num pl5 fs-20">{{data.orderCount}}</text>
 					</view>
 				</view>
 			</view>

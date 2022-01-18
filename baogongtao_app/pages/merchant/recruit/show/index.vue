@@ -137,7 +137,7 @@
 			<!-- 如果已有简历 -->
 			<dx-results txt="申请成功" @click="goto('/pages/index/index',2)" v-if="applySuccess"></dx-results>
 		</view>
-		<shareResume ref="shareShow" :data="detail"></shareResume>
+		<shareResume ref="shareShow" :data="detail" :qrcodeFilePath="qrcodeFilePath"></shareResume>
 	</view>
 </template>
 
@@ -155,12 +155,9 @@
 				getSiteName: this.getSiteName(),
 				detail:{},
 				ruleform:{},
+				qrcodeFilePath:'',
 				company:{
-					name:'江门市东信科技有限公司',
-					address:'江门市蓬江区建设路82号金山大厦之二10楼1001室',
-					time:'企业代发',
-					type:'私营企业',
-					people_num:'5-50'
+					
 				},
 				intro:{
 					info:'公司位于广东中山市火炬高新技术产业开发区内，公司成立于1998年7月2日，1998年12月28日于中山市火炬开发区举行破土典礼，兴建厂房，1999年11月1日顺利完成厂房、写字楼及宿舍的兴建及机器设备的进口与安装，并正式开始量产。本公司是由西萨摩亚富理东公司投资，注册资本1100万美元，总投资1800美元。产品包括桌上型计算机机壳及笔记型电脑前组装（为宏碁计算机公司配套产品），具有精密模具、塑料成型、五金冲压、烤漆及组立等专业制造能力',
@@ -218,6 +215,7 @@
 			ajax() {
 				this.getAjax(this).then(msg => {
 					this.detail = msg.data.data;
+					this.qrcodeFilePath = msg.data.path
 				});
 			}
 		}

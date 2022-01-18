@@ -44,11 +44,11 @@
 					<view class="dxi-icon dxi-icon-off fs-12"></view>
 				</view> -->
 				<view class="fs-16 fc-9 plr15 ptb10">完善的简介更容易获得HR青睐！</view>
-				<weui-input v-model="ruleform.position" label="期望职位" name="position" type="manyselect" dataKey="positionData" changeField="value"
+				<weui-input v-model="ruleform.position" label="期望职位" splitWord="/" name="position" type="manyselect" dataKey="positionData" changeField="value"
 				 datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.industry" label="期望行业" name="industry" type="manyselect" dataKey="industryData" changeField="value"
+				<weui-input v-model="ruleform.industry" label="期望行业" splitWord="/" name="industry" type="manyselect" dataKey="industryData" changeField="value"
 				 datatype="require" block></weui-input>
-				<dx-address v-model="ruleform.address" labeltxt="工作城市" datatype="require" ref="address" :addressHidden="true" 
+				<dx-address v-model="ruleform.address" labeltxt="工作城市" :emptyValue="true" datatype="require" ref="address" :addressHidden="true" 
 				 block></dx-address>
 				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="manyselect" dataKey="emolumentArr"
 				 datatype="require" block splitWord="-"></weui-input>

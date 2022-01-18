@@ -8,7 +8,7 @@
 				<div class="pshare-group">
 					<button hover-class="none" class="group-item p0" open-type="share">
 						<p class="iconfont icon-pshare-wechat"></p>
-						<p class="words">发给好友{{data.job_category}}</p>
+						<p class="words">发给好友</p>
 					</button>
 					<div class="group-item" @tap="shareFc()">
 						<p class="iconfont icon-pshare-save"></p>
@@ -170,7 +170,7 @@
 							// },
 							{
 								type: 'image',
-								url: 'https://www.baogongtao.com/images/mqrcode.jpg',
+								url: _this.qrcodeFilePath,
 								id:'qrocode',
 								serialNum: 5, //序号
 								allInfoCallback({drawArray}) {

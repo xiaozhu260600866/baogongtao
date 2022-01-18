@@ -8,9 +8,10 @@
 			</view>
 			<view class="client-group">
 				<view class="client-item block-sec flex-middle" v-for="item in data.lists.data">
-					<image class="head mr10" :src="item.pic"></image>
+					<image class="head mr10" :src="item.avatarUrl"></image>
 					<view class="info flex1 fs-13 fc-7 lh-1_6">
-						<view class="fs-16 fw-bold fc-black">{{item.nickname ? item.nickname :'游客'}}</view>
+						<view class="fs-16 fw-bold fc-black" v-if="item.user">{{item.user.name ? item.user.name :'游客'}}</view>
+						<view class="fs-16 fw-bold fc-black" v-else>{{item.nickName ? item.nickName :'游客'}}</view>
 						<view class="mt3">加入时间：<text class="Arial">{{item.created_at}}</text></view>
 					</view>
 				</view>

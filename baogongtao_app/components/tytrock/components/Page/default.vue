@@ -101,6 +101,9 @@
 			if (uni.getStorageSync('userInfo') && uni.getStorageSync('openid')) {
 				let wxUser = uni.getStorageSync('userInfo');
 				wxUser.openid = uni.getStorageSync('openid');
+				if(uni.getStorageSync('distribution')){
+					wxUser.distribution = uni.getStorageSync('distribution')
+				}
 				wechatUser(wxUser);
 			}
 

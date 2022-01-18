@@ -3,7 +3,7 @@
 		<view class="sign-box" v-if="show">
 			<view class="plr20" v-if="loginDiv">
 				<view class="head">
-					<image class="img" src="/static/images/news/01.jpg"></image>
+					<image class="img" :src="wechatUser ? wechatUser.avatarUrl :'/static/images/news/01.jpg'"></image>
 				</view>
 				<dx-button type="primary" size="lg" block round open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">一键授权登录</dx-button>
 			</view>
@@ -13,6 +13,7 @@
 				</view>
 				<view class="location-info">
 					<view class="headPic">
+					
 						<image class="img" :src="wechatUser ? wechatUser.avatarUrl :'/static/images/news/01.jpg'"></image>
 					</view>
 					<view class="area">{{ruleform.area}}</view>
@@ -201,7 +202,7 @@
 			signIn(type) {
 				
 				if (this.ruleform.sign_type == 1 && this.ruleform.cover.length == 0) {
-					return this.getError("必须上传图片");
+					return this.getError("请拍照上传打卡图片");
 				}
 				this.ruleform.type = type;
 				this.ruleform.token = uni.getStorageSync('token');
