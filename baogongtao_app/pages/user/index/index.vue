@@ -35,7 +35,7 @@
 					<view class="num">100.01<text class="unit">元</text></view>
 					<view class="name">余额</view>
 				</view> -->
-				<view class="c-item" >
+				<view class="c-item" @click="goto('/pages/user/integral/index/index',1)">
 					<view class="num">{{userInfo.integral}}</view>
 					<view class="name">积分</view>
 				</view>
@@ -169,9 +169,9 @@
 								{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
 								{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
 								{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+								{url:'/pages/sign/index/index',type: 1,icon:'dxi-icon dxi-icon-signin',name:'打卡'},
 								{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 								{url:'/pages/integral/lists/main',type: 1,icon:'dxi-icon dxi-icon-shopping-bag',name:'积分商城'},
-								{url:'/pages/sign/index/index',type: 1,icon:'dxi-icon dxi-icon-signin',name:'打卡'},
 							]
 						}
 						this.show = true;
@@ -192,9 +192,9 @@
 								{url:'/pages/merchant/index/index',type: 1,icon:'iconfont icon-user-compnay',name:'企业中心'},
 								{url:'/pages/user/coupon/lists/index',type: 1,icon:'dxi-icon dxi-icon-coupon',name:'我的优惠券'},
 								{url:'/pages/user/talents/show',type: 1,icon:'dxi-icon dxi-icon-order2',name:'我的简历'},
+								{url:'/pages/sign/index/index',type: 1,icon:'dxi-icon dxi-icon-signin',name:'打卡'},
 								{url:'/pages/user/talents/lists',type: 1,icon:'iconfont icon-user-talents',name:'我的应聘'},
 								{url:'/pages/integral/lists/main',type: 1,icon:'dxi-icon dxi-icon-shopping-bag',name:'积分商城'},
-								{url:'/pages/sign/index/index',type: 1,icon:'dxi-icon dxi-icon-signin',name:'打卡'},
 							]
 						}
 						this.show = true;

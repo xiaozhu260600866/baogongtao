@@ -22,7 +22,7 @@
 				</view>
 				<!-- 如果是外出:start -->
 				<view class="sign_write" v-if="goout">
-					<view class="remark text-center fs-15 ptb10 lh-1" @click="goto('/pages/sign/index/layouts/remark',1)">添加备注...</view>
+					<view class="remark text-center fs-18" @click="goto('/pages/sign/index/layouts/remark',1)">添加备注...</view>
 				
 				</view>
 				<!-- 如果是外出:end -->

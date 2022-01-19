@@ -53,7 +53,7 @@
 }
 
 
-.sign_record{position: absolute;top: 0;right: 0;padding: 30rpx;line-height: 1;font-size: 30rpx;color: #675B45;z-index: 12;}
+.sign_record{position: absolute;top: 20rpx;right: 20rpx;padding: 20rpx 40rpx;line-height: 1;font-size: 30rpx;color: #415161;z-index: 12;border: 1rpx #999 solid;border-radius: 60rpx;}
 
 // 签到结果
 .sign_results{

@@ -3,8 +3,8 @@
 		<page ref="page"></page>
 		<view v-if="data.show">
 			<view class="jobs_lists" :class="type == 1?'mt12':''">
-				<view class="jobs_item p15 bg-f mb8" v-for="(v,key) in data.data.lists.data">
-					<view @click="linkTo('/pages/merchant/recruit/show/index?id='+v.id,1)">
+				<view class="jobs_item p15 bg-f mb8" v-for="(v,key) in data.lists.data">
+					<view class="box" @click="linkTo('/pages/merchant/recruit/show/index?id='+v.id,1)">
 						<view class="flex-between fs-17 fw-bold">
 							<view class="position fc-3">{{v.get_recruit.job_position}}</view>
 							<view class="main-color Arial">{{v.get_recruit.salary}}</view>
@@ -17,17 +17,20 @@
 						<view class="condition">
 							<view class="lab" v-for="item in getTag(v)">{{item}}</view>
 						</view>
-						<view class="userInfo mt10 flex-middle fs-14" v-if="v.get_recruit">
-							<image class="head" :src="v.get_recruit.logoMinUrl" mode="aspectFill"></image>
+						<view class="userInfo mt10 flex-middle fs-14" v-if="v.get_company">
+							<image class="head" :src="v.get_company.logoMinUrl" mode="aspectFill"></image>
 							<view class="left flex1 ml10 flex-middle">
-								<view class="name">{{v.get_recruit.charger_name ? v.get_recruit.charger_name :'暂无' }}</view>
+								<view class="name">{{v.get_company.charger_name ? v.get_company.charger_name :'暂无' }}</view>
 								<view class="dot mlr5"></view>
-								<view class="position">{{v.get_recruit.position ? v.get_recruit.position :'暂无' }}</view>
+								<view class="position">{{v.get_company.position ? v.get_company.position :'暂无' }}</view>
 							</view>
-							<view class="place fc-b" v-if="v.get_recruit.province">{{v.get_recruit.city}} {{v.get_recruit.area}}</view>
+							<view class="place fc-b" v-if="v.get_company.province">{{v.get_company.city}} {{v.get_company.area}}</view>
 						</view>
 					</view>
-					<dx-button myclass="ml10 plr30" size="medium" round @click="del(v)">取消应聘</dx-button>
+					<view class="flex-right pt10 bd-te mt10">
+						<dx-button myclass="ml10 plr20" size="small" round @click="del(v)" v-if="v.recruited == 0">取消应聘</dx-button>
+						<dx-button myclass="ml10 plr20" size="small" round @click="del(v)" v-if="v.recruited == 1">已录取</dx-button>
+					</view>
 				</view>
 			</view>
 			<view class="p50 fs-14 fc-9 text-center" v-if="data.data.lists.data.length == 0">暂无记录</view>
@@ -96,9 +99,14 @@
 			},
 			getTag(v){
 				let arr = [];
-				arr.push(v.salary)
-				arr.push(v.education)
-				arr.push(v.home_date)
+				// arr.push(v.salary)
+				arr.push(v.get_recruit.education)
+				let tag = v.get_recruit.job_tab ? v.get_recruit.job_tab.split(",") :[ ];
+				if(tag.length){
+					tag.forEach(e=>{
+						arr.push(e)
+					})	
+				}
 				return arr;
 			},
 			ajax() {

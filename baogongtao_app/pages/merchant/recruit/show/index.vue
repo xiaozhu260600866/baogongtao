@@ -30,8 +30,13 @@
 				<view class="charger-info flex-middle">
 					<image class="head" :src="detail.get_company.logoMinUrl" mode="aspectFill"></image>
 					<view class="left flex1 ml10 lh-1">
-						<view class="fs-16 fw-bold">{{detail.get_company.charger_name}}</view>
-						<view class="fs-15 fc-3 mt8" v-if="detail.get_company.position">{{detail.get_company.position}}</view>
+						<view class="flex-end">
+							<view class="fs-16 fw-bold">{{detail.get_company.charger_name}}</view>
+							<view class="fs-15 fc-3 mt8 pl10" v-if="detail.get_company.get_user.get_user_info.position">
+							{{detail.get_company.get_user.get_user_info.position}}</view>
+						</view>
+						
+						<view class="fs-15 fc-3 mt8" v-if="detail.get_company.charger_phone">{{detail.get_company.charger_phone}}</view>
 					</view>
 				</view>
 				<view class="company-info">
@@ -45,12 +50,20 @@
 					<view class="title fs-18 pb15 fw-bold">公司信息</view>
 					<view class="lists">
 						<view class="item">
-							<text class="icon iconfont icon-merchant"></text>
+							<text class="icon iconfont icon-merchant fs-16"></text>
 							<text class="txt">{{detail.get_company.name}}</text>
 						</view>
 						<view class="item">
-							<text class="icon iconfont icon-location-o"></text>
+							<text class="icon iconfont icon-location-o fs-16"></text>
 							<text class="txt">{{detail.get_company.address}}</text>
+						</view>
+						<view class="item">
+							<text class="icon dxi-icon dxi-icon-user"></text>
+							<text class="txt">{{detail.contact_name}}</text>
+						</view>
+						<view class="item" @click="phone(detail.contact_phone)">
+							<text class="icon dxi-icon dxi-icon-tel2"></text>
+							<text class="txt">{{detail.contact_phone}}</text>
 						</view>
 					</view>
 				</view>

@@ -79,7 +79,7 @@
 							//访问接口获取背景图携带自定义数据
 						},
 						background: {
-							height: 300,
+							height: 700,
 							width: 700,
 							backgroundColor: '#fff',
 						},
@@ -113,16 +113,16 @@
 									let width;
 									let height;
 									const contentW = getBgObj().width*0.9;
-									const size = getBgObj().width * 0.03;
+									const size = getBgObj().width * 0.04;
 									const contentNum = Math.ceil(content.textLength*2.27/contentW);
-									const contentH = getBgObj().width * 0.04*(contentNum+2);
+									const contentH = getBgObj().width * 0.07*(contentNum+2);
 									console.log(8955566336,content.textLength*2.27,contentNum,contentW,getBgObj().width,contentH,)
 									setBgObj({
 										width: getBgObj().width,
 										height: getBgObj().height + contentH
 									});
 									return {
-										size: getBgObj().width * 0.04,
+										size: getBgObj().width * 0.044,
 										dx: getBgObj().width * .04,
 										dy: getBgObj().width*0.08,
 									}
@@ -130,44 +130,59 @@
 							},{
 								type: 'text',
 								id: 'companyName',
-								text: _this.data.get_company.name,
+								text:'公司名称：'+_this.data.get_company.name,
 								color: '#333',
 								serialNum: 2, //序号 
 								allInfoCallback({drawArray}) {
 									return {
-										size: getBgObj().width * 0.034,
+										size: getBgObj().width * 0.04,
 										dx: getBgObj().width * .04,
-										dy: getBgObj().width*0.14,
+										dy: getBgObj().width*0.15,
+										lineFeed:{
+											maxWidth:getBgObj().width*0.6,
+											lineHeight:getBgObj().width * 0.06,
+										}
 									}
 								}
 							},
-							// {
-							// 	type: 'text',
-							// 	id: 'time',
-							// 	text: '2021-12-26 12:22:30',
-							// 	color: '#888',
-							// 	serialNum: 3, //序号
-							// 	allInfoCallback({drawArray}) {
-							// 		return {
-							// 			size: getBgObj().width * 0.027,
-							// 			dx: getBgObj().width * .04,
-							// 			dy: getBgObj().width*0.12,
-							// 		}
-							// 	}
-							// },{
-							// 	type: 'text',
-							// 	id: 'see',
-							// 	text: '79人浏览',
-							// 	color: '#888',
-							// 	serialNum: 4, //序号
-							// 	allInfoCallback({drawArray}) {
-							// 		return {
-							// 			size: getBgObj().width * 0.027,
-							// 			dx: getBgObj().width * .04,
-							// 			dy: getBgObj().width*0.16,
-							// 		}
-							// 	}
-							// },
+							{
+								type: 'text',
+								id: 'contactName',
+								text:'联系人：'+ _this.data.contact_name,
+								color: '#333',
+								serialNum: 3, //序号
+								allInfoCallback({drawArray}) {
+									const companyName = drawArray.find(item => item.id === 'companyName')
+									const companyNameW = getBgObj().width*0.58;
+									const companyNameNum = Math.ceil(companyName.textLength/companyNameW);
+									const companyNameH = getBgObj().width * 0.058*companyNameNum;
+									console.log(59666955699,companyName.textLength,companyNameNum,companyNameW,getBgObj().width*0.04,companyNameH,companyName.size)
+									let cNameH = companyNameH
+									return {
+										size: getBgObj().width * 0.04,
+										dx: getBgObj().width * .04,
+										dy: getBgObj().width*0.15+cNameH,
+									}
+								}
+							},{
+								type: 'text',
+								id: 'contactPhone',
+								text:'联系电话：'+ _this.data.contact_phone,
+								color: '#333',
+								serialNum: 4, //序号
+								allInfoCallback({drawArray}) {
+									const companyName = drawArray.find(item => item.id === 'companyName')
+									const companyNameW = getBgObj().width*0.58
+									const companyNameNum = Math.ceil(companyName.textLength/companyNameW);
+									const companyNameH = getBgObj().width * 0.058*companyNameNum;
+									let cNameH = companyNameH
+									return {
+										size: getBgObj().width * 0.04,
+										dx: getBgObj().width * .04,
+										dy: getBgObj().width*0.21+cNameH,
+									}
+								}
+							},
 							{
 								type: 'image',
 								url: _this.qrcodeFilePath,
@@ -193,9 +208,9 @@
 								serialNum: 6, //序号
 								allInfoCallback({drawArray}) {
 									return {
-										size: getBgObj().width * 0.026,
+										size: getBgObj().width * 0.028,
 										dx: getBgObj().width - getBgObj().width * 0.265,
-										dy: getBgObj().width * 0.24+getBgObj().width*0.07,
+										dy: getBgObj().width * 0.31,
 									}
 								}
 							},{
@@ -206,9 +221,9 @@
 								serialNum: 7, //序号
 								allInfoCallback({drawArray}) {
 									return {
-										size: getBgObj().width * 0.026,
+										size: getBgObj().width * 0.028,
 										dx: getBgObj().width - getBgObj().width * 0.225,
-										dy: getBgObj().width * 0.24+getBgObj().width*0.10,
+										dy: getBgObj().width * 0.35,
 									}
 								}
 							},{
@@ -219,12 +234,12 @@
 								serialNum: 8, //序号
 								allInfoCallback({drawArray}) {
 									return {
-										size: getBgObj().width * 0.03,
+										size: getBgObj().width * 0.04,
 										dx: getBgObj().width * .04,
-										dy: getBgObj().width * 0.24+getBgObj().width*0.17,
+										dy: getBgObj().width * 0.48,
 										lineFeed:{
 											maxWidth:getBgObj().width*0.9,
-											lineHeight:getBgObj().width * 0.052,
+											lineHeight:getBgObj().width * 0.07,
 										}
 									}
 								}

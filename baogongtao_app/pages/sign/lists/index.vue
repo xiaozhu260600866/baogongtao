@@ -28,6 +28,7 @@
 						</view>
 						<view class="rinfo">
 							<view class="type">{{item.type == 0 ? '上班' : '下班'}}</view>
+							<view class="status fc-3">公司：{{item.getWork.companyName}}</view>
 							<view class="status">
 								<text class="fc-red" v-if="item.type == 0 && item.getHourAndTime > item.getWork.work_start_time">迟到打卡</text>
 								<text class="fc-red" v-else-if="item.type == 1 && item.getHourAndTime < item.getWork.work_end_time">早退打卡</text>
