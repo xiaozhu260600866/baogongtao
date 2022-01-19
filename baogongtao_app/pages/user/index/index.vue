@@ -36,7 +36,7 @@
 					<view class="name">余额</view>
 				</view> -->
 				<view class="c-item" @click="goto('/pages/user/integral/index/index',1)">
-					<view class="num">{{userInfo.integral}}</view>
+					<view class="num">{{userInfo.integral ? userInfo.integral : 0}}</view>
 					<view class="name">积分</view>
 				</view>
 				<view class="c-item" >

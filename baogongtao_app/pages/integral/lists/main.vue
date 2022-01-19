@@ -4,7 +4,7 @@
 		<view class="pro-list">
 			<view class="info-header bg-f fs-13 fc-3">
 				<view class="ih-item ptb8" @click="goto('/pages/user/integral/index/index',1)">
-					<view class="num lh-24 mb3 fc-red fs-20 Arial">{{lists.integral}}</view>
+					<view class="num lh-24 mb3 fc-red fs-20 Arial">{{userInfo.integral || 0}}</view>
 					<view class="name">我的积分</view>
 				</view>
 				<view class="ih-item ptb8" @click="goto('/pages/user/integral/list/main',1)">
@@ -21,7 +21,7 @@
 					<view class="cms_price"><text class="Arial fc-red fs-16 pr3">{{item.integral}}</text> 积分</view>
 				</view>
 			</view> -->
-			<view class="pro-col">
+			<!-- <view class="pro-col">
 				<view class="pro-col-item">
 					<view class="pro-col-box" v-for="(item,index) in lists.lists" :key="index" v-if="(index+1)%2!=0"
 					 @click="goto('/pages/integral/show/main?id='+item.id)">
@@ -48,13 +48,15 @@
 						</view>
 					</view>
 				</view>
-			</view>
-			<hasMore :parentData="data"></hasMore>
+			</view> -->
+			暂无数据
+			<!-- <hasMore :parentData="data"></hasMore> -->
 		</view>
 	</view>
 </template>
 
 <script>
+	import {userinfo, action, logout} from "@/api/user";
 	export default {
 		data() {
 			return {
@@ -62,6 +64,7 @@
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
+				userInfo:{},
 				lists:{
 					integral: 2595,
 					lists:[{
@@ -99,7 +102,13 @@
 			return this.shareSource(this, '商城');
 		},
 		onLoad(options) {
-			//this.ajax();
+			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+				
+				this.userInfo = res.data.user;
+				
+
+				
+			})
 		},
 		methods: {
 			ajax() {

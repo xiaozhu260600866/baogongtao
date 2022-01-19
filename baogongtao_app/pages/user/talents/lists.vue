@@ -28,8 +28,9 @@
 						</view>
 					</view>
 					<view class="flex-right pt10 bd-te mt10">
-						<dx-button myclass="ml10 plr20" size="small" round @click="del(v)" v-if="v.recruited == 0">取消应聘</dx-button>
-						<dx-button myclass="ml10 plr20" size="small" round @click="del(v)" v-if="v.recruited == 1">已录取</dx-button>
+						<view class="ml10 plr20" v-if="v.recruited == 1">已录取</view>
+					<!-- 	<dx-button myclass="ml10 plr20" size="small" round @click="del(v)" v-if="v.recruited == 0">取消应聘</dx-button>
+						<dx-button myclass="ml10 plr20" size="small" round @click="del(v)" >已录取</dx-button> -->
 					</view>
 				</view>
 			</view>
