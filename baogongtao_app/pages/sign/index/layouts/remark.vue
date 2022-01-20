@@ -2,7 +2,7 @@
 	<view>
 		<page ref="page"></page>
 		<view class="remark">
-			<weui-input v-model="ruleform.remark" placeholder="请填写备注信息" type="textarea" name="remark" datatype="require"></weui-input>
+			<weui-input v-model="ruleform.remark" placeholder="请填写备注信息" type="textarea" name="remark" ></weui-input>
 			<weui-input v-model="ruleform.cover" type="upload" upurl='sign' allowUpLoadNum="1" name="cover"
 				datatype="array" :sourceType="1" errorMessage="请拍照上传打卡图片" tips="拍照上传图片"></weui-input>
 		</view>

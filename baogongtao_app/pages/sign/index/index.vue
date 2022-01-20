@@ -64,7 +64,7 @@
 					</view>
 					<!-- 如果是外出:start -->
 					<block v-if="goout">
-						<view class="row">
+						<view class="row" v-if="singResultData.remark">
 							<view class="llabel">备注</view>
 							<view class="rvalue">{{singResultData.remark}}</view>
 						</view>
@@ -159,7 +159,7 @@
 			this.ajax();
 		},
 		onShow(){
-			if(uni.getStorageSync('remark')){
+			if(uni.getStorageSync('cover')){
 				this.ruleform.remark = uni.getStorageSync('remark');
 				this.ruleform.cover = uni.getStorageSync('cover');
 				uni.removeStorageSync('remark');

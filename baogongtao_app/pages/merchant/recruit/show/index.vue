@@ -53,7 +53,7 @@
 							<text class="icon iconfont icon-merchant fs-16"></text>
 							<text class="txt">{{detail.get_company.name}}</text>
 						</view>
-						<view class="item">
+						<view class="item" v-if="detail.get_company.address">
 							<text class="icon iconfont icon-location-o fs-16"></text>
 							<text class="txt">{{detail.get_company.address}}</text>
 						</view>
@@ -226,7 +226,11 @@
 				}
 			},
 			ajax() {
-				this.getAjax(this).then(msg => {
+				let data = {};
+				if(uni.getStorageSync("token")){
+					data.token= uni.getStorageSync("token");
+				}
+				this.getAjax(this,data).then(msg => {
 					this.detail = msg.data.data;
 					this.qrcodeFilePath = msg.data.path
 				});
