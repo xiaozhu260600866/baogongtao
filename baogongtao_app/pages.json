@@ -538,7 +538,7 @@
 			}
 		},
 		{
-			"path": "pages/integral/order/buy",
+			"path": "pages/integral/order/buy/main",
 			"style": {
 				"navigationBarTitleText": "积分兑换",
 				"enablePullDownRefresh": true
@@ -573,6 +573,13 @@
 			}
 		},
 		{
+			"path": "pages/user/integral/order/new_order/main",
+			"style": {
+				"navigationBarTitleText": "积分订单",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
 			"path": "pages/user/integral/sign/main",
 			"style": {
 				"navigationBarTitleText": "积分签到",
@@ -599,7 +606,22 @@
 				"navigationBarTitleText": "打卡记录",
 				"enablePullDownRefresh": true
 			}
+		},
+		{
+			"path": "pages/user/address/creat_edit/main",
+			"style": {
+				"navigationBarTitleText": "创建地址",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/address/lists/main",
+			"style": {
+				"navigationBarTitleText": "创建地址",
+				"enablePullDownRefresh": true
+			}
 		}
+		
 	],
 	"tabBar": {
 		"selectedColor": "#1e97ff",
