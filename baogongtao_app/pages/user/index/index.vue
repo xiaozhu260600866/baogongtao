@@ -30,7 +30,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="ugorup-box head-count">
+			<view class="ugorup-box head-count" v-if="menuArr.length!=1">
 				<!-- <view class="c-item" >
 					<view class="num">100.01<text class="unit">元</text></view>
 					<view class="name">余额</view>
