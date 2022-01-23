@@ -442,6 +442,55 @@
 				"enablePullDownRefresh":true
 			}
 		},
+		{
+			"path": "pages/user/talents/layouts/remark",
+			"style": {
+				"navigationBarTitleText": "简介",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/talents/layouts/purpose",
+			"style": {
+				"navigationBarTitleText": "求职意向",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/talents/layouts/salary",
+			"style": {
+				"navigationBarTitleText": "薪资",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/talents/layouts/status",
+			"style": {
+				"navigationBarTitleText": "求职状态",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/talents/layouts/info",
+			"style": {
+				"navigationBarTitleText": "基本资料",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/talents/layouts/IDcard",
+			"style": {
+				"navigationBarTitleText": "身份证",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/user/talents/layouts/cert",
+			"style": {
+				"navigationBarTitleText": "资格证书",
+				"enablePullDownRefresh":true
+			}
+		},
 		//分销商 
 		{
 			"path": "pages/distribution/login/main",

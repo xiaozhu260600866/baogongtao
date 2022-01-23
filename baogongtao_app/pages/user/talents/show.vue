@@ -19,7 +19,7 @@
 						<view class="item">{{ruleform.education?ruleform.education:'暂无'}}</view>
 					</view>
 				</view>
-				<view class="edit" @click="goto('/pages/user/talents/resume',1)">
+				<view class="edit" @click="goto('/pages/user/talents/layouts/info',1)">
 					<dx-button type="primary" size="mini" myclass="plr10" icon="dxi-icon dxi-icon-edit2">编辑</dx-button>
 					</view>
 			</view>
@@ -36,7 +36,7 @@
 					</view>
 					<view v-if="!ruleform.industry && !ruleform.salary && !ruleform.address && !ruleform.position">暂无</view>
 				</view>
-				<!-- <view class="item-edit" @click="goto('/pages/user/talents/resume',1)"><text class="dxi-icon dxi-icon-edit2"></text></view> -->
+				<view class="item-edit" @click="goto('/pages/user/talents/layouts/purpose',1)"><text class="dxi-icon dxi-icon-edit2"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">求职状态</view>
@@ -44,6 +44,7 @@
 					<view v-if="ruleform.apply_status">{{ruleform.apply_status}}</view>
 					<view v-else>暂无</view>
 				</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/layouts/status',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">薪资要求</view>
@@ -51,6 +52,7 @@
 					<view v-if="ruleform.salary">{{ruleform.salary}}</view>
 					<view v-else>暂无</view>
 				</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/layouts/salary',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">个人职业标签</view>
@@ -65,11 +67,20 @@
 				<view class="item-edit" @click="goto('/pages/user/talents/layouts/label',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
 			</view>
 			<view class="talents-item">
+				<view class="item-name">身份证</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/layouts/IDcard',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
+			</view>
+			<view class="talents-item">
+				<view class="item-name">资格证书</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/layouts/cert',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
+			</view>
+			<view class="talents-item">
 				<view class="item-name">个人简介</view>
 				<view class="item-con">
 					<view v-if="ruleform.remark">{{ruleform.remark}}</view>
 					<view v-else>暂无</view>
 				</view>
+				<view class="item-edit" @click="goto('/pages/user/talents/layouts/remark',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
 			</view>
 		</view>
 	</view>
