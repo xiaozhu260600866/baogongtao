@@ -1,0 +1,12 @@
+.show_banner image {width: 100%;}
+
+
+.pro-name{text-align: justify;}
+.pro-title {margin: 0;height: 80rpx;position: relative;line-height: 80rpx;overflow: hidden;}
+.pro-title .name{border-bottom: 8rpx solid #57C734;padding: 12rpx 0;}
+.pro-content {background: #fff;}
+.info-footer {position: fixed;left: 0;bottom: 0;z-index: 999;text-align: center;}
+
+
+
+.wxParse .p{margin: 0;}
