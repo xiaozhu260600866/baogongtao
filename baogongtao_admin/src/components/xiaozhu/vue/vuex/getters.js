@@ -1,28 +1,27 @@
 export default {
     data: (state) => {
-        return state.data;
+        return state.data
     },
     hasMore: (state) => {
-        return state.hasMore;
+        return state.hasMore
     },
     thisPage: (state) => {
-        return state.thisPage;
+        return state.thisPage
     },
     lastPage: (state) => {
-        return state.lastPage;
+        return state.lastPage
     },
     listData: (state) => {
-        return state.listData;
+        return state.listData
     },
     status: (state) => {
-        return state.status;
+        return state.status
     },
     loading: (state) => {
-        return state.loading;
+        return state.loading
     },
     busy: (state) => {
-        return state.busy;
-    },
-
+        return state.busy
+    }
 
 }

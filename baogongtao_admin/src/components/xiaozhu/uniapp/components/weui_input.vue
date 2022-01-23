@@ -17,7 +17,6 @@
 	<div slot="middle">123</div>
 </weui-input>
 
-
 //上传
  <weui-input v-model="ruleform.logo" label="上传LOGO" type="upload" upurl='article' allowUpLoadNum="1" name="logo" datatype="require"></weui-input>
  //上传单图
@@ -87,683 +86,913 @@ ruleform.needArr = [0,0] ;  //数组，默认第一个;
 开关
 <weui-input v-model="ruleform.radio" label="标题1" type="switch"></weui-input>
 
-
-
  -->
 <template>
-	<view>
-		<!-- 开关 -->
-		<view :class="['dx-cell','dx-cell_switch',myclass]" v-if="type == 'switch'">
-			<view class="dx-cell_bd">
-				<view class="dx-label" v-if="label">{{ label }}</view>
-			</view>
-			<view class="dx-cell_ft">
-				<switch class="switch" @change="changeRadio($event)" :checked="currentValue ? true : false"/>
-			</view>
-		</view>
-		<!-- 开关结束 -->
-		
-		<!-- 定位 -->
-		<view :class="['dx-cell',myclass]" v-if="type == 'location'">
-			<view :class="['dx-cell_hd']">
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view :class="['dx-cell_bd']">
-				<input class="dx-input" type="text" @input="updateVal" placeholder="请选择您的位置信息" :disabled="disabled"
-				 :value="currentValue">
-			</view>
-			<view class="dx-cell_ft">
-				<view :class="['dx-nav',navClass ? navClass : 'dx-btn-green']" @click="changeLocation">定位</view>
-			</view>
-		</view>
-		<!-- 定位结束 -->
-		
-		<!-- 文本 -->
-		<view :class="['dx-cell',myclass]" v-if="type == 'text' || type == 'textarea' || type == 'password' || type == 'number' || type == 'digit' || type == 'txt'">
-			<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" v-if=" currentValue != undefined"
-			 :disabled="disabled" :value="currentValue"  hidden/>
-			<view :class="['dx-cell_hd']">
-				<slot name="left" />
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view :class="['dx-cell_bd']">
-				<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" :placeholder-class="placeholderClass"
-				 v-if="type == 'text' && currentValue != undefined" :disabled="disabled" :value="currentValue" :focus="focus" @input="updateVal"
-				  :maxlength="maxlength ? maxlength: 100" />
-				<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" v-if="type == 'number' && currentValue != undefined"
-				 :disabled="disabled" @input="updateVal" :value="currentValue" :focus="focus" :placeholder-class="placeholderClass" type="number"
-				  :maxlength="maxlength ? maxlength: 100" />
-				<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" :placeholder-class="placeholderClass"
-				 v-if="type == 'digit' && currentValue != undefined" :disabled="disabled" @input="updateVal" :value="currentValue" :focus="focus"
-				  type="digit" :maxlength="maxlength ? maxlength: 100" />
-				<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" :placeholder-class="placeholderClass" type="password"
-				 @input="updateVal" :disabled="disabled" v-if="type == 'password' && currentValue != undefined" />
-				<textarea maxlength="-1" class="dx-text" :placeholder="placeholder ? placeholder :'请输入'+label" :placeholder-class="placeholderClass"
-				 @input="updateVal" v-if="type == 'textarea'" :disabled="disabled" :value="currentValue"/>
-				<view class="dx-txt" v-if="type == 'txt'">{{currentValue }}</view>
-				<slot name="middle" />
-			</view>
-			<view class="dx-cell_ft dx_ft-access" v-if="arrow"></view>
-			<slot name="right" />
-		</view>
-		<!-- 文本结束 -->
-		
-		<!-- 发送验证码 -->
-		<view :class="['dx-cell',myclass]" v-if="type == 'sms'" >
-			<view :class="['dx-cell_hd']">
-				<slot name="left" />
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view :class="['dx-cell_bd']">
-				<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" :disabled="disabled" :focus="focus" @input="bingPhoneCode"/>
-				<slot name="middle" />
-			</view>
-			<view class="dx-cell_ft">
-				<view :class="['dx-nav',navClass ? navClass : 'dx-btn-green']" @click="toSms">{{ smsTitle }}</view>
-			</view>
-		</view>
-		<!-- 发送验证码结束 -->
+  <view>
+    <!-- 开关 -->
+    <view v-if="type == 'switch'" :class="['dx-cell','dx-cell_switch',myclass]">
+      <view class="dx-cell_bd">
+        <view v-if="label" class="dx-label">{{ label }}</view>
+      </view>
+      <view class="dx-cell_ft">
+        <switch class="switch" :checked="currentValue ? true : false" @change="changeRadio($event)" />
+      </view>
+    </view>
+    <!-- 开关结束 -->
 
-		<!-- 多选 -->
-		<view :class="['dx-cell', myclass, radioType ? 'radioType' : '']" v-if="type == 'checkbox'">
-			
-			<view :class="['dx-cell_hd']">
-				<slot name="left" />
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view :class="['dx-cell_bd']">
-				
-				<checkbox-group @change="checkboxChange" :class="row == true ? 'row_group' : 'col_group'">
-					<!-- 横向报局 -->
-					<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" v-if=" currentValue != undefined"
-					 :disabled="disabled" :value="currentValue"  hidden/>
-					<label :class="['dx-cell dx-check_label', Labelleft ? 'label_left' : '']" v-for="item in data" v-if="!row">
-						<view class="dx-cell_hd dx-checkbox">
-							<checkbox :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" v-if="!item.checked"/>
-							<checkbox :value="changeField == 'value' ? item.value :item.label" checked="true" color="#3CC51F" v-else/>
-						</view>
-						<view class="dx-cell__bd">{{item.label}}</view>
-					</label>
-					<!-- 竖向报局 -->
-					<label :class="['dx-cell dx-check_label', Labelleft ? 'label_left' : '']" v-for="item in data" v-if="row">
-						<view class="dx-cell_hd" v-if="item.icon">
-							<span :class="item.icon"></span>
-						</view>
-						<view class="dx-cell_bd">{{item.label}} </view>
-						<view class="dx-cell_ft dx-checkbox" >
-							<checkbox :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" v-if="!item.checked"/>
-							<checkbox :value="changeField == 'value' ? item.value :item.label" checked="true" color="#3CC51F" v-else/>
-						</view>
-					</label>
-				</checkbox-group>
-			</view>
-			<slot name="right" />
-		</view>
-		<!-- 多选结束 -->
-		
-		<!-- 单选 -->
-		<view :class="['dx-cell',myclass]" v-if="type == 'radio'">
-			<view class="dx-cell_hd">
-				<slot name="left" />
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view class="dx-cell_bd">
-				<radio-group @change="radioChange" :class="row == true ? 'row_group' : 'col_group'">
-					<!-- 横向报局 -->
-					<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" v-if=" currentValue != undefined"
-					 :disabled="disabled" :value="currentValue"  hidden/>
-					<label :class="['dx-cell dx-check_label', Labelleft ? 'label_left' : '']" v-for="(item,key) in data" v-if="!row" :key="item.label">
-						<view class="dx-cell_hd dx-checkbox" >
-							<!-- 未选中 -->
-							<radio :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" checked="true" v-if="item.checked"/>
-							<radio :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" v-else/>
-						</view>
-						<view class="dx-cell_bd">
-							<!-- #ifndef MP-WEIXIN -->
-							<slot :name="'icon_'+key" />
-							<!-- #endif -->
-							{{item.label}}
-						</view>
-					</label>
-					<!-- 竖向报局 -->
-					<label :class="['dx-cell dx-check_label', Labelleft ? 'label_left' : '']" v-for="(item,key) in data" v-if="row">
-						<view class="dx-cell_hd" v-if="item.icon">
-							<span :class="item.icon"></span>
-						</view>
-						<view class="dx-cell_bd">
-							<!-- #ifndef MP-WEIXIN -->
-							<slot :name="'icon_'+key" />
-							<!-- #endif -->
-							{{item.label}}
-						</view>
-						<view class="dx-cell_hd dx-checkbox" >
-							<radio :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" checked="true" v-if="item.checked"/>
-							<radio :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" v-else/>
-						</view>
+    <!-- 定位 -->
+    <view v-if="type == 'location'" :class="['dx-cell',myclass]">
+      <view :class="['dx-cell_hd']">
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view :class="['dx-cell_bd']">
+        <input
+          class="dx-input"
+          type="text"
+          placeholder="请选择您的位置信息"
+          :disabled="disabled"
+          :value="currentValue"
+          @input="updateVal"
+        >
+      </view>
+      <view class="dx-cell_ft">
+        <view :class="['dx-nav',navClass ? navClass : 'dx-btn-green']" @click="changeLocation">定位</view>
+      </view>
+    </view>
+    <!-- 定位结束 -->
 
-					</label>
-				</radio-group>
-			</view>
-			<slot name="right" />
-		</view>
-		<!-- 单选结束 -->
-		
-		<!-- select -->
-		<view :class="['dx-cell','dx-select',myclass]" v-if="type == 'select'">
-			<view class="dx-cell_hd">
-				<slot name="left" />
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view class="dx-cell_bd">
-				<input class="dx-input" :placeholder="placeholder ? placeholder :'请选择'+label" v-if=" currentValue != undefined"
-				 :disabled="disabled" :value="currentValue"  hidden/>
-				<div class="dx-label" v-if="disabled">{{ currentValue }}</div>
-				<div v-else>
-					<picker :value="selectKey" class="order-picker" :range="data" range-key="label" @change="selectRes">
-						<view class="picker picker-value" v-if="currentValue">
-							{{currentValue}}
-						</view>
-						<view class="picker picker-label" v-else>
-							{{ placeholder ? placeholder : '请选择'+label}}
-						</view>
-					</picker>
-				</div>
-			</view>
-			<view class="dx-cell_ft dx_ft-access" v-if="!disabled"></view>
-			<slot name="right" />
-		</view>
-		<!-- select结束 -->
-		
-		<!-- select -->
-		<view :class="['dx-cell','dx-select',myclass]" v-if="type == 'emptySelect'" @click="toClick">
-			<view class="dx-cell_hd">
-				<slot name="left" />
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view class="dx-cell_bd">
-				<input class="dx-input" :placeholder="placeholder ? placeholder :'请选择'+label" v-if=" currentValue != undefined"
-				 :disabled="disabled" :value="currentValue"  hidden/>
-				<div class="dx-label" v-if="disabled">{{ currentValue }}</div>
-				<div v-else>
-					<view class="picker picker-value" v-if="currentValue">
-						{{currentValue}}
-					</view>
-					<view class="picker picker-label" v-else>
-						{{ placeholder ? placeholder : '请选择'+label}}
-					</view>
-				</div>
-			</view>
-			<view class="dx-cell_ft dx_ft-access" v-if="!disabled"></view>
-			<slot name="right" />
-		</view>
-		<!-- select结束 -->
+    <!-- 文本 -->
+    <view v-if="type == 'text' || type == 'textarea' || type == 'password' || type == 'number' || type == 'digit' || type == 'txt'" :class="['dx-cell',myclass]">
+      <input
+        v-if=" currentValue != undefined"
+        class="dx-input"
+        :placeholder="placeholder ? placeholder :'请输入'+label"
+        :disabled="disabled"
+        :value="currentValue"
+        hidden
+      >
+      <view :class="['dx-cell_hd']">
+        <slot name="left" />
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view :class="['dx-cell_bd']">
+        <input
+          v-if="type == 'text' && currentValue != undefined"
+          class="dx-input"
+          :placeholder="placeholder ? placeholder :'请输入'+label"
+          :placeholder-class="placeholderClass"
+          :disabled="disabled"
+          :value="currentValue"
+          :focus="focus"
+          :maxlength="maxlength ? maxlength: 100"
+          @input="updateVal"
+        >
+        <input
+          v-if="type == 'number' && currentValue != undefined"
+          class="dx-input"
+          :placeholder="placeholder ? placeholder :'请输入'+label"
+          :disabled="disabled"
+          :value="currentValue"
+          :focus="focus"
+          :placeholder-class="placeholderClass"
+          type="number"
+          :maxlength="maxlength ? maxlength: 100"
+          @input="updateVal"
+        >
+        <input
+          v-if="type == 'digit' && currentValue != undefined"
+          class="dx-input"
+          :placeholder="placeholder ? placeholder :'请输入'+label"
+          :placeholder-class="placeholderClass"
+          :disabled="disabled"
+          :value="currentValue"
+          :focus="focus"
+          type="digit"
+          :maxlength="maxlength ? maxlength: 100"
+          @input="updateVal"
+        >
+        <input
+          v-if="type == 'password' && currentValue != undefined"
+          class="dx-input"
+          :placeholder="placeholder ? placeholder :'请输入'+label"
+          :placeholder-class="placeholderClass"
+          type="password"
+          :disabled="disabled"
+          @input="updateVal"
+        >
+        <textarea
+          v-if="type == 'textarea'"
+          maxlength="-1"
+          class="dx-text"
+          :placeholder="placeholder ? placeholder :'请输入'+label"
+          :placeholder-class="placeholderClass"
+          :disabled="disabled"
+          :value="currentValue"
+          @input="updateVal"
+        />
+        <view v-if="type == 'txt'" class="dx-txt">{{ currentValue }}</view>
+        <slot name="middle" />
+      </view>
+      <view v-if="arrow" class="dx-cell_ft dx_ft-access" />
+      <slot name="right" />
+    </view>
+    <!-- 文本结束 -->
 
-		<!-- manyselect -->
-		<view :class="['dx-cell','dx-select',myclass]" v-if="type == 'manyselect'" @click="chooseFclass">
-			<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" v-if=" currentValue != undefined"
-			 :disabled="disabled" :value="currentValue"  hidden/>
-			<view class="dx-cell_hd">
-				<slot name="left" />
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view class="dx-cell_bd">
-				<!-- <view class="dx-label">
+    <!-- 发送验证码 -->
+    <view v-if="type == 'sms'" :class="['dx-cell',myclass]">
+      <view :class="['dx-cell_hd']">
+        <slot name="left" />
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view :class="['dx-cell_bd']">
+        <input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" :disabled="disabled" :focus="focus" @input="bingPhoneCode">
+        <slot name="middle" />
+      </view>
+      <view class="dx-cell_ft">
+        <view :class="['dx-nav',navClass ? navClass : 'dx-btn-green']" @click="toSms">{{ smsTitle }}</view>
+      </view>
+    </view>
+    <!-- 发送验证码结束 -->
+
+    <!-- 多选 -->
+    <view v-if="type == 'checkbox'" :class="['dx-cell', myclass, radioType ? 'radioType' : '']">
+
+      <view :class="['dx-cell_hd']">
+        <slot name="left" />
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view :class="['dx-cell_bd']">
+
+        <checkbox-group :class="row == true ? 'row_group' : 'col_group'" @change="checkboxChange">
+          <!-- 横向报局 -->
+          <input
+            v-if=" currentValue != undefined"
+            class="dx-input"
+            :placeholder="placeholder ? placeholder :'请输入'+label"
+            :disabled="disabled"
+            :value="currentValue"
+            hidden
+          >
+          <label v-for="item in data" v-if="!row" :class="['dx-cell dx-check_label', Labelleft ? 'label_left' : '']">
+            <view class="dx-cell_hd dx-checkbox">
+              <checkbox v-if="!item.checked" :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" />
+              <checkbox v-else :value="changeField == 'value' ? item.value :item.label" checked="true" color="#3CC51F" />
+            </view>
+            <view class="dx-cell__bd">{{ item.label }}</view>
+          </label>
+          <!-- 竖向报局 -->
+          <label v-for="item in data" v-if="row" :class="['dx-cell dx-check_label', Labelleft ? 'label_left' : '']">
+            <view v-if="item.icon" class="dx-cell_hd">
+              <span :class="item.icon" />
+            </view>
+            <view class="dx-cell_bd">{{ item.label }} </view>
+            <view class="dx-cell_ft dx-checkbox">
+              <checkbox v-if="!item.checked" :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" />
+              <checkbox v-else :value="changeField == 'value' ? item.value :item.label" checked="true" color="#3CC51F" />
+            </view>
+          </label>
+        </checkbox-group>
+      </view>
+      <slot name="right" />
+    </view>
+    <!-- 多选结束 -->
+
+    <!-- 单选 -->
+    <view v-if="type == 'radio'" :class="['dx-cell',myclass]">
+      <view class="dx-cell_hd">
+        <slot name="left" />
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view class="dx-cell_bd">
+        <radio-group :class="row == true ? 'row_group' : 'col_group'" @change="radioChange">
+          <!-- 横向报局 -->
+          <input
+            v-if=" currentValue != undefined"
+            class="dx-input"
+            :placeholder="placeholder ? placeholder :'请输入'+label"
+            :disabled="disabled"
+            :value="currentValue"
+            hidden
+          >
+          <label v-for="(item,key) in data" v-if="!row" :key="item.label" :class="['dx-cell dx-check_label', Labelleft ? 'label_left' : '']">
+            <view class="dx-cell_hd dx-checkbox">
+              <!-- 未选中 -->
+              <radio v-if="item.checked" :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" checked="true" />
+              <radio v-else :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" />
+            </view>
+            <view class="dx-cell_bd">
+              <!-- #ifndef MP-WEIXIN -->
+              <slot :name="'icon_'+key" />
+              <!-- #endif -->
+              {{ item.label }}
+            </view>
+          </label>
+          <!-- 竖向报局 -->
+          <label v-for="(item,key) in data" v-if="row" :class="['dx-cell dx-check_label', Labelleft ? 'label_left' : '']">
+            <view v-if="item.icon" class="dx-cell_hd">
+              <span :class="item.icon" />
+            </view>
+            <view class="dx-cell_bd">
+              <!-- #ifndef MP-WEIXIN -->
+              <slot :name="'icon_'+key" />
+              <!-- #endif -->
+              {{ item.label }}
+            </view>
+            <view class="dx-cell_hd dx-checkbox">
+              <radio v-if="item.checked" :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" checked="true" />
+              <radio v-else :value="changeField == 'value' ? item.value :item.label" color="#3CC51F" />
+            </view>
+
+          </label>
+        </radio-group>
+      </view>
+      <slot name="right" />
+    </view>
+    <!-- 单选结束 -->
+
+    <!-- select -->
+    <view v-if="type == 'select'" :class="['dx-cell','dx-select',myclass]">
+      <view class="dx-cell_hd">
+        <slot name="left" />
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view class="dx-cell_bd">
+        <input
+          v-if=" currentValue != undefined"
+          class="dx-input"
+          :placeholder="placeholder ? placeholder :'请选择'+label"
+          :disabled="disabled"
+          :value="currentValue"
+          hidden
+        >
+        <div v-if="disabled" class="dx-label">{{ currentValue }}</div>
+        <div v-else>
+          <picker :value="selectKey" class="order-picker" :range="data" range-key="label" @change="selectRes">
+            <view v-if="currentValue" class="picker picker-value">
+              {{ currentValue }}
+            </view>
+            <view v-else class="picker picker-label">
+              {{ placeholder ? placeholder : '请选择'+label }}
+            </view>
+          </picker>
+        </div>
+      </view>
+      <view v-if="!disabled" class="dx-cell_ft dx_ft-access" />
+      <slot name="right" />
+    </view>
+    <!-- select结束 -->
+
+    <!-- select -->
+    <view v-if="type == 'emptySelect'" :class="['dx-cell','dx-select',myclass]" @click="toClick">
+      <view class="dx-cell_hd">
+        <slot name="left" />
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view class="dx-cell_bd">
+        <input
+          v-if=" currentValue != undefined"
+          class="dx-input"
+          :placeholder="placeholder ? placeholder :'请选择'+label"
+          :disabled="disabled"
+          :value="currentValue"
+          hidden
+        >
+        <div v-if="disabled" class="dx-label">{{ currentValue }}</div>
+        <div v-else>
+          <view v-if="currentValue" class="picker picker-value">
+            {{ currentValue }}
+          </view>
+          <view v-else class="picker picker-label">
+            {{ placeholder ? placeholder : '请选择'+label }}
+          </view>
+        </div>
+      </view>
+      <view v-if="!disabled" class="dx-cell_ft dx_ft-access" />
+      <slot name="right" />
+    </view>
+    <!-- select结束 -->
+
+    <!-- manyselect -->
+    <view v-if="type == 'manyselect'" :class="['dx-cell','dx-select',myclass]" @click="chooseFclass">
+      <input
+        v-if=" currentValue != undefined"
+        class="dx-input"
+        :placeholder="placeholder ? placeholder :'请输入'+label"
+        :disabled="disabled"
+        :value="currentValue"
+        hidden
+      >
+      <view class="dx-cell_hd">
+        <slot name="left" />
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view class="dx-cell_bd">
+        <!-- <view class="dx-label">
 					{{ manyselectValue ?manyselectValue :'请选择'+label }}
 				</view> -->
-				<view class="picker picker-value" v-if="manyselectValue">
-					{{manyselectValue}}
-				</view>
-				<view class="picker picker-label" v-else>
-					{{ placeholder ? placeholder : '请选择'+label}}
-				</view>
-			</view>
-			<view class="dx-cell_ft dx_ft-access" v-if="!disabled"></view>
-			<slot name="right" />
-		</view>
-		<!-- manyselect结束 -->
+        <view v-if="manyselectValue" class="picker picker-value">
+          {{ manyselectValue }}
+        </view>
+        <view v-else class="picker picker-label">
+          {{ placeholder ? placeholder : '请选择'+label }}
+        </view>
+      </view>
+      <view v-if="!disabled" class="dx-cell_ft dx_ft-access" />
+      <slot name="right" />
+    </view>
+    <!-- manyselect结束 -->
 
-		<!-- 多张图片上传 -->
-		<view :class="['dx-cell','dx-upload_img',myclass]" v-if="type == 'upload'">
-			<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" v-if=" currentValue != undefined"
-			 :disabled="disabled" :value="currentValue"  hidden/>
-			<view class="dx-cell_hd" v-if="label">
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view class="dx-cell_bd">
-				<div :class="['upload-img',myclass]">
-					<div class="uploadvalue" v-if="currentValue && currentValue.length<allowUpLoadNum && !disabled">
-						<div class="upload" @click="uploadImage" data-thumbsize="300" :data-upurl="upurl" :data-allowuploadnum="allowUpLoadNum" :data-type="uploadtype">
-							<p class="add-icon"></p>
-							<p class="imgTxt" v-if="txtType == 'imgTxt'">{{ imgTxt }}</p>
-						</div>
-					</div>
-					<div class="il-item" v-for="(item,index) in currentValue">
-						<image :src="loading ? '' :getSiteName+'/upload/images/'+upurl+'/'+item" v-if="currentValue" lazy-load="true" mode="aspectFill" data-name="pic" :class="['img',loading]" @click="largeImage(getSiteName+'/upload/images/'+upurl+'/'+item)"/>
-						<div class="del" @click="delImage" data-name="pic" :data-key="index" v-if='!disabled'>
-							<p class="del-icon"></p>
-						</div>
-					</div>
-				</div>
-			</view>
-		</view>
-		<!-- 多张图片上传结束 -->
-		<!-- 多视频上传 -->
-		<view :class="['dx-cell','dx-upload_video',myclass]" v-if="type == 'uploadVideo'">
-			<input class="dx-input" :placeholder="placeholder ? placeholder :'请输入'+label" v-if=" currentValue != undefined"
-			 :disabled="disabled" :value="currentValue"  hidden/>
-			<view class="dx-cell_hd" v-if="label">
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view class="dx-cell_bd">
-				<div :class="['upload-video',myclass]">
-					<div class="uploadvalue" v-if="currentValue && currentValue.length<allowUpLoadNum && !disabled">
-						<div class="upload" @click="uploadVideo" data-thumbsize="300" :data-upurl="upurl" :data-allowuploadnum="allowUpLoadNum" :data-type="uploadtype">
-							<p class="iconfont icon-xiaozhu-video"></p>
-							<p class="videoTxt" v-if="txtType == 'videoTxt'">{{ videoTxt }}</p>
-						</div>
-					</div>
-					<div class="il-item" v-for="(item,index) in currentValue">
-						<!-- <video id="myVideo" :src="getSiteName+'/upload/video/'+upurl+'/'+videoSrc" enable-danmu danmu-btn controls></video> -->
-						<view class="video-group" @click="openVideoDiag(item)">
-							<image class="cover" :src="getSiteName+'/upload/video/'+upurl+'/'+item.videoCover"  mode="aspectFill"></image>
-							<text class="icon iconfont icon-pro-play"></text>
-						</view>
-						<div class="del" @click="delImage" data-name="pic" :data-key="index" v-if='!disabled'>
-							<p class="del-icon"></p>
-						</div>
-					</div>
-				</div>
-			</view>
-		</view>
-		
-		<!-- 视频弹出层 -->
-		<!-- <dx-diag :tbPadding="0" :lrPadding="0" width="100%" myclass="video-diag" ref="videoDiag">
+    <!-- 多张图片上传 -->
+    <view v-if="type == 'upload'" :class="['dx-cell','dx-upload_img',myclass]">
+      <input
+        v-if=" currentValue != undefined"
+        class="dx-input"
+        :placeholder="placeholder ? placeholder :'请输入'+label"
+        :disabled="disabled"
+        :value="currentValue"
+        hidden
+      >
+      <view v-if="label" class="dx-cell_hd">
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view class="dx-cell_bd">
+        <div :class="['upload-img',myclass]">
+          <div v-if="currentValue && currentValue.length<allowUpLoadNum && !disabled" class="uploadvalue">
+            <div class="upload" data-thumbsize="300" :data-upurl="upurl" :data-allowuploadnum="allowUpLoadNum" :data-type="uploadtype" @click="uploadImage">
+              <p class="add-icon" />
+              <p v-if="txtType == 'imgTxt'" class="imgTxt">{{ imgTxt }}</p>
+            </div>
+          </div>
+          <div v-for="(item,index) in currentValue" class="il-item">
+            <image v-if="currentValue" :src="loading ? '' :getSiteName+'/upload/images/'+upurl+'/'+item" lazy-load="true" mode="aspectFill" data-name="pic" :class="['img',loading]" @click="largeImage(getSiteName+'/upload/images/'+upurl+'/'+item)" />
+            <div v-if="!disabled" class="del" data-name="pic" :data-key="index" @click="delImage">
+              <p class="del-icon" />
+            </div>
+          </div>
+        </div>
+      </view>
+    </view>
+    <!-- 多张图片上传结束 -->
+    <!-- 多视频上传 -->
+    <view v-if="type == 'uploadVideo'" :class="['dx-cell','dx-upload_video',myclass]">
+      <input
+        v-if=" currentValue != undefined"
+        class="dx-input"
+        :placeholder="placeholder ? placeholder :'请输入'+label"
+        :disabled="disabled"
+        :value="currentValue"
+        hidden
+      >
+      <view v-if="label" class="dx-cell_hd">
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view class="dx-cell_bd">
+        <div :class="['upload-video',myclass]">
+          <div v-if="currentValue && currentValue.length<allowUpLoadNum && !disabled" class="uploadvalue">
+            <div class="upload" data-thumbsize="300" :data-upurl="upurl" :data-allowuploadnum="allowUpLoadNum" :data-type="uploadtype" @click="uploadVideo">
+              <p class="iconfont icon-xiaozhu-video" />
+              <p v-if="txtType == 'videoTxt'" class="videoTxt">{{ videoTxt }}</p>
+            </div>
+          </div>
+          <div v-for="(item,index) in currentValue" class="il-item">
+            <!-- <video id="myVideo" :src="getSiteName+'/upload/video/'+upurl+'/'+videoSrc" enable-danmu danmu-btn controls></video> -->
+            <view class="video-group" @click="openVideoDiag(item)">
+              <image class="cover" :src="getSiteName+'/upload/video/'+upurl+'/'+item.videoCover" mode="aspectFill" />
+              <text class="icon iconfont icon-pro-play" />
+            </view>
+            <div v-if="!disabled" class="del" data-name="pic" :data-key="index" @click="delImage">
+              <p class="del-icon" />
+            </div>
+          </div>
+        </div>
+      </view>
+    </view>
+
+    <!-- 视频弹出层 -->
+    <!-- <dx-diag :tbPadding="0" :lrPadding="0" width="100%" myclass="video-diag" ref="videoDiag">
 			{{getSiteName+'/upload/video/'+upurl+'/'+videoSrc}}
 			<view>连接{{videoSrc}}</view>
 			<video class="w-b100" x5-video-player-type="h5" :webkit-playsinline="true" :playsinline="true" :controls="true"  :src="getSiteName+'/upload/video/'+upurl+'/'+videoSrc" v-if="videoSrc"></video>
 			<video class="w-b100" :src="getSiteName+'/upload/video/'+upurl+'/'+videoSrc" enable-danmu danmu-btn controls></video>
 		</dx-diag> -->
-		<div class="video-diag" v-if="videoDiag==true">
-			<div class="overlay"></div>
-			<div class="video-diag-box">
-				<video class="this-video"  v-if="videoDiag2==true" :src="getSiteName+'/upload/video/'+upurl+'/'+videoSrc" enable-danmu danmu-btn controls></video>
-				<div class="off-icon btm-off" @click="videoDiag=false;videoDiag2=false"><span class="iconfont icon-xiaozhu-OFF fw-bold"></span></div>
-			</div>
-		</div>
-		<!-- 多视频上传结束 -->
-		
-		
-		<!-- 日期 -->
-		<view :class="['dx-cell','dx-dateTime',myclass]" v-if="type == 'date'">
-			<view class="dx-cell_hd">
-				<slot name="left" />
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view class="dx-cell_bd">
-				<picker :value="currentValue" class="date-picker"  mode="date" @change="bindDateChange" :start="startDate || '1980-03-26' " :end="endDate|| '2030-12-01'">
-					<view class="picker picker-value" v-if="currentValue">
-						{{currentValue}}
-					</view>
-					<view class="picker picker-label" v-else>
-						{{ placeholder ? placeholder : '请选择'+label}}
-					</view>
-				</picker>
-			</view>
-			<view class="dx-cell_ft dx_ft-access"></view>
-			<slot name="right" />
-		</view>
-		<!-- 日期结束 -->
+    <div v-if="videoDiag==true" class="video-diag">
+      <div class="overlay" />
+      <div class="video-diag-box">
+        <video v-if="videoDiag2==true" class="this-video" :src="getSiteName+'/upload/video/'+upurl+'/'+videoSrc" enable-danmu danmu-btn controls />
+        <div class="off-icon btm-off" @click="videoDiag=false;videoDiag2=false"><span class="iconfont icon-xiaozhu-OFF fw-bold" /></div>
+      </div>
+    </div>
+    <!-- 多视频上传结束 -->
 
-		<!-- 时间 -->
-		<view :class="['dx-cell','dx-dateTime',myclass]" v-if="type == 'time'">
-			<view class="dx-cell_hd">
-				<slot name="left" />
-				<view class="dx-label" v-if="label">{{ label }}<span class="star" v-if="isRequire">*</span></view>
-			</view>
-			<view class="dx-cell_bd">
-				<picker :value="currentValue" class="date-picker" mode="time" @change="bindTimeChange" start="00:00" end="23:59">
-					<view class="picker picker-value" v-if="currentValue">
-						{{currentValue}}
-					</view>
-					<view class="picker picker-label" v-else>
-						{{ placeholder ? placeholder : '请选择'+label}}
-					</view>
-				</picker>
-			</view>
-			<view class="dx-cell_ft dx_ft-access"></view>
-			<slot name="right" />
-		</view>
-		<!-- 时间结束 -->
-		
-		
-		<!-- 多选择层 -->
-		<div v-if="condition" class="ms_diag">
-			<view class="ms_title">
-				<view @click="chooseFclass" class="cancel">取消</view>
-				<view @click="comfirm" class="true">确定</view>
-			</view>
-			<picker-view class="ms_select" :value="selectManyKey" @change="bindChange">
-				<picker-view-column>
-					<view class="ms_item" v-for="(parent,key) in data" wx:key="item">{{parent.label}}</view>
-				</picker-view-column>
-				<picker-view-column>
-					<view class="ms_item" v-if="data[selectManyKey[0]].children" v-for="(son,key2) in data[selectManyKey[0]].children" wx:key="item">{{son.label}}</view>
-				</picker-view-column>
-			</picker-view>
-		</div>
-		<view class="share-overlay" @click="chooseFclass" v-if="condition"></view>
-	</view>
+    <!-- 日期 -->
+    <view v-if="type == 'date'" :class="['dx-cell','dx-dateTime',myclass]">
+      <view class="dx-cell_hd">
+        <slot name="left" />
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view class="dx-cell_bd">
+        <picker :value="currentValue" class="date-picker" mode="date" :start="startDate || '1980-03-26' " :end="endDate|| '2030-12-01'" @change="bindDateChange">
+          <view v-if="currentValue" class="picker picker-value">
+            {{ currentValue }}
+          </view>
+          <view v-else class="picker picker-label">
+            {{ placeholder ? placeholder : '请选择'+label }}
+          </view>
+        </picker>
+      </view>
+      <view class="dx-cell_ft dx_ft-access" />
+      <slot name="right" />
+    </view>
+    <!-- 日期结束 -->
+
+    <!-- 时间 -->
+    <view v-if="type == 'time'" :class="['dx-cell','dx-dateTime',myclass]">
+      <view class="dx-cell_hd">
+        <slot name="left" />
+        <view v-if="label" class="dx-label">{{ label }}<span v-if="isRequire" class="star">*</span></view>
+      </view>
+      <view class="dx-cell_bd">
+        <picker :value="currentValue" class="date-picker" mode="time" start="00:00" end="23:59" @change="bindTimeChange">
+          <view v-if="currentValue" class="picker picker-value">
+            {{ currentValue }}
+          </view>
+          <view v-else class="picker picker-label">
+            {{ placeholder ? placeholder : '请选择'+label }}
+          </view>
+        </picker>
+      </view>
+      <view class="dx-cell_ft dx_ft-access" />
+      <slot name="right" />
+    </view>
+    <!-- 时间结束 -->
+
+    <!-- 多选择层 -->
+    <div v-if="condition" class="ms_diag">
+      <view class="ms_title">
+        <view class="cancel" @click="chooseFclass">取消</view>
+        <view class="true" @click="comfirm">确定</view>
+      </view>
+      <picker-view class="ms_select" :value="selectManyKey" @change="bindChange">
+        <picker-view-column>
+          <view v-for="(parent,key) in data" class="ms_item" wx:key="item">{{ parent.label }}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view v-for="(son,key2) in data[selectManyKey[0]].children" v-if="data[selectManyKey[0]].children" class="ms_item" wx:key="item">{{ son.label }}</view>
+        </picker-view-column>
+      </picker-view>
+    </div>
+    <view v-if="condition" class="share-overlay" @click="chooseFclass" />
+  </view>
 
 </template>
 <script>
-import dxftButton from "doxinui/components/button/footer-button"
-import dxDiag from "doxinui/components/diag/diag"
+import dxftButton from 'doxinui/components/button/footer-button'
+import dxDiag from 'doxinui/components/diag/diag'
 
 export default {
-	components: {dxftButton,dxDiag},
-	props: ['sourceType','startDate','endDate','errorMessage','dataKey','value', 'label', 'type', 'upurl', 'allowUpLoadNum', 'myclass',  'disabled', 'placeholder', 'changeField', 'uploadtype', 'name', 'datatype','navClass','imgTxt','txtType','focus','phone',"action",'radioType','row','Labelleft','maxlength','arrow','videoTxt','placeholderClass'],
+	components: { dxftButton, dxDiag },
+	props: ['sourceType', 'startDate', 'endDate', 'errorMessage', 'dataKey', 'value', 'label', 'type', 'upurl', 'allowUpLoadNum', 'myclass', 'disabled', 'placeholder', 'changeField', 'uploadtype', 'name', 'datatype', 'navClass', 'imgTxt', 'txtType', 'focus', 'phone', 'action', 'radioType', 'row', 'labelleft', 'maxlength', 'arrow', 'videoTxt', 'placeholderClass'],
 	data() {
 		return {
 			getSiteName: this.getSiteName(),
 			chooseArr: [],
-			data:[],
+			data: [],
 			chooseValue: '',
 			check: false,
 			manyselectValue: '',
 			condition: false,
 			isRequire: false,
-			canSend:true,
-			selectKey:0,
-			selectManyKey:[0,0],
-			smsTitle:'发送验证码',
-			timer:'',
-			videoSrc:'',
+			canSend: true,
+			selectKey: 0,
+			selectManyKey: [0, 0],
+			smsTitle: '发送验证码',
+			timer: '',
+			videoSrc: '',
 			videoDiag: false,
-			videoDiag2: false,
+			videoDiag2: false
 		}
 	},
-	onUnload(){
-		clearInterval(this.timer);
+	onUnload() {
+		clearInterval(this.timer)
+	},
+	computed: {
+		currentValue: {
+			// 动态计算currentValue的值
+
+			get: function() {
+				if (this.datatype) {
+					if (this.datatype.indexOf('require') != -1 || this.datatype == 'array') {
+						this.isRequire = true
+					}
+				} else {
+					this.isRequire = false
+				}
+				/* 验证规则开始*/
+				if (this.type == 'manyselect' && this.name == 'provinces') {
+					var parent = this.$parent
+				} else {
+					var parent = this.getParent(this)
+				}
+				if (this.name && this.value == undefined) {
+					if (this.type == 'upload' && this.allowUpLoadNum > 0 || this.type == 'checkbox' || this.type == 'uploadVideo' && this.allowUpLoadNum > 0) {
+						this.$set(parent.ruleform, this.name, [])
+					} else {
+						this.$set(parent.ruleform, this.name, '')
+					}
+				}
+				if (this.datatype && parent.vaildate && parent.vaildate[this.name] == undefined) {
+					const label = this.label ? this.label : this.placeholder
+					this.$set(parent.vaildate, this.name, {
+						name: label,
+						vaild: this.datatype,
+						errorMessage: this.errorMessage || label
+					})
+				}
+				/* 验证规则结束*/
+
+				/* 如果是多选*/
+				if (parent[this.dataKey] && parent[this.dataKey].length && this.type == 'checkbox') {
+					if (this.name && this.value == undefined) {
+						this.value = []
+					}
+					if (this.value.length > 0 && !this.check) {
+						parent[this.dataKey].forEach((v, i) => {
+							if (this.in_array(v.value, this.value)) {
+								this.$set(parent[this.dataKey][i], 'checked', true)
+							} else {
+								this.$set(parent[this.dataKey][i], 'checked', false)
+							}
+						})
+					}
+
+					this.data = parent[this.dataKey]
+					this.check = true
+				}
+
+				/* 如果是单选*/
+				if (parent[this.dataKey] && parent[this.dataKey].length && (this.type == 'radio' || this.type == 'radioLists')) {
+					console.log('uab')
+					console.log(this.value)
+					console.log(this.check)
+					if (this.value) {
+						console.log('uab2')
+						parent[this.dataKey].forEach((v, i) => {
+							if (v.value == this.value) {
+								this.$set(parent[this.dataKey][i], 'checked', true)
+							} else {
+								this.$set(parent[this.dataKey][i], 'checked', false)
+							}
+						})
+					}
+					console.log(this.dataKey)
+					this.data = parent[this.dataKey]
+					this.check = true
+				}
+
+				if (this.type == 'date' && !this.value) {
+					this.value = this.dateToString(new Date())
+					parent.ruleform[this.name] = this.value
+				}
+				if (this.type == 'date' && this.value && this.value.indexOf('中国标准时间')) {
+					this.value = this.dateToString(new Date(this.value))
+					parent.ruleform[this.name] = this.value
+				}
+
+				if (this.type == 'select' && this.changeField == 'value') {
+					this.data = parent[this.dataKey]
+					for (var i = 0; i < parent[this.dataKey].length; i++) {
+						if (parent[this.dataKey][i].value == this.value) {
+							this.selectKey = i
+							return parent[this.dataKey][i].label
+						}
+					}
+				}
+
+				if (this.type == 'select' && this.changeField == 'label') {
+					for (var i = 0; i < parent[this.dataKey].length; i++) {
+						if (parent[this.dataKey][i].value == this.value) {
+							this.selectKey = i
+						}
+					}
+					this.data = parent[this.dataKey]
+				}
+
+				if (this.type == 'manyselect') {
+					if (this.value) {
+						const v = this.value.split(',')
+						if (v.length > 0 && !this.manyselectValue) {
+							if (v.length == 2) {
+								for (var i = 0; i < parent[this.dataKey].length; i++) {
+									if (parent[this.dataKey][i].value == v[0]) {
+										this.selectManyKey[0] = i
+										this.manyselectValue = parent[this.dataKey][i].label
+										parent[this.dataKey][i].children.forEach((children, key) => {
+											if (children.value == v[1]) {
+												this.selectManyKey[1] = key
+												this.manyselectValue += '-' + children.label
+											}
+										})
+									}
+								}
+								// this.manyselectValue = this.data[v[0]].label+"->"+this.data[v[0]].children[v[1]].label;
+							} else {
+								for (var i = 0; i < parent[this.dataKey].length; i++) {
+									if (parent[this.dataKey][i].value == v[0]) {
+										this.selectManyKey[0] = i
+										this.manyselectValue = parent[this.dataKey][i].label
+									}
+								}
+							// this.manyselectValue = this.data[v[0]].label;
+							}
+						}
+					}
+					this.data = parent[this.dataKey]
+				}
+				return this.value
+			},
+			set: function(val) {
+				this.$emit('input', val)
+			}
+		}
 	},
 	methods: {
-		openVideoDiag(item){
-			let src = this.getSiteName+'/upload/video/'+this.upurl+'/'+item.filename
-			return this.goto("/pages/video/main?videoSrc="+src,1);
+		openVideoDiag(item) {
+			const src = this.getSiteName + '/upload/video/' + this.upurl + '/' + item.filename
+			return this.goto('/pages/video/main?videoSrc=' + src, 1)
 			// this.$refs.videoDiag.thisDiag = true;
-			this.videoDiag = true;
-			setTimeout(()=>{
-				this.videoDiag2 = true;
-			},300)
-			this.videoSrc = item.filename;
+			this.videoDiag = true
+			setTimeout(() => {
+				this.videoDiag2 = true
+			}, 300)
+			this.videoSrc = item.filename
 		},
-		toClick(){
+		toClick() {
 			console.log(1)
 			this.$emit('click')
 		},
-		largeImage(value){
+		largeImage(value) {
 			uni.previewImage({
 				current: value, // 当前显示图片的http链接
 				urls: [value] // 需要预览的图片http链接列表
-			})	
+			})
 		},
-		updateVal(e){
-			this.currentValue = e.mp.detail.value;
+		updateVal(e) {
+			this.currentValue = e.mp.detail.value
 		},
-		bingPhoneCode(e){
-			this.currentValue = e.mp.detail.value;
+		bingPhoneCode(e) {
+			this.currentValue = e.mp.detail.value
 		},
-		toSms(){
-			setTimeout(()=>{
-				var phoneReg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
+		toSms() {
+			setTimeout(() => {
+				var phoneReg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/
 				if (!phoneReg.test(this.phone || !this.phone)) {
-					this.getError("手机格式不正确");
-					return false;
+					this.getError('手机格式不正确')
+					return false
 				}
-				if(this.canSend){
-					this.postAjax(this.action,{phone:this.phone}).then(msg=>{
+				if (this.canSend) {
+					this.postAjax(this.action, { phone: this.phone }).then(msg => {
 						if (msg.data.status == 2) {
-							this.canSend = false;
-							var num = 60;
-							uni.setStorageSync('smsCode', msg.data.code);
+							this.canSend = false
+							var num = 60
+							uni.setStorageSync('smsCode', msg.data.code)
 							this.timer = setInterval(() => {
-								num--;
+								num--
 								if (num == 0) {
-									clearInterval(this.timer);
-									this.canSend = true;
-									this.smsTitle = "发送验证码";
+									clearInterval(this.timer)
+									this.canSend = true
+									this.smsTitle = '发送验证码'
 								} else {
-									this.smsTitle = num + "秒";
+									this.smsTitle = num + '秒'
 								}
 							}, 1000)
 						}
-					});
+					})
 				}
-			},200);
+			}, 200)
 		},
-		scrollUploadCallBack(item){
-			this.$emit("callBack",item);
+		scrollUploadCallBack(item) {
+			this.$emit('callBack', item)
 		},
 		chooseFclass() {
-			this.condition = !this.condition;
+			this.condition = !this.condition
 		},
 		changeRadio(event) {
-			
-			this.currentValue = !this.currentValue;
-			this.$emit("callBack",this.currentValue);
+			this.currentValue = !this.currentValue
+			this.$emit('callBack', this.currentValue)
 		},
 		changeLocation() {
-			console.log("00954")
+			console.log('00954')
 			wx.chooseLocation({
 				success: msg => {
-					this.currentValue = msg.name;
-					this.$emit('callback', msg);
+					this.currentValue = msg.name
+					this.$emit('callback', msg)
 				}
-			});
+			})
 		},
 		comfirm() {
-			this.chooseFclass();
-			let parentValue = this.data[this.selectManyKey[0]];
+			this.chooseFclass()
+			const parentValue = this.data[this.selectManyKey[0]]
 			if (!this.data[this.selectManyKey[0]].children || this.data[this.selectManyKey[0]].children.length == 0) {
-				this.selectManyKey.splice(1, 1);
-				this.manyselectValue = parentValue.label;
-				if(this.changeField == 'label'){
-					this.currentValue = parentValue.label;
-				}else{
-					this.currentValue = parentValue.value;
+				this.selectManyKey.splice(1, 1)
+				this.manyselectValue = parentValue.label
+				if (this.changeField == 'label') {
+					this.currentValue = parentValue.label
+				} else {
+					this.currentValue = parentValue.value
 				}
-				
-				this.$emit('callback', [parentValue]);
+
+				this.$emit('callback', [parentValue])
 			} else {
-				let sonValue = parentValue.children[this.selectManyKey[1]];
-				this.manyselectValue = parentValue.label + "->" + sonValue.label;
-				if(this.changeField == 'label'){
-					this.currentValue = parentValue.label + "," + sonValue.label;
-				}else{
-					this.currentValue = parentValue.value + "," + sonValue.value;
+				const sonValue = parentValue.children[this.selectManyKey[1]]
+				this.manyselectValue = parentValue.label + '->' + sonValue.label
+				if (this.changeField == 'label') {
+					this.currentValue = parentValue.label + ',' + sonValue.label
+				} else {
+					this.currentValue = parentValue.value + ',' + sonValue.value
 				}
-				
-				this.$emit('callback', [parentValue, sonValue]);
+
+				this.$emit('callback', [parentValue, sonValue])
 			}
 		},
 		bingInput(e) {
-			this.currentValue = e.mp.detail.value;
+			this.currentValue = e.mp.detail.value
 		},
 		selectRes(e) {
-			if(this.changeField == 'label'){
-				this.currentValue = this.data[e.mp.detail.value].label;
-			}else{
-				this.currentValue = this.data[e.mp.detail.value].value;
+			if (this.changeField == 'label') {
+				this.currentValue = this.data[e.mp.detail.value].label
+			} else {
+				this.currentValue = this.data[e.mp.detail.value].value
 			}
-			this.getParent(this).vaildate={};
-			this.$emit('callback', this.data[e.mp.detail.value]);
+			this.getParent(this).vaildate = {}
+			this.$emit('callback', this.data[e.mp.detail.value])
 		},
 		bindChange(e) {
 			if (this.selectManyKey[0] != e.mp.detail.value[0]) {
-				this.selectManyKey = [e.mp.detail.value[0], 0];
+				this.selectManyKey = [e.mp.detail.value[0], 0]
 			} else {
-				this.selectManyKey = e.mp.detail.value;
+				this.selectManyKey = e.mp.detail.value
 			}
 		},
 		bindDateChange(e) {
-			this.currentValue = e.mp.detail.value;
-			this.$emit('callback', this.currentValue);
+			this.currentValue = e.mp.detail.value
+			this.$emit('callback', this.currentValue)
 		},
-		bindTimeChange(e){
-			this.currentValue = e.mp.detail.value;
+		bindTimeChange(e) {
+			this.currentValue = e.mp.detail.value
 		},
 		checkboxChange(e) {
-			let chooseArr = [];
-			this.chooseArr = e.mp.detail.value;
-			let parent = this.getParent(this);
-			let chooseValue = [];
+			const chooseArr = []
+			this.chooseArr = e.mp.detail.value
+			const parent = this.getParent(this)
+			const chooseValue = []
 			parent[this.dataKey].forEach((v, i) => {
-				let value = this.changeField == 'label' ? v.label : v.value;
+				const value = this.changeField == 'label' ? v.label : v.value
 				if (this.in_array(value, this.chooseArr)) {
-					this.$set(parent[this.dataKey][i], "checked", true);
+					this.$set(parent[this.dataKey][i], 'checked', true)
 				} else {
-					this.$set(parent[this.dataKey][i], "checked", false);
+					this.$set(parent[this.dataKey][i], 'checked', false)
 				}
 				if (v.checked) {
-					chooseArr.push(value);
-					chooseValue.push(v);
+					chooseArr.push(value)
+					chooseValue.push(v)
 				}
-			});
-			this.getParent(this).vaildate={};
-			this.currentValue = chooseArr;
-			this.$emit("checkboxCallBack",chooseValue);
+			})
+			this.getParent(this).vaildate = {}
+			this.currentValue = chooseArr
+			this.$emit('checkboxCallBack', chooseValue)
 		},
 		radioChange(e) {
-			this.chooseValue = e.mp.detail.value;
-			var chooseData = "";
-			let parent = this.getParent(this);
+			this.chooseValue = e.mp.detail.value
+			var chooseData = ''
+			const parent = this.getParent(this)
 			parent[this.dataKey].forEach((v, i) => {
 				if (v.value == this.chooseValue) {
-					this.$set(parent[this.dataKey][i], "checked", true);
+					this.$set(parent[this.dataKey][i], 'checked', true)
 				} else {
-					this.$set(parent[this.dataKey][i], "checked", false);
+					this.$set(parent[this.dataKey][i], 'checked', false)
 				}
 				if (v.checked) {
-					this.chooseValue = v.value;
-					chooseData = v;
+					this.chooseValue = v.value
+					chooseData = v
 				}
-			});
-			this.getParent(this).vaildate={};
-			this.$emit("radioCallBack",chooseData);
-			this.currentValue = this.chooseValue;
+			})
+			this.getParent(this).vaildate = {}
+			this.$emit('radioCallBack', chooseData)
+			this.currentValue = this.chooseValue
 		},
 		in_array(value, arr) {
-			let res = false;
-			if (!arr) return false;
+			let res = false
+			if (!arr) return false
 			arr.forEach((v) => {
 				if (v == value) {
-					res = true;
+					res = true
 				}
-			});
-			return res;
+			})
+			return res
 		},
-		uploadVideo(event){
-			let name = event.mp.currentTarget.dataset.name;
-			let upurl = event.mp.currentTarget.dataset.upurl;
-			let thumbsize = event.mp.currentTarget.dataset.thumbsize;
-			let allowuploadnum = event.mp.currentTarget.dataset.allowuploadnum;
+		uploadVideo(event) {
+			const name = event.mp.currentTarget.dataset.name
+			const upurl = event.mp.currentTarget.dataset.upurl
+			const thumbsize = event.mp.currentTarget.dataset.thumbsize
+			const allowuploadnum = event.mp.currentTarget.dataset.allowuploadnum
 			if (this.currentValue) {
 				if (this.currentValue.length >= parseInt(allowuploadnum)) {
-					this.getError("只允许上传" + allowuploadnum + "视频");
-					return false;
+					this.getError('只允许上传' + allowuploadnum + '视频')
+					return false
 				}
 			}
-			let uploadUrl = this.getSiteName + '/ajax/app-upload-video';
+			const uploadUrl = this.getSiteName + '/ajax/app-upload-video'
 			uni.chooseVideo({
 					count: 1,
 					sourceType: ['camera', 'album'],
-					success: res=> {
+					success: res => {
 						uni.showLoading({
-							title: '视频上传中',
+							title: '视频上传中'
 						})
-						
-						uni.uploadFile({ //上传服务器
-							url: uploadUrl, //仅为示例，非真实的接口地址
+
+						uni.uploadFile({ // 上传服务器
+							url: uploadUrl, // 仅为示例，非真实的接口地址
 							thumbsize: 300,
 							filePath: res.tempFilePath,
 							name: 'file',
 							header: {
-								//'content-type': 'multipart/form-data'
+								// 'content-type': 'multipart/form-data'
 							},
 							formData: {
-								'upurl': upurl,
+								'upurl': upurl
 							},
 							success: res => {
-								uni.hideLoading();
-								let data = JSON.parse(res.data);
-								let file = data.filename;
-								let fileArr = this.currentValue;
+								uni.hideLoading()
+								const data = JSON.parse(res.data)
+								const file = data.filename
+								const fileArr = this.currentValue
 								fileArr.push({
-									filename:file,
-									videoCover:data.videoCover
-									
-								});
-								//if (!this.currentValue) this.currentValue = [];
-								this.currentValue=fileArr;
-								//this.postAjax("/ajax/image-resize", { type: upurl, value: file, size: [thumbsize] }, msg => {}, this);
-								uni.hideLoading();
+									filename: file,
+									videoCover: data.videoCover
+
+								})
+								// if (!this.currentValue) this.currentValue = [];
+								this.currentValue = fileArr
+								// this.postAjax("/ajax/image-resize", { type: upurl, value: file, size: [thumbsize] }, msg => {}, this);
+								uni.hideLoading()
 							},
 							fail: function(res) {
-						
+
 							},
 							complete: function(res) {
-						
+
 							}
 						})
 					}
-			 });
+			 })
 		},
 		uploadImage(event) {
-			let name = event.mp.currentTarget.dataset.name;
-			let upurl = event.mp.currentTarget.dataset.upurl;
-			let thumbsize = event.mp.currentTarget.dataset.thumbsize;
-			let allowuploadnum = event.mp.currentTarget.dataset.allowuploadnum;
+			const name = event.mp.currentTarget.dataset.name
+			const upurl = event.mp.currentTarget.dataset.upurl
+			const thumbsize = event.mp.currentTarget.dataset.thumbsize
+			const allowuploadnum = event.mp.currentTarget.dataset.allowuploadnum
 			if (this.currentValue) {
 				if (this.currentValue.length >= parseInt(allowuploadnum)) {
-					this.getError("只允许上传" + allowuploadnum + "图片");
-					return false;
+					this.getError('只允许上传' + allowuploadnum + '图片')
+					return false
 				}
 			}
-			let uploadUrl = this.getSiteName + '/ajax/app-upload-pic';
-			let sourceType_=['album', 'camera'];
-			if(this.sourceType && this.sourceType == 1){
-				sourceType_=['camera'];
-			}else if(this.sourceType && this.sourceType == 2){
-				sourceType_=['album'];
+			const uploadUrl = this.getSiteName + '/ajax/app-upload-pic'
+			let sourceType_ = ['album', 'camera']
+			if (this.sourceType && this.sourceType == 1) {
+				sourceType_ = ['camera']
+			} else if (this.sourceType && this.sourceType == 2) {
+				sourceType_ = ['album']
 			}
 			uni.chooseImage({
 				count: 1, // 默认9
 				sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
 				sourceType: sourceType_, // 可以指定来源是相册还是相机，默认二者都有
 				success: res => {
-					var tempFilePaths = res.tempFilePaths;
+					var tempFilePaths = res.tempFilePaths
 					uni.showLoading({
-						title: '上传中',
+						title: '上传中'
 					})
-					uni.uploadFile({ //上传服务器
-						url: uploadUrl, //仅为示例，非真实的接口地址
+					uni.uploadFile({ // 上传服务器
+						url: uploadUrl, // 仅为示例，非真实的接口地址
 						thumbsize: 300,
 						filePath: tempFilePaths[0],
 						name: 'file',
 						header: {
-							//'content-type': 'multipart/form-data'
+							// 'content-type': 'multipart/form-data'
 						},
 						formData: {
-							'upurl': upurl,
+							'upurl': upurl
 						},
 						success: res => {
-							let data = JSON.parse(res.data);
-							let file = data.filename;
-							let fileArr = this.currentValue;
-							fileArr.push(file);
-							//if (!this.currentValue) this.currentValue = [];
-							this.currentValue=fileArr;
-							//this.postAjax("/ajax/image-resize", { type: upurl, value: file, size: [thumbsize] }, msg => {}, this);
-							uni.hideLoading();
+							const data = JSON.parse(res.data)
+							const file = data.filename
+							const fileArr = this.currentValue
+							fileArr.push(file)
+							// if (!this.currentValue) this.currentValue = [];
+							this.currentValue = fileArr
+							// this.postAjax("/ajax/image-resize", { type: upurl, value: file, size: [thumbsize] }, msg => {}, this);
+							uni.hideLoading()
 						},
 						fail: function(res) {
 
@@ -776,171 +1005,22 @@ export default {
 			})
 		},
 		delImage(event) {
-			let name = event.mp.currentTarget.dataset.name;
-			let key = event.mp.currentTarget.dataset.key;
-			let arr = this.currentValue;
+			const name = event.mp.currentTarget.dataset.name
+			const key = event.mp.currentTarget.dataset.key
+			const arr = this.currentValue
 			wx.showModal({
 				title: '提示',
-				content: "是否真的删除?",
+				content: '是否真的删除?',
 				success: res => {
 					if (res.confirm) {
-						arr.splice(key, 1);
-						this.currentValue = arr;
-						console.log(this.currentValue);
+						arr.splice(key, 1)
+						this.currentValue = arr
+						console.log(this.currentValue)
 					} else if (res.cancel) {
 
 					}
 				}
 			})
-		},
-	},
-	computed: {
-		currentValue: {
-			// 动态计算currentValue的值
-
-			get: function() {
-				if (this.datatype) {
-					if (this.datatype.indexOf('require') != -1 || this.datatype == "array") {
-						this.isRequire = true;
-					}
-				} else {
-					this.isRequire = false;
-				}
-				/*验证规则开始*/
-				if(this.type == 'manyselect' && this.name == 'provinces'){
-					var parent = this.$parent;
-				}else{
-					var parent = this.getParent(this);
-				}
-				if (this.name && this.value == undefined) {
-					
-					if (this.type == 'upload' && this.allowUpLoadNum > 0  || this.type == 'checkbox' || this.type == 'uploadVideo' && this.allowUpLoadNum > 0) {
-					
-						this.$set(parent.ruleform, this.name, []);
-					} else {
-						this.$set(parent.ruleform, this.name, '');
-					}
-
-				}
-				if (this.datatype && parent.vaildate && parent.vaildate[this.name] == undefined) {
-					let label =  this.label ? this.label : this.placeholder;
-					this.$set(parent.vaildate, this.name, {
-						name:label,
-						vaild: this.datatype,
-						errorMessage:this.errorMessage || label
-					});
-				}
-				/*验证规则结束*/
-
-				/*如果是多选*/
-				if (parent[this.dataKey] && parent[this.dataKey].length && this.type == "checkbox") {
-					if (this.name && this.value == undefined) {
-						this.value = [];
-					}
-					if(this.value.length > 0 && !this.check){
-						parent[this.dataKey].forEach((v, i) => {
-							if (this.in_array(v.value, this.value)) {
-								this.$set(parent[this.dataKey][i], "checked", true);
-							} else {
-								this.$set(parent[this.dataKey][i], "checked", false);
-							}
-						});
-					}
-					
-					this.data = parent[this.dataKey];
-					this.check = true;
-				}
-				
-				/*如果是单选*/
-				if (parent[this.dataKey] && parent[this.dataKey].length && (this.type == "radio" || this.type == "radioLists") ) {
-					console.log("uab");
-					console.log(this.value);
-					console.log(this.check);
-					if(this.value){
-						console.log("uab2");
-						parent[this.dataKey].forEach((v, i) => {
-							if (v.value == this.value) {
-								this.$set(parent[this.dataKey][i], "checked", true);
-							} else {
-								this.$set(parent[this.dataKey][i], "checked", false);
-							}
-						});
-					}
-					console.log(this.dataKey);
-					this.data = parent[this.dataKey];
-					this.check = true;
-
-				}
-
-				if(this.type == "date" && !this.value){
-					this.value = this.dateToString(new Date());
-					parent.ruleform[this.name] = this.value;
-
-				}
-				if(this.type == "date" && this.value  && this.value.indexOf("中国标准时间")){
-					this.value = this.dateToString(new Date(this.value));
-					parent.ruleform[this.name] = this.value;
-				}
-				
-				if (this.type == "select" && this.changeField == 'value') {
-
-					this.data = parent[this.dataKey];
-					for (var i = 0; i < parent[this.dataKey].length; i++) {
-						if (parent[this.dataKey][i].value == this.value) {
-							this.selectKey = i;
-							return parent[this.dataKey][i].label;
-						}
-					}
-				}
-
-				if (this.type == "select" && this.changeField == 'label') {
-					for (var i = 0; i < parent[this.dataKey].length; i++) {
-						if (parent[this.dataKey][i].value == this.value) {
-							this.selectKey = i;
-						}
-					}
-					this.data = parent[this.dataKey];
-				}
-
-				if(this.type == "manyselect"){
-					if(this.value){
-						let v = this.value.split(",");
-						if(v.length > 0 && !this.manyselectValue){
-							
-							if(v.length ==2){
-								
-								for (var i = 0; i < parent[this.dataKey].length; i++) {
-									if (parent[this.dataKey][i].value == v[0]) {
-										this.selectManyKey[0]=i;
-										this.manyselectValue = parent[this.dataKey][i].label;
-										parent[this.dataKey][i].children.forEach((children,key)=>{
-											if(children.value == v[1]){
-												this.selectManyKey[1]=key;
-												this.manyselectValue += "-"+children.label;
-											}
-										});
-									}
-								}
-								//this.manyselectValue = this.data[v[0]].label+"->"+this.data[v[0]].children[v[1]].label;
-							}else{
-								for (var i = 0; i < parent[this.dataKey].length; i++) {
-									if (parent[this.dataKey][i].value == v[0]) {
-										this.selectManyKey[0]=i;
-										this.manyselectValue = parent[this.dataKey][i].label;
-									}
-								}
-							//this.manyselectValue = this.data[v[0]].label;
-							}
-						}
-
-					}
-					this.data = parent[this.dataKey];
-				}
-				return this.value;
-			},
-			set: function(val) {
-				this.$emit('input', val);
-			}
 		}
 	}
 }
@@ -950,6 +1030,6 @@ export default {
 <style scoped="">
 
 @import url("../font/globalFont.css");
-@import url("../../css/dx-input.css"); 
+@import url("../../css/dx-input.css");
 
 </style>

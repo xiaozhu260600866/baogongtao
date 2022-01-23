@@ -1,30 +1,40 @@
 <template>
-	<view class="tui-card-class tui-card" :class="[full?'tui-card-full':'',border?'tui-card-border':'']" @tap="handleClick"
-	 @longtap="longTap">
-		<view class="tui-card-header" :class="{'tui-header-line':header.line}" :style="{background:header.bgcolor || '#fff'}">
-			<view class="tui-header-left">
-				<image :src="image.url" class="tui-header-thumb" :class="{'tui-thumb-circle':image.circle}" mode="widthFix" v-if="image.url"
-				 :style="{height:px(image.height || 60),width:px(image.width || 60)}"></image>
-				<text class="tui-header-title" :style="{fontSize:px(title.size || 30),color:(title.color || '#7A7A7A')}" v-if="title.text">{{title.text}}</text>
-			</view>
-			<view class="tui-header-right" :style="{fontSize:px(tag.size || 24),color:(tag.color || '#b2b2b2')}" v-if="tag.text">
-				{{tag.text}}
-			</view>
-		</view>
-		<view class="tui-card-body">
-			<slot name="body"></slot>
-		</view>
-		<view class="tui-card-footer">
-			<slot name="footer"></slot>
-		</view>
-	</view>
+  <view
+    class="tui-card-class tui-card"
+    :class="[full?'tui-card-full':'',border?'tui-card-border':'']"
+    @tap="handleClick"
+    @longtap="longTap"
+  >
+    <view class="tui-card-header" :class="{'tui-header-line':header.line}" :style="{background:header.bgcolor || '#fff'}">
+      <view class="tui-header-left">
+        <image
+          v-if="image.url"
+          :src="image.url"
+          class="tui-header-thumb"
+          :class="{'tui-thumb-circle':image.circle}"
+          mode="widthFix"
+          :style="{height:px(image.height || 60),width:px(image.width || 60)}"
+        />
+        <text v-if="title.text" class="tui-header-title" :style="{fontSize:px(title.size || 30),color:(title.color || '#7A7A7A')}">{{ title.text }}</text>
+      </view>
+      <view v-if="tag.text" class="tui-header-right" :style="{fontSize:px(tag.size || 24),color:(tag.color || '#b2b2b2')}">
+        {{ tag.text }}
+      </view>
+    </view>
+    <view class="tui-card-body">
+      <slot name="body" />
+    </view>
+    <view class="tui-card-footer">
+      <slot name="footer" />
+    </view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiCard",
+		name: 'TuiCard',
 		props: {
-			//是否铺满
+			// 是否铺满
 			full: {
 				type: Boolean,
 				default: false
@@ -33,32 +43,32 @@
 				type: Object,
 				default: function() {
 					return {
-						url: "", //图片地址
-						height: 60, //图片高度
-						width: 60, //图片宽度
+						url: '', // 图片地址
+						height: 60, // 图片高度
+						width: 60, // 图片宽度
 						circle: false
 					}
 				}
 			},
-			//标题
+			// 标题
 			title: {
 				type: Object,
 				default: function() {
 					return {
-						text: "", //标题文字
-						size: 30, //字体大小
-						color: "#7A7A7A" //字体颜色
+						text: '', // 标题文字
+						size: 30, // 字体大小
+						color: '#7A7A7A' // 字体颜色
 					}
 				}
 			},
-			//标签，时间等
+			// 标签，时间等
 			tag: {
 				type: Object,
 				default: function() {
 					return {
-						text: "", //标签文字
-						size: 24, //字体大小
-						color: "#b2b2b2" //字体颜色
+						text: '', // 标签文字
+						size: 24, // 字体大小
+						color: '#b2b2b2' // 字体颜色
 					}
 				}
 			},
@@ -66,12 +76,12 @@
 				type: Object,
 				default: function() {
 					return {
-						bgcolor: "#fff", //背景颜色
-						line: false //是否去掉底部线条
+						bgcolor: '#fff', // 背景颜色
+						line: false // 是否去掉底部线条
 					}
 				}
 			},
-			//是否设置外边框
+			// 是否设置外边框
 			border: {
 				type: Boolean,
 				default: false
@@ -85,15 +95,15 @@
 			handleClick() {
 				this.$emit('click', {
 					index: this.index
-				});
+				})
 			},
 			longTap() {
 				this.$emit('longclick', {
 					index: this.index
-				});
+				})
 			},
 			px(num) {
-				return uni.upx2px(num) + "px"
+				return uni.upx2px(num) + 'px'
 			}
 		}
 	}

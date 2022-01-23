@@ -1,14 +1,14 @@
 <template>
-	<view class="tui-grids" :class="{'tui-border-top':unlined}">
-		<slot></slot>
-	</view>
+  <view class="tui-grids" :class="{'tui-border-top':unlined}">
+    <slot />
+  </view>
 </template>
 
 <script>
 	export default {
-		name:"tuiGrid",
+		name: 'TuiGrid',
 		props: {
-			//是否去掉上线条
+			// 是否去掉上线条
 			unlined: {
 				type: Boolean,
 				default: false

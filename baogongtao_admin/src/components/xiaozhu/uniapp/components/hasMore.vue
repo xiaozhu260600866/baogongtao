@@ -1,130 +1,130 @@
 <template>
-	<view>
-		
-		<view v-if="parentData.show && parentData.lists && parentData.lists.length == 0 ">
-			<view v-if="source == 'order' ">
-				<view class="empty">
-					<image class="img" src="https://boss.doxinsoft.com/images/order/order02.png" mode="widthFix"/>
-					<view class="name ptb10 fs-14 fc-6">没有订单信息</view>
-					<view class="btn" @click="toIndex2">{{ message ? message :'去购物' }}</view>
-				</view>
-			</view>
-			<view v-else-if="source == 'nodata' ">
-				<view class="empty">
-					<image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" mode="widthFix"/>
-					<view class="name ptb10 fs-14 fc-6">{{ message ? message :'暂无数据' }}</view>
-				</view>
-			</view>
-			<view v-else-if="source == 'cart' ">
+  <view>
 
-				<view class="empty">
-					<image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" mode="widthFix"/>
-					<view class="name pt10 fs-16 fc-6">您的购物车空空的</view>
-					<view class="name pt5 pb10 fs-12 fc-6">赶紧去挑些喜欢的填满它吧</view>
-					<view class="btn" @click="toIndex2" >去首页逛逛</view>
-				</view>
-			</view>
-			<view v-else>
-				<view class="p20 fs-12 fc-9 text-center">暂无数据</view>
-			</view>
-		</view>
-		<view v-if="parentData.show && parentData.lists.data && parentData.lists.data.length == 0 || parentData.listsIntegral && parentData.listsIntegral.data && parentData.listsIntegral.data.length == 0">
-			<view v-if="source == 'order' ">
-				<view class="empty">
-					<image class="img" src="https://boss.doxinsoft.com/images/order/order02.png" mode="widthFix"/>
-					<view class="name ptb10 fs-14 fc-6">没有订单信息</view>
-					<view class="btn" @click="toIndex2">{{ message ? message :'去购物' }}</view>
-				</view>
-			</view>
-			<view v-else-if="source == 'cart' ">
-				<view class="empty">
-					<image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
-					<view class="name pt10 fs-16 fc-6">您的购物车空空的</view>
-					<view class="name pt5 pb10 fs-12 fc-6">赶紧去挑些喜欢的填满它吧</view>
-					<view class="btn" @click="toIndex2">{{ message ? message :'去购物' }}</view>
-				</view>
-			</view>
-			<view v-else-if="source == 'nodata' ">
-				<view class="empty">
-					<image class="img image" src="https://boss.doxinsoft.com/images/order/cart02.png" mode="widthFix"/>
-					<view class="name ptb10 fs-14 fc-6">{{ message ? message :'暂无数据' }}</view>
-				</view>
-			</view>
-			<view v-else-if="source == 'iconNo' ">
-				<view class="bgf NO-bg"></view>
-				<view class="NO-con">
-					<view class="p NO-img pt15">
-						<image src="https://card.doxinsoft.com/images/wap/remarkBtn.jpg" mode="widthFix" />
-					</view>
-					<view class="p NO-intro fs-14 fc-6">{{ message ? message : '暂无数据'}}</view>
-				</view>
-			</view>
-			<view v-else>
-				<view class="p20 fs-13 fc-6 text-center">{{ message ? message : '暂无数据'}}</view>
-			</view>
-		</view>
-		<view class="tips1 hasMore" style="text-align:center;" v-if="parentData.lastPage>1 && parentData.thisPage>=1">
-			<view v-if="parentData.hasMore">
-				<view class="weui-loadmore">
-					<text class="weui-loading"></text>
-					<text class="weui-loadmore__tips fs-12 fc-9 pb0">正在加载</text>
-				</view>
-			</view>
-			<view v-else>
-				<view class="">
-					<text class="weui-loadmore__tips fs-12 fc-9">没有更多了...</text>
-				</view>
-			</view>
-		</view>
-		<view class="tips1 hasMore" style="text-align:center;" v-if="!parentData.show">
-			<view>
-				<view class="weui-loadmore">
-					<text class="weui-loading"></text>
-					<text class="weui-loadmore__tips fs-12 fc-9 pb0">正在加载</text>
-				</view>
-			</view>
-		</view>
-	</view>
+    <view v-if="parentData.show && parentData.lists && parentData.lists.length == 0 ">
+      <view v-if="source == 'order' ">
+        <view class="empty">
+          <image class="img" src="https://boss.doxinsoft.com/images/order/order02.png" mode="widthFix" />
+          <view class="name ptb10 fs-14 fc-6">没有订单信息</view>
+          <view class="btn" @click="toIndex2">{{ message ? message :'去购物' }}</view>
+        </view>
+      </view>
+      <view v-else-if="source == 'nodata' ">
+        <view class="empty">
+          <image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" mode="widthFix" />
+          <view class="name ptb10 fs-14 fc-6">{{ message ? message :'暂无数据' }}</view>
+        </view>
+      </view>
+      <view v-else-if="source == 'cart' ">
+
+        <view class="empty">
+          <image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" mode="widthFix" />
+          <view class="name pt10 fs-16 fc-6">您的购物车空空的</view>
+          <view class="name pt5 pb10 fs-12 fc-6">赶紧去挑些喜欢的填满它吧</view>
+          <view class="btn" @click="toIndex2">去首页逛逛</view>
+        </view>
+      </view>
+      <view v-else>
+        <view class="p20 fs-12 fc-9 text-center">暂无数据</view>
+      </view>
+    </view>
+    <view v-if="parentData.show && parentData.lists.data && parentData.lists.data.length == 0 || parentData.listsIntegral && parentData.listsIntegral.data && parentData.listsIntegral.data.length == 0">
+      <view v-if="source == 'order' ">
+        <view class="empty">
+          <image class="img" src="https://boss.doxinsoft.com/images/order/order02.png" mode="widthFix" />
+          <view class="name ptb10 fs-14 fc-6">没有订单信息</view>
+          <view class="btn" @click="toIndex2">{{ message ? message :'去购物' }}</view>
+        </view>
+      </view>
+      <view v-else-if="source == 'cart' ">
+        <view class="empty">
+          <image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
+          <view class="name pt10 fs-16 fc-6">您的购物车空空的</view>
+          <view class="name pt5 pb10 fs-12 fc-6">赶紧去挑些喜欢的填满它吧</view>
+          <view class="btn" @click="toIndex2">{{ message ? message :'去购物' }}</view>
+        </view>
+      </view>
+      <view v-else-if="source == 'nodata' ">
+        <view class="empty">
+          <image class="img image" src="https://boss.doxinsoft.com/images/order/cart02.png" mode="widthFix" />
+          <view class="name ptb10 fs-14 fc-6">{{ message ? message :'暂无数据' }}</view>
+        </view>
+      </view>
+      <view v-else-if="source == 'iconNo' ">
+        <view class="bgf NO-bg" />
+        <view class="NO-con">
+          <view class="p NO-img pt15">
+            <image src="https://card.doxinsoft.com/images/wap/remarkBtn.jpg" mode="widthFix" />
+          </view>
+          <view class="p NO-intro fs-14 fc-6">{{ message ? message : '暂无数据' }}</view>
+        </view>
+      </view>
+      <view v-else>
+        <view class="p20 fs-13 fc-6 text-center">{{ message ? message : '暂无数据' }}</view>
+      </view>
+    </view>
+    <view v-if="parentData.lastPage>1 && parentData.thisPage>=1" class="tips1 hasMore" style="text-align:center;">
+      <view v-if="parentData.hasMore">
+        <view class="weui-loadmore">
+          <text class="weui-loading" />
+          <text class="weui-loadmore__tips fs-12 fc-9 pb0">正在加载</text>
+        </view>
+      </view>
+      <view v-else>
+        <view class="">
+          <text class="weui-loadmore__tips fs-12 fc-9">没有更多了...</text>
+        </view>
+      </view>
+    </view>
+    <view v-if="!parentData.show" class="tips1 hasMore" style="text-align:center;">
+      <view>
+        <view class="weui-loadmore">
+          <text class="weui-loading" />
+          <text class="weui-loadmore__tips fs-12 fc-9 pb0">正在加载</text>
+        </view>
+      </view>
+    </view>
+  </view>
 </template>
 <script type="text/javascript">
 	export default {
-		props: ["parentData", "source", "isLoading", "myclass", 'message', 'noShowLoading','url','urlType'],
+		props: ['parentData', 'source', 'isLoading', 'myclass', 'message', 'noShowLoading', 'url', 'urlType'],
 		data() {
 			return {
 				getSiteName: this.getSiteName(),
 				name: 'xiaozhu'
 			}
 		},
-		methods:{
+		methods: {
 			toIndex2() {
-				if (this.getSiteName== 'https://boss.doxinsoft.com') {
-					let role_type = uni.getStorageSync('role_type');
+				if (this.getSiteName == 'https://boss.doxinsoft.com') {
+					const role_type = uni.getStorageSync('role_type')
 					if (role_type == 0) {
-						return this.goto("/pages/cardLists/index");
+						return this.goto('/pages/cardLists/index')
 					}
 					if (role_type == 1) {
-						return this.goto("/pages/user/website/products/lists/index", 2);
+						return this.goto('/pages/user/website/products/lists/index', 2)
 					}
 					if (role_type == 2) {
-						return this.goto("/pages/shop/index/index", 2);
+						return this.goto('/pages/shop/index/index', 2)
 					}
 					if (role_type == 3) {
-						return this.goto("/pages/cardLists/index");
+						return this.goto('/pages/cardLists/index')
 					}
 					if (role_type == 4) {
-						return this.goto("/pages/index/main",2);
+						return this.goto('/pages/index/main', 2)
 					}
 				} else {
-					console.log(this.url,this.urlType,123333333)
-					if(this.url){
-						return this.goto(this.url, this.urlType);
-					}else{
-						return this.goto("/pages/index/index", 2);
+					console.log(this.url, this.urlType, 123333333)
+					if (this.url) {
+						return this.goto(this.url, this.urlType)
+					} else {
+						return this.goto('/pages/index/index', 2)
 					}
 				}
 			}
 		}
-		
+
 	}
 </script>
 <style type="text/css" scoped>

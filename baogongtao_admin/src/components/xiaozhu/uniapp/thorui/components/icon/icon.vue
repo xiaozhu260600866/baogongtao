@@ -1,11 +1,15 @@
 <template>
-	<view class="tui-icon-class tui-icon" :class="'tui-icon-'+name" :style="{ color: color, fontSize: size + 'px',fontWeight:bold?'bold':'normal'}"
-	 @tap="handleClick(index)"></view>
+  <view
+    class="tui-icon-class tui-icon"
+    :class="'tui-icon-'+name"
+    :style="{ color: color, fontSize: size + 'px',fontWeight:bold?'bold':'normal'}"
+    @tap="handleClick(index)"
+  />
 </template>
 
 <script>
 	export default {
-		name: "tuiIcon",
+		name: 'TuiIcon',
 		props: {
 			name: {
 				type: String,
@@ -769,7 +773,6 @@
 	.tui-icon-fingerprint:before {
 		content: "\e66e";
 	}
-
 
 	.tui-icon-warning:before {
 		content: "\e8eb";

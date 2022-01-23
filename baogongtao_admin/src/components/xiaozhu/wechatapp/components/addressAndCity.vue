@@ -1,11 +1,11 @@
 <template>
-	<div>
-		<weui-input v-model="ruleform.provinceCity" label="所在省市" name="provinces" type="manyselect" :data="cityData" changeField="value" @callback="provinceCityRes"></weui-input>
-		<weui-input v-model="ruleform.address" label="地址" type="text" name="address" datatype="require"></weui-input>
-	</div>
+  <div>
+    <weui-input v-model="ruleform.provinceCity" label="所在省市" name="provinces" type="manyselect" :data="cityData" change-field="value" @callback="provinceCityRes" />
+    <weui-input v-model="ruleform.address" label="地址" type="text" name="address" datatype="require" />
+  </div>
 </template>
 <script>
-import cityJs from "../js/citys.js";
+import cityJs from '../js/citys.js'
 export default {
 	props: ['value', 'label'],
 	data() {
@@ -14,15 +14,27 @@ export default {
 			cityData: cityJs,
 			ruleform: {
 				provinceCity: this.forMat(0),
-				address:  this.forMat(1)
+				address: this.forMat(1)
+			}
+		}
+	},
+	computed: {
+		currentValue: {
+			// 动态计算currentValue的值
+			get: function() {
+				console.log(this.value)
+				console.log('10')
+				return this.value
+			},
+			set: function(val) {
+				this.$emit('input', val)
 			}
 		}
 	},
 	watch: {
 		ruleform: {
 			handler(curVal, oldVal) {
-
-				/*var province = "";
+				/* var province = "";
 				var city = "";
 				if (this.ruleform.provinceCity && this.ruleform.provinceCity.length >= 2) {
 					province = cityJs[this.ruleform.provinceCity[0]].label;
@@ -32,46 +44,33 @@ export default {
 				}else{
 					province = cityJs[this.ruleform.provinceCity[0]].label;
 				} */
-				this.currentValue = this.ruleform.provinceCity + this.ruleform.address;
-				console.log(this.currentValue);
+				this.currentValue = this.ruleform.provinceCity + this.ruleform.address
+				console.log(this.currentValue)
 			},
 			deep: true
 		}
 	},
 	methods: {
 		forMat(type) {
-			console.log(this.value);
-			console.log('q');
-			var arr = [0, 0];
-			var address = "";
+			console.log(this.value)
+			console.log('q')
+			var arr = [0, 0]
+			var address = ''
 			if (this.value) {
 				if (this.value.indexOf('省') !== false && this.value.indexOf('市') !== false) {
-					let provinceIndex = this.value.indexOf('省') + 1;
-					let province = this.value.substring(0, provinceIndex);
-					let cityIndex = this.value.indexOf('市') + 1;
-					let city = this.value.substring(provinceIndex, cityIndex);
-					address = this.value.substring(cityIndex);
-					if(type == 1) return address;
-					arr[0] = province;
-					city = city.split(",");
-					arr[1] = city[city.length -1];
-				};
+					const provinceIndex = this.value.indexOf('省') + 1
+					const province = this.value.substring(0, provinceIndex)
+					const cityIndex = this.value.indexOf('市') + 1
+					let city = this.value.substring(provinceIndex, cityIndex)
+					address = this.value.substring(cityIndex)
+					if (type == 1) return address
+					arr[0] = province
+					city = city.split(',')
+					arr[1] = city[city.length - 1]
+				}
 			}
 
-			return type == 0 ? arr.join(",") :address;
-		}
-	},
-	computed: {
-		currentValue: {
-			// 动态计算currentValue的值
-			get: function() {
-				console.log(this.value);
-				console.log('10');
-				return this.value;
-			},
-			set: function(val) {
-				this.$emit('input', val);
-			}
+			return type == 0 ? arr.join(',') : address
 		}
 	}
 }

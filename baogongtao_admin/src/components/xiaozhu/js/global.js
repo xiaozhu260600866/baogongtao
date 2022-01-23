@@ -1,6 +1,6 @@
-var myfun = function() {};
+var myfun = function() {}
 
-/*myfun.install = (Vue, options) => {
+/* myfun.install = (Vue, options) => {
   Vue.prototype.getSiteName = () => {
     return localStorage.getItem('siteName');
   }
@@ -35,25 +35,24 @@ var myfun = function() {};
 }*/
 
 myfun.install = function(Vue, options) {
-  Vue.prototype.dateToString = function(obj,type) {
-
-    let month = obj.getMonth()+1;
-    month = month <10 ? "0"+month : month;
-    let date =  obj.getDate() < 10 ? "0"+obj.getDate() : obj.getDate();
-    if(!type) return  obj.getFullYear() + '-' + month + '-' + date
-    return obj.getFullYear() + '-' + month + '-' + date + ' ' + obj.getHours() + ':' + obj.getMinutes() + ':'+ obj.getSeconds();
+  Vue.prototype.dateToString = function(obj, type) {
+    let month = obj.getMonth() + 1
+    month = month < 10 ? '0' + month : month
+    const date = obj.getDate() < 10 ? '0' + obj.getDate() : obj.getDate()
+    if (!type) return obj.getFullYear() + '-' + month + '-' + date
+    return obj.getFullYear() + '-' + month + '-' + date + ' ' + obj.getHours() + ':' + obj.getMinutes() + ':' + obj.getSeconds()
   }
   Vue.prototype.getCookie = function(c_name) {
     if (document.cookie.length > 0) {
-      var c_start = document.cookie.indexOf(c_name + "=")
+      var c_start = document.cookie.indexOf(c_name + '=')
       if (c_start != -1) {
         var c_start = c_start + c_name.length + 1
-        var c_end = document.cookie.indexOf(";", c_start)
+        var c_end = document.cookie.indexOf(';', c_start)
         if (c_end == -1) c_end = document.cookie.length
         return unescape(document.cookie.substring(c_start, c_end))
       }
     }
-    return "";
+    return ''
   }
 }
-export default myfun;
+export default myfun

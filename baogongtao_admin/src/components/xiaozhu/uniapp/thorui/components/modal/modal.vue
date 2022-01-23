@@ -1,55 +1,60 @@
 <template>
-	<view>
-		<view class="tui-modal-class tui-modal-box" :class="[show?'tui-modal-show':'']">
-			<view v-if="!custom">
-				<view class="tui-modal-title" v-if="title">{{title}}</view>
-				<view class="tui-modal-content" :class="[title?'':'tui-mtop']" :style="{color:color,fontSize:px(size)}">{{content}}</view>
-				<view class="tui-modalBtn-box" :class="[button.length>2?'tui-flex-column':'']">
-					<block v-for="(item,index) in button" :key="index">
-						<button class="tui-modal-btn" :class="['tui-'+(item.type || 'primary')+(item.plain?'-outline':''),button.length!=2?'tui-btn-width':'',button.length>2?'tui-mbtm':'',shape=='circle'?'tui-circle-btn':'']"
-						 :hover-class="'tui-'+(item.plain?'outline':(item.type || 'primary'))+'-hover'" :data-index="index" @tap="handleClick">{{item.text || "确定"}}</button>
-					</block>
-				</view>
-			</view>
-			<view v-else>
-				<slot></slot>
-			</view>
-		</view>
-		<view class="tui-modal-mask" :class="[show?'tui-mask-show':'']" @tap="handleClickCancel"></view>
+  <view>
+    <view class="tui-modal-class tui-modal-box" :class="[show?'tui-modal-show':'']">
+      <view v-if="!custom">
+        <view v-if="title" class="tui-modal-title">{{ title }}</view>
+        <view class="tui-modal-content" :class="[title?'':'tui-mtop']" :style="{color:color,fontSize:px(size)}">{{ content }}</view>
+        <view class="tui-modalBtn-box" :class="[button.length>2?'tui-flex-column':'']">
+          <block v-for="(item,index) in button" :key="index">
+            <button
+              class="tui-modal-btn"
+              :class="['tui-'+(item.type || 'primary')+(item.plain?'-outline':''),button.length!=2?'tui-btn-width':'',button.length>2?'tui-mbtm':'',shape=='circle'?'tui-circle-btn':'']"
+              :hover-class="'tui-'+(item.plain?'outline':(item.type || 'primary'))+'-hover'"
+              :data-index="index"
+              @tap="handleClick"
+            >{{ item.text || "确定" }}</button>
+          </block>
+        </view>
+      </view>
+      <view v-else>
+        <slot />
+      </view>
+    </view>
+    <view class="tui-modal-mask" :class="[show?'tui-mask-show':'']" @tap="handleClickCancel" />
 
-	</view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiModal",
+		name: 'TuiModal',
 		props: {
-			//是否显示
+			// 是否显示
 			show: {
 				type: Boolean,
 				default: false
 			},
-			//标题
+			// 标题
 			title: {
 				type: String,
-				default: ""
+				default: ''
 			},
-			//内容
+			// 内容
 			content: {
 				type: String,
-				default: ""
+				default: ''
 			},
-			//内容字体颜色
+			// 内容字体颜色
 			color: {
 				type: String,
-				default: "#999"
+				default: '#999'
 			},
-			//内容字体大小
+			// 内容字体大小
 			size: {
 				type: Number,
 				default: 28
 			},
-			//形状 circle, square
+			// 形状 circle, square
 			shape: {
 				type: String,
 				default: 'square'
@@ -58,22 +63,22 @@
 				type: Array,
 				default: function() {
 					return [{
-						text: "取消",
-						type: "red",
-						plain: true //是否空心
+						text: '取消',
+						type: 'red',
+						plain: true // 是否空心
 					}, {
-						text: "确定",
-						type: "red",
+						text: '确定',
+						type: 'red',
 						plain: false
 					}]
 				}
 			},
-			//点击遮罩 是否可关闭
+			// 点击遮罩 是否可关闭
 			maskClosable: {
 				type: Boolean,
 				default: true
 			},
-			//自定义弹窗内容
+			// 自定义弹窗内容
 			custom: {
 				type: Boolean,
 				default: false
@@ -82,19 +87,19 @@
 		data() {
 			return {
 
-			};
+			}
 		},
 		methods: {
 			handleClick(e) {
-				if (!this.show) return;
-				const dataset = e.currentTarget.dataset;
+				if (!this.show) return
+				const dataset = e.currentTarget.dataset
 				this.$emit('click', {
 					index: Number(dataset.index)
-				});
+				})
 			},
 			handleClickCancel() {
-				if (!this.maskClosable) return;
-				this.$emit('cancel');
+				if (!this.maskClosable) return
+				this.$emit('cancel')
 			},
 			px(num) {
 				return uni.upx2px(num) + 'px'

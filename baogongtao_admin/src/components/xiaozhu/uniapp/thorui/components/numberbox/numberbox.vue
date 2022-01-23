@@ -1,105 +1,109 @@
 <template>
-	<view class="tui-numberbox-class tui-numberbox">
-		<view class="tui-numbox-icon tui-icon-reduce " :class="[disabled || min>=currentValue?'tui-disabled':'']" @tap="reduce"
-		 :style="{color:iconcolor,fontSize:px(iconsize)}"></view>
-		<input type="number" v-model="currentValue" :disabled="disabled" @blur="blur" class="tui-num-input" :style="{color:color,fontSize:px(iconsize),background:bgcolor,height:px(height),width:px(width)}" />
-		<view class="tui-numbox-icon tui-icon-plus" :class="[disabled || currentValue>=max?'tui-disabled':'']" @tap="plus" :style="{color:iconcolor,fontSize:px(iconsize)}"></view>
-	</view>
+  <view class="tui-numberbox-class tui-numberbox">
+    <view
+      class="tui-numbox-icon tui-icon-reduce "
+      :class="[disabled || min>=currentValue?'tui-disabled':'']"
+      :style="{color:iconcolor,fontSize:px(iconsize)}"
+      @tap="reduce"
+    />
+    <input v-model="currentValue" type="number" :disabled="disabled" class="tui-num-input" :style="{color:color,fontSize:px(iconsize),background:bgcolor,height:px(height),width:px(width)}" @blur="blur">
+    <view class="tui-numbox-icon tui-icon-plus" :class="[disabled || currentValue>=max?'tui-disabled':'']" :style="{color:iconcolor,fontSize:px(iconsize)}" @tap="plus" />
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiNumberbox",
+		name: 'TuiNumberbox',
 		props: {
 			value: {
 				type: Number,
 				default: 1
 			},
-			//最小值
+			// 最小值
 			min: {
 				type: Number,
 				default: 1
 			},
-			//最大值
+			// 最大值
 			max: {
 				type: Number,
 				default: 100
 			},
-			//迈步大小 1 1.1 10...
+			// 迈步大小 1 1.1 10...
 			step: {
 				type: Number,
 				default: 1
 			},
-			//是否禁用操作
+			// 是否禁用操作
 			disabled: {
 				type: Boolean,
 				default: false
 			},
-			//加减图标大小 rpx
+			// 加减图标大小 rpx
 			iconsize: {
 				type: Number,
 				default: 24
 			},
 			iconcolor: {
 				type: String,
-				default: "#333"
+				default: '#333'
 			},
-			//input 高度
+			// input 高度
 			height: {
 				type: Number,
 				default: 50
 			},
-			//input 宽度
+			// input 宽度
 			width: {
 				type: Number,
 				default: 90
 			},
-			//input 背景颜色
+			// input 背景颜色
 			bgcolor: {
 				type: String,
-				default: "#f2f2f2"
+				default: '#f2f2f2'
 			},
-			//input 字体颜色
+			// input 字体颜色
 			color: {
 				type: String,
-				default: "#333"
+				default: '#333'
 			},
 			dataKey: {
 				type: Number,
 				default: 1
 			}
 		},
+		data() {
+			return {
+
+			}
+		},
 		computed: {
 			currentValue: {
 					// 动态计算currentValue的值
 					get: function() {
-						return this.value;
+						return this.value
 					},
 					set: function(val) {
-						this.$emit('input', val);
+						this.$emit('input', val)
 					}
-				
+
 			},
 			val() {
-				return this.value 
+				return this.value
 			}
-		},
-		data() {
-			return {
-
-			};
 		},
 		methods: {
 			px(num) {
-				return uni.upx2px(num) + "px"
+				return uni.upx2px(num) + 'px'
 			},
 			getScale() {
-				let scale = 1;
-				//浮点型
+				let scale = 1
+				// 浮点型
 				if (!Number.isInteger(this.step)) {
 					scale = Math.pow(10, (this.step + '').split('.')[1].length)
 				}
-				return scale;
+				return scale
 			},
 			calcNum: function(type) {
 				if (this.disabled) {
@@ -107,13 +111,13 @@
 				}
 				const scale = this.getScale()
 				let num = this.value * scale
-				let step = this.step * scale
+				const step = this.step * scale
 				if (type === 'reduce') {
 					num -= step
 				} else if (type === 'plus') {
 					num += step
 				}
-				let value = num / scale
+				const value = num / scale
 				if (value < this.min || value > this.max) {
 					return
 				}
@@ -121,10 +125,10 @@
 				this.handleChange(value, type)
 			},
 			plus: function() {
-				this.calcNum("plus")
+				this.calcNum('plus')
 			},
 			reduce: function() {
-				this.calcNum("reduce")
+				this.calcNum('reduce')
 			},
 			blur: function(e) {
 				let value = e.detail.value
@@ -138,17 +142,17 @@
 				} else {
 					value = this.min
 				}
-				
-				this.handleChange(value, "blur")
+
+				this.handleChange(value, 'blur')
 			},
 			handleChange(value, type) {
 				if (this.disabled) {
 					return
 				}
-				this.currentValue  = value;
+				this.currentValue = value
 				this.$emit('change', {
 					value: value,
-					key:this.dataKey,
+					key: this.dataKey,
 					type: type
 				})
 			}

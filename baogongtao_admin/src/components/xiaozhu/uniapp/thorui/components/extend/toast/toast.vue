@@ -1,54 +1,54 @@
 <template>
-	<view class="tui-toast" :class="[visible?'tui-toast-show':'',content?'tui-toast-padding':'',icon?'':'tui-unicon-padding']" :style="{width:getWidth(icon,content)}">
-		<image :src="imgUrl" class="tui-toast-img" v-if="icon"></image>
-		<view class="tui-toast-text" :class="[icon?'':'tui-unicon']">{{title}}</view>
-		<view class="tui-toast-text tui-content-ptop" v-if="content && icon">{{content}}</view>
-	</view>
+  <view class="tui-toast" :class="[visible?'tui-toast-show':'',content?'tui-toast-padding':'',icon?'':'tui-unicon-padding']" :style="{width:getWidth(icon,content)}">
+    <image v-if="icon" :src="imgUrl" class="tui-toast-img" />
+    <view class="tui-toast-text" :class="[icon?'':'tui-unicon']">{{ title }}</view>
+    <view v-if="content && icon" class="tui-toast-text tui-content-ptop">{{ content }}</view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiToast",
+		name: 'TuiToast',
 		props: {
 		},
 		data() {
 			return {
 				timer: null,
-				//是否显示
+				// 是否显示
 				visible: false,
-				//显示标题
-				title: "操作成功",
-				//显示内容
-				content: "",
-				//是否有icon
-				icon:false,
-				imgUrl:""
-			};
+				// 显示标题
+				title: '操作成功',
+				// 显示内容
+				content: '',
+				// 是否有icon
+				icon: false,
+				imgUrl: ''
+			}
 		},
 		methods: {
 			show: function(options) {
-				let {
+				const {
 					duration = 2000,
-					icon=false
-				} = options;
-				clearTimeout(this.timer);
-				this.visible = true;
-				this.title = options.title || "";
-				this.content = options.content || "";
-				this.icon=icon;
-				if(icon && options.imgUrl){
-					this.imgUrl=options.imgUrl
+					icon = false
+				} = options
+				clearTimeout(this.timer)
+				this.visible = true
+				this.title = options.title || ''
+				this.content = options.content || ''
+				this.icon = icon
+				if (icon && options.imgUrl) {
+					this.imgUrl = options.imgUrl
 				}
 				this.timer = setTimeout(() => {
-					this.visible = false;
-					clearTimeout(this.timer);
-					this.timer = null;
-				}, duration);
+					this.visible = false
+					clearTimeout(this.timer)
+					this.timer = null
+				}, duration)
 			},
-			getWidth(icon,content){
-				let width="auto";
-				if(icon){
-					width=content?'420rpx':'360rpx'
+			getWidth(icon, content) {
+				let width = 'auto'
+				if (icon) {
+					width = content ? '420rpx' : '360rpx'
 				}
 				return width
 			}
@@ -91,7 +91,6 @@
 		visibility: visible;
 		opacity: 1;
 	}
-
 
 	.tui-toast-img {
 		width: 120rpx;

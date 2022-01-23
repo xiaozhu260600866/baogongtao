@@ -1,21 +1,27 @@
 <template>
-	<button class="tui-btn-class tui-btn" :class="[plain?'tui-'+type+'-outline':'tui-btn-'+(type || 'primary'),getDisabledClass(disabled,type),getShapeClass(shape,plain),getShadowClass(type,shadow,plain)]"
-	 :hover-class="getHoverClass(disabled,type,plain)" :style="{width:width,height:height,lineHeight:height,fontSize:size+'rpx'}"
-	 :loading="loading" :disabled="disabled" @tap="handleClick">
-		<slot></slot>
-	</button>
+  <button
+    class="tui-btn-class tui-btn"
+    :class="[plain?'tui-'+type+'-outline':'tui-btn-'+(type || 'primary'),getDisabledClass(disabled,type),getShapeClass(shape,plain),getShadowClass(type,shadow,plain)]"
+    :hover-class="getHoverClass(disabled,type,plain)"
+    :style="{width:width,height:height,lineHeight:height,fontSize:size+'rpx'}"
+    :loading="loading"
+    :disabled="disabled"
+    @tap="handleClick"
+  >
+    <slot />
+  </button>
 </template>
 
 <script>
 	export default {
-		name: "tuiButton",
+		name: 'TuiButton',
 		props: {
-			//样式类型 primary, white, danger, warning, green,blue, gray
+			// 样式类型 primary, white, danger, warning, green,blue, gray
 			type: {
 				type: String,
 				default: 'primary'
 			},
-			//是否加阴影 type =primary和 danger有效
+			// 是否加阴影 type =primary和 danger有效
 			shadow: {
 				type: Boolean,
 				default: false
@@ -25,17 +31,17 @@
 				type: String,
 				default: '100%'
 			},
-			//高度 rpx
+			// 高度 rpx
 			height: {
 				type: String,
 				default: '94rpx'
 			},
-			//字体大小 rpx
+			// 字体大小 rpx
 			size: {
 				type: Number,
 				default: 32
 			},
-			//形状 circle(圆角), square(默认方形)，rightAngle(平角)
+			// 形状 circle(圆角), square(默认方形)，rightAngle(平角)
 			shape: {
 				type: String,
 				default: 'square'
@@ -56,39 +62,39 @@
 		methods: {
 			handleClick() {
 				if (this.disabled) {
-					return false;
+					return false
 				}
 				this.$emit('click', {})
 			},
-			getShadowClass: function(type, shadow,plain) {
-				let className = '';
+			getShadowClass: function(type, shadow, plain) {
+				let className = ''
 				if (shadow && type != 'white' && !plain) {
-					className = 'tui-shadow-' + type;
+					className = 'tui-shadow-' + type
 				}
-				return className;
+				return className
 			},
 			getDisabledClass: function(disabled, type) {
-				let className = '';
+				let className = ''
 				if (disabled && type != 'white' && type != 'gray') {
-					className = 'tui-dark-disabled';
+					className = 'tui-dark-disabled'
 				}
-				return className;
+				return className
 			},
 			getShapeClass: function(shape, plain) {
-				let className = '';
+				let className = ''
 				if (shape == 'circle') {
-					className = plain ? 'tui-outline-fillet' : 'tui-fillet';
-				} else if (shape == "rightAngle") {
-					className = plain ? 'tui-outline-rightAngle' : 'tui-rightAngle';
+					className = plain ? 'tui-outline-fillet' : 'tui-fillet'
+				} else if (shape == 'rightAngle') {
+					className = plain ? 'tui-outline-rightAngle' : 'tui-rightAngle'
 				}
-				return className;
+				return className
 			},
 			getHoverClass: function(disabled, type, plain) {
-				let className = '';
+				let className = ''
 				if (!disabled) {
-					className = plain ? 'tui-outline-hover' : ('tui-' + (type || 'primary') + '-hover');
+					className = plain ? 'tui-outline-hover' : ('tui-' + (type || 'primary') + '-hover')
 				}
-				return className;
+				return className
 			}
 		}
 	}

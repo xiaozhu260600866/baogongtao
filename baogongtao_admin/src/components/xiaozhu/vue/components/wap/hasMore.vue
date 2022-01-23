@@ -1,27 +1,27 @@
 <template>
   <section>
-    <wv-group v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="50" class="xiaozhuLoading" >
+    <wv-group v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="50" class="xiaozhuLoading">
       <slot name="content" />
-      <div class="tips1 mt10 hasMore text-center" v-if="!data.show && data.thisPage==1">
+      <div v-if="!data.show && data.thisPage==1" class="tips1 mt10 hasMore text-center">
         <div class="weui-loadmore">
-          <i class="weui-loading"></i>
+          <i class="weui-loading" />
           <i class="weui-loadmore__tips fs12 font_grey">正在加载</i>
         </div>
       </div>
-      <div class="tips1 mt10 hasMore text-center" v-if="data.show && data.lists.data && data.lists.data.length == 0">
+      <div v-if="data.show && data.lists.data && data.lists.data.length == 0" class="tips1 mt10 hasMore text-center">
         <i class="weui-loadmore__tips fs12 font_grey pb20">没有更多了...</i>
       </div>
-      <div class="tips1 mt10 hasMore text-center" v-if="data.show && data.lists && data.lists.length == 0">
+      <div v-if="data.show && data.lists && data.lists.length == 0" class="tips1 mt10 hasMore text-center">
         <i class="weui-loadmore__tips fs12 font_grey pb20">没有更多了...</i>
       </div>
       <!-- 下拉加载 -->
-      <div class="tips1 mt10 hasMore text-center" v-if="data.hasMore">
+      <div v-if="data.hasMore" class="tips1 mt10 hasMore text-center">
         <div class="weui-loadmore">
-          <i class="weui-loading"></i>
+          <i class="weui-loading" />
           <i class="weui-loadmore__tips fs12 font_grey">正在加载</i>
         </div>
       </div>
-      <div class="tips1 mt10 hasMore text-center" v-else-if="!data.hasMore && data.thisPage>1">
+      <div v-else-if="!data.hasMore && data.thisPage>1" class="tips1 mt10 hasMore text-center">
         <i class="weui-loadmore__tips fs12 font_grey pb20">没有更多了...</i>
       </div>
     </wv-group>
@@ -29,13 +29,13 @@
 </template>
 <script type="text/javascript">
 export default {
-  props: ["data", "otherData"],
+  props: ['data', 'otherData'],
   methods: {
     loadMore() {
-      var thisFormAction = localStorage.getItem("formAction");
+      var thisFormAction = localStorage.getItem('formAction')
       if (this.data.canLoadMore && this.data.hasMore && thisFormAction == this.$parent.formAction) {
-        this.data.nextPage += 1;
-        this.$parent.$refs.page.ajax();
+        this.data.nextPage += 1
+        this.$parent.$refs.page.ajax()
       }
     }
   }

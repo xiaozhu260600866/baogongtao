@@ -10,70 +10,69 @@
 <template>
   <section :class="this.$route.name.openType && this.$route.name.openType == 'navigate' ? 'navigatorPage fixed' : '' ">
     <slot name="content" />
-    <div class="float-group" :style="Fbottom" v-if="data.show" style="position: fixed;z-index:15;right: 15px;bottom: 120px;">
+    <div v-if="data.show" class="float-group" :style="Fbottom" style="position: fixed;z-index:15;right: 15px;bottom: 120px;">
       <slot name="floatBtn" />
     </div>
   </section>
 </template>
 <script type="text/javascript">
 export default {
-  props: ["ajaxOnload", "data", "ruleform", "vaildate", "otherData", "ajaxTimeOut", "formAction",'Fbottom'],
+  props: ['ajaxOnload', 'data', 'ruleform', 'vaildate', 'otherData', 'ajaxTimeOut', 'formAction', 'fbottom'],
   data() {
     return {
-      getSiteName: this.getSiteName(),
+      getSiteName: this.getSiteName()
 
-    }
-  },
-  watch: {
-    // 如果路由有变化，会再次执行该方法
-    "$route": "toKeepAlive"
-  },
-  methods: {
-    ajax() {
-      //检查是否有登陆
-      this.getAjax(this, {}, msg => {
-        if (this.getOptions('scrollTo')) {
-          this.$nextTick(() => {
-            window.scrollTo(0, parseInt(this.getStorage('scrollTop')));
-          });
-        }
-        this.$emit("ajaxCallBack", msg);
-      });
-    },
-    toKeepAlive() {
-      if (this.getOptions('keepAlive') && this.getOptions('keepAlive') == "false") {
-        this.ajax();
-      }
     }
   },
   computed: {
     loading() {
       if (!this.data.show) {
-        return "loading";
+        return 'loading'
       } else {
-        return "";
+        return ''
       }
-    },
+    }
 
   },
+  watch: {
+    // 如果路由有变化，会再次执行该方法
+    '$route': 'toKeepAlive'
+  },
   mounted() {
-    this.$emit("myMounted");
+    this.$emit('myMounted')
 
     if (this.ajaxOnload) {
       if (this.ajaxTimeOut) {
         setTimeout(() => {
-          this.ajax();
+          this.ajax()
         }, 100)
       } else {
-        this.ajax();
+        this.ajax()
       }
-
     } else {
       setTimeout(() => {
-        this.data.show = true;
+        this.data.show = true
       }, 100)
     }
   },
+  methods: {
+    ajax() {
+      // 检查是否有登陆
+      this.getAjax(this, {}, msg => {
+        if (this.getOptions('scrollTo')) {
+          this.$nextTick(() => {
+            window.scrollTo(0, parseInt(this.getStorage('scrollTop')))
+          })
+        }
+        this.$emit('ajaxCallBack', msg)
+      })
+    },
+    toKeepAlive() {
+      if (this.getOptions('keepAlive') && this.getOptions('keepAlive') == 'false') {
+        this.ajax()
+      }
+    }
+  }
 }
 
 </script>

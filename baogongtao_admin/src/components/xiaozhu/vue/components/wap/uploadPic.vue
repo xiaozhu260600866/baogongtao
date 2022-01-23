@@ -1,4 +1,4 @@
-<!-- 使用 
+<!-- 使用
 1.'my-upload': () =>
             import ('xiaozhu/vue/components/wap/uploadPic.vue'),
 2. <my-upload upurl="product" uploadLength="3" :fileList="fileList" :sizearr="[300]"></my-upload>
@@ -9,14 +9,14 @@
 4.格式化fileList
 implodeCover(this.fileList);
 5.分割fileList
-splitCover(params.cover, "product");	
-}            
+splitCover(params.cover, "product");
+}
 -->
 <template>
-    <div>
-        <el-upload :file-list="fileList" action="/ajax/uploadpic" :data="uploadData" :before-upload="uploadBefore" list-type="picture-card" :on-success="uploadSuccess" :on-remove="handleRemove" :on-preview="handlePictureCardPreview"> <i class="el-icon-plus"></i>
-        </el-upload>
-    </div>
+  <div>
+    <el-upload :file-list="fileList" action="/ajax/uploadpic" :data="uploadData" :before-upload="uploadBefore" list-type="picture-card" :on-success="uploadSuccess" :on-remove="handleRemove" :on-preview="handlePictureCardPreview"> <i class="el-icon-plus" />
+    </el-upload>
+  </div>
 </template>
 <style type="text/css">
 input[type=file] {
@@ -76,77 +76,72 @@ input[type=file] {
 import { Upload } from 'element-ui'
 
 export default {
+    components: {
+        'el-upload': Upload
+
+    },
+    props: ['upurl', 'uploadLength', 'fileList', 'sizearr'],
     data() {
         return {
             uploadData: {
-                _token: $("#token").val(),
-                upurl: this.upurl,
+                _token: $('#token').val(),
+                upurl: this.upurl
             },
             dialogImageUrl: '',
             dialogVisibleImage: false
         }
     },
     mounted() {
-        $(".el-upload-list__item-preview").hide();
-    },
-    props: ['upurl', 'uploadLength', 'fileList', 'sizearr'], //父类的数据
+        $('.el-upload-list__item-preview').hide()
+    }, // 父类的数据
 
     methods: {
         handleRemove(file, fileList) {
-
-            //return false;
+            // return false;
             for (var i = 0; i < this.fileList.length; i++) {
-                if (this.fileList[i].name == file.name) this.fileList.splice(i, 1);
+                if (this.fileList[i].name == file.name) this.fileList.splice(i, 1)
             }
-            console.log(this.fileList);
-            //alert("A");
+            console.log(this.fileList)
+            // alert("A");
         },
         uploadBefore(file) {
             if (this.uploadLength <= this.fileList.length) {
-                alert("上传不得大于" + this.uploadLength);
-                return false;
+                alert('上传不得大于' + this.uploadLength)
+                return false
             }
-
         },
         uploadSuccess(response, file, fileList) {
             if (response == 2 || response == 0) {
-                alert("上传文件格式不正确");
-                fileList.pop();
-                return false;
+                alert('上传文件格式不正确')
+                fileList.pop()
+                return false
             }
-            var that = this;
+            var that = this
 
-            /*压缩图开始*/
+            /* 压缩图开始*/
             $.ajax({
-                type: "POST",
-                url: "/ajax/image-resize",
+                type: 'POST',
+                url: '/ajax/image-resize',
                 data: {
                     type: this.upurl,
                     value: response,
                     size: this.sizearr,
-                    _token: $("#token").val()
+                    _token: $('#token').val()
                 },
-                dataType: "text",
+                dataType: 'text',
                 success: function(datav) {
-                    that.fileList.push(file);
-                    console.log(that.fileList);
-                    $(".el-upload-list__item-preview").hide();
+                    that.fileList.push(file)
+                    console.log(that.fileList)
+                    $('.el-upload-list__item-preview').hide()
                 }
-            });
-            /*压缩图结束*/
-
-
+            })
+            /* 压缩图结束*/
         },
         handlePictureCardPreview(file) {
-            this.dialogImageUrl = file.url;
-            this.dialogVisibleImage = true;
-            $(".el-upload-list__item-preview").hide();
+            this.dialogImageUrl = file.url
+            this.dialogVisibleImage = true
+            $('.el-upload-list__item-preview').hide()
         }
-    },
-    components: {
-        'el-upload': Upload,
-
-
     }
 }
 </script>

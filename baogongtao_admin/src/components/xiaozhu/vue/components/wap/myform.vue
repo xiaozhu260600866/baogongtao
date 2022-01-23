@@ -7,24 +7,24 @@
 
    -->
 <template>
-    <div :class="[isFixed ? 'footer-btn': 'mtb20']" @click="formSubmit" >
-        <button type="button" :class="[isFixed ? 'f-btn-blue': 'dx-btn-big dx-btn dx-btn-blue w-b100']">{{ title ? title : '确定' }}</button>
-    </div>
+  <div :class="[isFixed ? 'footer-btn': 'mtb20']" @click="formSubmit">
+    <button type="button" :class="[isFixed ? 'f-btn-blue': 'dx-btn-big dx-btn dx-btn-blue w-b100']">{{ title ? title : '确定' }}</button>
+  </div>
 </template>
 <script type="text/javascript">
 export default {
-    props: ["ruleform", "vaildate", "title","isFixed"],
+    props: ['ruleform', 'vaildate', 'title', 'isFixed'],
     data() {
         return {
-            getSiteName: this.getSiteName(),
+            getSiteName: this.getSiteName()
         }
     },
     methods: {
         formSubmit(e) {
-            this.$emit("before");
-            let res = this.vaildForm(this);
-            if(res){
-              this.$emit("callBack");
+            this.$emit('before')
+            const res = this.vaildForm(this)
+            if (res) {
+              this.$emit('callBack')
             }
         }
     }

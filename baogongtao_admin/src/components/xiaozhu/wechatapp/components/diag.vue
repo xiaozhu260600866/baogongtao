@@ -1,11 +1,11 @@
 <template>
-    <section>
-        <div class="share-overlay" @click="toggleDiag" v-if="thisDiag || open" style="z-index: 1"></div>
-        <div :class="['layermchild layermanim  p15','bounceIn']" v-if="thisDiag || open" :style="top ?  'top:'+top+'%;' : 'top:45%;'">
-            <slot name="content" />
-            <div class="icon_off" v-if="thisDiag == true || open" @click="toggleDiag"><span class="iconfont icon-xiaozhu-off"></span></div>
-        </div>
-    </section>
+  <section>
+    <div v-if="thisDiag || open" class="share-overlay" style="z-index: 1" @click="toggleDiag" />
+    <div v-if="thisDiag || open" :class="['layermchild layermanim  p15','bounceIn']" :style="top ? 'top:'+top+'%;' : 'top:45%;'">
+      <slot name="content" />
+      <div v-if="thisDiag == true || open" class="icon_off" @click="toggleDiag"><span class="iconfont icon-xiaozhu-off" /></div>
+    </div>
+  </section>
 </template>
 <script type="text/javascript">
 export default {
@@ -18,11 +18,11 @@ export default {
     },
     methods: {
         toggleDiag() {
-            this.thisDiag = false;
-            this.open = false;
+            this.thisDiag = false
+            this.open = false
         },
         ajax() {
-            this.thisDiag = true;
+            this.thisDiag = true
         }
     }
 
@@ -143,7 +143,6 @@ export default {
         transform: scale3d(1, 1, 1);
     }
 }
-
 
 @keyframes bounceOut {
     20% {

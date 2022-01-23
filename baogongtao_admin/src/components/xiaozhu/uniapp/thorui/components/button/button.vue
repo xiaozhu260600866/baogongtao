@@ -1,14 +1,23 @@
 <template>
-	<button class="tui-btn-class tui-btn" :class="['tui-btn-'+size,plain?'tui-'+type+'-outline':'tui-'+(type || 'gradual'),getDisabledClass(disabled,type),getShapeClass(shape,plain)]"
-	 :hover-class="getHoverClass(disabled,type,plain)" :loading="loading" :disabled="disabled" :open-type="openType" @tap="handleClick"
-	 @getuserinfo="bindgetuserinfo" :form-type="formType" v-if="!hidden">
-		<slot></slot>
-	</button>
+  <button
+    v-if="!hidden"
+    class="tui-btn-class tui-btn"
+    :class="['tui-btn-'+size,plain?'tui-'+type+'-outline':'tui-'+(type || 'gradual'),getDisabledClass(disabled,type),getShapeClass(shape,plain)]"
+    :hover-class="getHoverClass(disabled,type,plain)"
+    :loading="loading"
+    :disabled="disabled"
+    :open-type="openType"
+    :form-type="formType"
+    @tap="handleClick"
+    @getuserinfo="bindgetuserinfo"
+  >
+    <slot />
+  </button>
 </template>
 
 <script>
 	export default {
-		name: "tuiButton",
+		name: 'TuiButton',
 		props: {
 			// primary, white, danger, warning, green, gray,gradual
 			type: {
@@ -57,37 +66,37 @@
 		methods: {
 			handleClick() {
 				if (this.disabled) {
-					return false;
+					return false
 				}
 				this.$emit('click', {})
 			},
 			bindgetuserinfo({
 				detail = {}
 			} = {}) {
-				this.$emit('getuserinfo', detail);
+				this.$emit('getuserinfo', detail)
 			},
 			getDisabledClass: function(disabled, type) {
-				let className = '';
+				let className = ''
 				if (disabled && type != 'white' && type != 'gray') {
-					className = type == 'gradual' ? 'btn-gradual-disabled' : 'tui-dark-disabled';
+					className = type == 'gradual' ? 'btn-gradual-disabled' : 'tui-dark-disabled'
 				}
-				return className;
+				return className
 			},
 			getShapeClass: function(shape, plain) {
-				let className = '';
+				let className = ''
 				if (shape == 'circle') {
-					className = plain ? 'tui-outline-fillet' : 'tui-fillet';
-				} else if (shape == "rightAngle") {
-					className = plain ? 'tui-outline-rightAngle' : 'tui-rightAngle';
+					className = plain ? 'tui-outline-fillet' : 'tui-fillet'
+				} else if (shape == 'rightAngle') {
+					className = plain ? 'tui-outline-rightAngle' : 'tui-rightAngle'
 				}
-				return className;
+				return className
 			},
 			getHoverClass: function(disabled, type, plain) {
-				let className = '';
+				let className = ''
 				if (!disabled) {
-					className = plain ? 'tui-outline-hover' : ('tui-' + (type || 'gradual') + '-hover');
+					className = plain ? 'tui-outline-hover' : ('tui-' + (type || 'gradual') + '-hover')
 				}
-				return className;
+				return className
 			}
 		}
 	}

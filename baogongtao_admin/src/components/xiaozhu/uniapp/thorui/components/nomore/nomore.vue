@@ -1,40 +1,40 @@
 <template>
-	<view class="tui-nomore-class tui-loadmore-none" v-if="visible">
-		<view :class="[isDot?'tui-nomore-dot':'tui-nomore']">
-			<view :style="{background:bgcolor}" :class="[isDot?'tui-dot-text':'tui-nomore-text']">{{isDot?dotText:text}}</view>
-		</view>
-	</view>
+  <view v-if="visible" class="tui-nomore-class tui-loadmore-none">
+    <view :class="[isDot?'tui-nomore-dot':'tui-nomore']">
+      <view :style="{background:bgcolor}" :class="[isDot?'tui-dot-text':'tui-nomore-text']">{{ isDot?dotText:text }}</view>
+    </view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiNomore",
+		name: 'TuiNomore',
 		props: {
-			//是否可见
+			// 是否可见
 			visible: {
 				type: Boolean,
 				default: false
 			},
-			//当前页面背景颜色
+			// 当前页面背景颜色
 			bgcolor: {
 				type: String,
-				default: "#fafafa"
+				default: '#fafafa'
 			},
-			//是否以圆点代替 "没有更多了"
+			// 是否以圆点代替 "没有更多了"
 			isDot: {
 				type: Boolean,
 				default: false
 			},
-			//isDot为false时生效
+			// isDot为false时生效
 			text: {
 				type: String,
-				default: "没有更多了"
+				default: '没有更多了'
 			}
 		},
 		data() {
 			return {
-				dotText: "●"
-			};
+				dotText: '●'
+			}
 		}
 	}
 </script>

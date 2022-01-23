@@ -1,27 +1,27 @@
 <template>
-	<section>
-		<div class="share-overlay" v-if="propDiv"></div>
-		<div class="Ppop-body" v-if="propDiv">
-			<div class="Ppop-box plr20 pb10 pt30">
-				<slot name="content"></slot>
-			</div>
-		</div>
-	</section>
+  <section>
+    <div v-if="propDiv" class="share-overlay" />
+    <div v-if="propDiv" class="Ppop-body">
+      <div class="Ppop-box plr20 pb10 pt30">
+        <slot name="content" />
+      </div>
+    </div>
+  </section>
 </template>
 <script>
 export default {
 	props: ['data'],
 	data() {
 		return {
-			propDiv:false
+			propDiv: false
 		}
 	},
 	methods: {
 		toggleDiag() {
-			this.propDiv = !this.propDiv;
+			this.propDiv = !this.propDiv
 		}
 	},
-	onLoad(){
+	onLoad() {
 		this.propDiv = false
 	}
 }

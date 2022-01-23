@@ -1,14 +1,14 @@
 <template>
-	<div>
-		<img :src="getSiteName +'/upload/images/'+purl+'/'+currentValue" lazy-load="true" :class="myClass">
-	</div>
+  <div>
+    <img :src="getSiteName +'/upload/images/'+purl+'/'+currentValue" lazy-load="true" :class="myClass">
+  </div>
 </template>
 <script type="text/javascript">
 export default {
-	props: ["value", 'purl', 'myClass'],
+	props: ['value', 'purl', 'myClass'],
 	data() {
 		return {
-			getSiteName: this.getSiteName(),
+			getSiteName: this.getSiteName()
 		}
 	},
 	computed: {
@@ -16,10 +16,10 @@ export default {
 		currentValue: {
 			// 动态计算currentValue的值
 			get: function() {
-				return this.value;
+				return this.value
 			},
 			set: function(val) {
-				this.$emit('input', val);
+				this.$emit('input', val)
 			}
 		}
 	}

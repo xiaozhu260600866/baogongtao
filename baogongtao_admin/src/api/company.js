@@ -28,6 +28,20 @@ export function del(data) {
         data
     })
 }
+export function recruitRecordLists(data) {
+    return request({
+        url: '/company/recruit-records',
+        method: 'post',
+        data
+    })
+}
+export function recruitRecordDel(data) {
+    return request({
+        url: '/company/recruit-record-del',
+        method: 'post',
+        data
+    })
+}
 export function recruitLists(data) {
     return request({
         url: '/company/recruits',

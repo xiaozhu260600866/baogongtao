@@ -1,4 +1,4 @@
-<!-- 调用 
+<!-- 调用
 import picDiag from "xiaozhu/vue/components/wap/picDiag";
 components: {
 		picDiag
@@ -8,15 +8,15 @@ components: {
 
 -->
 <template>
-	<section>
-		<div id="share-overlay2" @click="toClose" v-if="thisDiag"></div>
-		<div id="float-video" v-if="thisDiag">
-			<div class="text-center m10">
-				 <iframe data-v-3f05b4e6="" id="mapPage" width="100%" height="500px" frameborder="0" src="https://apis.map.qq.com/tools/locpicker?search=1&type=1&key=LT6BZ-ZAOC6-KUFSB-MR4F4-OOMX5-S6BTW&referer=myapp"></iframe>
-				 <div class="dx-btn dx-btn-blue width100" @click="toClose">确定</div>
-			</div>
-		</div>
-	</section>
+  <section>
+    <div v-if="thisDiag" id="share-overlay2" @click="toClose" />
+    <div v-if="thisDiag" id="float-video">
+      <div class="text-center m10">
+        <iframe id="mapPage" data-v-3f05b4e6="" width="100%" height="500px" frameborder="0" src="https://apis.map.qq.com/tools/locpicker?search=1&type=1&key=LT6BZ-ZAOC6-KUFSB-MR4F4-OOMX5-S6BTW&referer=myapp" />
+        <div class="dx-btn dx-btn-blue width100" @click="toClose">确定</div>
+      </div>
+    </div>
+  </section>
 </template>
 <script type="text/javascript">
 export default {
@@ -26,26 +26,26 @@ export default {
 			thisDiag: false
 		}
 	},
-	mounted(){
-		window.addEventListener('message',event=>{
+	mounted() {
+		window.addEventListener('message', event => {
     // 接收位置信息
-             //this.handleClose();
-   			 this.$emit("locationCallBack",event.data);
-		}, false);
+             // this.handleClose();
+   			 this.$emit('locationCallBack', event.data)
+		}, false)
 	},
 	methods: {
 		ajax() {
-			this.thisDiag = true;
+			this.thisDiag = true
 			this.$nextTick(() => {
-				//document.getElementById("float-video").style.display = "block"
-				//document.getElementById("share-overlay2").style.display = "block"
-			});
+				// document.getElementById("float-video").style.display = "block"
+				// document.getElementById("share-overlay2").style.display = "block"
+			})
 		},
 		toClose() {
-			this.$parent.videoSrc = "";
-			this.thisDiag = false;
-			//document.getElementById("float-video").style.display = "none"
-			//document.getElementById("share-overlay2").style.display = "none"
+			this.$parent.videoSrc = ''
+			this.thisDiag = false
+			// document.getElementById("float-video").style.display = "none"
+			// document.getElementById("share-overlay2").style.display = "none"
 		}
 	}
 }

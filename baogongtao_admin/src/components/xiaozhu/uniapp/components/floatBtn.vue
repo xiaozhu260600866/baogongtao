@@ -8,49 +8,49 @@
  -->
 
 <template>
-	<view>
-		<button class="float-nav" :class="[shadow?'navShadow':'',myclass?myclass:'']" hover-class="none" :open-type="openType">
-			<view class="nav-box" :class="[icon&&!title?'one-icon':'',!icon&&title?'one-name':'']">
-				<p :class="['nav-icon','iconfont',icon,[iSize?iSize:'fs-24']]" v-if="icon"></p>
-				<p class="nav-name" :class="nSize?nSize:[!icon?'fs-13':'fs-10']" :style="{padding:!icon?nPadding:''}" v-if="title">{{ title }}</p>
-			</view>
-		</button>
-	</view>
+  <view>
+    <button class="float-nav" :class="[shadow?'navShadow':'',myclass?myclass:'']" hover-class="none" :open-type="openType">
+      <view class="nav-box" :class="[icon&&!title?'one-icon':'',!icon&&title?'one-name':'']">
+        <p v-if="icon" :class="['nav-icon','iconfont',icon,[iSize?iSize:'fs-24']]" />
+        <p v-if="title" class="nav-name" :class="nSize?nSize:[!icon?'fs-13':'fs-10']" :style="{padding:!icon?nPadding:''}">{{ title }}</p>
+      </view>
+    </button>
+  </view>
 </template>
 <script type="text/javascript">
-export default{
-	props:{
-		shadow:{
+export default {
+	props: {
+		shadow: {
 			type: Boolean,
 			default: false
 		},
-		myclass:{
+		myclass: {
 			type: String,
 			default: ''
 		},
-		icon:{
+		icon: {
 			type: String,
 			default: ''
 		},
-		iSize:{
+		iSize: {
 			type: String,
 			default: ''
 		},
-		nSize:{
+		nSize: {
 			type: String,
 			default: ''
 		},
-		title:{
+		title: {
 			type: String,
 			default: ''
 		},
-		openType:{
+		openType: {
 			type: String,
 			default: ''
 		},
-		nPadding:{
+		nPadding: {
 			type: String,
-			default:'0 16rpx'
+			default: '0 16rpx'
 		}
 	},
 	data() {
@@ -58,13 +58,13 @@ export default{
 			source: ''
 		}
 	},
-	methods:{
-		
+	methods: {
+
 	},
 	onLoad() {
-		
-	},
-}	
+
+	}
+}
 </script>
 <style type="text/css" scoped="">
 

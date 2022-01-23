@@ -1,9 +1,9 @@
 <template>
 	<view>
 		<page :parentData="data" :formAction="formAction"></page>
-		<view class="record plr15 ptb10 mb8 bg-f flex-between flex-middle" v-for="(item,key) in lists">
+		<view class="record plr15 ptb10 mb8 bg-f flex-between flex-middle" v-for="(item,key) in data.lists.data">
 			<view class="group">
-				<view class="fs-15">{{item.source}}</view>
+				<view class="fs-15">{{item.type == 0 ? '签到' :'商城购物'}}</view>
 				<view class="Arial fs-12 fc-9">{{item.created_at}}</view>
 			</view>
 			<view class="Arial fs-18" :class="[item.type == 0?'fc-green':'fc-red']">{{item.type == 0 ? '+' :'-'}}{{item.integral}}</view>
@@ -16,7 +16,7 @@
 	export default {
 		data() {
 			return {
-				formAction: '/shop/user/integral-lists',
+				formAction: '/api/user/integral-lists',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
@@ -44,11 +44,11 @@
 			this.shareSource(this, '商城');
 		},
 		onLoad(options) {
-			//this.ajax();
+			this.ajax();
 		},
 		methods: {
 			ajax() {
-				this.getAjax(this).then(msg => {
+				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
 					console.log(this.data);
 				});
 			}

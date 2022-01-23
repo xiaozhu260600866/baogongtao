@@ -1,15 +1,21 @@
 <template>
-	<view class="tui-grid-class tui-grid" :class="[bottom?'':'tui-grid-bottom','tui-grid-'+(cell<2?3:cell)]" :hover-class="hover?'tui-item-hover':''"
-	 :hover-stay-time="150" :style="{background:bgcolor}" @tap="handleClick">
-		<view class='tui-grid-bg'>
-			<slot></slot>
-		</view>
-	</view>
+  <view
+    class="tui-grid-class tui-grid"
+    :class="[bottom?'':'tui-grid-bottom','tui-grid-'+(cell<2?3:cell)]"
+    :hover-class="hover?'tui-item-hover':''"
+    :hover-stay-time="150"
+    :style="{background:bgcolor}"
+    @tap="handleClick"
+  >
+    <view class="tui-grid-bg">
+      <slot />
+    </view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiGridItem",
+		name: 'TuiGridItem',
 		props: {
 			cell: {
 				type: Number,
@@ -17,14 +23,14 @@
 			},
 			bgcolor: {
 				type: String,
-				default: "#fff"
+				default: '#fff'
 			},
-			//是否有点击效果
+			// 是否有点击效果
 			hover: {
 				type: Boolean,
 				default: true
 			},
-			//底部线条
+			// 底部线条
 			bottom: {
 				type: Boolean,
 				default: true
@@ -38,7 +44,7 @@
 			handleClick() {
 				this.$emit('click', {
 					index: this.index
-				});
+				})
 			}
 		}
 	}

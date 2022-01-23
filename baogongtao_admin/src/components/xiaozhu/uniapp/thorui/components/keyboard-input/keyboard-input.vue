@@ -1,20 +1,25 @@
 <template>
-	<view class="tui-keyboard-input tui-pwd-box" :style="{background:bgcolor}">
-		<view class="tui-inner-box">
-			<view class="tui-input" :class="[inputvalue.length===4?'tui-margin-right':'']" :style="{fontSize:px(size),color:color,width:px(inputvalue.length===4?90:70)}"
-			 v-for="(item,index) in inputvalue" :key="index">{{item}}</view>
-		</view>
-	</view>
+  <view class="tui-keyboard-input tui-pwd-box" :style="{background:bgcolor}">
+    <view class="tui-inner-box">
+      <view
+        v-for="(item,index) in inputvalue"
+        :key="index"
+        class="tui-input"
+        :class="[inputvalue.length===4?'tui-margin-right':'']"
+        :style="{fontSize:px(size),color:color,width:px(inputvalue.length===4?90:70)}"
+      >{{ item }}</view>
+    </view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name:"KeyboardInput",
+		name: 'KeyboardInput',
 		props: {
-			//背景颜色
+			// 背景颜色
 			bgcolor: {
 				type: String,
-				default: "#fff"
+				default: '#fff'
 			},
 			size: {
 				type: Number,
@@ -22,22 +27,22 @@
 			},
 			color: {
 				type: String,
-				default: "#333"
+				default: '#333'
 			},
-			//输入框的值：数组格式，长度即为输入框个数
+			// 输入框的值：数组格式，长度即为输入框个数
 			inputvalue: {
 				type: Array,
-				default: ["", "", "", "", "", ""] //密码圆点 ●
+				default: ['', '', '', '', '', ''] // 密码圆点 ●
 			}
 		},
 		data() {
 			return {
 
-			};
+			}
 		},
 		methods: {
 			px(num) {
-				return uni.upx2px(num) +"px"
+				return uni.upx2px(num) + 'px'
 			}
 		}
 	}

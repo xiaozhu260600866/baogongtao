@@ -1,37 +1,43 @@
 <template>
-	<view class="tui-cell-class tui-list-cell" :class="{'tui-cell-arrow':arrow,'tui-cell-last':last}" :hover-class="hover?'tui-cell-hover':''"
-	 :style="{background: bgcolor,fontSize: px(size),color:color}" :hover-stay-time="150" @tap="handleClick">
-		<slot></slot>
-	</view>
+  <view
+    class="tui-cell-class tui-list-cell"
+    :class="{'tui-cell-arrow':arrow,'tui-cell-last':last}"
+    :hover-class="hover?'tui-cell-hover':''"
+    :style="{background: bgcolor,fontSize: px(size),color:color}"
+    :hover-stay-time="150"
+    @tap="handleClick"
+  >
+    <slot />
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiListCell",
+		name: 'TuiListCell',
 		props: {
 			arrow: {
 				type: Boolean,
-				default: false //是否有箭头
+				default: false // 是否有箭头
 			},
 			hover: {
 				type: Boolean,
-				default: true //是否有点击效果
+				default: true // 是否有点击效果
 			},
 			last: {
 				type: Boolean,
-				default: false //最后一条数据隐藏线条
+				default: false // 最后一条数据隐藏线条
 			},
 			bgcolor: {
 				type: String,
-				default: "#fff" //背景颜色
+				default: '#fff' // 背景颜色
 			},
 			size: {
 				type: Number,
-				default: 32 //字体大小
+				default: 32 // 字体大小
 			},
 			color: {
 				type: String,
-				default: "#333" //字体颜色
+				default: '#333' // 字体颜色
 			},
 			index: {
 				type: Number,
@@ -42,10 +48,10 @@
 			handleClick() {
 				this.$emit('click', {
 					index: this.index
-				});
+				})
 			},
 			px: function(num) {
-				return uni.upx2px(num) + 'px';
+				return uni.upx2px(num) + 'px'
 			}
 		}
 	}

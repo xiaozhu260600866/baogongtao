@@ -1,4 +1,4 @@
-<!-- 调用 
+<!-- 调用
 import videoDiag from "xiaozhu/vue/components/wap/videoDiag";
 components: {
 		videoDiag
@@ -8,17 +8,17 @@ components: {
 
 -->
 <template>
-	<section>
-		<div id="share-overlay2" @click="toClose" v-if="thisDiag"></div>
-		<div id="float-video" v-if="thisDiag">
-			<div class="dx-video">
-				<div  @click="toClose"><i class="iconfont dx-del fs-30 fs-white"></i></div>
-				<video controls="" width="320" height="240" autoplay="" name="media" v-if="src">
-						<source :src="src" type="video/mp4">
-				</video>
-			</div>
-		</div>
-	</section>
+  <section>
+    <div v-if="thisDiag" id="share-overlay2" @click="toClose" />
+    <div v-if="thisDiag" id="float-video">
+      <div class="dx-video">
+        <div @click="toClose"><i class="iconfont dx-del fs-30 fs-white" /></div>
+        <video v-if="src" controls="" width="320" height="240" autoplay="" name="media">
+          <source :src="src" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
 </template>
 <script type="text/javascript">
 export default {
@@ -30,17 +30,17 @@ export default {
 	},
 	methods: {
 		ajax() {
-			this.thisDiag = true;
+			this.thisDiag = true
 			this.$nextTick(() => {
-				//document.getElementById("float-video").style.display = "block"
-				//document.getElementById("share-overlay2").style.display = "block"
-			});
+				// document.getElementById("float-video").style.display = "block"
+				// document.getElementById("share-overlay2").style.display = "block"
+			})
 		},
 		toClose() {
-			this.$parent.videoSrc = "";
-			this.thisDiag = false;
-			//document.getElementById("float-video").style.display = "none"
-			//document.getElementById("share-overlay2").style.display = "none"
+			this.$parent.videoSrc = ''
+			this.thisDiag = false
+			// document.getElementById("float-video").style.display = "none"
+			// document.getElementById("share-overlay2").style.display = "none"
 		}
 	}
 }

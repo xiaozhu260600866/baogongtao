@@ -5,92 +5,92 @@
 			{label:'本月',value:'thismonth'}
 		]" :query="data.query"></meiTime>
 mounted(){
-	
-}		
+
+}
 -->
 <template>
-	<div>
-		<div class="time-top bgf">
-			<div class="time-nav">
-				<a href="" :class="['aLink','fs14',query.dateSelect == v.value ? 'cur': '']" @click="select(v,key)" v-for="(v,key) in data"><span class="span">{{ v.label }}</span></a>
-				
-				<a href="" :class="['aLink','fs14',showtime == 3 ? 'cur': '']" @click="query.dateSelect='';showtime = 3"><span class="span">日期</span></a>
-			</div>
-			<div class="time-date bgf" v-if="showtime == 3">
-				<div class="date-item start-time">
-					<picker :value="date" class="date-picker" style="display: inline-block;width:100%" mode="date" @change="startDateChange" >
-						<view class="picker fs12" v-if="start_date">
-							{{start_date}}
-						</view>
-						<view class="picker fs12" wx:else>
-							{{ date }}
-						</view>
-					</picker>
-				</div>
-				<span> -- </span>
-				<div class="date-item end-time">
-					<picker :value="date" class="date-picker" style="display: inline-block;width:100%" mode="date" @change="endDateChange">
-						<view class="picker fs12" v-if="end_date">
-							{{end_date}}
-						</view>
-						<view class="picker fs12" wx:else>
-							{{ date }}
-						</view>
-					</picker>
-				</div>
-				<div class="btn-search" @click="toSearch">
-					<button class="sub-btn-sm">查询</button>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div>
+    <div class="time-top bgf">
+      <div class="time-nav">
+        <a v-for="(v,key) in data" href="" :class="['aLink','fs14',query.dateSelect == v.value ? 'cur': '']" @click="select(v,key)"><span class="span">{{ v.label }}</span></a>
+
+        <a href="" :class="['aLink','fs14',showtime == 3 ? 'cur': '']" @click="query.dateSelect='';showtime = 3"><span class="span">日期</span></a>
+      </div>
+      <div v-if="showtime == 3" class="time-date bgf">
+        <div class="date-item start-time">
+          <picker :value="date" class="date-picker" style="display: inline-block;width:100%" mode="date" @change="startDateChange">
+            <view v-if="start_date" class="picker fs12">
+              {{ start_date }}
+            </view>
+            <view class="picker fs12" wx:else>
+              {{ date }}
+            </view>
+          </picker>
+        </div>
+        <span> -- </span>
+        <div class="date-item end-time">
+          <picker :value="date" class="date-picker" style="display: inline-block;width:100%" mode="date" @change="endDateChange">
+            <view v-if="end_date" class="picker fs12">
+              {{ end_date }}
+            </view>
+            <view class="picker fs12" wx:else>
+              {{ date }}
+            </view>
+          </picker>
+        </div>
+        <div class="btn-search" @click="toSearch">
+          <button class="sub-btn-sm">查询</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-	props: ['data','query'],
+	components: {
+
+	},
+	props: ['data', 'query'],
 	data() {
 		return {
 			getSiteName: this.getSiteName(),
-			start_date:'',
-			end_date:'',
-			showtime:0,
+			start_date: '',
+			end_date: '',
+			showtime: 0
 		}
 	},
 	methods: {
-		getFormAction(){
-			return this.$parent.formAction.split("?")[0];
+		getFormAction() {
+			return this.$parent.formAction.split('?')[0]
 		},
-		startDateChange(e){
-			this.start_date = e.mp.detail.value;
+		startDateChange(e) {
+			this.start_date = e.mp.detail.value
 		},
-		endDateChange(e){
-			this.end_date = e.mp.detail.value;
+		endDateChange(e) {
+			this.end_date = e.mp.detail.value
 		},
-		toSearch(){
-		   if(!this.start_date && !this.end_date){
-		   		this.getError('日期没有选择');
-		   		return false;
+		toSearch() {
+		   if (!this.start_date && !this.end_date) {
+		   		this.getError('日期没有选择')
+		   		return false
 		   }
-		   this.query.start_date  = this.start_date;
-		   this.query.end_date = this.end_date;
-		   this.$parent.$refs.page.ajax("notloing");
+		   this.query.start_date = this.start_date
+		   this.query.end_date = this.end_date
+		   this.$parent.$refs.page.ajax('notloing')
 		},
-		select(item,key){
-			this.showtime =0;
-			this.query.dateSelect = item.value;
-            this.$parent.$refs.page.ajax("notloing");
-		},
+		select(item, key) {
+			this.showtime = 0
+			this.query.dateSelect = item.value
+            this.$parent.$refs.page.ajax('notloing')
+		}
 	},
 	onPullDownRefresh() {
-		this.ajax();
+		this.ajax()
 	},
 	onLoad() {
 
-		//this.ajax();
-	},
-	components: {
-		
+		// this.ajax();
 	}
 }
 </script>

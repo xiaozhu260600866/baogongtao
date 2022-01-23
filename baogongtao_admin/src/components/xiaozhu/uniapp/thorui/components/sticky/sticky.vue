@@ -1,35 +1,22 @@
 <template>
-	<view class="tui-sticky-class">
-		<!--sticky 容器-->
-		<view :class="[isFixed === true ? 'tui-sticky-fixed' : '']">
-			<slot name="header"></slot>
-		</view>
-		<!--sticky 容器-->
-		<!--内容-->
-		<slot name="content"></slot>
-	</view>
+  <view class="tui-sticky-class">
+    <!--sticky 容器-->
+    <view :class="[isFixed === true ? 'tui-sticky-fixed' : '']">
+      <slot name="header" />
+    </view>
+    <!--sticky 容器-->
+    <!--内容-->
+    <slot name="content" />
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiSticky",
+		name: 'TuiSticky',
 		props: {
 			scrollTop: {
 				type: Number
 			}
-		},
-		watch: {
-			scrollTop(newValue, oldValue) {
-				this.updateStickyChange();
-			}
-		},
-		// #ifdef H5
-		mounted() {
-			this.updateScrollChange();
-		},
-		// #endif
-		onReady() {
-			this.updateScrollChange();
 		},
 		data() {
 			return {
@@ -37,14 +24,27 @@
 				top: 0,
 				height: 0,
 				isFixed: false
-			};
+			}
+		},
+		watch: {
+			scrollTop(newValue, oldValue) {
+				this.updateStickyChange()
+			}
+		},
+		// #ifdef H5
+		mounted() {
+			this.updateScrollChange()
+		},
+		// #endif
+		onReady() {
+			this.updateScrollChange()
 		},
 		methods: {
 			updateStickyChange() {
-				const top = this.top;
-				const height = this.height;
+				const top = this.top
+				const height = this.height
 				const scrollTop = this.scrollTop
-				this.isFixed = (scrollTop >= top && scrollTop < top + height) ? true : false
+				this.isFixed = !!((scrollTop >= top && scrollTop < top + height))
 			},
 			updateScrollChange() {
 				if (this.timer) {
@@ -52,11 +52,11 @@
 					this.timer = null
 				}
 				this.timer = setTimeout(() => {
-					const className = '.tui-sticky-class';
-					const query = uni.createSelectorQuery().in(this);
+					const className = '.tui-sticky-class'
+					const query = uni.createSelectorQuery().in(this)
 					query.select(className).boundingClientRect((res) => {
 						if (res) {
-							this.top = res.top;
+							this.top = res.top
 							this.height = res.height
 						}
 					}).exec()

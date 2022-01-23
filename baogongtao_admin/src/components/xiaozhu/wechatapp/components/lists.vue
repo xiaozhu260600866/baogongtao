@@ -1,86 +1,86 @@
 <template>
-    <section>
-        <div>
-            <slot name="content" />
-            <div v-if="data.show && data.lists && data.lists.length == 0 ">
-                <div v-if="source == 'order' ">
-                    <view class="no-order">
-                        <image src="https://keepfit.doxinsoft.com/images/applet/norder.png" />
-                        <view>没有订单信息</view>
-                        <view class="go-shopping bg-color fs18 fs-white">
-                            <navigator url="/pages/index/main">去购物</navigator>
-                        </view>
-                    </view>
-                </div>
-                <div v-else-if="source == 'cart' ">
-                    <view id="empty1">
-                        <view class="e_img">
-                            <image src="https://keepfit.doxinsoft.com/images/applet/icon/cart.png"></image>
-                        </view>
-                        <view class="pb fs18">您的购物车空空的</view>
-                        <view class="pd fs12">赶紧去挑些喜欢的填满它吧</view>
-                        <view class="pa">
-                            <navigator url="/pages/index/main" open-type="redirect">去首页逛逛</navigator>
-                        </view>
-                    </view>
-                </div>
-                <div v-else>
-                    <p class="p20 fs12 font_grey text-center">暂无数据</p>
-                </div>
-            </div>
-            <div v-if="data.show && data.lists.data && data.lists.data.length == 0 || data.listsIntegral && data.listsIntegral.data && data.listsIntegral.data.length == 0">
-                <div v-if="source == 'order' ">
-                    <view class="no-order">
-                        <image src="https://keepfit.doxinsoft.com/images/applet/norder.png" />
-                        <view>没有订单信息</view>
-                        <view class="go-shopping bg-color fs18 fs-white">
-                            <navigator url="/pages/index/main">去购物</navigator>
-                        </view>
-                    </view>
-                </div>
-                <div v-else-if="source == 'cart' ">
-                    <view id="empty1">
-                        <view class="e_img">
-                            <image src="https://keepfit.doxinsoft.com/images/applet/icon/cart.png"></image>
-                        </view>
-                        <view class="pb fs18">您的购物车空空的</view>
-                        <view class="pd fs12">赶紧去挑些喜欢的填满它吧</view>
-                        <view class="pa">
-                            <navigator url="/pages/index/main" open-type="redirect">去首页逛逛</navigator>
-                        </view>
-                    </view>
-                </div>
-                <div v-else>
-                    <p class="p20 fs13 font_666 text-center">{{ message ? message : '暂无数据'}}</p>
-                </div>
-            </div>
-            <view class="tips1 hasMore" style="text-align:center;" v-if="data.lastPage>1 && data.thisPage>=1">
-                <view v-if="data.hasMore">
-                    <view class="weui-loadmore">
-                        <text class="weui-loading"></text>
-                        <text class="weui-loadmore__tips">正在加载</text>
-                    </view>
-                </view>
-                <view v-else>
-                    <view class="">
-                        <text class="weui-loadmore__tips">没有更多了...</text>
-                    </view>
-                </view>
+  <section>
+    <div>
+      <slot name="content" />
+      <div v-if="data.show && data.lists && data.lists.length == 0 ">
+        <div v-if="source == 'order' ">
+          <view class="no-order">
+            <image src="https://keepfit.doxinsoft.com/images/applet/norder.png" />
+            <view>没有订单信息</view>
+            <view class="go-shopping bg-color fs18 fs-white">
+              <navigator url="/pages/index/main">去购物</navigator>
             </view>
-            <view class="tips1 hasMore" style="text-align:center;" v-if="isLoading && !data.show && !data.lists.data || data.lists.length==0">
-                <view v-if="source !='cart'">
-                    <view class="weui-loadmore">
-                        <text class="weui-loading"></text>
-                        <text class="weui-loadmore__tips">正在加载</text>
-                    </view>
-                </view>
-            </view>
+          </view>
         </div>
-    </section>
+        <div v-else-if="source == 'cart' ">
+          <view id="empty1">
+            <view class="e_img">
+              <image src="https://keepfit.doxinsoft.com/images/applet/icon/cart.png" />
+            </view>
+            <view class="pb fs18">您的购物车空空的</view>
+            <view class="pd fs12">赶紧去挑些喜欢的填满它吧</view>
+            <view class="pa">
+              <navigator url="/pages/index/main" open-type="redirect">去首页逛逛</navigator>
+            </view>
+          </view>
+        </div>
+        <div v-else>
+          <p class="p20 fs12 font_grey text-center">暂无数据</p>
+        </div>
+      </div>
+      <div v-if="data.show && data.lists.data && data.lists.data.length == 0 || data.listsIntegral && data.listsIntegral.data && data.listsIntegral.data.length == 0">
+        <div v-if="source == 'order' ">
+          <view class="no-order">
+            <image src="https://keepfit.doxinsoft.com/images/applet/norder.png" />
+            <view>没有订单信息</view>
+            <view class="go-shopping bg-color fs18 fs-white">
+              <navigator url="/pages/index/main">去购物</navigator>
+            </view>
+          </view>
+        </div>
+        <div v-else-if="source == 'cart' ">
+          <view id="empty1">
+            <view class="e_img">
+              <image src="https://keepfit.doxinsoft.com/images/applet/icon/cart.png" />
+            </view>
+            <view class="pb fs18">您的购物车空空的</view>
+            <view class="pd fs12">赶紧去挑些喜欢的填满它吧</view>
+            <view class="pa">
+              <navigator url="/pages/index/main" open-type="redirect">去首页逛逛</navigator>
+            </view>
+          </view>
+        </div>
+        <div v-else>
+          <p class="p20 fs13 font_666 text-center">{{ message ? message : '暂无数据' }}</p>
+        </div>
+      </div>
+      <view v-if="data.lastPage>1 && data.thisPage>=1" class="tips1 hasMore" style="text-align:center;">
+        <view v-if="data.hasMore">
+          <view class="weui-loadmore">
+            <text class="weui-loading" />
+            <text class="weui-loadmore__tips">正在加载</text>
+          </view>
+        </view>
+        <view v-else>
+          <view class="">
+            <text class="weui-loadmore__tips">没有更多了...</text>
+          </view>
+        </view>
+      </view>
+      <view v-if="isLoading && !data.show && !data.lists.data || data.lists.length==0" class="tips1 hasMore" style="text-align:center;">
+        <view v-if="source !='cart'">
+          <view class="weui-loadmore">
+            <text class="weui-loading" />
+            <text class="weui-loadmore__tips">正在加载</text>
+          </view>
+        </view>
+      </view>
+    </div>
+  </section>
 </template>
 <script type="text/javascript">
 export default {
-    props: ["data", "source", "isLoading", "myclass", 'message'],
+    props: ['data', 'source', 'isLoading', 'myclass', 'message'],
     data() {
         return {
             getSiteName: this.getSiteName(),
@@ -90,24 +90,24 @@ export default {
     },
     onReachBottom() {
         if (this.data.canLoadMore && this.data.hasMore) {
-            this.data.nextPage = this.data.nextPage + 1;
-            this.$parent.$parent.$parent.$refs.page.ajax();
+            this.data.nextPage = this.data.nextPage + 1
+            this.$parent.$parent.$parent.$refs.page.ajax()
         }
     },
     onUnload() {
-        this.data.show = false;
+        this.data.show = false
     },
     computed: {
         loading() {
-            if (!this.isLoading) return "";
+            if (!this.isLoading) return ''
             if (!this.data.show) {
-                return "loading";
+                return 'loading'
             } else {
-                return "";
+                return ''
             }
-        },
+        }
 
-    },
+    }
 }
 
 </script>
@@ -135,7 +135,6 @@ export default {
     line-height: 40px;
     border-radius: 40px;
 }
-
 
 /* 购物车为空时 */
 #empty1 {

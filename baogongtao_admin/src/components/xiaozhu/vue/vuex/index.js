@@ -1,15 +1,14 @@
 import Vue from 'vue/dist/vue.js'
 import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 import mutations from './mutations'
 import actions from './actions'
 
-
 export default new Vuex.Store({
-	modules:{
+	modules: {
 		mutations
 	},
 	actions
-});
+})

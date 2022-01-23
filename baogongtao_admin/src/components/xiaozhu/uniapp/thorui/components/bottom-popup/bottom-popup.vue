@@ -1,32 +1,32 @@
 <template>
-	<view>
-		<view class="tui-popup-class tui-bottom-popup" :class="{'tui-popup-show':show}" :style="{background:bgcolor,height:height?px(height):'auto'}">
-			<slot></slot>
-		</view>
-		<view class="tui-popup-mask" :class="[show?'tui-mask-show':'']" v-if="mask" @tap="handleClose"></view>
-	</view>
+  <view>
+    <view class="tui-popup-class tui-bottom-popup" :class="{'tui-popup-show':show}" :style="{background:bgcolor,height:height?px(height):'auto'}">
+      <slot />
+    </view>
+    <view v-if="mask" class="tui-popup-mask" :class="[show?'tui-mask-show':'']" @tap="handleClose" />
+  </view>
 </template>
 
 <script>
 	export default {
-		name:"tuiBottomPopup",
+		name: 'TuiBottomPopup',
 		props: {
-			//是否需要mask
+			// 是否需要mask
 			mask: {
 				type: Boolean,
 				default: true
 			},
-			//控制显示
+			// 控制显示
 			show: {
 				type: Boolean,
 				default: false
 			},
-			//背景颜色
+			// 背景颜色
 			bgcolor: {
 				type: String,
-				default: "#fff"
+				default: '#fff'
 			},
-			//高度 upx
+			// 高度 upx
 			height: {
 				type: Number,
 				default: 0
@@ -35,11 +35,11 @@
 		methods: {
 			handleClose() {
 				if (!this.show) {
-					return;
+					return
 				}
-				this.$emit('close', {});
+				this.$emit('close', {})
 			},
-			px(num){
+			px(num) {
 				return uni.upx2px(num) + 'px'
 			}
 		}

@@ -1,10 +1,10 @@
-const myfun = function() {};
+const myfun = function() {}
 import store from '@/store'
 myfun.install = (Vue, options) => {
     Vue.prototype.checkPermission = (value) => {
        if (value && value instanceof Array && value.length > 0) {
          const roles = store.getters && store.getters.roles
-         
+
          const permissionRoles = value
 
          const hasPermission = roles.some(role => {
@@ -14,7 +14,7 @@ myfun.install = (Vue, options) => {
          if (!hasPermission) {
            return false
          }
-        
+
          return true
        } else {
          console.error(`need roles! Like v-permission="['admin','editor']"`)
@@ -23,9 +23,4 @@ myfun.install = (Vue, options) => {
     }
 }
 
-
-
-
-
-
-export default myfun;
+export default myfun

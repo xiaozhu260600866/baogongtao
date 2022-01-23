@@ -53,9 +53,9 @@
 							<text class="icon iconfont icon-merchant fs-16"></text>
 							<text class="txt">{{detail.get_company.name}}</text>
 						</view>
-						<view class="item" v-if="detail.get_company.address">
+						<view class="item" v-if="detail.work_place">
 							<text class="icon iconfont icon-location-o fs-16"></text>
-							<text class="txt">{{detail.get_company.address}}</text>
+							<text class="txt">{{detail.work_place}}</text>
 						</view>
 						<view class="item">
 							<text class="icon dxi-icon dxi-icon-user"></text>

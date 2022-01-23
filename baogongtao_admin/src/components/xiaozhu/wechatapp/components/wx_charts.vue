@@ -19,29 +19,29 @@ components: { wxCharts },
 
  -->
 <template>
-	<section>
-		<div class="bgf">
-			<canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
-		</div>
-	</section>
+  <section>
+    <div class="bgf">
+      <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler" />
+    </div>
+  </section>
 </template>
 <script type="text/javascript">
-import wxCharts from './js/wxcharts.js';
-var columnChart = null;
+import wxCharts from './js/wxcharts.js'
+var columnChart = null
 export default {
-	props: ["chartData", "unit", "title"],
+	props: ['chartData', 'unit', 'title'],
 	data() {
 		return {
 
 		}
 	},
 	onReady() {
-		var windowWidth = 320;
+		var windowWidth = 320
 		try {
-			var res = wx.getSystemInfoSync();
-			windowWidth = res.windowWidth;
+			var res = wx.getSystemInfoSync()
+			windowWidth = res.windowWidth
 		} catch (e) {
-			console.error('getSystemInfoSync failed!');
+			console.error('getSystemInfoSync failed!')
 		}
 
 		columnChart = new wxCharts({
@@ -53,13 +53,13 @@ export default {
 				name: this.title,
 				data: this.chartData.main.data,
 				format: (val, name) => {
-					//return val.toFixed(2) + this.unit;
-					return val + this.unit;
+					// return val.toFixed(2) + this.unit;
+					return val + this.unit
 				}
 			}],
 			yAxis: {
 				format: (val) => {
-					return val + this.unit;
+					return val + this.unit
 				},
 				title: 'hello',
 				min: 0
@@ -74,9 +74,8 @@ export default {
 				}
 			},
 			width: windowWidth,
-			height: 200,
-		});
-
+			height: 200
+		})
 	}
 }
 

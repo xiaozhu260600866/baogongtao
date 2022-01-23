@@ -1,71 +1,77 @@
 <template>
-	<view class="tui-countdown-class tui-countdown-box">
-		<view class="tui-countdown-item" :style="{background:bgcolor,borderColor:bcolor,width:width+'rpx',height:height+'rpx'}"
-		 v-if="hours">
-			<view class="dm-countdown-time" :class="[scale?'tui-countdown-scale':'']" :style="{fontSize:size+'rpx',color:color,lineHeight:size +'rpx'}">{{h}}</view>
-		</view>
-		<view class="tui-countdown-colon" :style="{lineHeight:colonsize+'rpx',fontSize:colonsize+'rpx',color:coloncolor}"
-		 v-if="hours">:</view>
-		<view class="tui-countdown-item" :style="{background:bgcolor,borderColor:bcolor,width:width+'rpx',height:height+'rpx'}">
-			<view class="dm-countdown-time" :class="[scale?'tui-countdown-scale':'']" :style="{fontSize:size+'rpx',color:color,lineHeight:size +'rpx'}">{{i}}</view>
-		</view>
-		<view class="tui-countdown-colon" :style="{lineHeight:colonsize+'rpx',fontSize:colonsize+'rpx',color:coloncolor}">:</view>
-		<view class="tui-countdown-item" :style="{background:bgcolor,borderColor:bcolor,width:width+'rpx',height:height+'rpx'}">
-			<view class="dm-countdown-time" :class="[scale?'tui-countdown-scale':'']" :style="{fontSize:size+'rpx',color:color,lineHeight:size +'rpx'}">{{s}}</view>
-		</view>
-	</view>
+  <view class="tui-countdown-class tui-countdown-box">
+    <view
+      v-if="hours"
+      class="tui-countdown-item"
+      :style="{background:bgcolor,borderColor:bcolor,width:width+'rpx',height:height+'rpx'}"
+    >
+      <view class="dm-countdown-time" :class="[scale?'tui-countdown-scale':'']" :style="{fontSize:size+'rpx',color:color,lineHeight:size +'rpx'}">{{ h }}</view>
+    </view>
+    <view
+      v-if="hours"
+      class="tui-countdown-colon"
+      :style="{lineHeight:colonsize+'rpx',fontSize:colonsize+'rpx',color:coloncolor}"
+    >:</view>
+    <view class="tui-countdown-item" :style="{background:bgcolor,borderColor:bcolor,width:width+'rpx',height:height+'rpx'}">
+      <view class="dm-countdown-time" :class="[scale?'tui-countdown-scale':'']" :style="{fontSize:size+'rpx',color:color,lineHeight:size +'rpx'}">{{ i }}</view>
+    </view>
+    <view class="tui-countdown-colon" :style="{lineHeight:colonsize+'rpx',fontSize:colonsize+'rpx',color:coloncolor}">:</view>
+    <view class="tui-countdown-item" :style="{background:bgcolor,borderColor:bcolor,width:width+'rpx',height:height+'rpx'}">
+      <view class="dm-countdown-time" :class="[scale?'tui-countdown-scale':'']" :style="{fontSize:size+'rpx',color:color,lineHeight:size +'rpx'}">{{ s }}</view>
+    </view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiCountdown",
+		name: 'TuiCountdown',
 		props: {
-			//数字框宽度
+			// 数字框宽度
 			width: {
 				type: Number,
 				default: 24
 			},
-			//数字框高度
+			// 数字框高度
 			height: {
 				type: Number,
 				default: 24
 			},
-			//数字框border颜色
+			// 数字框border颜色
 			bcolor: {
 				type: String,
-				default: "#333"
+				default: '#333'
 			},
-			//数字框背景颜色
+			// 数字框背景颜色
 			bgcolor: {
 				type: String,
-				default: "#fff"
+				default: '#fff'
 			},
-			//数字框字体大小
+			// 数字框字体大小
 			size: {
 				type: Number,
 				default: 24
 			},
-			//数字框字体颜色
+			// 数字框字体颜色
 			color: {
 				type: String,
-				default: "#333"
+				default: '#333'
 			},
-			//是否缩放 0.8
+			// 是否缩放 0.8
 			scale: {
 				type: Boolean,
 				default: false
 			},
-			//冒号大小
+			// 冒号大小
 			colonsize: {
 				type: Number,
 				default: 28
 			},
-			//冒号颜色
+			// 冒号颜色
 			coloncolor: {
 				type: String,
-				default: "#333"
+				default: '#333'
 			},
-			//剩余时间 
+			// 剩余时间
 			time: {
 				type: Object,
 				default: function() {
@@ -76,7 +82,7 @@
 					}
 				}
 			},
-			//是否包含小时
+			// 是否包含小时
 			hours: {
 				type: Boolean,
 				default: true
@@ -88,7 +94,7 @@
 				h: '00',
 				i: '00',
 				s: '00'
-			};
+			}
 		},
 		created() {
 			this.doLoop()
@@ -103,8 +109,8 @@
 			},
 			endOfTime() {
 				clearInterval(this.countdown)
-				this.countdown = null;
-				this.$emit('end', {});
+				this.countdown = null
+				this.$emit('end', {})
 			},
 			doLoop: function() {
 				let seconds = this.toSeconds(this.time.hours || 0, this.time.minute || 0, this.time.second)
@@ -130,8 +136,8 @@
 				hour = hour < 10 ? ('0' + hour) : hour
 				minute = minute < 10 ? ('0' + minute) : minute
 				second = second < 10 ? ('0' + second) : second
-				this.h = hour;
-				this.i = minute;
+				this.h = hour
+				this.i = minute
 				this.s = second
 			}
 		}

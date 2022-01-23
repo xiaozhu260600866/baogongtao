@@ -1,19 +1,19 @@
 <template>
-	<section>
-		<view class="share-overlay" v-if="diagDiv" ></view>
-		<view class="pop-body" v-if="diagDiv">
-			<view class="pop-box">
-				<view class="pop-con">
-					<view class="p pop-title">登录并授权</view>
-					<view class="p pop-intro">申请获取以下权限</view>
-					<view class="p pop-intro">获得你的公开信息(昵称、头像)</view>
-				</view>
-				<view class="pop-button">
-					<button open-type="getUserInfo" @getuserinfo="bindGetUserInfo">允许</button>
-				</view>
-			</view>
-		</view>
-	</section>
+  <section>
+    <view v-if="diagDiv" class="share-overlay" />
+    <view v-if="diagDiv" class="pop-body">
+      <view class="pop-box">
+        <view class="pop-con">
+          <view class="p pop-title">登录并授权</view>
+          <view class="p pop-intro">申请获取以下权限</view>
+          <view class="p pop-intro">获得你的公开信息(昵称、头像)</view>
+        </view>
+        <view class="pop-button">
+          <button open-type="getUserInfo" @getuserinfo="bindGetUserInfo">允许</button>
+        </view>
+      </view>
+    </view>
+  </section>
 </template>
 <script>
 export default {
@@ -25,27 +25,25 @@ export default {
 	},
 	methods: {
 		toggleDiag() {
-			this.diagDiv = !this.diagDiv;
+			this.diagDiv = !this.diagDiv
 		},
 		bindGetUserInfo(e) {
-			
 			if (e.mp.detail.userInfo) {
-				this.getAuthPhoneNumber(e,msg=>{
-					let res = e.mp.detail.userInfo;
-				
-					let openid = uni.getStorageSync('openid')
-					res.openid = openid;
-					if('unionId' in msg.data){
-						//uni.setStorageSync("unionid", msg.data.unionId);
-						//res.unionid = msg.data.unionId;
+				this.getAuthPhoneNumber(e, msg => {
+					const res = e.mp.detail.userInfo
+
+					const openid = uni.getStorageSync('openid')
+					res.openid = openid
+					if ('unionId' in msg.data) {
+						// uni.setStorageSync("unionid", msg.data.unionId);
+						// res.unionid = msg.data.unionId;
 					}
-					uni.setStorageSync("userInfo", {nickName:res.nickName,avatarUrl:res.avatarUrl});
-					this.diagDiv=false;
-					this.$parent.$parent.ajax();
-				});
-				
+					uni.setStorageSync('userInfo', { nickName: res.nickName, avatarUrl: res.avatarUrl })
+					this.diagDiv = false
+					this.$parent.$parent.ajax()
+				})
 			} else {
-				this.getError('授权失败');
+				this.getError('授权失败')
 			}
 		}
 	}

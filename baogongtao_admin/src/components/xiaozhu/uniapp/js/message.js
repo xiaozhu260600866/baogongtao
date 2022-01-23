@@ -1,4 +1,4 @@
-const myfun = function() {};
+const myfun = function() {}
 myfun.install = (Vue, options) => {
 	Vue.prototype.getError = (content) => {
 		// uni.showModal({
@@ -14,7 +14,7 @@ myfun.install = (Vue, options) => {
 			icon: 'none',
 			duration: 2000
 		})
-	};
+	}
 	Vue.prototype.getSuccess = (content) => {
 			uni.showToast({
 				title: content,
@@ -29,15 +29,14 @@ myfun.install = (Vue, options) => {
 					content: title,
 					success: function(res) {
 						if (res.confirm) {
-							if(fun)fun();
-							resolve();
+							if (fun)fun()
+							resolve()
 						} else if (res.cancel) {
 							console.log('用户点击取消')
 						}
 					}
 				})
-			});
+			})
 		}
-
 }
-export default myfun;
+export default myfun

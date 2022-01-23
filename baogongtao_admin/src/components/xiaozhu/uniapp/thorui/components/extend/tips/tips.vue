@@ -1,51 +1,51 @@
 <template>
-	<view class="tui-tips-box" :class="[fixed?'tui-tips-fixed':'']">
-		<image :src="imgUrl" class="tui-tips-icon" :style="{width:imgWidth+'rpx',height:imgHeight+'rpx'}"></image>
-		<view class="tui-tips-content">
-			<slot></slot>
-		</view>
-		<button class="tui-tips-btn" hover-class="tui-tips-btn-hover" :style="{width:btnWidth+'rpx'}" v-if="btnText"  @tap="handleClick">{{btnText}}</button>
-	</view>
+  <view class="tui-tips-box" :class="[fixed?'tui-tips-fixed':'']">
+    <image :src="imgUrl" class="tui-tips-icon" :style="{width:imgWidth+'rpx',height:imgHeight+'rpx'}" />
+    <view class="tui-tips-content">
+      <slot />
+    </view>
+    <button v-if="btnText" class="tui-tips-btn" hover-class="tui-tips-btn-hover" :style="{width:btnWidth+'rpx'}" @tap="handleClick">{{ btnText }}</button>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiTips",
+		name: 'TuiTips',
 		props: {
-			//是否垂直居中
+			// 是否垂直居中
 			fixed: {
 				type: Boolean,
 				default: true
 			},
-			//图片地址，没有则不显示
+			// 图片地址，没有则不显示
 			imgUrl: {
 				type: String,
-				default: ""
+				default: ''
 			},
-			//图片宽度
+			// 图片宽度
 			imgWidth: {
 				type: Number,
 				default: 200
 			},
-			//图片高度
-			imgHeight:{
+			// 图片高度
+			imgHeight: {
 				type: Number,
 				default: 200
 			},
-			//按钮宽度
-			btnWidth:{
+			// 按钮宽度
+			btnWidth: {
 				type: Number,
 				default: 200
 			},
-			//按钮文字，没有则不显示
-			btnText:{
-				type:String,
-				default: ""
+			// 按钮文字，没有则不显示
+			btnText: {
+				type: String,
+				default: ''
 			}
 		},
 		methods: {
 			handleClick(e) {
-				this.$emit('click', {});
+				this.$emit('click', {})
 			}
 		}
 	}

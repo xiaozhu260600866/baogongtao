@@ -15,9 +15,10 @@
 			<view class="pro-content p15 mb50">
 					<uParse :content="data.product.content" />
 			</view>
-			<view id="footer-btn">
-				<dx-button size="lg" type="info" block round v-if="data.integral < data.product.integral ">当前积分为{{data.integral}}分，不足以兑换此商品哦</dx-button>
-				<dx-button size="lg" type="success" block round @click="toBuy" v-else>立即兑换</dx-button>
+			<view id="footer-btn" class="w-b100">
+				
+				<dx-button size="lg" type="info" class="w-b100" block round v-if="data.integral < data.product.integral ">当前积分为{{data.integral}}分，不足以兑换此商品哦</dx-button>
+				<dx-button size="lg" type="success"  class="w-b100" block round @click="toBuy" v-else>立即兑换</dx-button>
 			</view>
 
 

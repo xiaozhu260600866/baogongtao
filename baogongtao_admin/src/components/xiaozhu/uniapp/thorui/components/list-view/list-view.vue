@@ -1,15 +1,15 @@
 <template>
-	<view class="tui-list-view tui-view-class">
-		<view class="tui-list-title" v-if="title">{{title}}</view>
-		<view class="tui-list-content" :class="[unlined?'tui-border-'+unlined:'']">
-			<slot></slot>
-		</view>
-	</view>
+  <view class="tui-list-view tui-view-class">
+    <view v-if="title" class="tui-list-title">{{ title }}</view>
+    <view class="tui-list-content" :class="[unlined?'tui-border-'+unlined:'']">
+      <slot />
+    </view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiListView",
+		name: 'TuiListView',
 		props: {
 			title: {
 				type: String,
@@ -17,7 +17,7 @@
 			},
 			unlined: {
 				type: String,
-				default: '' //top,bottom,all
+				default: '' // top,bottom,all
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-<!-- 调用 
+<!-- 调用
 import picDiag from "xiaozhu/vue/components/wap/picDiag";
 components: {
 		picDiag
@@ -8,12 +8,12 @@ components: {
 
 -->
 <template>
-	<section>
-		<div id="share-overlay2" @click="toClose" v-if="thisDiag"></div>
-		<div id="float-video" v-if="thisDiag">
-			<div class="text-center m10"><img :src="src" class="width100"></div>
-			</div>
-	</section>
+  <section>
+    <div v-if="thisDiag" id="share-overlay2" @click="toClose" />
+    <div v-if="thisDiag" id="float-video">
+      <div class="text-center m10"><img :src="src" class="width100"></div>
+    </div>
+  </section>
 </template>
 <script type="text/javascript">
 export default {
@@ -25,17 +25,17 @@ export default {
 	},
 	methods: {
 		ajax() {
-			this.thisDiag = true;
+			this.thisDiag = true
 			this.$nextTick(() => {
-				//document.getElementById("float-video").style.display = "block"
-				//document.getElementById("share-overlay2").style.display = "block"
-			});
+				// document.getElementById("float-video").style.display = "block"
+				// document.getElementById("share-overlay2").style.display = "block"
+			})
 		},
 		toClose() {
-			this.$parent.videoSrc = "";
-			this.thisDiag = false;
-			//document.getElementById("float-video").style.display = "none"
-			//document.getElementById("share-overlay2").style.display = "none"
+			this.$parent.videoSrc = ''
+			this.thisDiag = false
+			// document.getElementById("float-video").style.display = "none"
+			// document.getElementById("share-overlay2").style.display = "none"
 		}
 	}
 }

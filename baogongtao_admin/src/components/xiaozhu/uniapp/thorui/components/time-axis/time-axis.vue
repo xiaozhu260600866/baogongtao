@@ -1,16 +1,16 @@
 <template>
-	<view class="tui-timeaxis-class tui-time-axis">
-		<slot></slot>
-	</view>
+  <view class="tui-timeaxis-class tui-time-axis">
+    <slot />
+  </view>
 </template>
 
 <script>
 	export default {
-		name:"tuiTimeAxis",
+		name: 'TuiTimeAxis',
 		data() {
 			return {
 
-			};
+			}
 		}
 	}
 </script>

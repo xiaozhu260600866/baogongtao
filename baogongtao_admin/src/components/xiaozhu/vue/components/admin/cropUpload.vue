@@ -1,43 +1,47 @@
 <!-- 图片 -->
 <template>
-	<section>
-		<el-form-item :label="label ? label : '标题'">
-			<div class="edit-content flex">
-				<li v-for="(cover,coverIndex) in currentValue" class="drag-handle stick_w active" :style="'background: url('+cover.url+') center center / cover;'" @click="actIndex = coverIndex">
-					<!---->
-					<a :href="cover.url" target="_blank" style="height:100%;width:100%"><div  style="height:100%;width:100%"></div></a>
-					<img  src="https://website.doxinsoft.com/images/website/active.png" class="coner_bottom" v-if="actIndex ==coverIndex">
-					<i data-img="https://resource.aijiatui.com/13632945694/company/moments/78f40d828dadcce14201593f8cb32f49.jpeg" class="closeSwpier el-icon-circle-close" @click="del(coverIndex)"></i>
-				</li>
-				<li class="ctl_li stick_w cicle_border" @click="open('')" v-if="currentValue.length < data.data.allowUploadNum"><i  class="el-icon-plus"></i>
-					<!---->
-				</li>
-			</div>
-			<div class="marsk_img" v-if="currentValue.length ">
-				<div class="chosed_img_1" :style="'background: url('+currentValue[actIndex].url+') center center / cover;'"></div>
-				<div class="marsk" @click="open(currentValue[actIndex])">
-					<div class="self_i">
-						<img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAANdJREFUOBHVlEEKwjAQRY0I2lpr8Qx6FpeCVxI8R28hCIKKUhU34lJXrryFvgqBOKbR1i504LWTn5nfIaVVN6JSQlRL8HhY1Lj2yzL7Mx/eRQSdr8bGIIQt7CEqZEZjCxLQsSNp5zKjIYCVdjDuG/LwIzMKfVgYzTJdIwROMwo8mMlOy3qJ1rSasdGAqaUpS5qz4T+ZIdRhktXh0NPpvdRMf2sD8ivEcIR3caAghgsM4TV4wtgxgd4ayU49kdRzr21Ghf5Pv2ek5GFwmj20rtTF+qyUOpnaHb4LRPn19RCBAAAAAElFTkSuQmCC" alt=""> 重新上传
-            				</div>
-					</div>
-				</div>
-				<p class="tip">{{ message }}</p>
-				<p class="tip" v-if="data.data.allowUploadNum >1">图片大小不超过2M,支持jpg、png格式，最多可上传{{ data.data.allowUploadNum }}张 </p>
-		</el-form-item>
-		<cropUploadPic :data="data" ref="cropUpload" v-model="currentValue[actIndex]" :source="source"></cropUploadPic>
-		<cropUploadPic2 :data="data" ref="cropUpload2" v-model="currentValue[actIndex]" :source="source" :uploadId="uploadId"></cropUploadPic2>
-	</section>
+  <section>
+    <el-form-item :label="label ? label : '标题'">
+      <div class="edit-content flex">
+        <li v-for="(cover,coverIndex) in currentValue" class="drag-handle stick_w active" :style="'background: url('+cover.url+') center center / cover;'" @click="actIndex = coverIndex">
+          <!---->
+          <a :href="cover.url" target="_blank" style="height:100%;width:100%"><div style="height:100%;width:100%" /></a>
+          <img v-if="actIndex ==coverIndex" src="https://website.doxinsoft.com/images/website/active.png" class="coner_bottom">
+          <i data-img="https://resource.aijiatui.com/13632945694/company/moments/78f40d828dadcce14201593f8cb32f49.jpeg" class="closeSwpier el-icon-circle-close" @click="del(coverIndex)" />
+        </li>
+        <li v-if="currentValue.length < data.data.allowUploadNum" class="ctl_li stick_w cicle_border" @click="open('')"><i class="el-icon-plus" />
+          <!---->
+        </li>
+      </div>
+      <div v-if="currentValue.length " class="marsk_img">
+        <div class="chosed_img_1" :style="'background: url('+currentValue[actIndex].url+') center center / cover;'" />
+        <div class="marsk" @click="open(currentValue[actIndex])">
+          <div class="self_i">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAANdJREFUOBHVlEEKwjAQRY0I2lpr8Qx6FpeCVxI8R28hCIKKUhU34lJXrryFvgqBOKbR1i504LWTn5nfIaVVN6JSQlRL8HhY1Lj2yzL7Mx/eRQSdr8bGIIQt7CEqZEZjCxLQsSNp5zKjIYCVdjDuG/LwIzMKfVgYzTJdIwROMwo8mMlOy3qJ1rSasdGAqaUpS5qz4T+ZIdRhktXh0NPpvdRMf2sD8ivEcIR3caAghgsM4TV4wtgxgd4ayU49kdRzr21Ghf5Pv2ek5GFwmj20rtTF+qyUOpnaHb4LRPn19RCBAAAAAElFTkSuQmCC" alt=""> 重新上传
+          </div>
+        </div>
+      </div>
+      <p class="tip">{{ message }}</p>
+      <p v-if="data.data.allowUploadNum >1" class="tip">图片大小不超过2M,支持jpg、png格式，最多可上传{{ data.data.allowUploadNum }}张 </p>
+    </el-form-item>
+    <cropUploadPic ref="cropUpload" v-model="currentValue[actIndex]" :data="data" :source="source" />
+    <cropUploadPic2 ref="cropUpload2" v-model="currentValue[actIndex]" :data="data" :source="source" :upload-id="uploadId" />
+  </section>
 </template>
 <script type="text/javascript">
-import cropUploadPic from "./cropUploadPicNew";
-import cropUploadPic2 from "./cropUploadPicNew2";
+import cropUploadPic from './cropUploadPicNew'
+import cropUploadPic2 from './cropUploadPicNew2'
 export default {
-	props: ["value", "data", "message", "label","source" ],
+	components: {
+		cropUploadPic,
+		cropUploadPic2
+	},
+	props: ['value', 'data', 'message', 'label', 'source'],
 	data() {
 		return {
 			siteName: this.getSiteName(),
 			actIndex: 0,
-			uploadId:this.getMath(1,1000),
+			uploadId: this.getMath(1, 1000),
 			fileList: []
 		}
 	},
@@ -45,42 +49,34 @@ export default {
 		currentValue: {
 			// 动态计算currentValue的值
 			get: function() {
-				return this.value;
+				return this.value
 			},
 			set: function(val) {
-				this.$emit('input', val);
+				this.$emit('input', val)
 			}
 		}
 	},
 	methods: {
 		del(index) {
-			this.getConfirm("是否删除？", msg => {
+			this.getConfirm('是否删除？', msg => {
 				this.currentValue.splice(index, 1)
-				this.actIndex = this.currentValue.length - 1;
-			});
+				this.actIndex = this.currentValue.length - 1
+			})
 		},
 		open(item) {
-
 			if (!item) {
-				this.currentValue.push({ name: 'pic.png', url: 'https://website.doxinsoft.com//upload/images/website/pic.png' });
-				this.actIndex = this.currentValue.length - 1;
-				
+				this.currentValue.push({ name: 'pic.png', url: 'https://website.doxinsoft.com//upload/images/website/pic.png' })
+				this.actIndex = this.currentValue.length - 1
 			}
-			this.uploadId = this.getMath(1,1000);
-			this.$refs.cropUpload2.ajax();
-			/*if(item && item.name != 'pic.png'){
+			this.uploadId = this.getMath(1, 1000)
+			this.$refs.cropUpload2.ajax()
+			/* if(item && item.name != 'pic.png'){
 				this.uploadId = this.getMath(1,1000);
 				this.$refs.cropUpload2.ajax();
 			}else{
 				this.$refs.cropUpload.ajax();
 			}*/
-
-			
 		}
-	},
-	components: {
-		cropUploadPic,
-		cropUploadPic2
 	}
 }
 

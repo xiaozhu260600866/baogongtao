@@ -1,6 +1,6 @@
 <template>
   <view style="position: fixed;z-index:999;right: 15px;bottom:10vh" @click="toTel">
-    <image src="/image/phone.png" style="width:50px;height: 50px;"></image>
+    <image src="/image/phone.png" style="width:50px;height: 50px;" />
   </view>
 </template>
 <script>
@@ -9,7 +9,7 @@ export default {
   methods: {
     toTel() {
       wx.makePhoneCall({
-        phoneNumber: this.phone //仅为示例，并非真实的电话号码
+        phoneNumber: this.phone // 仅为示例，并非真实的电话号码
       })
     }
   }
@@ -17,6 +17,5 @@ export default {
 
 </script>
 <style>
-
 
 </style>

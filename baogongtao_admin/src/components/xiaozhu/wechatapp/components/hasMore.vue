@@ -1,22 +1,22 @@
 <template>
-	<section>
-		<div>
-			<div v-if="data.show && data.lists && data.lists.length == 0 ">
-				<div v-if="source == 'order' ">
-					<div class="empty">
-						<image class="img" src="https://boss.doxinsoft.com/images/order/order02.png" />
-						<p class="name ptb10 fs-14 fc-6">没有订单信息</p>
-						<a class="btn" hover-class="none" href="/pages/index/main">去购物</a>
-					</div>
-				</div>
-				<div v-else-if="source == 'nodata' ">
-					<div class="empty">
-						<image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
-						<p class="name ptb10 fs-14 fc-6">{{ message ? message :'暂无数据' }}</p>
-					</div>
-				</div>
-				<div v-else-if="source == 'cart' ">
-					<!-- <div id="empty1">
+  <section>
+    <div>
+      <div v-if="data.show && data.lists && data.lists.length == 0 ">
+        <div v-if="source == 'order' ">
+          <div class="empty">
+            <image class="img" src="https://boss.doxinsoft.com/images/order/order02.png" />
+            <p class="name ptb10 fs-14 fc-6">没有订单信息</p>
+            <a class="btn" hover-class="none" href="/pages/index/main">去购物</a>
+          </div>
+        </div>
+        <div v-else-if="source == 'nodata' ">
+          <div class="empty">
+            <image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
+            <p class="name ptb10 fs-14 fc-6">{{ message ? message :'暂无数据' }}</p>
+          </div>
+        </div>
+        <div v-else-if="source == 'cart' ">
+          <!-- <div id="empty1">
 						<div class="e_img">
 							<image src="https://boss.doxinsoft.com/images/order/cart02.png"></image>
 						</div>
@@ -26,79 +26,79 @@
 							<a hover-class="none" href="/pages/index/main" open-type="redirect">去首页逛逛</a>
 						</div>
 					</div> -->
-					<div class="empty">
-						<image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
-						<p class="name pt10 fs-16 fc-6">您的购物车空空的</p>
-						<p class="name pt5 pb10 fs-12 fc-6">赶紧去挑些喜欢的填满它吧</p>
-						<a class="btn" hover-class="none" href="/pages/index/main" open-type="redirect">去首页逛逛</a>
-					</div>
-				</div>
-				<div v-else>
-					<p class="p20 fs-12 fc-9 text-center">暂无数据</p>
-				</div>
-			</div>
-			<div v-if="data.show && data.lists.data && data.lists.data.length == 0 || data.listsIntegral && data.listsIntegral.data && data.listsIntegral.data.length == 0">
-				<div v-if="source == 'order' ">
-					<div class="empty">
-						<image class="img" src="https://boss.doxinsoft.com/images/order/order02.png" />
-						<p class="name ptb10 fs-14 fc-6">没有订单信息</p>
-						<a class="btn" hover-class="none" href="/pages/index/main">去购物</a>
-					</div>
-				</div>
-				<div v-else-if="source == 'cart' ">
-					<div class="empty">
-						<image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
-						<p class="name pt10 fs-16 fc-6">您的购物车空空的</p>
-						<p class="name pt5 pb10 fs-12 fc-6">赶紧去挑些喜欢的填满它吧</p>
-						<a class="btn" hover-class="none" href="/pages/index/main" open-type="redirect">去首页逛逛</a>
-					</div>
-				</div>
-				<div v-else-if="source == 'nodata' ">
-					<div class="empty">
-						<image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
-						<p class="name ptb10 fs-14 fc-6">{{ message ? message :'暂无数据' }}</p>
-					</div>
-				</div>
-				<div v-else-if="source == 'iconNo' ">
-					<div class="bgf NO-bg"></div>
-					<div class="NO-con">
-						<div class="p NO-img pt15">
-							<img src="https://card.doxinsoft.com/images/wap/remarkBtn.jpg" mode="widthFix">
-						</div>
-						<p class="p NO-intro fs-14 fc-6">{{ message ? message : '暂无数据'}}</p>
-					</div>
-				</div>
-				<div v-else>
-					<p class="p20 fs-13 fc-6 text-center">{{ message ? message : '暂无数据'}}</p>
-				</div>
-			</div>
-			<div class="tips1 hasMore" style="text-align:center;" v-if="data.lastPage>1 && data.thisPage>=1">
-				<div v-if="data.hasMore">
-					<div class="weui-loadmore">
-						<text class="weui-loading"></text>
-						<text class="weui-loadmore__tips fs-12 fc-9">正在加载</text>
-					</div>
-				</div>
-				<div v-else>
-					<div class="">
-						<text class="weui-loadmore__tips fs-12 fc-9">没有更多了...</text>
-					</div>
-				</div>
-			</div>
-			<div class="tips1 hasMore" style="text-align:center;" v-if="!data.show">
-				<div>
-					<div class="weui-loadmore">
-						<text class="weui-loading"></text>
-						<text class="weui-loadmore__tips fs-12 fc-9">正在加载</text>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+          <div class="empty">
+            <image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
+            <p class="name pt10 fs-16 fc-6">您的购物车空空的</p>
+            <p class="name pt5 pb10 fs-12 fc-6">赶紧去挑些喜欢的填满它吧</p>
+            <a class="btn" hover-class="none" href="/pages/index/main" open-type="redirect">去首页逛逛</a>
+          </div>
+        </div>
+        <div v-else>
+          <p class="p20 fs-12 fc-9 text-center">暂无数据</p>
+        </div>
+      </div>
+      <div v-if="data.show && data.lists.data && data.lists.data.length == 0 || data.listsIntegral && data.listsIntegral.data && data.listsIntegral.data.length == 0">
+        <div v-if="source == 'order' ">
+          <div class="empty">
+            <image class="img" src="https://boss.doxinsoft.com/images/order/order02.png" />
+            <p class="name ptb10 fs-14 fc-6">没有订单信息</p>
+            <a class="btn" hover-class="none" href="/pages/index/main">去购物</a>
+          </div>
+        </div>
+        <div v-else-if="source == 'cart' ">
+          <div class="empty">
+            <image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
+            <p class="name pt10 fs-16 fc-6">您的购物车空空的</p>
+            <p class="name pt5 pb10 fs-12 fc-6">赶紧去挑些喜欢的填满它吧</p>
+            <a class="btn" hover-class="none" href="/pages/index/main" open-type="redirect">去首页逛逛</a>
+          </div>
+        </div>
+        <div v-else-if="source == 'nodata' ">
+          <div class="empty">
+            <image class="img" src="https://boss.doxinsoft.com/images/order/cart02.png" />
+            <p class="name ptb10 fs-14 fc-6">{{ message ? message :'暂无数据' }}</p>
+          </div>
+        </div>
+        <div v-else-if="source == 'iconNo' ">
+          <div class="bgf NO-bg" />
+          <div class="NO-con">
+            <div class="p NO-img pt15">
+              <img src="https://card.doxinsoft.com/images/wap/remarkBtn.jpg" mode="widthFix">
+            </div>
+            <p class="p NO-intro fs-14 fc-6">{{ message ? message : '暂无数据' }}</p>
+          </div>
+        </div>
+        <div v-else>
+          <p class="p20 fs-13 fc-6 text-center">{{ message ? message : '暂无数据' }}</p>
+        </div>
+      </div>
+      <div v-if="data.lastPage>1 && data.thisPage>=1" class="tips1 hasMore" style="text-align:center;">
+        <div v-if="data.hasMore">
+          <div class="weui-loadmore">
+            <text class="weui-loading" />
+            <text class="weui-loadmore__tips fs-12 fc-9">正在加载</text>
+          </div>
+        </div>
+        <div v-else>
+          <div class="">
+            <text class="weui-loadmore__tips fs-12 fc-9">没有更多了...</text>
+          </div>
+        </div>
+      </div>
+      <div v-if="!data.show" class="tips1 hasMore" style="text-align:center;">
+        <div>
+          <div class="weui-loadmore">
+            <text class="weui-loading" />
+            <text class="weui-loadmore__tips fs-12 fc-9">正在加载</text>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 <script type="text/javascript">
 export default {
-	props: ["data", "source", "isLoading", "myclass", 'message', 'noShowLoading'],
+	props: ['data', 'source', 'isLoading', 'myclass', 'message', 'noShowLoading'],
 	data() {
 		return {
 			getSiteName: this.getSiteName(),
@@ -108,30 +108,29 @@ export default {
 	},
 	onReachBottom() {
 		if (this.data.canLoadMore && this.data.hasMore) {
-			this.data.nextPage = this.data.nextPage + 1;
-			console.log(this.$parent);
-			if(this.$parent.$refs.page){
-				this.$parent.$refs.page.ajax();
-			}else{
-				this.$parent.ajax();
+			this.data.nextPage = this.data.nextPage + 1
+			console.log(this.$parent)
+			if (this.$parent.$refs.page) {
+				this.$parent.$refs.page.ajax()
+			} else {
+				this.$parent.ajax()
 			}
-			
 		}
 	},
 	onUnload() {
-		this.data.show = false;
+		this.data.show = false
 	},
 	computed: {
 		loading() {
-			if (!this.isLoading) return "";
+			if (!this.isLoading) return ''
 			if (!this.data.show) {
-				return "loading";
+				return 'loading'
 			} else {
-				return "";
+				return ''
 			}
-		},
+		}
 
-	},
+	}
 }
 
 </script>

@@ -1,5 +1,5 @@
 
-<!-- 调用 
+<!-- 调用
 import videoDiag from "xiaozhu/wechatapp/components/videoDiag";
 components: {
 		videoDiag
@@ -9,25 +9,25 @@ components: {
 
 -->
 <template>
-	<section>
-			<div class="share-overlay" v-if="videoShow == true" @click="videoShow = !videoShow"></div>
-			<div class="float-video" v-if="videoShow == true">
-				<video :src="src" autoplay="true"></video>
-			</div>
-			<div class="icon_off" v-if="videoShow == true" @click="videoShow = !videoShow"><span class="iconfont icon-xiaozhu-off"></span></div>
-	</section>
+  <section>
+    <div v-if="videoShow == true" class="share-overlay" @click="videoShow = !videoShow" />
+    <div v-if="videoShow == true" class="float-video">
+      <video :src="src" autoplay="true" />
+    </div>
+    <div v-if="videoShow == true" class="icon_off" @click="videoShow = !videoShow"><span class="iconfont icon-xiaozhu-off" /></div>
+  </section>
 </template>
 <script type="text/javascript">
-	export default{
-		props:['src'],
-		data(){
+	export default {
+		props: ['src'],
+		data() {
 			return {
-				videoShow:false
+				videoShow: false
 			}
 		},
-		methods:{
-			ajax(){
-				this.videoShow = !this.videoShow;
+		methods: {
+			ajax() {
+				this.videoShow = !this.videoShow
 			}
 		}
 	}

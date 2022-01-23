@@ -5,7 +5,7 @@
 			<view class="count-header main-bg">
 				<view class="name fs-18 fc-white">我的积分</view>
 				<view class="count-num Arial">{{data.integral}}</view>
-				<view @click="goto('/pages/user/integral/lists/main',1)" class="record fs-14 fc-white">明细</view>
+				<view @click="goto('/pages/user/integral/list/main',1)" class="record fs-14 fc-white">明细</view>
 			</view>
 			<view class="list-group block-sec mb0">
 				<dx-list-cell arrow name="我的订单" imgSrc="https://boss.doxinsoft.com/images/app/orderlist.png" imgWidth="20" imgHeight="20" imgR="6"

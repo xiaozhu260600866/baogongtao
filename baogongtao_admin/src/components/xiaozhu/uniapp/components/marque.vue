@@ -1,45 +1,43 @@
 <!-- <marque :lists="data.articleLists"></marque> -->
 <template>
-	<div class="vueBox">
-		<view class="tui-rolling-news bg-f">
-			<div class="hl-logo">
-				<image class="img" src="https://456.doxinsoft.com/images/wap/news-notice.png" />
-			</div>
-			<swiper vertical autoplay circular interval="3000" class="tui-swiper">
-				<swiper-item v-for="(item, index) in lists" :key="index" class="tui-swiper-item">
-					<view :class="['tui-news-item',fontSize || 'fs-15']" @click="goto(item.url,1)">{{item.label}}</view>
-				</swiper-item>
-			</swiper>
-		</view>
-		
-		
-	</div>
+  <div class="vueBox">
+    <view class="tui-rolling-news bg-f">
+      <div class="hl-logo">
+        <image class="img" src="https://456.doxinsoft.com/images/wap/news-notice.png" />
+      </div>
+      <swiper vertical autoplay circular interval="3000" class="tui-swiper">
+        <swiper-item v-for="(item, index) in lists" :key="index" class="tui-swiper-item">
+          <view :class="['tui-news-item',fontSize || 'fs-15']" @click="goto(item.url,1)">{{ item.label }}</view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+  </div>
 </template>
 <script>
   export default {
-    props: ['lists', 'myclass','fontSize'],
+    props: ['lists', 'myclass', 'fontSize'],
     data() {
       return {
         animate: false,
-        timer1:'',
-        br:'\n',
-        timer2:'',
+        timer1: '',
+        br: '\n',
+        timer2: ''
 
       }
     },
     mounted() {
-      
+
     },
-    onUnload(){
-       
+    onUnload() {
+
     },
     methods: {
-      
+
     }
   }
 </script>
 <style scoped>
-
 
 .hl-logo .img{width: 24px;height: 24px;display: flex;margin-right: 15px;display: flex;margin-top: 3px;}
 

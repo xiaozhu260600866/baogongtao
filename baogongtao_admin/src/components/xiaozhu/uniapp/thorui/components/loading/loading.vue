@@ -1,17 +1,17 @@
 <template>
-	<view class="tui-loading-init" v-if="visible">
-		<view class="tui-loading-center"></view>
-		<view class="tui-loadmore-tips">{{text}}</view>
-	</view>
+  <view v-if="visible" class="tui-loading-init">
+    <view class="tui-loading-center" />
+    <view class="tui-loadmore-tips">{{ text }}</view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiLoading",
+		name: 'TuiLoading',
 		props: {
 			text: {
 				type: String,
-				default: "正在加载..."
+				default: '正在加载...'
 			},
 			visible: {
 				type: Boolean,

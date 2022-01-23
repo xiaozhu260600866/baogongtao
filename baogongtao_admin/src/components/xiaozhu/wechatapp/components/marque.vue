@@ -1,21 +1,21 @@
 <!-- <marque :lists="data.articleLists"></marque> -->
 <template>
-<div class="vueBox">
+  <div class="vueBox">
     <div class="marquee">
-        <div class="marquee_title">
-            <div class="hl-logo">
-              <img src="https://456.doxinsoft.com/images/wap/news-notice.png">
-            </div>
+      <div class="marquee_title">
+        <div class="hl-logo">
+          <img src="https://456.doxinsoft.com/images/wap/news-notice.png">
         </div>
-        <div class="marquee_box">
-            <ul class="marquee_list" :class="{marquee_top:animate}">
-                <li v-for="(item, index) in lists">
-                    <div class="name nowrap" v-for="(v,index2) in item"  @click="goto(v.url,1)">{{v.label}}</div>
-                </li>
-            </ul>
-        </div>
+      </div>
+      <div class="marquee_box">
+        <ul class="marquee_list" :class="{marquee_top:animate}">
+          <li v-for="(item, index) in lists">
+            <div v-for="(v,index2) in item" class="name nowrap" @click="goto(v.url,1)">{{ v.label }}</div>
+          </li>
+        </ul>
+      </div>
     </div>
-</div>
+  </div>
 
 </template>
 <script>
@@ -24,39 +24,35 @@
     data() {
       return {
         animate: false,
-        timer1:'',
-        br:'\n',
-        timer2:'',
+        timer1: '',
+        br: '\n',
+        timer2: ''
 
       }
     },
     onLoad() {
-		cosnoel.log(20);
+		cosnoel.log(20)
       this.timer1 = setInterval(this.showMarquee, 2000)
     },
-    onUnload(){
-		
-        clearInterval(this.timer1);
-        clearInterval(this.timer2);
+    onUnload() {
+        clearInterval(this.timer1)
+        clearInterval(this.timer2)
     },
     methods: {
       showMarquee: function() {
-		 console.log('007');
-        this.animate = true;
+		 console.log('007')
+        this.animate = true
         this.timer2 = setTimeout(() => {
-          this.lists.push(this.lists[0]);
-          this.lists.shift();
-          this.animate = false;
-        }, 5000);
-
+          this.lists.push(this.lists[0])
+          this.lists.shift()
+          this.animate = false
+        }, 5000)
       }
     }
   }
 </script>
 <style scoped>
   @import url("font/globalFont.css");
-
-
 
   .marquee {
     width: 100%;

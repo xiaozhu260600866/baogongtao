@@ -1,13 +1,17 @@
 <template>
-	<view class="tui-tag-class" :class="[size?'tui-tag-'+size:'tui-tag',getClassName(shape,plain),getTypeClass(type,plain)]"
-	 @tap="handleClick" v-if="visible">
-		<slot></slot>
-	</view>
+  <view
+    v-if="visible"
+    class="tui-tag-class"
+    :class="[size?'tui-tag-'+size:'tui-tag',getClassName(shape,plain),getTypeClass(type,plain)]"
+    @tap="handleClick"
+  >
+    <slot />
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiTag",
+		name: 'TuiTag',
 		props: {
 			type: {
 				type: String,
@@ -23,12 +27,12 @@
 				type: String,
 				default: 'square'
 			},
-			//是否空心
+			// 是否空心
 			plain: {
 				type: Boolean,
 				default: false
 			},
-			//是否可见
+			// 是否可见
 			visible: {
 				type: Boolean,
 				default: true
@@ -42,18 +46,18 @@
 				return plain ? 'tui-' + type + '-outline' : 'tui-' + type
 			},
 			getClassName: function(shape, plain) {
-				//circle, square，circleLeft，circleRight
-				var className = plain ? 'tui-tag-outline ' : '';
+				// circle, square，circleLeft，circleRight
+				var className = plain ? 'tui-tag-outline ' : ''
 				if (shape != 'square') {
-					if (shape == "circle") {
-						className = className + (plain ? 'tui-tag-outline-fillet' : 'tui-tag-fillet');
-					} else if (shape == "circleLeft") {
-						className = className + 'tui-tag-fillet-left';
-					} else if (shape == "circleRight") {
-						className = className + 'tui-tag-fillet-right';
+					if (shape == 'circle') {
+						className = className + (plain ? 'tui-tag-outline-fillet' : 'tui-tag-fillet')
+					} else if (shape == 'circleLeft') {
+						className = className + 'tui-tag-fillet-left'
+					} else if (shape == 'circleRight') {
+						className = className + 'tui-tag-fillet-right'
 					}
 				}
-				return className;
+				return className
 			}
 		}
 	}
@@ -232,7 +236,6 @@
 .tui-gray-outline::after {
   border: 1px solid #ccc !important;
 }
-
 
 .tui-black-outline {
   color: #333 !important;

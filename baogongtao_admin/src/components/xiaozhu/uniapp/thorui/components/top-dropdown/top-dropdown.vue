@@ -1,42 +1,42 @@
 <template>
-	<view>
-		<view class="tui-top-dropdown tui-dropdown-box" :class="[show?'tui-dropdown-show':'']" :style="{height:height?px(height):'auto', background: bgcolor,paddingBottom: px(paddingbtm),transform: 'translateZ(0) translateY('+(show?px(translatey):'-100%')+')'}">
-			<slot></slot>
-		</view>
-		<view class="tui-dropdown-mask" :class="[mask && show ?'tui-mask-show':'']" @tap="handleClose"></view>
-	</view>
+  <view>
+    <view class="tui-top-dropdown tui-dropdown-box" :class="[show?'tui-dropdown-show':'']" :style="{height:height?px(height):'auto', background: bgcolor,paddingBottom: px(paddingbtm),transform: 'translateZ(0) translateY('+(show?px(translatey):'-100%')+')'}">
+      <slot />
+    </view>
+    <view class="tui-dropdown-mask" :class="[mask && show ?'tui-mask-show':'']" @tap="handleClose" />
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiTopDropdown",
+		name: 'TuiTopDropdown',
 		props: {
-			//是否需要mask
+			// 是否需要mask
 			mask: {
 				type: Boolean,
 				default: true
 			},
-			//控制显示
+			// 控制显示
 			show: {
 				type: Boolean,
 				default: false
 			},
-			//背景颜色
+			// 背景颜色
 			bgcolor: {
 				type: String,
-				default: "#f2f2f2"
+				default: '#f2f2f2'
 			},
-			//padding-bottom  upx
+			// padding-bottom  upx
 			paddingbtm: {
 				type: Number,
 				default: 0
 			},
-			//高度 upx
+			// 高度 upx
 			height: {
 				type: Number,
 				default: 580
 			},
-			//移动距离 需要计算
+			// 移动距离 需要计算
 			translatey: {
 				type: Number,
 				default: 0
@@ -45,12 +45,12 @@
 		methods: {
 			handleClose() {
 				if (!this.show) {
-					return;
+					return
 				}
-				this.$emit('close', {});
+				this.$emit('close', {})
 			},
 			px(num) {
-				return uni.upx2px(num) + "px"
+				return uni.upx2px(num) + 'px'
 			}
 		}
 	}

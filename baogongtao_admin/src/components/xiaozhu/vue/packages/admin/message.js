@@ -1,4 +1,4 @@
-const message = function() {};
+const message = function() {}
 message.install = (Vue, options) => {
     Vue.prototype.getAlert = (title) => {
         Vue.prototype.Dialog({
@@ -6,7 +6,7 @@ message.install = (Vue, options) => {
             message: title,
             skin: 'ios'
         })
-    };
+    }
     Vue.prototype.getConfirm = (title, fun) => {
         return new Promise((resolve, reject) => {
             Vue.prototype.$confirm(title, '提示', {
@@ -14,26 +14,25 @@ message.install = (Vue, options) => {
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
-                if(fun)fun();
-                resolve();
+                if (fun)fun()
+                resolve()
             }).catch(() => {
-                Vue.prototype.getError("已取消操作");
-            });
-        });
+                Vue.prototype.getError('已取消操作')
+            })
+        })
     }
     Vue.prototype.getSuccess = (title) => {
-
-        Vue.prototype.$message.success(title);
-    };
+        Vue.prototype.$message.success(title)
+    }
     Vue.prototype.getError = (title) => {
-        Vue.prototype.$message.error(title);
+        Vue.prototype.$message.error(title)
     }
     Vue.prototype.showLoading = () => {
-        document.getElementById("loadingToast").style.display = "inline";
+        document.getElementById('loadingToast').style.display = 'inline'
     }
 
     Vue.prototype.hideLoading = () => {
-        document.getElementById("loadingToast").style.display = "none";
+        document.getElementById('loadingToast').style.display = 'none'
     }
 }
-export default message;
+export default message

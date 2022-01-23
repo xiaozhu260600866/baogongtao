@@ -1,63 +1,74 @@
 <template>
-	<view>
-		<view class="tui-actionsheet-class tui-actionsheet" :class="[show?'tui-actionsheet-show':'']">
-			<view class="tui-tips" :style="{fontSize:px(size),color:color}" v-if="tips">
-				{{tips}}
-			</view>
-			<view :class="[isCancel?'tui-operate-box':'']">
-				<block v-for="(item,index) in itemList" :key="index">
-					<view class="tui-actionsheet-btn tui-actionsheet-divider" :class="[(!isCancel && index==itemList.length-1)?'tui-btn-last':'']"
-					 hover-class="tui-actionsheet-hover" :hover-stay-time="150" :data-index="index" :style="{color:item.color || '#1a1a1a'}"
-					 @tap="handleClickItem">{{item.text}}</view>
-				</block>
-			</view>
-			<view class="tui-actionsheet-btn tui-actionsheet-cancel" hover-class="tui-actionsheet-hover" :hover-stay-time="150"
-			 v-if="isCancel" @tap="handleClickCancel">取消</view>
-		</view>
-		<view class="tui-actionsheet-mask" :class="[show?'tui-mask-show':'']" @tap="handleClickMask"></view>
-	</view>
+  <view>
+    <view class="tui-actionsheet-class tui-actionsheet" :class="[show?'tui-actionsheet-show':'']">
+      <view v-if="tips" class="tui-tips" :style="{fontSize:px(size),color:color}">
+        {{ tips }}
+      </view>
+      <view :class="[isCancel?'tui-operate-box':'']">
+        <block v-for="(item,index) in itemList" :key="index">
+          <view
+            class="tui-actionsheet-btn tui-actionsheet-divider"
+            :class="[(!isCancel && index==itemList.length-1)?'tui-btn-last':'']"
+            hover-class="tui-actionsheet-hover"
+            :hover-stay-time="150"
+            :data-index="index"
+            :style="{color:item.color || '#1a1a1a'}"
+            @tap="handleClickItem"
+          >{{ item.text }}</view>
+        </block>
+      </view>
+      <view
+        v-if="isCancel"
+        class="tui-actionsheet-btn tui-actionsheet-cancel"
+        hover-class="tui-actionsheet-hover"
+        :hover-stay-time="150"
+        @tap="handleClickCancel"
+      >取消</view>
+    </view>
+    <view class="tui-actionsheet-mask" :class="[show?'tui-mask-show':'']" @tap="handleClickMask" />
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiActionsheet",
+		name: 'TuiActionsheet',
 		props: {
-			//点击遮罩 是否可关闭
+			// 点击遮罩 是否可关闭
 			maskClosable: {
 				type: Boolean,
 				default: true
 			},
-			//显示操作菜单
+			// 显示操作菜单
 			show: {
 				type: Boolean,
 				default: false
 			},
-			//菜单按钮数组，自定义文本颜色，红色参考色：#e53a37
+			// 菜单按钮数组，自定义文本颜色，红色参考色：#e53a37
 			itemList: {
 				type: Array,
 				default: function() {
 					return [{
-						text: "确定",
-						color: "#1a1a1a"
+						text: '确定',
+						color: '#1a1a1a'
 					}]
 				}
 			},
-			//提示文字
+			// 提示文字
 			tips: {
 				type: String,
-				default: ""
+				default: ''
 			},
-			//提示文字颜色
+			// 提示文字颜色
 			color: {
 				type: String,
-				default: "#9a9a9a"
+				default: '#9a9a9a'
 			},
-			////提示文字大小
+			// //提示文字大小
 			size: {
 				type: Number,
 				default: 26
 			},
-			//是否需要取消按钮
+			// 是否需要取消按钮
 			isCancel: {
 				type: Boolean,
 				default: true
@@ -65,21 +76,21 @@
 		},
 		methods: {
 			px(num) {
-				return uni.upx2px(num) + "px"
+				return uni.upx2px(num) + 'px'
 			},
 			handleClickMask() {
-				if (!this.maskClosable) return;
-				this.handleClickCancel();
+				if (!this.maskClosable) return
+				this.handleClickCancel()
 			},
 			handleClickItem(e) {
-				if (!this.show) return;
-				const dataset = e.currentTarget.dataset;
+				if (!this.show) return
+				const dataset = e.currentTarget.dataset
 				this.$emit('click', {
 					index: dataset.index
-				});
+				})
 			},
 			handleClickCancel() {
-				this.$emit('cancel');
+				this.$emit('cancel')
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-<!-- 
+<!--
 使用：
 1.components: {
         'my-status':()=>import('xiaozhu/uniapp/components/status.vue')
@@ -6,55 +6,54 @@
 2.   <my-status  ref="status" style="width:100%"  formAction="/admin/article/change-status"/>
 3.调用：
 
-this.$refs.status.ajax({id:item.id,status:item.status}); //函数内为调用的URL          
+this.$refs.status.ajax({id:item.id,status:item.status}); //函数内为调用的URL
  -->
 <template>
-    <diag ref="diag" top="20" :ruleform="ruleform" :vaildate="vaildate">
-        <div slot="content">
-			
-            <h3>{{ ruleform.status==2 ? '请填写拒绝内容' :'确认是否通过' }}</h3>
-			<input type="textarea" v-model="ruleform.content" class="bd-d" v-if="ruleform.status==2">
-            <div class="mt20">
-                <div class="flex-between">
-                	<button class="btn btn-danger" @click="submit()">提交</button>
-                	<button class="btn btn-danger ml20" @click="handleClose()">取消</button>
-                </div>
-            </div>
+  <diag ref="diag" top="20" :ruleform="ruleform" :vaildate="vaildate">
+    <div slot="content">
+
+      <h3>{{ ruleform.status==2 ? '请填写拒绝内容' :'确认是否通过' }}</h3>
+      <input v-if="ruleform.status==2" v-model="ruleform.content" type="textarea" class="bd-d">
+      <div class="mt20">
+        <div class="flex-between">
+          <button class="btn btn-danger" @click="submit()">提交</button>
+          <button class="btn btn-danger ml20" @click="handleClose()">取消</button>
         </div>
-    </diag>
+      </div>
+    </div>
+  </diag>
 </template>
 <script type="text/javascript">
 export default {
+    props: ['formAction'],
     data() {
         return {
-            ruleform: {  },
+            ruleform: { },
             vaildate: {},
             dialogVisible: false,
             data: this.formatData(this)
         }
-    },
-    props: [ /*'status','id',*/ 'formAction'], //父类的数据
+    }, // 父类的数据
     methods: {
         handleClose: function(done) {
-            this.$refs.diag.thisDiag = false;
+            this.$refs.diag.thisDiag = false
         },
         submit() {
-			this.vaildForm(this,msg=>{
-				this.postAjax(this.formAction, this.ruleform).then(msg=>{
-					if(msg.data.status == 2){
-						this.handleClose();
-						this.$emit("callBack");
+			this.vaildForm(this, msg => {
+				this.postAjax(this.formAction, this.ruleform).then(msg => {
+					if (msg.data.status == 2) {
+						this.handleClose()
+						this.$emit('callBack')
 					}
-				});
-			});
+				})
+			})
         },
         ajax(item) {
-            this.ruleform = item;
-            this.$refs.diag.thisDiag = true;
+            this.ruleform = item
+            this.$refs.diag.thisDiag = true
         }
-        /*商品规格结束*/
-    },
-
+        /* 商品规格结束*/
+    }
 
 }
 

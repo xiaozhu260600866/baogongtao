@@ -1,45 +1,50 @@
 <template>
-	<view>
-		<view class="tui-alert-class tui-alert-box" :class="[show?'tui-alert-show':'']">
-			<view class="tui-alert-content" :style="{fontSize:size+'rpx',color:color}">
-				<slot></slot>
-			</view>
-			<view class="tui-alert-btn" :style="{color:btnColor}" hover-class="tui-alert-btn-hover" :hover-stay-time="150"
-			 @tap.stop="handleClick">{{btnText}}</view>
-		</view>
-		<view class="tui-alert-mask" :class="[show?'tui-alert-mask-show':'']" @tap.stop="handleClickCancel"></view>
-	</view>
+  <view>
+    <view class="tui-alert-class tui-alert-box" :class="[show?'tui-alert-show':'']">
+      <view class="tui-alert-content" :style="{fontSize:size+'rpx',color:color}">
+        <slot />
+      </view>
+      <view
+        class="tui-alert-btn"
+        :style="{color:btnColor}"
+        hover-class="tui-alert-btn-hover"
+        :hover-stay-time="150"
+        @tap.stop="handleClick"
+      >{{ btnText }}</view>
+    </view>
+    <view class="tui-alert-mask" :class="[show?'tui-alert-mask-show':'']" @tap.stop="handleClickCancel" />
+  </view>
 </template>
 
 <script>
 	export default {
-		name:"tuiAlert",
+		name: 'TuiAlert',
 		props: {
-			//控制显示
+			// 控制显示
 			show: {
 				type: Boolean,
 				default: false
 			},
-			//提示信息字体大小
+			// 提示信息字体大小
 			size: {
 				type: Number,
 				default: 30
 			},
-			//提示信息字体颜色
+			// 提示信息字体颜色
 			color: {
 				type: String,
-				default: "#333"
+				default: '#333'
 			},
-			//按钮字体颜色
+			// 按钮字体颜色
 			btnColor: {
 				type: String,
-				default: "#EB0909"
+				default: '#EB0909'
 			},
-			btnText:{
+			btnText: {
 				type: String,
-				default: "确定"
+				default: '确定'
 			},
-			//点击遮罩 是否可关闭
+			// 点击遮罩 是否可关闭
 			maskClosable: {
 				type: Boolean,
 				default: false
@@ -47,12 +52,12 @@
 		},
 		methods: {
 			handleClick(e) {
-				if (!this.show) return;
-				this.$emit('click', {});
+				if (!this.show) return
+				this.$emit('click', {})
 			},
 			handleClickCancel() {
-				if (!this.maskClosable) return;
-				this.$emit('cancel');
+				if (!this.maskClosable) return
+				this.$emit('cancel')
 			}
 		}
 	}

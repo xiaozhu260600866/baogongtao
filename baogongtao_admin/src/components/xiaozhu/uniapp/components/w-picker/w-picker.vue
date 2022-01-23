@@ -1,136 +1,136 @@
 <template name="w-picker">
-	<view class="w-picker" :key="createKey" :data-key="createKey">
-		<view class="mask" :class="{'visible':visible}" @tap="onCancel" @touchmove.stop.prevent catchtouchmove="true"></view>
-		<view class="w-picker-cnt" :class="{'visible':visible}">
-			<view class="w-picker-header"  @touchmove.stop.prevent catchtouchmove="true">
-				<text @tap.stop.prevent="onCancel">取消</text>
-				<slot></slot>
-				<text :style="{'color':themeColor}" @tap.stop.prevent="pickerConfirm">确定</text>
-			</view>
-			<date-picker 
-				v-if="mode=='date'" 
-				class="w-picker-wrapper"
-				:startYear="startYear"
-				:endYear="endYear"
-				:value="value"
-				:fields="fields"
-				:item-height="itemHeight"
-				:current="current"
-				:disabled-after="disabledAfter"
-				@change="handlerChange"
-				@touchstart="touchStart" 
-				@touchend="touchEnd">
-			</date-picker>
-			
-			<range-picker
-				v-if="mode=='range'" 
-				class="w-picker-wrapper"
-				:startYear="startYear"
-				:endYear="endYear"
-				:value="value"
-				:item-height="itemHeight"
-				:current="current"
-				@change="handlerChange"
-				@touchstart="touchStart" 
-				@touchend="touchEnd">
-			</range-picker>
-			
-			<half-picker
-				v-if="mode=='half'" 
-				class="w-picker-wrapper"
-				:startYear="startYear"
-				:endYear="endYear"
-				:value="value"
-				:item-height="itemHeight"
-				:current="current"
-				:disabled-after="disabledAfter"
-				@change="handlerChange"
-				@touchstart="touchStart" 
-				@touchend="touchEnd">
-			</half-picker>
-			
-			<shortterm-picker
-				v-if="mode=='shortTerm'" 
-				class="w-picker-wrapper"
-				:startYear="startYear"
-				:endYear="endYear"
-				:value="value"
-				:item-height="itemHeight"
-				:current="current"
-				expand="60"
-				:disabled-after="disabledAfter"
-				@change="handlerChange"
-				@touchstart="touchStart" 
-				@touchend="touchEnd">
-			</shortterm-picker>
-			
-			<time-picker
-				v-if="mode=='time'"
-				class="w-picker-wrapper"
-				:value="value"
-				:item-height="itemHeight"
-				:current="current"
-				:disabled-after="disabledAfter"
-				:second="second"
-				@change="handlerChange"
-				@touchstart="touchStart" 
-				@touchend="touchEnd">
-			</time-picker>
-			
-			<selector-picker
-				v-if="mode=='selector'"
-				class="w-picker-wrapper"
-				:value="value"
-				:item-height="itemHeight"
-				:options="options"
-				:default-type="defaultType"
-				:default-props="defaultProps"
-				@change="handlerChange"
-				@touchstart="touchStart" 
-				@touchend="touchEnd">
-			</selector-picker>
-			
-			<region-picker
-				v-if="mode=='region'"
-				class="w-picker-wrapper"
-				:value="value"
-				:hide-area="hideArea"
-				:default-type="defaultType"
-				:item-height="itemHeight"
-				@change="handlerChange"
-				@touchstart="touchStart" 
-				@touchend="touchEnd">
-			</region-picker>
-			
-			<linkage-picker
-				v-if="mode=='linkage'"
-				class="w-picker-wrapper"
-				:value="value"
-				:options="options"
-				:level="level"
-				:default-type="defaultType"
-				:default-props="defaultProps"
-				:item-height="itemHeight"
-				@change="handlerChange"
-				@touchstart="touchStart" 
-				@touchend="touchEnd">
-			</linkage-picker>
-		</view>
-	</view>
+  <view :key="createKey" class="w-picker" :data-key="createKey">
+    <view class="mask" :class="{'visible':visible}" catchtouchmove="true" @tap="onCancel" @touchmove.stop.prevent />
+    <view class="w-picker-cnt" :class="{'visible':visible}">
+      <view class="w-picker-header" catchtouchmove="true" @touchmove.stop.prevent>
+        <text @tap.stop.prevent="onCancel">取消</text>
+        <slot />
+        <text :style="{'color':themeColor}" @tap.stop.prevent="pickerConfirm">确定</text>
+      </view>
+      <date-picker
+        v-if="mode=='date'"
+        class="w-picker-wrapper"
+        :start-year="startYear"
+        :end-year="endYear"
+        :value="value"
+        :fields="fields"
+        :item-height="itemHeight"
+        :current="current"
+        :disabled-after="disabledAfter"
+        @change="handlerChange"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+      />
+
+      <range-picker
+        v-if="mode=='range'"
+        class="w-picker-wrapper"
+        :start-year="startYear"
+        :end-year="endYear"
+        :value="value"
+        :item-height="itemHeight"
+        :current="current"
+        @change="handlerChange"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+      />
+
+      <half-picker
+        v-if="mode=='half'"
+        class="w-picker-wrapper"
+        :start-year="startYear"
+        :end-year="endYear"
+        :value="value"
+        :item-height="itemHeight"
+        :current="current"
+        :disabled-after="disabledAfter"
+        @change="handlerChange"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+      />
+
+      <shortterm-picker
+        v-if="mode=='shortTerm'"
+        class="w-picker-wrapper"
+        :start-year="startYear"
+        :end-year="endYear"
+        :value="value"
+        :item-height="itemHeight"
+        :current="current"
+        expand="60"
+        :disabled-after="disabledAfter"
+        @change="handlerChange"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+      />
+
+      <time-picker
+        v-if="mode=='time'"
+        class="w-picker-wrapper"
+        :value="value"
+        :item-height="itemHeight"
+        :current="current"
+        :disabled-after="disabledAfter"
+        :second="second"
+        @change="handlerChange"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+      />
+
+      <selector-picker
+        v-if="mode=='selector'"
+        class="w-picker-wrapper"
+        :value="value"
+        :item-height="itemHeight"
+        :options="options"
+        :default-type="defaultType"
+        :default-props="defaultProps"
+        @change="handlerChange"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+      />
+
+      <region-picker
+        v-if="mode=='region'"
+        class="w-picker-wrapper"
+        :value="value"
+        :hide-area="hideArea"
+        :default-type="defaultType"
+        :item-height="itemHeight"
+        @change="handlerChange"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+      />
+
+      <linkage-picker
+        v-if="mode=='linkage'"
+        class="w-picker-wrapper"
+        :value="value"
+        :options="options"
+        :level="level"
+        :default-type="defaultType"
+        :default-props="defaultProps"
+        :item-height="itemHeight"
+        @change="handlerChange"
+        @touchstart="touchStart"
+        @touchend="touchEnd"
+      />
+    </view>
+  </view>
 </template>
 
 <script>
-	import datePicker from "./date-picker.vue"
-	import rangePicker from "./range-picker.vue"
-	import halfPicker from "./half-picker.vue"
-	import shorttermPicker from "./shortterm-picker.vue"
-	import timePicker from "./time-picker.vue"
-	import selectorPicker from "./selector-picker.vue"
-	import regionPicker from "./region-picker.vue"
-	import linkagePicker from "./linkage-picker.vue"
+	import datePicker from './date-picker.vue'
+	import rangePicker from './range-picker.vue'
+	import halfPicker from './half-picker.vue'
+	import shorttermPicker from './shortterm-picker.vue'
+	import timePicker from './time-picker.vue'
+	import selectorPicker from './selector-picker.vue'
+	import regionPicker from './region-picker.vue'
+	import linkagePicker from './linkage-picker.vue'
 	export default {
-		name:"w-picker",
-		components:{
+		name: 'WPicker',
+		components: {
 			datePicker,
 			rangePicker,
 			halfPicker,
@@ -140,125 +140,125 @@
 			regionPicker,
 			linkagePicker
 		},
-		props:{
-			mode:{
-				type:String,
-				default:"date"
+		props: {
+			mode: {
+				type: String,
+				default: 'date'
 			},
-			value:{//默认值
-				type:[String,Array,Number],
-				default:""
+			value: {// 默认值
+				type: [String, Array, Number],
+				default: ''
 			},
-			current:{//是否默认显示当前时间，如果是，传的默认值将失效
-				type:Boolean,
-				default:false
+			current: {// 是否默认显示当前时间，如果是，传的默认值将失效
+				type: Boolean,
+				default: false
 			},
-			themeColor:{//确认按钮主题颜色
-				type:String,
-				default:"#f5a200"
+			themeColor: {// 确认按钮主题颜色
+				type: String,
+				default: '#f5a200'
 			},
-			fields:{//日期颗粒度:year、month、day、hour、minute、second
-				type:String,
-				default:"date"
+			fields: {// 日期颗粒度:year、month、day、hour、minute、second
+				type: String,
+				default: 'date'
 			},
-			disabledAfter:{//是否禁用当前之后的日期
-				type:Boolean,
-				default:false
+			disabledAfter: {// 是否禁用当前之后的日期
+				type: Boolean,
+				default: false
 			},
-			second:{//time-picker是否显示秒
-				type:Boolean,
-				default:true
+			second: {// time-picker是否显示秒
+				type: Boolean,
+				default: true
 			},
-			options:{//selector,region数据源
-				type:[Array,Object],
-				default(){
+			options: {// selector,region数据源
+				type: [Array, Object],
+				default() {
 					return []
 				}
 			},
-			defaultProps:{//selector,linkagle字段转换配置
-				type:Object,
-				default(){
-					return{
-						label:"label",
-						value:"value",
-						children:"children"
+			defaultProps: {// selector,linkagle字段转换配置
+				type: Object,
+				default() {
+					return {
+						label: 'label',
+						value: 'value',
+						children: 'children'
 					}
 				}
 			},
-			defaultType:{
-				type:String,
-				default:"label"
+			defaultType: {
+				type: String,
+				default: 'label'
 			},
-			hideArea:{//mode=region时，是否隐藏区县列
-				type:Boolean,
-				default:false
+			hideArea: {// mode=region时，是否隐藏区县列
+				type: Boolean,
+				default: false
 			},
-			level:{
-				//多级联动层级，表示几级联动,区间2-4;
-				type:[Number,String],
-				default:2
+			level: {
+				// 多级联动层级，表示几级联动,区间2-4;
+				type: [Number, String],
+				default: 2
 			},
-			timeout:{//是否开启点击延迟,当快速滚动 还没有滚动完毕点击关闭时得到的值是不准确的
-				type:Boolean,
-				default:false
+			timeout: {// 是否开启点击延迟,当快速滚动 还没有滚动完毕点击关闭时得到的值是不准确的
+				type: Boolean,
+				default: false
 			},
-			expand:{//mode=shortterm 默认往后拓展天数
-				type:[Number,String],
-				default:30
+			expand: {// mode=shortterm 默认往后拓展天数
+				type: [Number, String],
+				default: 30
 			},
-			startYear:{
-				type:[String,Number],
-				default:1970
+			startYear: {
+				type: [String, Number],
+				default: 1970
 			},
-			endYear:{
-				type:[String,Number],
-				default:new Date().getFullYear()
+			endYear: {
+				type: [String, Number],
+				default: new Date().getFullYear()
 			}
-		},
-		created() {
-			this.createKey=Math.random()*1000;
 		},
 		data() {
 			return {
-				itemHeight:`height: ${uni.upx2px(88)}px;`,
-				visible:false,
-				result:{},
-				confirmFlag:true
-			};
+				itemHeight: `height: ${uni.upx2px(88)}px;`,
+				visible: false,
+				result: {},
+				confirmFlag: true
+			}
 		},
-		methods:{
-			touchStart(){
-				if(this.timeout){
-					this.confirmFlag=false;
+		created() {
+			this.createKey = Math.random() * 1000
+		},
+		methods: {
+			touchStart() {
+				if (this.timeout) {
+					this.confirmFlag = false
 				}
 			},
-			touchEnd(){
-				if(this.timeout){
-					setTimeout(()=>{
-						this.confirmFlag=true;
-					},500)
+			touchEnd() {
+				if (this.timeout) {
+					setTimeout(() => {
+						this.confirmFlag = true
+					}, 500)
 				}
 			},
-			handlerChange(res){
-				let _this=this;
-				this.result={...res};
+			handlerChange(res) {
+				const _this = this
+				this.result = { ...res }
 			},
-			show(){
-				this.visible=true;
+			show() {
+				this.visible = true
 			},
-			hide(){
-				this.visible=false;
+			hide() {
+				this.visible = false
 			},
-			onCancel(res){
-				this.visible=false;
-				this.$emit("cancel");
+			onCancel(res) {
+				this.visible = false
+				this.$emit('cancel')
 			},
-			pickerConfirm(){
-				if(!this.confirmFlag){
-					return;
-				};
-				this.$emit("confirm",this.result);
-				this.visible=false;
+			pickerConfirm() {
+				if (!this.confirmFlag) {
+					return
+				}
+				this.$emit('confirm', this.result)
+				this.visible = false
 			}
 		}
 	}
@@ -320,7 +320,7 @@
 		  	font-size: 30upx;
 		  }
 		}
-		
+
 		.w-picker-hd:after {
 		  content: ' ';
 		  position: absolute;

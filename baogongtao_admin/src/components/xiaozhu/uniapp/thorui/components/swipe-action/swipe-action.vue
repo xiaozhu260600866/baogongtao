@@ -1,30 +1,47 @@
 <template>
-	<view class="tui-swipeout-wrap">
-		<view class="tui-swipeout-item" :class="[isShowBtn?'swipe-action-show':'']" @touchstart="handlerTouchstart"
-		 @touchmove="handlerTouchmove" @touchend="handlerTouchend" :style="{transform:'translate(' + position.pageX + 'px,0)'}">
-			<view class="tui-swipeout-content">
-				<slot name="content"></slot>
-			</view>
-			<view class="tui-swipeout-button-right-group" v-if="actions.length > 0" @touchend.stop="loop">
-				<view class="tui-swipeout-button-right-item" v-for="(item,index) in actions" :key="index" :style="{background:item.background || '#f7f7f7',color:item.color,width:item.width+'px'}"
-				 :data-index="index" @tap="handlerButton">
-					<image :src="item.icon" v-if="item.icon" :style="{width:px(item.imgWidth),height:px(item.imgHeight)}"></image>
-					<text :style="{fontSize:px(item.fontsize)}">{{item.name}}</text>
-				</view>
-			</view>
-			<!--actions长度设置为0，可直接传按钮进来-->
-			<view class="tui-swipeout-button-right-group" @touchend.stop="loop" @tap="handlerParentButton" v-if="actions.length === 0"
-			 :style="{width:operateWidth+'px',right:'-'+operateWidth+'px'}">
-				<slot name="button"></slot>
-			</view>
-		</view>
-		<view v-if="isShowBtn && showMask" class="swipe-action_mask" @tap="closeButtonGroup" @touchmove.stop="closeButtonGroup" />
-	</view>
+  <view class="tui-swipeout-wrap">
+    <view
+      class="tui-swipeout-item"
+      :class="[isShowBtn?'swipe-action-show':'']"
+      :style="{transform:'translate(' + position.pageX + 'px,0)'}"
+      @touchstart="handlerTouchstart"
+      @touchmove="handlerTouchmove"
+      @touchend="handlerTouchend"
+    >
+      <view class="tui-swipeout-content">
+        <slot name="content" />
+      </view>
+      <view v-if="actions.length > 0" class="tui-swipeout-button-right-group" @touchend.stop="loop">
+        <view
+          v-for="(item,index) in actions"
+          :key="index"
+          class="tui-swipeout-button-right-item"
+          :style="{background:item.background || '#f7f7f7',color:item.color,width:item.width+'px'}"
+          :data-index="index"
+          @tap="handlerButton"
+        >
+          <image v-if="item.icon" :src="item.icon" :style="{width:px(item.imgWidth),height:px(item.imgHeight)}" />
+          <text :style="{fontSize:px(item.fontsize)}">{{ item.name }}</text>
+        </view>
+      </view>
+      <!--actions长度设置为0，可直接传按钮进来-->
+      <view
+        v-if="actions.length === 0"
+        class="tui-swipeout-button-right-group"
+        :style="{width:operateWidth+'px',right:'-'+operateWidth+'px'}"
+        @touchend.stop="loop"
+        @tap="handlerParentButton"
+      >
+        <slot name="button" />
+      </view>
+    </view>
+    <view v-if="isShowBtn && showMask" class="swipe-action_mask" @tap="closeButtonGroup" @touchmove.stop="closeButtonGroup" />
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiSwipeAction",
+		name: 'TuiSwipeAction',
 		props: {
 			// name: '删除',
 			// color: '#fff',
@@ -34,16 +51,16 @@
 			// background: '#ed3f14'
 			actions: {
 				type: Array,
-				default: function(){
+				default: function() {
 					return []
 				}
 			},
-			//是否可关闭，默认可关闭，可以单独控制
+			// 是否可关闭，默认可关闭，可以单独控制
 			closable: {
 				type: Boolean,
 				default: true
 			},
-			//设为false，可以滑动多行不关闭菜单
+			// 设为false，可以滑动多行不关闭菜单
 			showMask: {
 				type: Boolean,
 				default: true
@@ -54,32 +71,32 @@
 			},
 			params: {
 				type: Object,
-				default: function(){
+				default: function() {
 					return {}
 				}
+			}
+		},
+		data() {
+			return {
+				// start position
+				tStart: {
+					pageX: 0,
+					pageY: 0
+				},
+				// 限制滑动距离
+				limitMove: 0,
+				// move position
+				position: {
+					pageX: 0,
+					pageY: 0
+				},
+				isShowBtn: false
 			}
 		},
 		watch: {
 			actions(newValue, oldValue) {
 				this.updateButtonSize()
 			}
-		},
-		data() {
-			return {
-				//start position
-				tStart: {
-					pageX: 0,
-					pageY: 0
-				},
-				//限制滑动距离
-				limitMove: 0,
-				//move position
-				position: {
-					pageX: 0,
-					pageY: 0
-				},
-				isShowBtn: false
-			};
 		},
 		// #ifdef H5
 		mounted() {
@@ -94,98 +111,96 @@
 				return Math.abs(x1 - x2) >=
 					Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'Left' : 'Right') : (y1 - y2 > 0 ? 'Up' : 'Down')
 			},
-			//阻止事件冒泡
+			// 阻止事件冒泡
 			loop() {},
 			updateButtonSize() {
-				const actions = this.actions;
+				const actions = this.actions
 				if (actions.length > 0) {
-					const query = uni.createSelectorQuery().in(this);
-					let limitMovePosition = 0;
+					const query = uni.createSelectorQuery().in(this)
+					let limitMovePosition = 0
 					actions.forEach(item => {
-						limitMovePosition += item.width || 0;
-					});
-					this.limitMove = limitMovePosition;
+						limitMovePosition += item.width || 0
+					})
+					this.limitMove = limitMovePosition
 				} else {
-					this.limitMove = this.operateWidth;
+					this.limitMove = this.operateWidth
 				}
 			},
 			handlerTouchstart(event) {
-				const touches = event.touches ? event.touches[0] : {};
-				const tStart = this.tStart;
+				const touches = event.touches ? event.touches[0] : {}
+				const tStart = this.tStart
 				if (touches) {
-					for (let i in tStart) {
+					for (const i in tStart) {
 						if (touches[i]) {
-							tStart[i] = touches[i];
+							tStart[i] = touches[i]
 						}
 					}
 				}
 			},
 			swipper(touches) {
-				const start = this.tStart;
+				const start = this.tStart
 				const spacing = {
 					pageX: touches.pageX - start.pageX,
 					pageY: touches.pageY - start.pageY
 				}
 				if (this.limitMove < Math.abs(spacing.pageX)) {
-					spacing.pageX = -this.limitMove;
-
+					spacing.pageX = -this.limitMove
 				}
 				this.position = spacing
 			},
 			handlerTouchmove(event) {
-				const start = this.tStart;
-				const touches = event.touches ? event.touches[0] : {};
+				const start = this.tStart
+				const touches = event.touches ? event.touches[0] : {}
 				if (touches) {
-					const direction = this.swipeDirection(start.pageX, touches.pageX, start.pageY, touches.pageY);
+					const direction = this.swipeDirection(start.pageX, touches.pageX, start.pageY, touches.pageY)
 					if (direction === 'Left') {
-						this.swipper(touches);
+						this.swipper(touches)
 					}
 				}
 			},
 			handlerTouchend(event) {
-				const start = this.tStart;
-				const touches = event.changedTouches ? event.changedTouches[0] : {};
+				const start = this.tStart
+				const touches = event.changedTouches ? event.changedTouches[0] : {}
 				if (touches) {
-					const direction = this.swipeDirection(start.pageX, touches.pageX, start.pageY, touches.pageY);
+					const direction = this.swipeDirection(start.pageX, touches.pageX, start.pageY, touches.pageY)
 					const spacing = {
 						pageX: touches.pageX - start.pageX,
 						pageY: touches.pageY - start.pageY
 					}
-					if (Math.abs(spacing.pageX) >= 40 && direction === "Left") {
-						spacing.pageX = spacing.pageX < 0 ? -this.limitMove : this.limitMove;
+					if (Math.abs(spacing.pageX) >= 40 && direction === 'Left') {
+						spacing.pageX = spacing.pageX < 0 ? -this.limitMove : this.limitMove
 						this.isShowBtn = true
 					} else {
-						spacing.pageX = 0;
+						spacing.pageX = 0
 					}
 					this.position = spacing
 				}
 			},
 			handlerButton(event) {
 				if (this.closable) {
-					this.closeButtonGroup();
+					this.closeButtonGroup()
 				}
-				const dataset = event.currentTarget.dataset;
+				const dataset = event.currentTarget.dataset
 				this.$emit('click', {
 					index: Number(dataset.index),
 					item: this.params
 				})
-				
 			},
 			closeButtonGroup() {
 				this.position = {
 					pageX: 0,
 					pageY: 0
-				};
+				}
 				this.isShowBtn = false
 			},
-			//控制自定义组件
+			// 控制自定义组件
 			handlerParentButton(event) {
 				if (this.closable) {
-					this.closeButtonGroup();
+					this.closeButtonGroup()
 				}
 			},
 			px(num) {
-				return uni.upx2px(num) + "px"
+				return uni.upx2px(num) + 'px'
 			}
 		}
 	}

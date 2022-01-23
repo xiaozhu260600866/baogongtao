@@ -1,51 +1,51 @@
 <template>
-	<block v-if="position=='top'">
-		<view class='tui-tips-class tui-toptips' :class="['tui-'+type,show?'tui-top-show':'']">{{msg}}</view>
-	</block>
-	<block v-else>
-		<view class='tui-tips-class tui-toast' :class="[position=='center'?'tui-centertips':'tui-bottomtips',show?'tui-toast-show':'']">
-			<view class="tui-tips-content" :class="['tui-'+type]">
-				{{msg}}
-			</view>
-		</view>
-	</block>
+  <block v-if="position=='top'">
+    <view class="tui-tips-class tui-toptips" :class="['tui-'+type,show?'tui-top-show':'']">{{ msg }}</view>
+  </block>
+  <block v-else>
+    <view class="tui-tips-class tui-toast" :class="[position=='center'?'tui-centertips':'tui-bottomtips',show?'tui-toast-show':'']">
+      <view class="tui-tips-content" :class="['tui-'+type]">
+        {{ msg }}
+      </view>
+    </view>
+  </block>
 </template>
 
 <script>
 	export default {
-		name: "tuiTips",
+		name: 'TuiTips',
 		props: {
-			//top bottom center
+			// top bottom center
 			position: {
 				type: String,
-				default: "top"
+				default: 'top'
 			}
 		},
 		data() {
 			return {
 				timer: null,
 				show: false,
-				msg: "无法连接到服务器~",
-				//translucent,primary,green,warning,danger
-				type: "translucent"
-			};
+				msg: '无法连接到服务器~',
+				// translucent,primary,green,warning,danger
+				type: 'translucent'
+			}
 		},
 		methods: {
 			showTips: function(options) {
 				const {
 					type = 'translucent',
 						duration = 2000
-				} = options;
-				clearTimeout(this.timer);
-				this.show = true;
+				} = options
+				clearTimeout(this.timer)
+				this.show = true
 				// this.duration = duration < 2000 ? 2000 : duration;
-				this.type = type;
-				this.msg = options.msg;
+				this.type = type
+				this.msg = options.msg
 				this.timer = setTimeout(() => {
-					this.show = false;
-					clearTimeout(this.timer);
-					this.timer = null;
-				}, duration);
+					this.show = false
+					clearTimeout(this.timer)
+					this.timer = null
+				}, duration)
 			}
 		}
 	}

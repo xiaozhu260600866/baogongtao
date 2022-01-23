@@ -21,6 +21,12 @@ const userRouter = {
 	    meta: { title: '企业招聘', icon: 'dx-company' }
 	},
 	{
+	    path: 'recruit_records',
+	    component: () => import('@/views/company/recruit_records'),
+	    name: 'CompanyLists',
+	    meta: { title: '企业应聘', icon: 'dx-company' }
+	},
+	{
 	    path: 'coupon_lists',
 	    component: () => import('@/views/company/coupon'),
 	    name: 'CompanyLists',
@@ -50,7 +56,15 @@ const userRouter = {
         component: () => import('@/views/user/lists'),
         name: 'UserLists',
         meta: { title: '自由职业者', icon: 'dx-user' }
-    }, {
+    },
+	{
+	    path: 'wechat-lists',
+	    component: () => import('@/views/user/wechat_lists'),
+	    name: 'UserLists',
+	    meta: { title: '微信用户', icon: 'dx-user' }
+	},
+
+	{
         path: 'show',
         component: () => import('@/views/user/show'),
         name: 'UserShow',
@@ -60,6 +74,7 @@ const userRouter = {
         path: '/staff/lists',
         component: () => import('@/views/user/staff'),
         name: 'StaffLists',
+		  hidden: true,
         meta: { title: '员工', icon: 'dx-staff' }
     }, {
         path: 'manager',

@@ -1,26 +1,26 @@
 <template>
-	<view class="timeaxis-item-class tui-timeaxis-item">
-		<slot name="content"></slot>
-		<view class="tui-node" :style="{background:bgcolor}">
-			<slot name="node"></slot>
-		</view>
-	</view>
+  <view class="timeaxis-item-class tui-timeaxis-item">
+    <slot name="content" />
+    <view class="tui-node" :style="{background:bgcolor}">
+      <slot name="node" />
+    </view>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiTimeaxisItem",
+		name: 'TuiTimeaxisItem',
 		props: {
-			//节点背景色
+			// 节点背景色
 			bgcolor: {
 				type: String,
-				default: "#fafafa"
+				default: '#fafafa'
 			}
 		},
 		data() {
 			return {
 
-			};
+			}
 		}
 	}
 </script>

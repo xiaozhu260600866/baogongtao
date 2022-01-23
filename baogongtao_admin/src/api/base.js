@@ -68,3 +68,17 @@ export function attributeDelete(data) {
     data
   })
 }
+export function WechatLists(data) {
+  return request({
+    url: '/wechat/lists',
+    method: 'post',
+    data
+  })
+}
+export function Wechatdel(data) {
+  return request({
+    url: '/wechat/del',
+    method: 'post',
+    data
+  })
+}

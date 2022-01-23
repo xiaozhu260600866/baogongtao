@@ -14,37 +14,54 @@ implodeCover(this.fileList);
 splitCover(params.cover, "product");
  -->
 <template>
-	<div class="flex" style="display: flex;align-items: flex-start;">
-		<p class="el-form-item__label" :style="labelWidth ?labelWidth : 'width:100px'" v-if="label">{{ label ? label : '上传图片' }}</p>
-		<div class="flex1">
-            <div v-if="uploadLength == 1">
-                <el-upload :headers="myHeaders" v-if="!uploadPic" class="avatar-uploader" :data="uploadData" :action="getSiteName()+'/ajax/uploadpic?api_token='+getUser().api_token+'&source=admin'" :show-file-list="false"
-                    :on-success="uploadSuccess"  :before-upload="uploadBeforeSingle" >
-                    <i class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-                <div class="div-img" v-if="uploadPic" style="width:58px">
-                    <img :src="uploadPic" class="avatar avatar-img" style="height: 58px;width: 58px;overflow: hidden;display: flex;border-radius: 6px;">
-                    <a class="el-icon-group" href="javascript:;">
-                        <i class="el-icon-zoom-in" @click="big"></i>
-                        <i class="el-icon-delete" @click="delSingle"></i>
-                    </a>
-                    <label class="el-upload-list__item-status-label"><i class="el-icon-upload-success el-icon-check"></i></label>
-                </div>
-            </div>
-            <div v-else>
-                <el-upload  :headers="myHeaders" :file-list="fileList" :action="getSiteName()+'/ajax/uploadpic?api_token='+getUser().api_token+'&source=admin'" :data="uploadData"
-                    :before-upload="uploadBefore" list-type="picture-card" :on-success="uploadSuccess" :limit="uploadLength"
-                    :on-remove="handleRemove" :on-preview="handlePictureCardPreview"> <i class="el-icon-plus"></i>
-                </el-upload>
-            </div>
+  <div class="flex" style="display: flex;align-items: flex-start;">
+    <p v-if="label" class="el-form-item__label" :style="labelWidth ?labelWidth : 'width:100px'">{{ label ? label : '上传图片' }}</p>
+    <div class="flex1">
+      <div v-if="uploadLength == 1">
+        <el-upload
+          v-if="!uploadPic"
+          :headers="myHeaders"
+          class="avatar-uploader"
+          :data="uploadData"
+          :action="getSiteName()+'/ajax/uploadpic?api_token='+getUser().api_token+'&source=admin'"
+          :show-file-list="false"
+          :on-success="uploadSuccess"
+          :before-upload="uploadBeforeSingle"
+        >
+          <i class="el-icon-plus avatar-uploader-icon" />
+        </el-upload>
+        <div v-if="uploadPic" class="div-img" style="width:58px">
+          <img :src="uploadPic" class="avatar avatar-img" style="height: 58px;width: 58px;overflow: hidden;display: flex;border-radius: 6px;">
+          <a class="el-icon-group" href="javascript:;">
+            <i class="el-icon-zoom-in" @click="big" />
+            <i class="el-icon-delete" @click="delSingle" />
+          </a>
+          <label class="el-upload-list__item-status-label"><i class="el-icon-upload-success el-icon-check" /></label>
+        </div>
+      </div>
+      <div v-else>
+        <el-upload
+          :headers="myHeaders"
+          :file-list="fileList"
+          :action="getSiteName()+'/ajax/uploadpic?api_token='+getUser().api_token+'&source=admin'"
+          :data="uploadData"
+          :before-upload="uploadBefore"
+          list-type="picture-card"
+          :on-success="uploadSuccess"
+          :limit="uploadLength"
+          :on-remove="handleRemove"
+          :on-preview="handlePictureCardPreview"
+        > <i class="el-icon-plus" />
+        </el-upload>
+      </div>
 
-			<el-dialog v-model="dialogVisibleImage" size="tiny">
-				<img width="100%" :src="dialogImageUrl" alt="">
-			</el-dialog>
+      <el-dialog v-model="dialogVisibleImage" size="tiny">
+        <img width="100%" :src="dialogImageUrl" alt="">
+      </el-dialog>
 
-			<p class="fs-12 fc-9 pt8" v-if="message">{{ message }}</p>
-		</div>
-	</div>
+      <p v-if="message" class="fs-12 fc-9 pt8">{{ message }}</p>
+    </div>
+  </div>
 </template>
 <style type="text/css">
 	input[type=file] {
@@ -67,86 +84,83 @@ splitCover(params.cover, "product");
 </style>
 <script type="text/javascript">
 	export default {
-		props: ['upurl', 'uploadLength', 'fileList', 'sizearr', 'opentype',"label",'labelWidth','message'], //父类的数据
+		props: ['upurl', 'uploadLength', 'fileList', 'sizearr', 'opentype', 'label', 'labelWidth', 'message'], // 父类的数据
 		data() {
 			return {
 				uploadData: {
 					upurl: this.upurl,
-					thumbsize: this.sizearr,
+					thumbsize: this.sizearr
 				},
-				uploadPic:"",
+				uploadPic: '',
 				dialogImageUrl: '',
-				myHeaders: {Authorization: localStorage.getItem("token")},
+				myHeaders: { Authorization: localStorage.getItem('token') },
 				dialogVisibleImage: false
 			}
 		},
-		watch:{
-		  fileList(row){
-			 if(this.uploadLength == 1 && this.fileList.length >0){
-				 this.uploadPic = this.fileList[0].url;
+		watch: {
+		  fileList(row) {
+			 if (this.uploadLength == 1 && this.fileList.length > 0) {
+				 this.uploadPic = this.fileList[0].url
 			 }
-			 if(this.uploadLength == 1 && this.fileList.length == 0){
-				   this.uploadPic = "";
+			 if (this.uploadLength == 1 && this.fileList.length == 0) {
+				   this.uploadPic = ''
 			 }
 		  }
 		},
-		mounted(){
-			if(this.uploadLength == 1 && this.fileList.length >0){
-				this.uploadPic = this.fileList[0].url;
+		mounted() {
+			if (this.uploadLength == 1 && this.fileList.length > 0) {
+				this.uploadPic = this.fileList[0].url
 			}
 		},
 		methods: {
-            big(){
-              window.open(this.uploadPic, '_blank');
+            big() {
+              window.open(this.uploadPic, '_blank')
             },
-            delSingle(){
-              this.fileList.splice(0,1);
-              this.uploadPic = "";
-              console.log(this.fileList);
+            delSingle() {
+              this.fileList.splice(0, 1)
+              this.uploadPic = ''
+              console.log(this.fileList)
             },
-            uploadBeforeSingle(){
-              console.log(1);
+            uploadBeforeSingle() {
+              console.log(1)
             },
 			handleRemove(file, fileList) {
-                console.log(file);
-                console.log(fileList);
+                console.log(file)
+                console.log(fileList)
 				 for (var i = 0; i < this.fileList.length; i++) {
-					if (this.fileList[i].uid == file.uid) this.fileList.splice(i, 1);
+					if (this.fileList[i].uid == file.uid) this.fileList.splice(i, 1)
 				}
-
 			},
 			uploadBefore(file) {
-
 				if (this.uploadLength <= this.fileList.length) {
-					alert("上传不得大于" + this.uploadLength);
-					return false;
+					alert('上传不得大于' + this.uploadLength)
+					return false
 				}
-
 			},
 			uploadSuccess(response, file, fileList) {
-				if(response.code != 0){
-					alert("上传文件格式不正确");
-					fileList.pop();
-					return false;
+				if (response.code != 0) {
+					alert('上传文件格式不正确')
+					fileList.pop()
+					return false
 				}
-				var that = this;
-				if(that.uploadLength == 1){
-					that.fileList.splice(0,1);
-					file.url = that.getSiteName() + '/static/images/'+this.upurl+'/'+response.obj.filename;
-					that.uploadPic = file.url;
-					that.fileList.push(file);
-				}else{
-					that.fileList.push(file);
+				var that = this
+				if (that.uploadLength == 1) {
+					that.fileList.splice(0, 1)
+					file.url = that.getSiteName() + '/static/images/' + this.upurl + '/' + response.obj.filename
+					that.uploadPic = file.url
+					that.fileList.push(file)
+				} else {
+					that.fileList.push(file)
 				}
 
-				that.$emit('callBack', file);
+				that.$emit('callBack', file)
 			},
 			handlePictureCardPreview(file) {
-				if (this.opentype == "ablank") {
-					window.open(file.url, '_blank');
+				if (this.opentype == 'ablank') {
+					window.open(file.url, '_blank')
 				} else {
-					this.dialogImageUrl = file.url;
-					this.dialogVisibleImage = true;
+					this.dialogImageUrl = file.url
+					this.dialogVisibleImage = true
 				}
 			}
 		}

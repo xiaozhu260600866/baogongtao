@@ -1,16 +1,16 @@
 <template>
-	<view class="tui-drawer-class tui-drawer" :class="[visible ? 'tui-drawer-show' : '','tui-drawer-' + mode]">
-		<view v-if="mask" class="tui-drawer-mask" @tap="handleMaskClick"></view>
-		<view class="tui-drawer-container">
-			<slot></slot>
-		</view>
-	</view>
+  <view class="tui-drawer-class tui-drawer" :class="[visible ? 'tui-drawer-show' : '','tui-drawer-' + mode]">
+    <view v-if="mask" class="tui-drawer-mask" @tap="handleMaskClick" />
+    <view class="tui-drawer-container">
+      <slot />
+    </view>
+  </view>
 
 </template>
 
 <script>
 	export default {
-		name:"tuiDrawer",
+		name: 'TuiDrawer',
 		props: {
 			visible: {
 				type: Boolean,
@@ -32,9 +32,9 @@
 		methods: {
 			handleMaskClick() {
 				if (!this.maskClosable) {
-					return;
+					return
 				}
-				this.$emit('close', {});
+				this.$emit('close', {})
 			}
 		}
 	}

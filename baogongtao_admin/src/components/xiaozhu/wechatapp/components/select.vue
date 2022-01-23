@@ -1,22 +1,22 @@
 <template>
-	<section>
-		<div class="share-overlay" v-if="diagDiv" @click="toggleDiag()"></div>
-		<div class="industry" v-if="diagDiv">
-			<div class="item-body">
-				<p class="item-title main-color fs16 lh50 text-center">{{ label }}</p>
-				<div class="item-box">
-					<p class="fs16 font_666 bd-be" v-for="v in lists" @click="selectRes(v)">{{ v.label }}</p>
-				</div>
-			</div>
-			<div class="off-icon" @click="toggleDiag()">
-				<span class="iconfont icon-OFF fs14 font_666"></span>
-			</div>
-		</div>
-	</section>
+  <section>
+    <div v-if="diagDiv" class="share-overlay" @click="toggleDiag()" />
+    <div v-if="diagDiv" class="industry">
+      <div class="item-body">
+        <p class="item-title main-color fs16 lh50 text-center">{{ label }}</p>
+        <div class="item-box">
+          <p v-for="v in lists" class="fs16 font_666 bd-be" @click="selectRes(v)">{{ v.label }}</p>
+        </div>
+      </div>
+      <div class="off-icon" @click="toggleDiag()">
+        <span class="iconfont icon-OFF fs14 font_666" />
+      </div>
+    </div>
+  </section>
 </template>
 <script>
 export default {
-	props: ['lists','label'],
+	props: ['lists', 'label'],
 	data() {
 		return {
 			diagDiv: false
@@ -24,13 +24,13 @@ export default {
 	},
 	methods: {
 		toggleDiag() {
-			this.diagDiv = !this.diagDiv;
-			this.$parent.isFixed = this.diagDiv;
-			console.log(this.$parent.isFixed);
+			this.diagDiv = !this.diagDiv
+			this.$parent.isFixed = this.diagDiv
+			console.log(this.$parent.isFixed)
 		},
-		selectRes(item){
-			this.toggleDiag();
-			this.$emit("callBack",item);
+		selectRes(item) {
+			this.toggleDiag()
+			this.$emit('callBack', item)
 		}
 	}
 }
@@ -44,5 +44,5 @@ export default {
 .industry .item-box{height: 100%;padding-top: 50px;overflow-y: scroll;}
 .industry .item-box ._p:first-child{border-top: 1px #eee solid;}
 .industry .item-box ._p{line-height: 20px;padding: 11px 20px 11px 40px;position: relative;}
-.industry .item-box ._p:before{content: '';display: block;position: absolute;top: 50%;left: 25px;margin-top: -3px;width: 6px;height: 6px;border-radius: 50%;background: #ddd;}	
+.industry .item-box ._p:before{content: '';display: block;position: absolute;top: 50%;left: 25px;margin-top: -3px;width: 6px;height: 6px;border-radius: 50%;background: #ddd;}
 </style>

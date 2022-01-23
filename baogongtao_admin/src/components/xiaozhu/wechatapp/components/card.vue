@@ -1,8 +1,8 @@
 <template>
   <div>
     <p class="card">
-      {{text}}
-        <slot name="left"/>
+      {{ text }}
+      <slot name="left" />
     </p>
   </div>
 </template>

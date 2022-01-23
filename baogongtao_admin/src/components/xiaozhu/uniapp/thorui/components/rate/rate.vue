@@ -1,48 +1,53 @@
 <template>
-	<view class="tui-rate-class tui-rate-box" @touchmove="touchMove">
-		<!-- <input type="text"> -->
-		<block v-for="(item,index) in quantity" :key="index">
-			<view class="tui-icon" :class="['tui-icon-collection'+(hollow && currentValue<=index?'':'-fill')]" :data-index="index"
-			 @tap="handleTap" :style="{fontSize:size+'px',color:currentValue>index?active:normal}"></view>
-		</block>
-	</view>
+  <view class="tui-rate-class tui-rate-box" @touchmove="touchMove">
+    <!-- <input type="text"> -->
+    <block v-for="(item,index) in quantity" :key="index">
+      <view
+        class="tui-icon"
+        :class="['tui-icon-collection'+(hollow && currentValue<=index?'':'-fill')]"
+        :data-index="index"
+        :style="{fontSize:size+'px',color:currentValue>index?active:normal}"
+        @tap="handleTap"
+      />
+    </block>
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiRate",
+		name: 'TuiRate',
 		props: {
-			//数量
+			// 数量
 			quantity: {
 				type: Number,
 				default: 5
 			},
-			value:{
+			value: {
 				type: Number,
 				default: 5
 			},
-			
-			//禁用点击
+
+			// 禁用点击
 			disabled: {
 				type: Boolean,
 				default: false
 			},
-			//大小
+			// 大小
 			size: {
 				type: Number,
 				default: 20
 			},
-			//未选中颜色
+			// 未选中颜色
 			normal: {
 				type: String,
-				default: "#b2b2b2"
+				default: '#b2b2b2'
 			},
-			//选中颜色
+			// 选中颜色
 			active: {
 				type: String,
-				default: "#e41f19"
+				default: '#e41f19'
 			},
-			//未选中是否为空心
+			// 未选中是否为空心
 			hollow: {
 				type: Boolean,
 				default: false
@@ -51,68 +56,68 @@
 		data() {
 			return {
 				pageX: 0
-			};
+			}
+		},
+		computed: {
+		    currentValue: {
+		        // 动态计算currentValue的值
+		        get: function() {
+					console.log(this.value)
+					console.log('xiaozhueq')
+		            return this.value
+		        },
+		        set: function(val) {
+		            this.$emit('input', val)
+		        }
+		    }
+		},
+		// #ifdef H5
+		mounted() {
+			const className = '.tui-rate-box'
+			const query = uni.createSelectorQuery().in(this)
+			query.select(className).boundingClientRect((res) => {
+				this.pageX = res.left || 0
+			}).exec()
 		},
 		methods: {
 			handleTap(e) {
 				if (this.disabled) {
-					return;
+					return
 				}
-				const index = e.currentTarget.dataset.index;
-				this.currentValue = Number(index) + 1;
+				const index = e.currentTarget.dataset.index
+				this.currentValue = Number(index) + 1
 				this.$emit('change', {
 					index: Number(index) + 1
 				})
 			},
 			touchMove(e) {
 				if (this.disabled) {
-					return;
+					return
 				}
 				if (!e.changedTouches[0]) {
-					return;
+					return
 				}
-				const movePageX = e.changedTouches[0].pageX;
-				const distance = movePageX - this.pageX;
+				const movePageX = e.changedTouches[0].pageX
+				const distance = movePageX - this.pageX
 
 				if (distance <= 0) {
-					return;
+					return
 				}
-				let index = Math.ceil(distance / this.size);
-				index = index > this.count ? this.count : index;
+				let index = Math.ceil(distance / this.size)
+				index = index > this.count ? this.count : index
 				this.$emit('change', {
 					index: index
 				})
 			}
 		},
-		// #ifdef H5
-		mounted() {
-			const className = '.tui-rate-box';
-			let query = uni.createSelectorQuery().in(this)
-			query.select(className).boundingClientRect((res) => {
-				this.pageX = res.left || 0
-			}).exec()
-		},
 		// #endif
 		onReady() {
-			const className = '.tui-rate-box';
-			let query = uni.createSelectorQuery().in(this)
+			const className = '.tui-rate-box'
+			const query = uni.createSelectorQuery().in(this)
 			query.select(className).boundingClientRect((res) => {
 				this.pageX = res.left || 0
 			}).exec()
-		},
-		computed: {
-		    currentValue: {
-		        // 动态计算currentValue的值
-		        get: function() {
-					console.log(this.value);
-					console.log("xiaozhueq");
-		            return this.value;
-		        },
-		        set: function(val) {
-		            this.$emit('input', val);
-		        }
-		    }
-		},
+		}
 	}
 </script>
 

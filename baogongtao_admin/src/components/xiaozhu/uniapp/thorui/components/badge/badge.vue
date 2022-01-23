@@ -1,14 +1,14 @@
 <template>
-	<view class="tui-badge-class" :class="[dot?'tui-badge-dot':'tui-badge','tui-'+type, size?'tui-badge-small':'']" v-if="visible">
-		<slot></slot>
-	</view>
+  <view v-if="visible" class="tui-badge-class" :class="[dot?'tui-badge-dot':'tui-badge','tui-'+type, size?'tui-badge-small':'']">
+    <slot />
+  </view>
 </template>
 
 <script>
 	export default {
-		name: "tuiBadge",
+		name: 'TuiBadge',
 		props: {
-			//primary,warning,green,danger,white，black，gray
+			// primary,warning,green,danger,white，black，gray
 			type: {
 				type: String,
 				default: 'primary'
@@ -18,12 +18,12 @@
 				type: String,
 				default: ''
 			},
-			//是否是圆点
+			// 是否是圆点
 			dot: {
 				type: Boolean,
 				default: false
 			},
-			//是否可见
+			// 是否可见
 			visible: {
 				type: Boolean,
 				default: true
