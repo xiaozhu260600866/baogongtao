@@ -22,6 +22,10 @@
 			</view>
 			
 			<view class="bg-f">
+				<dx-list-cell arrow name="产品管理" iconName="dxi-icon dxi-icon-classify" :iconSize="18"
+				 @click="goto('/pages/merchant/products/lists',1)"></dx-list-cell>
+				<dx-list-cell arrow name="订单管理" iconName="dxi-icon dxi-icon-order2" :iconSize="18"
+				 @click="goto('/pages/merchant/order/lists',1)"></dx-list-cell>
 				<dx-list-cell arrow name="简历管理" iconName="iconfont icon-user-apply" :iconSize="18"
 				 @click="goto('/pages/merchant/recruit/apply/index',1)"></dx-list-cell>
 				<dx-list-cell arrow name="优惠券管理" iconName="iconfont icon-user-coupon" :iconSize="18"
@@ -36,9 +40,8 @@
 				 @click="goto('/pages/merchant/company/index',1)"></dx-list-cell>
 				<dx-list-cell arrow name="扫一扫" iconName="iconfont icon-user-scan" :iconSize="18"
 				 @click="goto('/pages/merchant/coupon/cancel/cancel',1)"></dx-list-cell>
-			</view>
-			<view class="m20">
-				<dx-button size="lg" hllow block>退出</dx-button>
+				<dx-list-cell arrow name="退出" iconName="iconfont icon-user-quit" :iconSize="18"
+				 @click=""></dx-list-cell>
 			</view>
 			
 			<!-- <view class="block-sec">

@@ -173,6 +173,34 @@
 				"navigationBarTitleText": "个人信息",
 				"enablePullDownRefresh":true
 			}
+		},
+		{
+			"path": "pages/merchant/products/created_edit",
+			"style": {
+				"navigationBarTitleText": "编辑产品",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/products/lists",
+			"style": {
+				"navigationBarTitleText": "产品管理",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/order/detail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/order/lists",
+			"style": {
+				"navigationBarTitleText": "订单管理",
+				"enablePullDownRefresh":true
+			}
 		}
 	],
 	"tabBar": {

@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'iconfont';  /* Project id 1759642 */
-  src: url('//at.alicdn.com/t/font_1759642_naz03b26hh8.woff2?t=1637999377970') format('woff2'),
-       url('//at.alicdn.com/t/font_1759642_naz03b26hh8.woff?t=1637999377970') format('woff'),
-       url('//at.alicdn.com/t/font_1759642_naz03b26hh8.ttf?t=1637999377970') format('truetype');
+  src: url('//at.alicdn.com/t/font_1759642_iidtf2tbieo.woff2?t=1645671200167') format('woff2'),
+       url('//at.alicdn.com/t/font_1759642_iidtf2tbieo.woff?t=1645671200167') format('woff'),
+       url('//at.alicdn.com/t/font_1759642_iidtf2tbieo.ttf?t=1645671200167') format('truetype');
 }
 
 /* 3314024140@qq.com  dx3229010  包工淘 */
@@ -50,6 +50,7 @@
 .icon-user-transactions:before{content: "\e63e";}/* 工资发放 */
 .icon-user-company:before{content: "\e613";}/* 企业展示 */
 .icon-user-scan:before{content: "\e626";}/* 扫一扫 */
+.icon-user-quit:before{content: "\e60e";}/* 退出 */
 
 
 .icon-task-null:before{content: "\e610";}/* 没有任务 */
