@@ -27,8 +27,10 @@
 				<!-- <view class="tui-protocol" hover-class="opcity" :hover-stay-time="150">点击"登录"即表示已同意
 					<text class="tui-protocol-red" @tap="protocol">《用户协议》</text>
 				</view> -->
-				
-				<view class="fs-15 text-right mt10 fc-3" @click="$refs.registerDiag.thisDiag = true">立即注册</view>
+				<view class="flex-between fs-15 mt10 fc-3">
+					<view class="nav-register" @click="$refs.registerDiag.thisDiag = true">立即注册</view>
+					<view class="nav-password" @click="goto('/pages/merchant/login/password',1)">忘记密码</view>
+				</view>
 			</view>
 		</form>
 		<dx-diag title="登录或注册" ref="registerDiag" :bottomOFF="false">

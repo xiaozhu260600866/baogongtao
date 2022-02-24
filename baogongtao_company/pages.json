@@ -94,6 +94,13 @@
 				"enablePullDownRefresh":true
 			}
 		},
+		{
+			"path": "pages/merchant/login/password",
+			"style": {
+				"navigationBarTitleText": "忘记密码",
+				"enablePullDownRefresh":true
+			}
+		},
 		// {
 		// 	"path": "pages/merchant/recruit/show/index",
 		// 	"style": {
