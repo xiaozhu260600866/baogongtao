@@ -40,5 +40,5 @@ page,.container{background: #343D38;}
 }
 
 .company-edit{
-	position: fixed;z-index: 10;right: 40rpx;bottom: 120rpx;background: $color-primary;width: 80rpx;height: 80rpx;border-radius: 50%;display: flex;justify-content: center;align-items: center;
+	position: fixed;z-index: 999;right: 40rpx;bottom: 120rpx;background: $color-primary;width: 80rpx;height: 80rpx;border-radius: 50%;display: flex;justify-content: center;align-items: center;
 }

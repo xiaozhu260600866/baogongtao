@@ -37,7 +37,9 @@
 				<dx-list-cell arrow name="扫一扫" iconName="iconfont icon-user-scan" :iconSize="18"
 				 @click="goto('/pages/merchant/coupon/cancel/cancel',1)"></dx-list-cell>
 			</view>
-			
+			<view class="m20">
+				<dx-button size="lg" hllow block>退出</dx-button>
+			</view>
 			
 			<!-- <view class="block-sec">
 				<dx-nav-class :data="[
@@ -61,8 +63,9 @@
 	import {userinfo, action, logout} from "@/api/user";
 	import dxNavClass from "doxinui/components/nav-class/nav-class"
 	import dxListCell from "doxinui/components/list-cell/list-cell"
+	import dxButton from "doxinui/components/button/button"
 	export default {
-		components:{dxNavClass,dxListCell},
+		components:{dxNavClass,dxListCell,dxButton},
 		data() {
 			return {
 				sysCompany: uni.getStorageSync('sysCompany'),
