@@ -39,6 +39,7 @@
 				"navigationBarTitleText": "任务申请"
 			}
 		},
+		
 		{
 			"path": "pages/task/show/apply_success",
 			"style": {
@@ -76,25 +77,25 @@
 				"enablePullDownRefresh": true
 			}
 		},*/
-		{
-			"path": "pages/user/sign/lists",
-			"style": {
-				"navigationBarTitleText": "我的签约",
-				"enablePullDownRefresh": true
-			}
-		},
-		{
-			"path": "pages/user/sign/show",
-			"style": {
-				"navigationBarTitleText": "签署文件"
-			}
-		},
-		{
-			"path": "pages/user/sign/success",
-			"style": {
-				"navigationBarTitleText": "签约成功"
-			}
-		},
+		// {
+		// 	"path": "pages/user/sign/lists",
+		// 	"style": {
+		// 		"navigationBarTitleText": "我的签约",
+		// 		"enablePullDownRefresh": true
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/user/sign/show",
+		// 	"style": {
+		// 		"navigationBarTitleText": "签署文件"
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/user/sign/success",
+		// 	"style": {
+		// 		"navigationBarTitleText": "签约成功"
+		// 	}
+		// },
 		{
 			"path": "pages/user/login/index/index",
 			"style": {
@@ -176,31 +177,31 @@
 				"navigationBarTitleText": "实名认证"
 			}
 		},
-		{
-			"path": "pages/user/wallet/index",
-			"style": {
-				"navigationBarTitleText": "钱包",
-				"enablePullDownRefresh": true
-			}
-		},
+		// {
+		// 	"path": "pages/user/wallet/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "钱包",
+		// 		"enablePullDownRefresh": true
+		// 	}
+		// },
 		/*{
 			"path": "pages/user/hr/setting",
 			"style": {
 				"navigationBarTitleText": "求职信息"
 			}
 		},*/
-		{
-			"path": "pages/company/login/index",
-			"style": {
-				"navigationBarTitleText": "企业登录"
-			}
-		},
-		{
-			"path": "pages/company/index/index",
-			"style": {
-				"navigationBarTitleText": "企业会员"
-			}
-		},
+		// {
+		// 	"path": "pages/company/login/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "企业登录"
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/company/index/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "企业会员"
+		// 	}
+		// },
 		/*{
 			"path": "pages/company/transfer/lists",
 			"style": {
@@ -208,20 +209,20 @@
 				"enablePullDownRefresh": true
 			}
 		},*/
-		{
-			"path": "pages/company/worker/lists",
-			"style": {
-				"navigationBarTitleText": "我的用工",
-				"enablePullDownRefresh": true
-			}
-		},
-		{
-			"path": "pages/company/worker/transactions",
-			"style": {
-				"navigationBarTitleText": "工资发放记录",
-				"enablePullDownRefresh": true
-			}
-		},
+		// {
+		// 	"path": "pages/company/worker/lists",
+		// 	"style": {
+		// 		"navigationBarTitleText": "我的用工",
+		// 		"enablePullDownRefresh": true
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/company/worker/transactions",
+		// 	"style": {
+		// 		"navigationBarTitleText": "工资发放记录",
+		// 		"enablePullDownRefresh": true
+		// 	}
+		// },
 		{
 			"path": "pages/staff/index/index",
 			"style": {
@@ -253,12 +254,12 @@
 				"navigationBarTitleText": ""
 			}
 		},
-		{
-			"path": "pages/merchant/index/index",
-			"style": {
-				"navigationBarTitleText": "企业中心"
-			}
-		},
+		// {
+		// 	"path": "pages/merchant/index/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "企业中心"
+		// 	}
+		// },
 		{
 			"path": "pages/merchant/lists/index",
 			"style": {
@@ -279,12 +280,12 @@
 				"enablePullDownRefresh": true
 			}
 		},
-		{
-			"path": "pages/merchant/coupon/lists/cancel",
-			"style": {
-				"navigationBarTitleText": "优惠核销记录"
-			}
-		},
+		// {
+		// 	"path": "pages/merchant/coupon/lists/cancel",
+		// 	"style": {
+		// 		"navigationBarTitleText": "优惠核销记录"
+		// 	}
+		// },
 		{
 			"path": "pages/merchant/coupon/show/index",
 			"style": {
@@ -298,13 +299,13 @@
 		// 		"navigationBarTitleText": "优惠券编辑"
 		// 	}
 		// },
-		{
-			"path": "pages/merchant/coupon/created_edit/lists",
-			"style": {
-				"navigationBarTitleText": "发布优惠券",
-				"enablePullDownRefresh":true
-			}
-		},
+		// {
+		// 	"path": "pages/merchant/coupon/created_edit/lists",
+		// 	"style": {
+		// 		"navigationBarTitleText": "发布优惠券",
+		// 		"enablePullDownRefresh":true
+		// 	}
+		// },
 		{
 			"path": "pages/merchant/recruit/lists/index",
 			"style": {
@@ -320,14 +321,14 @@
 				"enablePullDownRefresh":true
 			}
 		},
-		{
-			"path": "pages/merchant/login/index",
-			"style": {
-				"navigationBarTitleText": "商家登录",
-				"enablePullDownRefresh":true,
-				"navigationStyle":"custom"
-			}
-		},
+		// {
+		// 	"path": "pages/merchant/login/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "商家登录",
+		// 		"enablePullDownRefresh":true,
+		// 		"navigationStyle":"custom"
+		// 	}
+		// },
 		{
 			"path": "pages/merchant/recruit/show/index",
 			"style": {
@@ -335,19 +336,19 @@
 				"enablePullDownRefresh":true
 			}
 		},
-		{
-			"path": "pages/merchant/recruit/created_edit/edit",
-			"style": {
-				"navigationBarTitleText": "招聘编辑"
-			}
-		},
-		{
-			"path": "pages/merchant/recruit/created_edit/lists",
-			"style": {
-				"navigationBarTitleText": "发布招聘",
-				"enablePullDownRefresh":true
-			}
-		},
+		// {
+		// 	"path": "pages/merchant/recruit/created_edit/edit",
+		// 	"style": {
+		// 		"navigationBarTitleText": "招聘编辑"
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/merchant/recruit/created_edit/lists",
+		// 	"style": {
+		// 		"navigationBarTitleText": "发布招聘",
+		// 		"enablePullDownRefresh":true
+		// 	}
+		// },
 		{
 			"path": "pages/merchant/recruit/apply/index",
 			"style": {
@@ -369,20 +370,20 @@
 				"enablePullDownRefresh":true
 			}
 		},
-		{
-			"path": "pages/merchant/worker/lists",
-			"style": {
-				"navigationBarTitleText": "我的用工",
-				"enablePullDownRefresh": true
-			}
-		},
-		{
-			"path": "pages/merchant/worker/transactions",
-			"style": {
-				"navigationBarTitleText": "工资发放记录",
-				"enablePullDownRefresh": true
-			}
-		},
+		// {
+		// 	"path": "pages/merchant/worker/lists",
+		// 	"style": {
+		// 		"navigationBarTitleText": "我的用工",
+		// 		"enablePullDownRefresh": true
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/merchant/worker/transactions",
+		// 	"style": {
+		// 		"navigationBarTitleText": "工资发放记录",
+		// 		"enablePullDownRefresh": true
+		// 	}
+		// },
 		{
 			"path": "pages/user/coupon/lists/index",
 			"style": {
@@ -668,6 +669,18 @@
 			"style": {
 				"navigationBarTitleText": "创建地址",
 				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/shop/index/index",
+			"style": {
+				"navigationBarTitleText": "商城首页"
+			}
+		},
+		{
+			"path": "pages/shop/product/show/index",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		}
 		

@@ -44,7 +44,7 @@
 		getSharePoster
 	} from '@/components/js_sdk/QuShe-SharerPoster/QS-SharePoster/QS-SharePoster.js';
 	export default {
-		props: ["data", "posterFilePath", "qrcodeFilePath", ],
+		props: ["data", "posterFilePath", "qrcodeFilePath", "dis"],
 		components: { 
 			QSPopup
 		},
@@ -148,7 +148,7 @@
 							{
 								type: 'text',
 								id: 'contactName',
-								text:'联系人：'+ _this.data.contact_name,
+								text:this.dis ?'联系人：'+ _this.dis.name :'联系人：'+ _this.data.contact_name,
 								color: '#333',
 								serialNum: 3, //序号
 								allInfoCallback({drawArray}) {
@@ -167,7 +167,7 @@
 							},{
 								type: 'text',
 								id: 'contactPhone',
-								text:'联系电话：'+ _this.data.contact_phone,
+								text:this.dis ?'联系电话：'+ _this.dis.phone :'联系电话：'+ _this.data.contact_phone,
 								color: '#333',
 								serialNum: 4, //序号
 								allInfoCallback({drawArray}) {

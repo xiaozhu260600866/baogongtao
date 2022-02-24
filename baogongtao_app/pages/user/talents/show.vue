@@ -66,14 +66,14 @@
 				</view>
 				<view class="item-edit" @click="goto('/pages/user/talents/layouts/label',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
 			</view>
-			<view class="talents-item">
+			<!-- <view class="talents-item">
 				<view class="item-name">身份证</view>
 				<view class="item-edit" @click="goto('/pages/user/talents/layouts/IDcard',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
 			</view>
 			<view class="talents-item">
 				<view class="item-name">资格证书</view>
 				<view class="item-edit" @click="goto('/pages/user/talents/layouts/cert',1)"><text class="dxi-icon dxi-icon-add-circle"></text></view>
-			</view>
+			</view> -->
 			<view class="talents-item">
 				<view class="item-name">个人简介</view>
 				<view class="item-con">

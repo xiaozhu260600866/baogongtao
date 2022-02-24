@@ -150,7 +150,8 @@
 						if (step == 2) {
 							this.postAjax("/api/auth/user/update", this.ruleform).then(msg => {
 								if (msg.data.code == 0) {
-								 return this.goto("/pages/user/index/index",2);
+									return this.back();
+								 //return this.goto("/pages/user/talents/show",1);
 								}
 						    });
 							

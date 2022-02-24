@@ -71,7 +71,12 @@ Vue.component(
 	'dxButton',
 	dxButton
 );
-
+//全局组件
+import myswiper from 'xiaozhu/uniapp/components/swiper'
+Vue.component(
+	'myswiper',
+	myswiper
+);
 // 强叔
 // uni.removeStorageSync('jsdk');
 // uni.removeStorageSync('distribution');

@@ -20,7 +20,7 @@
 					</view>
 					<view class="qrcode">
 						<view class="p">
-							<image class="image" :src="getSiteName+'/upload/images/dis/'+data.distribution.id+'.jpg'" v-if="data.distribution" @click="previewImage(data.distribution.id+'.jpg','dis')">
+							<image class="image" :src="getSiteName+'/upload/images/dis/'+data.distribution.id+'.jpg'" v-if="data.distribution" @click="OpenPreviewImage(data.distribution.id+'.jpg','dis')">
 						</view>
 					<!-- 	<view class="p1">长按识别小程序<br>开启您的购物之旅</view> -->
 					</view>
@@ -127,6 +127,13 @@
 				})
 				},200)
 				
+			},
+			OpenPreviewImage(){
+				let img = this.getSiteName+'/upload/images/dis/'+this.data.distribution.id+'.jpg'
+				uni.previewImage({
+					current: img, // 当前显示图片的http链接
+					urls: [img] // 需要预览的图片http链接列表
+				})
 			},
 			poster(){
 				uni.previewImage({

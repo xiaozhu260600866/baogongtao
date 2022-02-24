@@ -150,7 +150,7 @@
 			<!-- 如果已有简历 -->
 			<dx-results txt="申请成功" @click="goto('/pages/index/index',2)" v-if="applySuccess"></dx-results>
 		</view>
-		<shareResume ref="shareShow" :data="detail" :qrcodeFilePath="qrcodeFilePath"></shareResume>
+		<shareResume ref="shareShow" :data="detail" :qrcodeFilePath="qrcodeFilePath" :dis="dis"></shareResume>
 	</view>
 </template>
 
@@ -182,6 +182,7 @@
 				},
 				collect: false,
 				type: 1,
+				dis:'',
 				applySuccess: false,
 			}
 		},
@@ -233,6 +234,7 @@
 				this.getAjax(this,data).then(msg => {
 					this.detail = msg.data.data;
 					this.qrcodeFilePath = msg.data.path
+					this.dis = msg.data.dis;
 				});
 			}
 		}
