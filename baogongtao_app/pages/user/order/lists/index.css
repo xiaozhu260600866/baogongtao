@@ -1,24 +1,23 @@
 
 /* 头部 */
 .order-class{display: flex;}
-.order-class .nav-tab{height: 88upx;line-height: 88upx;text-align: center;font-size: 28upx;color: #333;width: 100%;}
-.order-class .cur{font-size: 30upx;color: #55B4F6;position: relative;}
-.order-class .cur:before{content: "";display: block;position: absolute;bottom: 0;left: 50%;margin-left: -30upx;height: 6upx;width: 60upx;background: #55b4f6;border-radius: 8upx;}
+.order-class .nav-tab{height: 44px;line-height: 44px;text-align: center;font-size: 14px;color: #333;width: 100%;}
+
+.selected {color: #ff721f;border-bottom: 2px solid #ff721f;}
 
 
 /* 列表 */
 .pro_info{background: #fff;}
-.pro_info .order_date{display: flex;justify-content: space-between;align-items: center;padding-bottom: 16upx;border-bottom: 1upx #eee solid;}
-.pro_info .order_info{padding: 20upx 0;}
-.pro_info .del-icon{border-radius: 50%;width: 52upx;height: 52upx;line-height: 52upx;text-align: center;}
+.pro_info .order_date{height: 36px;line-height: 36px;display: flex;justify-content: space-between;}
+.pro_info .order_info{display: flex;}
+.pro_info .order_info .pro_img .img{width: 50px;height: 50px;display: flex;}
+.pro_info .order_info .pro_info{height: 50px;line-height: 20px;padding-left: 10px;flex: 1;overflow: hidden;display: flex;align-content: space-between;}
+.pro_info .order_count{height: 40px;line-height: 40px;display: flex;justify-content: flex-end;}
+
+.pro_info .btn-group,.pro_info .btn-item{display: flex;justify-content: flex-end;}
+.pro_info .btn-item .btn-nav{width: 80px;height: 30px;line-height: 30px;border: 1px #ddd solid;border-radius: 30px;color: #555;font-size: 14px;text-align: center;margin-left: 10px;display: block;}
 
 
-.order_group{display: flex;padding: 20upx 0;border-top: 1upx #eee solid;justify-content: space-between;font-size: 30upx;line-height: 60upx;}
-.order_group .llabel{width: 160upx;color: #666;}
-
-
-.btn-group{padding-top: 30upx;border-top: 1upx #eee solid;}
-.btn-item{display: flex;justify-content: flex-end;}
-.btn-item .btn-nav{height: 60upx;line-height: 58upx;border: 1upx #ddd solid;border-radius: 30upx;color: #555;font-size: 26upx;text-align: center;margin-left: 20upx;display: block;min-width: 160upx;padding: 0 24upx;}
-.btn-item .btn-nav:last-child{background: #FE4543;border: 0;color: #fff;line-height: 60upx;}
-.btn-item .obtn{border: 1upx #ddd solid!important;background: #fff!important;color: #555!important;}
+.od-lists .od-row{line-height: 20px;padding: 10px 15px;color: #666;display: flex;justify-content: space-between;border-bottom: #f2f2f2 solid 1px;font-size: 14px;}
+.od-lists .od-row .llabel{width: 80px;}
+.od-lists .od-row .rvalue{flex: 1;overflow: hidden;text-align: right;color: #333;}
