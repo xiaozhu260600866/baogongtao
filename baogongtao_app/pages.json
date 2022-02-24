@@ -70,13 +70,13 @@
 				"enablePullDownRefresh": true
 			}
 		},
-		/*{
+		{
 			"path": "pages/user/order/lists/index",
 			"style": {
-				"navigationBarTitleText": "任务",
+				"navigationBarTitleText": "商城订单",
 				"enablePullDownRefresh": true
 			}
-		},*/
+		},
 		// {
 		// 	"path": "pages/user/sign/lists",
 		// 	"style": {
@@ -682,6 +682,24 @@
 			"style": {
 				"navigationBarTitleText": ""
 			}
+		},
+		{
+			"path": "pages/shop/order/buy/index",
+			"style": {
+				"navigationBarTitleText": "提交订单"
+			}
+		},
+		{
+			"path": "pages/shop/order/pay_center/index",
+			"style": {
+				"navigationBarTitleText": "支付"
+			}
+		},
+		{
+			"path": "pages/shop/order/payed/index",
+			"style": {
+				"navigationBarTitleText": "支付结果"
+			}
 		}
 		
 	],
@@ -692,12 +710,21 @@
 				"text": "首页",
 				"iconPath": "static/images/A01.png",
 				"selectedIconPath": "static/images/A02.png"
-			},{
-				"pagePath": "pages/merchant/coupon/lists/index",
-				"text": "优惠券",
+				},
+			// },{
+			// 	"pagePath": "pages/merchant/coupon/lists/index",
+			// 	"text": "优惠券",
+			// 	"iconPath": "static/images/C01.png",
+			// 	"selectedIconPath": "static/images/C02.png"
+			// },
+			{
+				"pagePath": "pages/shop/index/index",
+				"text": "商城",
 				"iconPath": "static/images/C01.png",
 				"selectedIconPath": "static/images/C02.png"
-			},{
+			},
+			
+			{
 				"pagePath": "pages/task/lists/index",
 				"text": "任务",
 				"iconPath": "static/images/B01.png",

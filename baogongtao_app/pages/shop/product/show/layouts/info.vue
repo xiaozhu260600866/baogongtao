@@ -79,7 +79,7 @@ export default {
 				if (msg.data.status == 2) {
 				    if (showType != "addCart") {
 				        this.infoDiag = false;
-				        this.goto('/pages/order/buy/index?order_no=' + msg.data.order_no,1);
+				        this.goto('/pages/shop/order/buy/index?order_no=' + msg.data.order_no,1);
 				        return false;
 				    }
 				    this.cartNum = msg.data.num;
