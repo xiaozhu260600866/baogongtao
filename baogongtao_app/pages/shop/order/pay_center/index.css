@@ -1,0 +1,10 @@
+page{background: #fff;}
+
+
+#pay_price {font-size: 30px;font-family: 'Arial';padding: 20px 0;text-align: center;margin-top: 20px;}
+#pay_info {padding: 0 15px;}
+#pay_info .list-group {line-height: 46px;display: flex;justify-content: space-between;border-bottom: 1px #eee solid;}
+#pay_info .list-group .iconfont {color: #888;}
+#pay_info .list-group .txt_l {font-size: 15px;color: #888;width: 70px;}
+#pay_info .list-group .txt_r {font-size: 15px;flex: 1;overflow: hidden;padding-left: 15px;}
+#pay_submit{margin: 20px 10px;background: #FF4351;height: 50px;line-height: 50px;text-align: center;color: #fff;border-radius: 5px;font-size: 20px;}
