@@ -161,6 +161,20 @@ export default {
 		onShareAppMessage() {
 			this.shareSource(this, '商城');
 		},
+		onShow(){
+			attributes({type:9,source:'app'}).then(res => {
+				this.industryData = res.data.lists;
+			})
+			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+				this.ruleform = res.data.user.get_user_info;
+				if(!this.ruleform.avatarUrl){
+					this.avatarUrl = res.data.user.get_wechat_user ? res.data.user.get_wechat_user.avatarUrl : 'https://www.baogongtao.com/images/user.png';	
+				}else{
+					this.avatarUrl = this.ruleform.avatarUrl
+				}
+					
+			})
+		},
 		onLoad(options) {
 			attributes({type:9,source:'app'}).then(res => {
 				this.industryData = res.data.lists;
