@@ -720,8 +720,8 @@
 			{
 				"pagePath": "pages/shop/index/index",
 				"text": "商城",
-				"iconPath": "static/images/C01.png",
-				"selectedIconPath": "static/images/C02.png"
+				"iconPath": "static/images/E01.png",
+				"selectedIconPath": "static/images/E02.png"
 			},
 			
 			{

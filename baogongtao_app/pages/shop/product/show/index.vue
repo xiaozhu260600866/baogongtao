@@ -129,7 +129,7 @@
 		<div id="footer">
 			<div class="left plr8">
 				<button class="btn-item share" hover-class="none" @click="goto('/pages/index/index', 2)">
-					<p class="iconfont icon-group-home"></p>
+					<p class="iconfont icon-pro-home"></p>
 					<p class="txt">商城</p>
 				</button>
 				<button class="btn-item share" hover-class="none" open-type="share">
