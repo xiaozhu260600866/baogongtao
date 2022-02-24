@@ -6,7 +6,10 @@
 			 block></weui-input>
 			<weui-input v-model="ruleform.industry" label="期望行业" splitWord="/" name="industry" type="manyselect" dataKey="industryData" changeField="value"
 			 block></weui-input>
-			 <weui-input v-model="ruleform.address" label="省市区" name="address" type="txt" block ></weui-input>
+			
+			 
+			 <dx-address v-model="ruleform.address" labeltxt="所在区域"  datatype="require" ref="address" :addressHidden="true"
+			  block></dx-address>
 			<dxftButton type="primary" size="lg" @click="submit(2)">提交</dxftButton>
 		</view>
 	</view>

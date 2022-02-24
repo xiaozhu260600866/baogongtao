@@ -1,0 +1,96 @@
+page{padding-bottom: 0!important;}
+/* 头部城市+logo */
+.top-city{position: fixed;top: 0;left: 0;width: 100%;z-index: 10;box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, .2);-webkit-box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, .2);-moz-box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, .2);align-items: center;}
+
+.top-city .left-logo{display: flex;align-items: center;}
+.top-city .left-logo .img{width: 30px;height: 30px;display:flex;border-radius: 50%;}
+
+
+/* 轮播 */
+.swiper_box image{width: 100%;}
+
+
+/* 优惠券 */
+.index-coupon{white-space:nowrap;display:flex;}
+.index-coupon .c-list{background-image: url(https://boss.doxinsoft.com/images/wap/coupon-act-2.png);background-size: 100% 100%;background-repeat: no-repeat;width: 183px;display: inline-block;margin-right: 10px;}
+.index-coupon .c-list.act{background-image: url(https://boss.doxinsoft.com/images/wap/coupon-yes-2.png);}
+.index-coupon .c-list .list-box{display: flex;justify-content: space-between;align-items: center;height: 80px;}
+.index-coupon .c-list .l-info{width: 133px;text-align: center;}
+.index-coupon .c-list .main{}
+.index-coupon .c-list .r-state{width: 50px;text-align: center;}
+
+
+/* 导航按钮 */
+.fun_button {padding: 5px;background: white;}
+.fun_button_con{display: flex;flex-wrap: wrap;}
+.fun_button_con .a {width: 20%;text-align: center;}
+.fun_button_con .a .button-img {text-align: center;text-align: -webkit-center;}
+.fun_button_con .a .button-img .img{width: 44px;height: 44px;display: flex;justify-content: center;border-radius: 10px;}
+
+
+/* 低价火拼 */
+.assemble{width: 100%;}
+.ass-title{display: flex;justify-content: space-between;}
+.ass-title .name{line-height: 16px;height: 16px;border-left: 4px #FF5400 solid;padding-left: 8px;}
+.ass-title .icon{width: 80px;text-align: right;line-height: 16px;height: 16px;}
+.ass-box{white-space: nowrap;display: flex;}
+.ass-list{display: inline-block;width: 96px;margin: 0 7px;}
+.ass-list .ass-img{position: relative;}
+.ass-list .ass-img .img{height: 96px;width: 96px;display: flex;}
+.ass-list .pr-group{align-items: flex-end;}
+
+
+
+/* 热销 */
+.hot{width: 100%;overflow: hidden;white-space: nowrap;}
+.hot-list{display: flex;padding: 0 8px;white-space: nowrap;}
+.hot-item{width: 116px;padding: 0 7px;display: inline-block;}
+.hot-item .item-box .img{height: 100px;width: 100%;display: flex;}
+
+
+/* 新闻滚动 */
+.news-scroll{margin-top: 8px;background: #fff;padding: 10px;}
+.news-scroll .news-icon image{width: 120upx;}
+.news-scroll-list{padding-left: 140upx;}
+.news-scroll-list view{height: 60upx;line-height: 60upx;}
+.news-scroll-list navigator{color: #333;}
+
+
+/* 广告图 */
+.index_ad .ad-item .img{width: 100%;display: flex;height: 300upx;}
+
+
+.title-menu{position: relative;text-align: center;line-height: 40upx;}
+.title-menu:before{content: '';display: block;position: absolute;top: 50upx;right: 28%;left: 28%;border-top: 2upx #999 solid;}
+.title-menu .txt{position: relative;}
+
+
+.pro_info{position: relative;}
+.pro_info .pro-cart{position: absolute;right: 0;bottom: 24px; width: 30px;height: 30px;line-height: 30px;text-align: center;border-radius: 50%;
+	background: -webkit-linear-gradient(#fe7853, #ff4141); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#fe7853, #ff4141); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#fe7853, #ff4141); /* Firefox 3.6 - 15 */
+	background: linear-gradient(#fe7853, #ff4141); /* 标准的语法 */
+}
+
+
+/* .float-nav-index{position: fixed;z-index:15;right: 15px;width: 40px;height: 40px;background-color: #fff;border-radius: 50%;line-height: 38px;text-align: center;padding-left: 0;padding-right: 0;border: 1px #ccc solid;}
+.float-nav-index .iconfont{color: #516171;} */
+
+/* .appointment .float-nav-index{position: fixed;z-index:15;right: 15px;width: 48px;height: 48px;background-color: #fff;border-radius: 50%;text-align: center;padding-left: 0;padding-right: 0;border: 1px #ccc solid;}
+.appointment .float-nav-index .nav-box{width: 46px;height: 46px;}
+.appointment .float-nav-index .iconfont{color: #516171;line-height: 32px;font-size: 22px!important;height: 28px;}
+.appointment .float-nav-index .nav-name{color: #666;line-height: 16px;height: 20px;} */
+
+
+.tui-pro-item {display: flex;width: 100%;background: #fff;box-sizing: border-box;border-radius: 12upx;position: relative;}
+.tui-pro-item::after {left: 220upx;}
+.tui-pro-img {width: 200upx;height: 200upx;display: block;flex-shrink: 0;border-radius: 12upx;}
+.tui-pro-content {flex: 1;display: flex;flex-direction: column;justify-content: space-between;box-sizing: border-box;padding: 0 20upx;}
+.tui-pro-tit {color: #2e2e2e;font-size: 30upx;word-break: break-all;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;}
+.tui-pro-btmbox {width: 100%;display: flex;align-items: center;justify-content: space-between;}
+.tui-sale-price {font-size: 34upx;font-weight: 500;color: #e41f19;}
+.tui-factory-price {font-size: 24upx;color: #a0a0a0;text-decoration: line-through;padding-left: 12upx;}
+.tui-countdown {display: flex;align-items: center;}
+.tui-countdown-text {padding: 0 8upx;font-size: 24upx;line-height: 24upx;color: #555;}
+.tui-countdown .tui-countdown-item{height: 14px!important;width: 16px!important;}
