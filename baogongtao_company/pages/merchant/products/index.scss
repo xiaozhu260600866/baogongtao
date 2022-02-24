@@ -1,0 +1,12 @@
+.proLists{
+	::v-deep .dxi_pic-lists{position: relative;}
+	.dxi-icon{position: absolute;top: 0;right: 0;width: 80rpx;height: 80rpx;text-align: center;line-height: 80rpx;}
+	.edit-nav ::v-deep .dxi-btn{margin: 20upx 0 0 20upx;}
+}
+
+// 编辑产品
+.pro_edit{
+	::v-deep .dx-cell.right{
+		.dx-input{text-align: right;margin-right: 10rpx;}
+	}
+}
