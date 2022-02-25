@@ -12,6 +12,9 @@
                     <el-input v-model="listQuery.keywords" placeholder="企业名称" />
                   </el-form-item>
                   <el-form-item>
+                    <el-input v-model="listQuery.phone" placeholder="请输入手机" />
+                  </el-form-item>
+                  <el-form-item>
                     <el-select
                       v-model="listQuery.validity"
                       clearable

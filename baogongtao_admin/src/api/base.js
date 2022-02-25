@@ -68,6 +68,13 @@ export function attributeDelete(data) {
     data
   })
 }
+export function signLists(data) {
+  return request({
+    url: '/base/sign-lists',
+    method: 'post',
+    data
+  })
+}
 export function WechatLists(data) {
   return request({
     url: '/wechat/lists',

@@ -44,6 +44,9 @@
           下载个人所得发放模板</el-button>
         <el-button v-if="role==12" type="success" @click="addUser"><i class="el-icon-download" />
           新增自由职业者</el-button>
+        <el-button v-if="role==12" type="success" @click="uploadUser"><i class="el-icon-download" />
+          上传自由职业者</el-button>
+
         <el-dropdown v-if="role==6">
           <el-button type="primary">上传员工<i class="el-icon-arrow-down el-icon--right" /></el-button>
           <el-dropdown-menu slot="dropdown">
@@ -425,11 +428,16 @@
         </div>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="formVisible = false">取 消</el-button>
+        <el-button @click="formVisibleGarrison = false">取 消</el-button>
         <el-button type="primary" @click="submitFormGarrison('formData')">提 交</el-button>
       </div>
     </el-dialog>
     <chooseLocation ref="chooseLocation" @callBack="locationCallBack" />
+    <uploadFile
+      ref="upload"
+      :action="uploadAction"
+      :down-load-url="downloadUrl"
+    />
   </div>
 </template>
 
@@ -450,12 +458,14 @@
 	import Pagination from '@/components/Pagination'
 	import SignStatus from '@/views/user/components/SignStatus'
 	import WorkerStatus from '@/views/user/components/WorkerStatus'
+
 	export default {
 		components: {
 			Pagination,
 			SignStatus,
 			WorkerStatus,
-			chooseLocation
+			chooseLocation,
+			'uploadFile': resolve => require(['xiaozhu/elementAdmin/components/uploadFile.vue'], resolve)
 		},
 		props: {
 			role: {
@@ -480,6 +490,8 @@
 				],
 				companys: [],
 				roleName: '',
+				uploadAction: this.getSiteName() + '/api/user/upload-garrsion',
+				downloadUrl: this.getSiteName() + '/uploadDemo.xlsx',
 				formVisible: false,
 				formVisibleStaff: false,
 				formVisibleGarrison: false,
@@ -528,6 +540,9 @@
 			this.getListsData()
 		},
 		methods: {
+			uploadUser() {
+				this.$refs.upload.ajax()
+			},
 			addUser() {
 				this.formTitle = '新增'
 				this.formType = 'create'

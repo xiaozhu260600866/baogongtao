@@ -58,6 +58,12 @@ const userRouter = {
         meta: { title: '自由职业者', icon: 'dx-user' }
     },
 	{
+	    path: 'sign',
+	    component: () => import('@/views/user/sign'),
+	    name: 'signLists',
+	    meta: { title: '打卡记录', icon: 'dx-user' }
+	},
+	{
 	    path: 'wechat-lists',
 	    component: () => import('@/views/user/wechat_lists'),
 	    name: 'UserLists',

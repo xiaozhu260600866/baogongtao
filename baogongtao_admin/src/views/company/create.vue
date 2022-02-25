@@ -139,7 +139,7 @@
           </div>
         </el-col>
 
-        <el-col v-if="!formData.id" :span="24">
+        <el-col :span="24">
           <div class="dx-container mt5">
 
             <div class="dx-title">
@@ -162,7 +162,7 @@
                     <el-form-item
                       label="登录密码"
                       prop="password"
-                      :rules="[{ required: true, message: '请输入企业登录密码'}]"
+                      :rules="formData.id ? [] :[{ required: true, message: '请输入企业登录密码'}]"
                     >
                       <el-input
                         v-model="formData.password"
