@@ -1,5 +1,5 @@
 <template>
-	<dx-diag title="请填写物流信息" :titBold="false" :open="express">
+	<dx-diag title="请填写物流信息" :titBold="false" :open="express" @callBack="express = false" myclass="expressDiag">
 		<view class="express">
 			<weui-input v-model="ruleform.express_name" label="快递" name="express_name" changeField="value" type="select" dataKey="expressArr"
 			 left datatype="require"></weui-input>
@@ -15,10 +15,12 @@ import dxDiag from "doxinui/components/diag/diag"
 import dxButton from "doxinui/components/button/button"　
 export default {
 	components:{dxDiag,dxButton},
-	props: ['express'],
+	props: ['express','ruleform'],
 	data() {
 		return {
-			
+			express: false,
+			mpType: 'page',
+			ruleform:{}
 		}
 	},
 	methods: {
@@ -28,12 +30,5 @@ export default {
 
 </script>
 <style lang="scss">
-.express{
-	::v-deep .dx-cell{
-		border: 1rpx #eee solid;border-radius: 12rpx;margin: 30rpx 0;font-size: 32rpx;
-		&::after{display: none;}
-		.dx-label{width: 88rpx;}
-		.dx-input{font-size: 32rpx;}
-	}
-}
+
 </style>

@@ -87,3 +87,14 @@ button::after{border: 0;}
 
 // 其他
 .col_group .dx-cell::after{display: none;}
+
+
+// 物流弹出层
+.express{
+	.dx-cell{
+		border: 1rpx #eee solid;border-radius: 12rpx;margin: 30rpx 0;font-size: 32rpx!important;
+		&::after{display: none!important;}
+		.dx-label{width: 88rpx;}
+		.dx-input{font-size: 32rpx!important;}
+	}
+}

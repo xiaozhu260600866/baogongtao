@@ -27,7 +27,7 @@
 				<weui-input v-model="ruleform.remark" label="买家留言" type="txt" name="remark"></weui-input>
 			</view>
 			
-			<view class="block-sec orderDetail">
+			<view class="block-sec orderDetail" v-if="ruleform.status != 2">
 				<weui-input label="快递公司" v-model="ruleform.express_name" type="txt" name="name"></weui-input>
 				<weui-input label="快递单号" v-model="ruleform.express_no" type="txt" name="name"></weui-input>
 				<weui-input label="发货时间" v-model="ruleform.express_at" type="txt" name="name"></weui-input>
@@ -35,22 +35,27 @@
 			<view id="order-footer">
 				<view class="lprice fs-14 pl10"></view>
 				<view class="rbtn">
-					<!-- 待发货 申请售后&再次购买-->
+					<!-- 待发货-->
 					<view class="btn-item" v-if="ruleform.status == 2">
-						<view class="btn-nav" @click="$refs.expressDiag.express = true">发货</view>
+						<!-- 如果是邮寄 -->
+						<view class="btn-nav ibtn" @click="$refs.expressDiag.express = true">发货</view>
+						<!-- 如果是自提 -->
+						<view class="btn-nav" @click="$refs.cancel.thisPrompt = true">核销</view>
 					</view>
 				</view>
 			</view>
 		</view>
 		<express ref="expressDiag"></express>
+		<dx-prompt content="是否确认核销订单" ref="cancel"></dx-prompt>
 	</view>
 </template>
 
 <script>
 	import orderPro from "@/components/orderPro"
 	import express from "./layouts/express"
+	import dxPrompt from "doxinui/components/diag/prompt"
 	export default {
-		components:{orderPro,express},
+		components:{orderPro,express,dxPrompt},
 		data() {
 			return {
 				formAction: '/shop/product/class',
@@ -105,6 +110,13 @@
 					{label: '微信支付',value: 1},
 					{label: '余额支付',value: 2},
 				],
+				
+				expressArr:[
+					{label:'顺丰速运',value:'顺丰速运'},
+					{label:'中通快递',value:'中通快递'},
+					{label:'申通快递',value:'申通快递'},
+					{label:'韵达快递',value:'韵达快递'},
+				]
 				
 			}
 		},
