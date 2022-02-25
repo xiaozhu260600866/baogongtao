@@ -18,7 +18,7 @@
 			<view v-if="!examining">
 				<view>
 					<view class="mll_tabs">
-						<view class="name cur">推荐招聘</view>
+						<view class="name cur">推荐招聘1</view>
 						<!-- <view class="name">指派任务</view> -->
 					</view>
 				</view>
