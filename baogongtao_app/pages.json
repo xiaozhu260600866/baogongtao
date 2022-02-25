@@ -117,13 +117,6 @@
 			}
 		},*/
 		{
-			"path": "pages/user/info/basic/index",
-			"style": {
-				"navigationBarTitleText": "基本资料",
-				"enablePullDownRefresh": true
-			}
-		},
-		{
 			"path": "pages/user/task/lists",
 			"style": {
 				"navigationBarTitleText": "我的任务",

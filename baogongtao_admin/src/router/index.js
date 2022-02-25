@@ -18,6 +18,7 @@ import invoiceRouter from './modules/invoice'
 import websiteRouter from './modules/website'
 import integralRouter from './modules/integral'
 import shopRouter from './modules/shop'
+import disRouter from './modules/dis'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -109,6 +110,7 @@ export const asyncRoutes = [
   websiteRouter,
   integralRouter,
   shopRouter,
+  disRouter,
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
