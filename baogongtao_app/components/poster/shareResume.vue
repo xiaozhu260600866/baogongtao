@@ -147,8 +147,8 @@
 							},
 							{
 								type: 'text',
-								id: 'contactName',
-								text:this.dis ?'联系人：'+ _this.dis.name :'联系人：'+ _this.data.contact_name,
+								id: 'salary',
+								text:'薪酬：'+ _this.data.salary,
 								color: '#333',
 								serialNum: 3, //序号
 								allInfoCallback({drawArray}) {
@@ -164,17 +164,19 @@
 										dy: getBgObj().width*0.15+cNameH,
 									}
 								}
-							},{
+							},
+							{
 								type: 'text',
-								id: 'contactPhone',
-								text:this.dis ?'联系电话：'+ _this.dis.phone :'联系电话：'+ _this.data.contact_phone,
+								id: 'education',
+								text:'学历：'+ _this.data.education,
 								color: '#333',
 								serialNum: 4, //序号
 								allInfoCallback({drawArray}) {
 									const companyName = drawArray.find(item => item.id === 'companyName')
-									const companyNameW = getBgObj().width*0.58
+									const companyNameW = getBgObj().width*0.58;
 									const companyNameNum = Math.ceil(companyName.textLength/companyNameW);
 									const companyNameH = getBgObj().width * 0.058*companyNameNum;
+									console.log(59666955699,companyName.textLength,companyNameNum,companyNameW,getBgObj().width*0.04,companyNameH,companyName.size)
 									let cNameH = companyNameH
 									return {
 										size: getBgObj().width * 0.04,
@@ -184,10 +186,68 @@
 								}
 							},
 							{
+								type: 'text',
+								id: 'experience',
+								text: '工作经验：'+_this.data.experience,
+								color: '#333',
+								serialNum: 5, //序号
+								allInfoCallback({drawArray}) {
+									const companyName = drawArray.find(item => item.id === 'companyName')
+									const companyNameW = getBgObj().width*0.58;
+									const companyNameNum = Math.ceil(companyName.textLength/companyNameW);
+									const companyNameH = getBgObj().width * 0.058*companyNameNum;
+									console.log(59666955699,companyName.textLength,companyNameNum,companyNameW,getBgObj().width*0.04,companyNameH,companyName.size)
+									let cNameH = companyNameH
+									return {
+										size: getBgObj().width * 0.04,
+										dx: getBgObj().width * .04,
+										dy: getBgObj().width*0.27+cNameH,
+									}
+								}
+							},
+							{
+								type: 'text',
+								id: 'contactName',
+								text:this.dis ?'联系人：'+ _this.dis.name :'联系人：'+ _this.data.contact_name,
+								color: '#333',
+								serialNum: 6, //序号
+								allInfoCallback({drawArray}) {
+									const companyName = drawArray.find(item => item.id === 'companyName')
+									const companyNameW = getBgObj().width*0.58;
+									const companyNameNum = Math.ceil(companyName.textLength/companyNameW);
+									const companyNameH = getBgObj().width * 0.058*companyNameNum;
+									console.log(59666955699,companyName.textLength,companyNameNum,companyNameW,getBgObj().width*0.04,companyNameH,companyName.size)
+									let cNameH = companyNameH
+									return {
+										size: getBgObj().width * 0.04,
+										dx: getBgObj().width * .04,
+										dy: getBgObj().width*0.33+cNameH,
+									}
+								}
+							},{
+								type: 'text',
+								id: 'contactPhone',
+								text:this.dis ?'联系电话：'+ _this.dis.phone :'联系电话：'+ _this.data.contact_phone,
+								color: '#333',
+								serialNum: 7, //序号
+								allInfoCallback({drawArray}) {
+									const companyName = drawArray.find(item => item.id === 'companyName')
+									const companyNameW = getBgObj().width*0.58
+									const companyNameNum = Math.ceil(companyName.textLength/companyNameW);
+									const companyNameH = getBgObj().width * 0.058*companyNameNum;
+									let cNameH = companyNameH
+									return {
+										size: getBgObj().width * 0.04,
+										dx: getBgObj().width * .04,
+										dy: getBgObj().width*0.39+cNameH,
+									}
+								}
+							},
+							{
 								type: 'image',
 								url: _this.qrcodeFilePath,
 								id:'qrocode',
-								serialNum: 5, //序号
+								serialNum: 8, //序号
 								allInfoCallback({drawArray}) {
 									return {
 										dx: getBgObj().width - getBgObj().width * 0.29,
@@ -205,7 +265,7 @@
 								id: 'tipsOne',
 								text: '长按识别二维码',
 								color: '#888',
-								serialNum: 6, //序号
+								serialNum: 9, //序号
 								allInfoCallback({drawArray}) {
 									return {
 										size: getBgObj().width * 0.028,
@@ -218,7 +278,7 @@
 								id: 'tipsTwo',
 								text: '查看详情',
 								color: '#888',
-								serialNum: 7, //序号
+								serialNum: 10, //序号
 								allInfoCallback({drawArray}) {
 									return {
 										size: getBgObj().width * 0.028,
@@ -231,12 +291,17 @@
 								id: 'content',
 								text: _this.data.job_remark,
 								color: '#333',
-								serialNum: 8, //序号
+								serialNum: 11, //序号
 								allInfoCallback({drawArray}) {
+									const companyName = drawArray.find(item => item.id === 'companyName')
+									const companyNameW = getBgObj().width*0.58
+									const companyNameNum = Math.ceil(companyName.textLength/companyNameW);
+									const companyNameH = getBgObj().width * 0.058*companyNameNum;
+									let cNameH = companyNameH
 									return {
 										size: getBgObj().width * 0.04,
 										dx: getBgObj().width * .04,
-										dy: getBgObj().width * 0.48,
+										dy: getBgObj().width * 0.52+cNameH,
 										lineFeed:{
 											maxWidth:getBgObj().width*0.9,
 											lineHeight:getBgObj().width * 0.07,
