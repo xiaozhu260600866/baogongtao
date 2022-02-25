@@ -28,7 +28,10 @@
 					<!-- 待发货 -->
 					<view class="btn-item" v-if="parent.status == 2">
 						<view class="btn-nav" @click="goto('/pages/merchant/order/detail',1)">订单详情</view>
-						<view class="btn-nav" @click="$refs.express.thisDiag = true">发货</view>
+						<!-- 如果是邮寄显示 -->
+						<view class="btn-nav" @click="$refs.expressDiag.express = true" v-if="parent.sendType == 1">发货</view>
+						<!-- 如果是到店自提显示 -->
+						<view class="btn-nav" @click="$refs.cancel.thisPrompt = true" v-if="parent.sendType == 2">核销</view>
 					</view>
 					<!-- 其他 -->
 					<view class="btn-item" v-else>
@@ -37,26 +40,19 @@
 				</view>
 			</view>
 		</view>
-		<dx-diag title="请填写物流信息" :titBold="false" ref="express">
-			<view class="express">
-				<weui-input v-model="ruleform.express_name" label="快递" name="express_name" changeField="value" type="select" dataKey="expressArr"
-				 left datatype="require"></weui-input>
-				<weui-input v-model="ruleform.express_no" label="单号" type="text" name="express_no" datatype="require"></weui-input>
-			</view>
-			<view class="btn">
-				<dx-button type="primary" size="lg" block>确认</dx-button>
-			</view>
-		</dx-diag>
+		<express ref="expressDiag"></express>
+		<dx-prompt content="是否确认核销订单" ref="cancel"></dx-prompt>
 	</view>
 </template>
 
 <script>
 	import dxTabs from "doxinui/components/tabs/tabs"
 	import orderPro from "@/components/orderPro"
-	import dxDiag from "doxinui/components/diag/diag"
-	import dxButton from "doxinui/components/button/button"　
+	import express from "./layouts/express"
+	import dxButton from "doxinui/components/button/button"
+	import dxPrompt from "doxinui/components/diag/prompt"
 	export default {
-		components:{dxTabs,orderPro,dxDiag,dxButton},
+		components:{dxTabs,orderPro,express,dxButton,dxPrompt},
 		data() {
 			return {
 				formAction: '/shop/product/class',
@@ -91,6 +87,25 @@
 					num: 3,
 					amount: 239.00,
 					status: 2,
+					sendType: 1,
+				},{
+					order_no:'2021032215332102',
+					created_at:'2021-03-22 15:33:21',
+					products:[{
+						getProduct:{
+							firstCover:'https://boss.doxinsoft.com/upload/images/product/300_k3uBHMtTuT.jpeg',
+							name:'特步男鞋春季新款夏季网面透气运动鞋男网鞋跑步鞋运动休闲鞋子官方旗 黑白（网面） ',
+							unit:'个'
+						},
+						amount:139.00,
+						num:1,
+						is_info:1,
+						attribute:'40',
+					}],
+					num: 3,
+					amount: 239.00,
+					status: 2,
+					sendType: 2,
 				},{
 					order_no:'2021032109272601',
 					created_at:'2021-03-21 09:27:26',

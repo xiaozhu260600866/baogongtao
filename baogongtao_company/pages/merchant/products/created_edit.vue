@@ -6,6 +6,8 @@
 				<weui-input v-model="ruleform.name" label="产品名称" type="text" name="name" datatype="require" block></weui-input>
 				<weui-input v-model="ruleform.needArr" label="分类" name="needArr" type="manyselect" dataKey="needArr"
 				 changeField="value"></weui-input>
+				<weui-input v-model="ruleform.sendType" label="服务方式" name="sendType" changeField="value" type="radio" dataKey="sendTypeArr"
+				 @callback="test" right></weui-input>
 			</view>
 			<view class="block-sec">
 				<weui-input v-model="ruleform.price" label="单价" type="text" name="price" myclass="right">
@@ -16,10 +18,11 @@
 				</weui-input>
 			</view>
 			<view class="block-sec">
-				<weui-input v-model="ruleform.cover" label="图片" type="upload" upurl='article' allowUpLoadNum="5" name="cover" datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.content" label="商品详情" type="textarea" name="content" datatype="require" block></weui-input>
-				<weui-input v-model="ruleform.contentImg" label="详情图片" type="upload" upurl='article' allowUpLoadNum="5" name="contentImg"
+				<weui-input v-model="ruleform.cover" label="缩略图片" type="upload" upurl='article' allowUpLoadNum="5" name="cover"
 				 datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.cover" label="详细页横幅图片" type="upload" upurl='article' allowUpLoadNum="5" name="cover" block></weui-input>
+				<weui-input v-model="ruleform.content" label="商品详情" type="textarea" name="content" datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.contentImg" label="详情图片" type="upload" upurl='article' allowUpLoadNum="5" name="contentImg" block></weui-input>
 			</view>
 		</view>
 		<dxftButton type="primary" size="lg" @click="goto('/pages/merchant/products/lists',1)">确认</dxftButton>
@@ -53,6 +56,10 @@
 						{label: '机械设备',value: '10'}
 					]
 				}],
+				sendTypeArr:[
+					{label: '邮寄',value: '1'},
+					{label: '到店',value: '2'}
+				]
 			}
 		},
 		onLoad() {
