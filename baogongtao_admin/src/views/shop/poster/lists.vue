@@ -1,42 +1,41 @@
 <template>
-    <div>
-      <dx-table :data="data" :globalData="globalData" @submitBeforeCallBack="submitBeforeCallBack" :operateWidth="180">    </dx-table>
-    </div>
+  <div>
+    <dx-table :data="data" :global-data="globalData" :operate-width="180" @submitBeforeCallBack="submitBeforeCallBack" />
+  </div>
 </template>
 <script type="text/javascript">
-    import globalData from "./layouts/poster.js";
+    import globalData from './layouts/poster.js'
     export default {
+        components: {
+            'dx-table': resolve => require(['xiaozhu/elementAdmin/components/dx_table.vue'], resolve)
+            // "dx-create-edit": resolve => require(["xiaozhu/elementAdmin/components/create_edit.vue"], resolve),
+        },
         data() {
             return {
-                formAction: "/admin/shop/poster/lists",
+                formAction: '/admin/shop/poster/lists',
                 data: this.formatData(this),
                 siteName: this.getSiteName(),
-                globalData: globalData,
+                globalData: globalData
             }
         },
-        mounted() {
-
-            this.ajax();
-        },
         watch: {
-            "$route": "ajax"
+            '$route': 'ajax'
+        },
+        mounted() {
+            this.ajax()
         },
         methods: {
 
-            submitBeforeCallBack(ruleform){
-                this.$set(ruleform,"type",this.data.query.type);
+            submitBeforeCallBack(ruleform) {
+                this.$set(ruleform, 'type', this.data.query.type)
             },
             ajax() {
                 this.getAjax(this, {}, msg => {
                   // this.$nextTick(()=>{
                   //   this.$refs.createEdit.ajax('',this.data,this.globalData.data.formFields);
                   // })
-                });
-            },
-        },
-        components: {
-            "dx-table": resolve => require(["xiaozhu/elementAdmin/components/dx_table.vue"], resolve),
-            //"dx-create-edit": resolve => require(["xiaozhu/elementAdmin/components/create_edit.vue"], resolve),
+                })
+            }
         }
     }
 </script>

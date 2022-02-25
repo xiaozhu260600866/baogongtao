@@ -7,7 +7,7 @@ const disRouter = {
     component: Layout,
     redirect: 'noRedirect',
     name: 'dis',
-    meta: {title: '分销管理', icon: 'dx-finance'},
+    meta: { title: '分销管理', icon: 'dx-finance' },
     children: [
         // {
         //   path: 'config',
@@ -20,7 +20,7 @@ const disRouter = {
           component: () => import('@/views/dis/lists'),
           name: 'disLists',
           meta: { title: '分销列表', icon: '' }
-        },
+        }
 
     ]
 }
