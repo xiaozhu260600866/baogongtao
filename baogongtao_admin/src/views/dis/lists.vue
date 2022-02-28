@@ -1,7 +1,7 @@
 <template>
   <section>
 
-    <dx-table :data="data" :global-data="globalData" :operate-width="180">
+    <dx-table :data="data" :global-data="globalData" :operate-width="100">
       <div slot="append_table_getReferrer" slot-scope="scope">
         <div v-html="scope.row.getReferrer" />
       </div>

@@ -52,12 +52,12 @@
                   </div>
                 </template>
                 <el-table-column type="selection" align="center" width="55" />
-                <el-table-column label="企业名称">
+                <el-table-column label="企业名称" min-width="80">
                   <template slot-scope="scope">
                     {{ scope.row.get_company ? scope.row.get_company.name : null }}
                   </template>
                 </el-table-column>
-                <el-table-column prop="name" label="卡券名称" align="center" width="100" />
+                <el-table-column prop="name" label="卡券名称" align="center" min-width="100" />
                 <el-table-column prop="price" label="价格" align="center" width="120" />
                 <el-table-column prop="price_full" label="满多少元" align="center" width="120" />
 
@@ -75,8 +75,8 @@
                     />
                   </template>
                 </el-table-column>
-                <el-table-column prop="remark" label="简介" align="center" width="120" />
-                <el-table-column label="操作" align="right" width="100">
+                <el-table-column prop="remark" label="简介" align="center" min-width="80" />
+                <el-table-column label="操作" align="center" width="60">
                   <template slot-scope="scope">
                     <el-dropdown @command="handleCommand">
                       <el-button icon="el-icon-more" circle size="mini" />

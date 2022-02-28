@@ -39,8 +39,8 @@
             <router-link :to="'/task/show?id='+scope.row.id" class="fc-blue"><div class="list-txt">{{ scope.row.name }}</div></router-link>
           </template>
         </el-table-column>
-        <el-table-column prop="no" label="任务编号" align="center" width="150" />
-        <el-table-column prop="typeName" label="任务类型" align="center" width="100" />
+        <el-table-column prop="no" label="任务编号" align="center" width="120" />
+        <el-table-column prop="typeName" label="任务类型" align="center" width="130" />
         <el-table-column prop="companyName" label="所属企业" align="center" min-width="180" />
         <el-table-column prop="budget" label="任务预算" align="center" width="100" />
         <el-table-column prop="started_date" label="开始日期" align="center" width="100" />

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<dx-table :data="data" :global-data="globalData" :operate-width="320"
+		<dx-table :data="data" :global-data="globalData" :operate-width="150"
 			@submitBeforeCallBack="submitBeforeCallBack">
 			<div slot="append_table_cover" slot-scope="scope" class="proCover">
 				<img class="img" :src="scope.row.firstCover" alt=""

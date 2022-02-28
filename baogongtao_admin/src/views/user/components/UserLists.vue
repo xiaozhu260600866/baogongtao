@@ -152,7 +152,7 @@
             <div v-else>-</div>
           </template>
         </el-table-column>
-        <el-table-column label="账号状态" align="center" width="100">
+        <el-table-column label="账号状态" align="center" width="80">
           <template slot-scope="scope">
             <el-switch
               v-model="scope.row.account_status"
@@ -164,8 +164,8 @@
             />
           </template>
         </el-table-column>
-        <el-table-column prop="created_at" label="加入时间" align="center" width="160" />
-        <el-table-column label="操作" align="center" width="80" fixed="right">
+        <el-table-column prop="created_at" label="加入时间" align="center" width="100" />
+        <el-table-column label="操作" align="center" width="60" fixed="right">
           <template slot-scope="scope">
             <el-dropdown @command="handleCommand">
               <el-button icon="el-icon-more" circle size="mini" />

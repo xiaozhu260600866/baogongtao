@@ -34,7 +34,7 @@
 										{{scope.row.dis ? scope.row.dis.name :''}}
 									</template>
 								</el-table-column>
-								<el-table-column prop="created_at" label="创建时间" align="center" width="150" />
+								<el-table-column prop="created_at" label="创建时间" align="center" width="170" />
 								<el-table-column label="操作" align="center" width="60" fixed="right">
 									<template slot-scope="scope">
 										<el-dropdown @command="handleCommand">

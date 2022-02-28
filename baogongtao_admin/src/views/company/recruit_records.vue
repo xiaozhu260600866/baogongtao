@@ -43,14 +43,14 @@
 										{{ scope.row.get_recruit ? scope.row.get_recruit.job_category : null }}
 									</template>
 								</el-table-column>
-								<el-table-column label="是否录用">
+								<el-table-column label="是否录用" width="80">
 									<template slot-scope="scope">
 										{{ scope.row.recruited ? '是' : '否' }}
 									</template>
 								</el-table-column>
 							
 
-								<el-table-column label="操作" align="right" width="100">
+								<el-table-column label="操作" align="center" width="60">
 									<template slot-scope="scope">
 										<el-dropdown>
 											<el-button icon="el-icon-more" circle size="mini" />
