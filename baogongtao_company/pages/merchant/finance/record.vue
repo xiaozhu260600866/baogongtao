@@ -2,7 +2,10 @@
 	<view>
 		<page ref="page"></page>
 		<view>
-			<view class="record-count flex-between plr15 pt8">
+			<view class="select-time">
+				<weui-input v-model="ruleform.month" name="month" changeField="value" type="select" dataKey="monthArr"></weui-input>
+			</view>
+			<view class="record-count flex-between plr15">
 				<view class="left fs-15 fc-9 lh-34">
 					<text>收</text>
 					<text>￥{{income?income:'-'}}</text>
@@ -37,6 +40,7 @@
 				mpType: 'page', //用来分清父和子组件
 				ruleform:{
 					record: '全部类型',
+					month: '2022年2月',
 				},
 				lists:[{
 					name:'商品收入',
@@ -49,6 +53,11 @@
 					status: 2,
 					created_at: '2022-02-02 08:33:26',
 				}],
+				monthArr:[
+					{label:'2022年2月',value:'2022年2月'},
+					{label:'2022年1月',value:'2022年1月'},
+					{label:'2021年12月',value:'2021年12月'},
+				],
 				recordArr:[
 					{label:'全部类型',value:'全部类型'},
 					{label:'全部收入',value:'全部收入'},

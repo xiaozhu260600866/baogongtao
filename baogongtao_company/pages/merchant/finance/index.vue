@@ -11,7 +11,7 @@
 					<view class="num">￥0.00</view>
 					<view class="name"><text>待结算2</text></view>
 				</view>
-				<view class="c-item" @click="goto('/pages/merchant/finance/lists',1)">
+				<view class="c-item" @click="goto('/pages/merchant/finance/wallet/index',1)">
 					<view class="num">￥0.00</view>
 					<view class="name"><text>已结算，去提现</text></view>
 				</view>

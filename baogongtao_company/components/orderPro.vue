@@ -11,7 +11,7 @@
 						<view class="specs mt5" v-if="item.is_info">{{item.attribute}}</view>
 					</view>
 					<view class="right">
-						<view class="price">￥{{toFixed(item.amount / item.num ) }}</view>
+						<view class="price fc-3">￥{{toFixed(item.amount / item.num ) }}</view>
 						<view class="num">x {{item.num}}<text class="fs-12 unit pl3">/ {{item.getProduct.unit}}</text></view>
 					</view>
 				</view>

@@ -222,6 +222,27 @@
 				"navigationBarTitleText": "订单详情",
 				"enablePullDownRefresh":true
 			}
+		},
+		{
+			"path": "pages/merchant/finance/wallet/index",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/finance/wallet/domoney",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/merchant/finance/wallet/record",
+			"style": {
+				"navigationBarTitleText": "提现记录",
+				"enablePullDownRefresh":true
+			}
 		}
 	],
 	"tabBar": {
