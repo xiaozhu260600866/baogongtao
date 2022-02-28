@@ -43,7 +43,7 @@
 				<dx-list-cell arrow name="扫一扫" iconName="iconfont icon-user-scan" :iconSize="18"
 				 @click="goto('/pages/merchant/coupon/cancel/cancel',1)"></dx-list-cell>
 				<dx-list-cell arrow name="退出" iconName="iconfont icon-user-quit" :iconSize="18"
-				 @click=""></dx-list-cell>
+				 @click="goOut"></dx-list-cell>
 			</view>
 			
 			<!-- <view class="block-sec">
@@ -101,6 +101,11 @@
 			
 		},
 		methods: {
+			goOut(){
+				this.getConfirm("是否确认退出",()=>{
+					return this.goto("/pages/merchant/login/index")
+				})
+			},
 			scan(){
 				uni.scanCode({
 				    success: res=> {

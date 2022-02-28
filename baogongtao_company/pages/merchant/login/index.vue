@@ -80,9 +80,9 @@ export default {
 		},
 		submit(){
 			if (this.isNullOrEmpty(this.username)) {
-				return this.msgToast('请输入登录账号');
+				return this.msgToast('请输入登录账号1');
 			}else if (this.isNullOrEmpty(this.password)) {
-				return this.msgToast('请输入登录密码');
+				return this.msgToast('请输入登录密码2');
 			}
 			
 			let postData = {
@@ -92,7 +92,7 @@ export default {
 			
 			this.submitLoading = true;
 			loginCompany(postData).then(res=>{
-				console.log(res);
+				console.log("res",res);
 				if(res.code == 0){
 					let state = {
 						token:res.data.token,
