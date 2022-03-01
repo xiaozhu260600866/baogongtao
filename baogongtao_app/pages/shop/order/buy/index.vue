@@ -1,105 +1,87 @@
 <template>
 	<view>
 		<page :parentData="data" :formAction="formAction" ref="page"></page>
-		<view class="buy-body" v-if="data.show">
-			<div id="address" class="bg-f">
-		
-				
-				
-				<div class="pro-info bgf mb8" v-for="item in ruleform.products">
-					<div class="cart-tb p10">
-						<div class="pro-img pr10">
-							<image :src="item.getProduct.firstCover" />
-						</div>
-						<div class="pro-name">
-							<div class="name lh20 fs14 nowrap">{{item.getProduct.name}}</div>
-							<div class="mark">
-								<p class="nowrap fs12" v-if="item.is_info">{{item.attribute}}</p>
-							</div>
-							<div class="group lh20">
-								<p class="num fs12">数量：<span class="Arial">{{item.num}}</span></p>
-								<p class="price fs14" valign="center">￥{{item.amount}}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="mode" class="bgf mb10" style="background: white;">
-				<weui-input v-model="ruleform.shipping" name="shipping" label="送货方式" changeField="value" type="select" dataKey="shipping"
-				 :disabled="ruleform.status >=3 ? true :false" ></weui-input>
+		<view class="buy-body pb60" v-if="data.show">
+			<view class="block-sec">
+				<weui-input v-model="ruleform.shipping" label="送货方式" name="shipping" changeField="value" type="radio" dataKey="shipping"
+				 @callback="test" myclass="selectShipping"></weui-input>
+			</view>
+			<orderPro :data="ruleform.products" myclass="block-sec" :url="'/pages/shop/product/show/index?id='"></orderPro>
+			
+			<view class="block-sec">
 				<weui-input v-model="ruleform.addr_name" label="姓名" errorMessage="姓名" type="text" name="addr_name" datatype="require"></weui-input>
 				<weui-input v-model="ruleform.addr_phone" label="联系电话" type="text" name="addr_phone" datatype="require|phone"></weui-input>
-				<!-- 班级改为选择形式，类似于送货方式 -->
-				
-				
-				<!-- 班级改为选择形式，类似于送货方式 -->
 				<dx-address v-model="ruleform.addr_address" datatype="require" ref="address" v-if="ruleform.shipping == 1"></dx-address>
-			</div>
+			</view>
 			
-			<div id="mode" class="bgf mb10" style="background: white;">
-			<!-- 	<weui-input v-model="ruleform.shipping" name="shipping" label="送货方式" changeField="value" type="select" dataKey="shipping"
-				 :disabled="ruleform.status >=3 ? true :false"></weui-input> -->
+			<view class="block-sec">
 				<weui-input v-model="ruleform.pay_method" name="pay_method" label="付款方式" changeField="value" type="select" dataKey="pay_methods"
 				 :disabled="ruleform.status >=3 ? true :false"></weui-input>
+				<weui-input v-model="ruleform.remark" label="买家留言" type="text" name="remark" placeholder="点击给商家留言"></weui-input>
 				<!-- <weui-input v-model.lazy="ruleform.myAccount" myclass="text" :disabled="ruleform.status >=3 ? true :false" label="余额"
 				 type="text" name="name" v-if="ruleform.pay_method == 2"></weui-input>
-				<div class="weui-cell weui-cell_input bd-be plr10" v-if="data.coupons && data.coupons.length == 0">
-					<div class="weui-cell__hd"><label class="fs14">优惠券</label></div>
-					<div class="weui-cell__bd text-right fc-6"><label class="fs14">暂无</label></div>
-				</div>
+				<view class="weui-cell weui-cell_input bd-be plr10" v-if="data.coupons && data.coupons.length == 0">
+					<view class="weui-cell__hd"><label class="fs14">优惠券</label></view>
+					<view class="weui-cell__bd text-right fc-6"><label class="fs14">暂无</label></view>
+				</view>
 				<weui-input v-model="ruleform.coupon_value" name="coupon_value" datatype="require" label="优惠券" changeField="value"
 				 type="select" :data="data.coupons" v-if="data.coupons && data.coupons.length > 0" :disabled="ruleform.status >=3 ? true :false"
 				 @callback="couponCallBack"></weui-input> -->
-				<weui-input v-model="ruleform.remark" label="买家留言" type="text" name="remark" placeholder="点击给商家留言"></weui-input>
-			</div>
-			<div id="calculation" class="bgf" style="background: white;">
-				<div class="list-group">
-					<p class="txt">商品金额</p>
-					<p class="fs16 price">￥{{ruleform.amount}}</p>
-				</div>
-				<div class="list-group" v-if="ruleform.shipping == 1">
-					<p class="txt">运费</p>
-					<p class="fs16 price">+ ￥{{ ruleform.yunfei }}</p>
-				</div>
-				<!-- <div class="list-group" v-if="ruleform.coupon_value">
-					<p class="txt">优惠券</p>
-					<p class="fs16 price">- ￥{{ ruleform.coupon_value }}</p>
-				</div>
-				<div class="list-group" v-if="ruleform.levAmount">
-					<p class="txt">会员优惠</p>
-					<p class="fs16 price">- ￥{{ ruleform.levAmount }}</p>
-				</div>
-				<div class="list-group" v-if="ruleform.pay_method == 2">
-					<p class="txt">余额</p>
-					<p class="fs16 price">- ￥{{ wallet }}</p>
-				</div>
-				<div class="list-group" v-if="ruleform.pay_method == 2">
-					<p class="txt">余额优惠</p>
-					<p class="fs16 price">- ￥{{ data.accountAmount }}</p>
-				</div> -->
-			</div>
+			</view>
+			<view id="calculation" class="block-sec">
+				<view class="list-group">
+					<view class="txt">商品金额</view>
+					<view class="price">￥{{ruleform.amount}}</view>
+				</view>
+				<view class="list-group" v-if="ruleform.shipping == 1">
+					<view class="txt">运费</view>
+					<view class="price">+ ￥{{ ruleform.yunfei }}</view>
+				</view>
+				<!-- <view class="list-group" v-if="ruleform.coupon_value">
+					<view class="txt">优惠券</view>
+					<view class="price">- ￥{{ ruleform.coupon_value }}</view>
+				</view>
+				<view class="list-group" v-if="ruleform.levAmount">
+					<view class="txt">会员优惠</view>
+					<view class="price">- ￥{{ ruleform.levAmount }}</view>
+				</view>
+				<view class="list-group" v-if="ruleform.pay_method == 2">
+					<view class="txt">余额</view>
+					<view class="price">- ￥{{ wallet }}</view>
+				</view>
+				<view class="list-group" v-if="ruleform.pay_method == 2">
+					<view class="txt">余额优惠</view>
+					<view class="price">- ￥{{ data.accountAmount }}</view>
+				</view> -->
+			</view>
 			<view id="footer" v-if="ruleform.status == 0 || ruleform.status == 1">
-				<div @submit="submit" report-submit="true" class="w-b100">
-					<view class="f_left float_l">
-						小计：
-						<span class="fs-24 Arial price">{{ amount.split(".")[0] }}</span>
-						<span class="fs-16 Arial price">.{{ amount.split(".")[1] }}</span>
-					</view>
-					<myform :ruleform="ruleform" :vaildate="vaildate" @callBack="formSubmit" myclass="f_right float_r"></myform>
-				</div>
+				<view class="f_left price fs-16 plr10">￥
+					<text class="fs-24">{{ amount.split(".")[0] }}</text>
+					<text>.{{ amount.split(".")[1] }}</text>
+				</view>
+				<view class="f_right" @submit="submit" report-submit="true">
+					<myform :ruleform="ruleform" :vaildate="vaildate" @callBack="formSubmit" myclass="nav" title="提交订单"></myform>
+				</view>
 			</view>
 			<view id="footer" v-else-if="ruleform.status == 5">
-				<view class="f_right float_r w-b100" @click="canReceipt">确认收货</view>
+				<view class="f_left"></view>
+				<view class="f_right flex-middle mlr5">
+					<view class="nav" @click="canReceipt">确认收货</view>
+				</view>
 			</view>
-			<view id="footer" class="bd-t" v-else-if="ruleform.status >=9">
-				<view class="f_right float_r w-b100">再次购买</view>
+			<view id="footer" v-else-if="ruleform.status >=9">
+				<view class="f_left"></view>
+				<view class="f_right flex-middle mlr5">
+					<view class="nav" @click="goto('/pages/shop/index/index',2)">再次购买</view>
+				</view>
 			</view>
 		</view>
 	</view>
 </template>
 <script>
-	import "./index.css";
+	import orderPro from "@/components/orderPro";
 	export default {
+		components:{orderPro},
 		data() {
 			return {
 				formAction: '/shop/order/detail',
@@ -285,3 +267,6 @@
 		}
 	}
 </script>
+<style>
+@import url("./index.css");
+</style>

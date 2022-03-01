@@ -1,9 +1,30 @@
 
+.order_lists {position: relative;z-index: 9;padding-bottom: 20rpx;}
+.order_lists .order_item {font-size: 28rpx;}
+.order_lists .order_t {padding: 16rpx 20rpx;font-size: 30rpx;color: #666;border-bottom: 1rpx #eee solid;line-height: 44rpx;display: flex;align-items: center;}
+.order_lists .order_t .left{flex:1;}
+.order_lists .del-icon{border-radius: 50%;width: 52rpx;height: 52rpx;line-height: 52rpx;text-align: center;background-color: #f3f3f3;}
+.order_lists .order_count{height: 80rpx;line-height: 80rpx;display: flex;justify-content: flex-end;padding: 0 20rpx;}
+.order_lists .btn-group {padding: 16rpx 20rpx;border-top: 1rpx #eee solid;}
+.order_lists .btn-item{display: flex;align-items: center;justify-content: flex-end;}
+.order_lists .btn-nav{min-width: 160rpx;padding: 0 30rpx;height: 64rpx;line-height: 64rpx;border-radius: 64rpx;margin-left: 20rpx;border: 1rpx #bfbfbf solid;color: #555;text-align: center;position: relative;}
+.order_lists .btn-nav:last-child{background-color: #FE4543;border: 0;color: #fff;}
+.order_lists .btn-nav.obtn{background-color: #fff;border: 1rpx #bfbfbf solid;color: #555;}
+
+
+
 /* 头部 */
 .order-class{display: flex;}
 .order-class .nav-tab{height: 44px;line-height: 44px;text-align: center;font-size: 14px;color: #333;width: 100%;}
 
 .selected {color: #ff721f;border-bottom: 2px solid #ff721f;}
+
+
+/* 头部 */
+.list-class{display: flex;}
+.list-class .nav-tab{height: 88upx;line-height: 88upx;text-align: center;font-size: 30upx;color: #333;width: 100%;}
+.list-class .selected {color: #f31b0c;border-bottom: 6upx solid #f31b0c;}
+.list-class .del-icon{border-radius: 50%;width: 52upx;height: 52upx;line-height: 52upx;text-align: center;}
 
 
 /* 列表 */

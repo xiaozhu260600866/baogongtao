@@ -22,11 +22,12 @@
 				</view>
 				<!-- 如果是外出:start -->
 				<view class="sign_write" v-if="goout">
+					<weui-input v-model="ruleform.cover" type="upload" upurl='sign' allowUpLoadNum="4" name="cover" datatype="array" :sourceType="1"></weui-input>
 					<view class="remark text-center fs-18" @click="goto('/pages/sign/index/layouts/remark',1)">添加备注...</view>
 				
 				</view>
 				<!-- 如果是外出:end -->
-				<view class="sign_time" :class="[data.count < 2?'mt80':'']" @click="signIn()">
+				<view class="sign_time" :class="[data.count < 2?'mt50':'']" @click="signIn()">
 					<view class="time">
 						<text class="Arial">{{data.h}}</text>
 						<text class="plr3">:</text>

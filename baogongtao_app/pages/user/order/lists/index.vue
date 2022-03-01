@@ -1,77 +1,59 @@
 <template>
 	<view>
 		<page :parentData="data" :formAction="formAction"></page>
-		<div v-if="data.show">
-			<div class="order-class bd-b bgf">
-				<p :class="['nav-tab',data.query.status == 12 ? 'selected' :'']" @click="changeStatus(12)">全部</p>
-				<p :class="['nav-tab',data.query.status == 1 ? 'selected' :'']" @click="changeStatus(1)">待付款</p>
-				<p :class="['nav-tab',data.query.status == 3 ? 'selected' :'']" @click="changeStatus(3)">待提货</p>
-			<!-- 	<p :class="['nav-tab',data.query.status == 5 ? 'selected' :'']" @click="changeStatus(5)">待提货</p> -->
-				<p :class="['nav-tab',data.query.status == 9 ? 'selected' :'']" @click="changeStatus(9)">已提货</p>
-				
-				<!-- <p :class="['nav-tab',status == 10 ? 'selected' :'']" @click="changeStatus(10)">售后</p> -->
+		<view v-if="data.show">
+			<dx-tabs-scroll :tabs="[
+				{value: 12,name: '全部'},
+				{value: 1,name: '待付款'},
+				{value: 3,name: '待发货'},
+				{value: 5,name: '待收货'},
+				{value: 9,name: '待评价'},
+				{value: 10,name: '已完成'},
+			]" v-model="data.query.status" @change="change" :height="50" :nameSize="15" curColor="#1e97ff" borderColor="#1e97ff"></dx-tabs-scroll>
+			<view class="order_lists">
+				<view class="order_item block-sec" v-for="parent in data.lists.data">
+					<view class="order_t ">
+						<view class="left">
+							<view class="p">订单编号：<text class="Arial">{{parent.created_at}}</text></view>
+							<view class="p">下单日期：<text class="Arial">{{parent.order_no}}</text></view>
+						</view>
+						<view class="state fs-14">{{parent.status_message}}</view>
+						<!-- <view class="del">
+							<view class="del-icon dxi-icon dxi-icon-del" @click="delOrder(parent)"></view>
+						</view> -->
+					</view>
+					<orderPro :data="parent.products"></orderPro>
+					<view class="order_count">共<text class="Arial plr3">{{parent.num}}</text>件商品
+						实付：￥<text class="Arial fs-16 fc-red">{{ parent.amount}}</text>
+					</view>
+					<view class="btn-group">
+						<view class="btn-item">
+							<view class="btn-nav obtn" @click="goto('/pages/shop/order/buy/index?order_no='+parent.order_no)">订单详情</view>
+						</view>
+						<!-- 待支付 取消订单&去支付-->
+						<!-- <view class="btn-item">
+							<view class="btn-nav">取消订单</view>
+							<view class="btn-nav">去支付</view>
+						</view> -->
+						<!-- 待发货 -->
+						<!-- <view class="btn-item" v-if="parent.status == 2">
+							<view class="btn-nav" @click="goto('/pages/shop/order/buy/index?order_no='+parent.order_no)">订单详情</view>
+							<view class="btn-nav">确认收货</view>
+						</view> -->
+					</view>
+				</view>
+			</view>
 			
-			</div>
-			<div class="pro_info m10 bdr6" v-for="(parent,key) in data.lists.data">
-				<div class="order_date plr10 bd-be">
-					<p class="time fs-14">
-						<span>订单号：</span>
-						<span class="Arial">{{parent.order_no}}</span>
-					</p>
-					<p class="state fs-color fs-12">{{parent.status_message}}</p>
-				</div>
-				<div  @click="goto('/pages/order/buy/index?order_no='+parent.order_no)"class="order_info p10" v-for="(son,key2) in parent.products"
-				 v-if="son.getProduct">
-					<div class="pro_img">
-						<img class="img" :src="son.getProduct.firstCover" />
-					</div>
-					<div class="pro_info w-b100 flex-wrap">
-						<div class="txt fs-14 nowrap w-b100">
-							{{son.getProduct.name}}
-							<p class="nowrap fs-12" v-if="son.is_info">{{son.attribute}}</p>
-						</div>
-						<div class="lh-16 flex-between w-b100">
-							<p class="num fs-12 fc-6">数量：<span class="Arial">{{son.num}}</span></p>
-						</div>
-					</div>
-				</div>
-				<div class="order_count fs-14 bd-be plr10">共
-					<span class="Arial">{{parent.num}}</span>件商品 需付款：
-					<span class="price">￥{{parent.amount}}</span>
-				</div>
-				<div class="od-lists">
-					
-					<div class="od-row">
-						<div class="llabel">下单时间</div>
-						<div class="rvalue Arial">{{parent.created_at}}</div>
-					</div>
-				</div>
-				<div class="btn-group ptb8 plr15">
-					<div class="btn-item">
-						<div class="btn-nav" @click="goto('/pages/shop/order/buy/index?order_no='+parent.order_no)">订单详情</div>
-					</div>
-					<!-- <div class="btn-item" v-if="parent.status >=9">
-						<div class="btn-nav" @click="goto('/pages/order/evaluate/index?order_no='+parent.order_no,1)"
-						 v-if="parent.status >=9 && parent.suggestStatus == 0">评价</div>
-						<div class="btn-nav" @click="goto('/pages/order/evaluate/index?order_no='+parent.order_no,1)"
-						 v-if="parent.status >=9 && parent.suggestStatus == 2">评价完成</div>
-					</div>
-					<div class="btn-item" @click="changeOrder(parent)" v-if="parent.status < 3 ">
-						<p class="btn-nav">取消订单</p>
-					</div>
-					<div class="btn-item" @click="canReceipt(parent)" v-if="parent.status  == 5 ">
-						<p class="btn-nav">确认收货</p>
-					</div> -->
-				</div>
-			</div>
-			<hasMore :parentData="data" source="order"></hasMore>
-		</div>
+			<hasMore :parentData="data" source="order" tips="暂无订单"></hasMore>
+		</view>
 	</view>
 </template>
 
 <script>
-	import "./index.css";
+	import dxTabsScroll from "doxinui/components/tabs/tabs_scroll"
+	import orderPro from "@/components/orderPro"
 	export default {
+		components:{dxTabsScroll,orderPro},
 		data() {
 			return {
 				formAction: '/shop/user/order-lists',
@@ -128,6 +110,10 @@
 				this.data.nextPage = 1;
 				this.ajax();
 			},
+			change() {
+				this.data.nextPage = 1;
+				this.ajax();
+			},
 			ajax() {
 				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
 					console.log(this.data);
@@ -136,3 +122,6 @@
 		}
 	}
 </script>
+<style>
+@import url("index.css");
+</style>

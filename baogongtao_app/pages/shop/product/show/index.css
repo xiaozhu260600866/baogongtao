@@ -41,10 +41,11 @@ page,scroll-view{height: 100%;}
 
 
 /* 产品内容 */
-.pro_title{color: #333;line-height: 40px;border-bottom: 1px #eee solid;display: flex;font-size: 16px;}
+.pro_title{color: #333;line-height: 92rpx;border-bottom: 2rpx #eee solid;display: flex;font-size: 32rpx;}
 .pro_title .title-item{width: 100%;text-align: center;}
-.pro_title .title-item .span{font-size:15px;}
-.pro_title .title-item .span.cur{border-bottom: 3px solid #FF4543;padding: 8px;}
+.pro_title .title-item .name{font-size: 32rpx;}
+.pro_title .title-item .cur{position: relative;}
+.pro_title .title-item .cur::after{content: "";display: block;position: absolute;left: 50%;bottom: -28rpx;height: 6rpx;width: 80rpx;margin-left: -40rpx;background-color: #FF4422;border-radius: 4rpx;}
 .pro-content{}
 .pro-content .pro-con-main{}
 .pro-content .pro-con-main image{width: 100%!important;display: flex;}

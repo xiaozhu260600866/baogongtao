@@ -86,24 +86,7 @@ button::after{border: 0;}
 	.edit-nav{display: flex;justify-content: flex-end;}
 	.edit-nav .Anav{height: 28px;width: 70px;border-radius: 28px;text-align: center;line-height: 26px;margin-left: 20rpx;}
 
-	/* 常规 */
-	.sub-btn-default{border: 1px #aaa solid;background: #fff;border-radius: 4px;color: #999;}
-	.sub-btn-green{background: #13cc0c;border-radius: 4px;color: #fff;}
-	.sub-btn-green-o{border: 1px #13cc0c solid;background: #fff;border-radius: 4px;color: #13cc0c;}
-	.sub-btn-orange{background: #FF721F;border-radius: 4px;color: #fff;}
-	.sub-btn-orange-o{border: 1px #FF721F solid;background: #fff;border-radius: 4px;color: #FF721F;}
-	.sub-btn-red{background: #FF4351;border-radius: 4px;color: #fff;}
-	.sub-btn-red-o{border: 1px #FF4351 solid;background: #fff;border-radius: 4px;color: #FF4351;}
-	
 
-	.sub-btn-big{line-height: 50px;height: 50px;border-radius: 4px;font-size: 17px;text-align: center;}
-	.sub-btn-lg{line-height: 40px;height: 40px;border-radius: 4px;font-size: 16px;text-align: center;}
-	.sub-btn{line-height: 34px;height: 34px;border-radius: 4px;font-size: 14px;text-align: center;}
-	.sub-btn-sm{line-height: 28px;height: 28px;border-radius: 4px;font-size: 12px;text-align: center;}
-
-	/* 常规 */
-	.sub-btn-red{background: #FF4351!important;color: #fff;}
-	.sub-btn-yellow{background: #FEAE1B!important;color: #fff;}
 /* 按钮组:ending */
 
 
@@ -139,18 +122,6 @@ button::after{border: 0;}
 .news-list .p2 .num {width: 70px;}
 
 
-/* 激活带下线的标题 */
-.topNav{height: 40px;line-height: 40px;}
-.topNav .navItem{display: flex;width: 100%;}
-.topNav .navItem .aLink{width: 100%;text-align: center;}
-.topNav .navItem .cur .span{border-bottom: 3px solid #13cc0c;padding: 8px 5px;}
-
-.smallNav{height: 40px;line-height: 40px;display: flex;padding: 0 20px;}
-.smallNav .nav-tab{padding: 0 20px;position: relative;}
-.smallNav .nav-tab .tab{font-size: 15px;color: #666;}
-.smallNav .nav-tab.cur .tab{font-weight: 600;color: #000;}
-.smallNav .nav-tab.cur:before{content: "";display: block;position: absolute;bottom: 0;left: 50%;margin-left: -10px;width: 20px;height: 4px;background-color: #FE4543;border-radius: 2px;}
-
 
 /* 暂无数据 */
 .no-data {padding: 50px 0;text-align: center;font-size: 14px;color: #999;}
@@ -159,20 +130,12 @@ button::after{border: 0;}
 
 /* 商品列表 */
 .pro-list{}
-.pro-list .pro-title{white-space: nowrap;padding: 15px 15px 5px;background: #fff;}
-.pro-list .pro-title .txt{border-left: 3px solid #ff5400;padding-left: 8px;display: block;line-height: 18px;color: #333;}
-.pro-list .pro-title .iconfont{color: #888;}
-.pro-list .pro-title .icon{color: #999;line-height: 18px;}
-.pro-list .porducts{padding: 3px;display: flex;flex-wrap: wrap;}
-.pro-list .pro-div{position: relative;width: 50%;box-sizing:border-box;padding: 3px;}
-.pro-list .pro-box{background: #fff;display: block;}
+.pro-list .porducts{display: flex;flex-wrap: wrap;padding: 14rpx 14rpx 14rpx 16rpx;}
+.pro-list .pro-div{position: relative;width: 50%;box-sizing:border-box;padding: 16rpx 16rpx 16rpx 14rpx;}
+.pro-list .pro-box{background: #fff;display: block;border-radius: 12rpx;overflow: hidden;}
 .pro-list .cms_cover image,.pro-list .cms_cover .image{width: 100%;height: 29.1vh;display: flex;}
-.pro-list .cms_title {margin: 0 auto;padding: 6px 8px 0;color: #373737;}
-.pro-list .cms_title .Aname{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp: 2;line-height: 20px;margin-bottom: 3px;}
-.pro-list .cms_title navigator{color: #333;line-height: 20px;}
-.pro-list .cms_mark{line-height: 20px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp: 2;text-align: justify;}
-.pro-list .cms_price{padding: 0 5px;display: flex;justify-content: space-between;}
-.pro-list .copy{margin-bottom: 70px;color: #999;text-align: center;}
+.pro-list .cms_title{padding: 12rpx 16rpx 0;}
+.pro-list .cms_price{padding: 0 10rpx;display: flex;justify-content: space-between;}
 
 
 .pro-line .porducts{padding: 6px;background: #fff;border: 0;}
