@@ -3,14 +3,14 @@
 		<page :parentData="data" :formAction="formAction"></page>
 		<view>
 			<dx-tabs :tabs="[
-				{value: 0,name: '全部'},
-				{value: 2,name: '待发货'},
-				{value: 3,name: '已发货'},
-				{value: 12,name: '已完成'}
-			]" :height="100" :selectedSize="32" :size="32"></dx-tabs>
+				
+				{value: 3,name: '待发货'},
+				{value: 5,name: '已发货'},
+				{value: 9,name: '已完成'}
+			]" v-model="data.query.status" @change="ajax"  :height="100" :selectedSize="32" :size="32"></dx-tabs>
 		</view>
-		<view class="order_lists">
-			<view class="order_item block-sec" v-for="parent in orderLists">
+		<view class="order_lists" v-if="data.show">
+			<view class="order_item block-sec" v-for="parent in data.lists.data">
 				<view class="order_t ">
 					<view class="left">
 						<view class="p">订单编号：<text class="Arial">{{parent.created_at}}</text></view>
@@ -26,40 +26,49 @@
 				</view>
 				<view class="btn-group">
 					<!-- 待发货 -->
-					<view class="btn-item" v-if="parent.status == 2">
-						<view class="btn-nav" @click="goto('/pages/merchant/order/detail',1)">订单详情</view>
+					<view class="btn-item">
+						<view class="btn-nav" @click="goto('/pages/merchant/order/detail?id='+parent.id,1)">订单详情</view>
 						<!-- 如果是邮寄显示 -->
-						<view class="btn-nav" @click="$refs.expressDiag.express = true" v-if="parent.sendType == 1">发货</view>
+						<view class="btn-nav" @click="ruleform = parent;$refs.expressDiag.thisDiag= true" v-if="parent.shipping == 1 && parent.status ==3" >发货</view>
 						<!-- 如果是到店自提显示 -->
-						<view class="btn-nav" @click="$refs.cancel.thisPrompt = true" v-if="parent.sendType == 2">核销</view>
+						<view class="btn-nav" @click="row= parent;$refs.cancel.thisPrompt = true" v-if="parent.shipping == 2 && parent.status ==3">核销</view>
+						<view class="btn-nav" @click="row= parent;$refs.cancel.thisPrompt = true" v-if="parent.status ==5">完成</view>
 					</view>
-					<!-- 其他 -->
-					<view class="btn-item" v-else>
-						<view class="btn-nav obtn" @click="goto('/pages/merchant/order/detail',1)">订单详情</view>
-					</view>
+				
+					
 				</view>
 			</view>
 		</view>
-		<express ref="expressDiag"></express>
-		<dx-prompt content="是否确认核销订单" ref="cancel"></dx-prompt>
+		<dx-diag title="请填写物流信息" :titBold="false" ref="expressDiag" @callBack="express = false" myclass="expressDiag">
+			<view class="express">
+				<weui-input v-model="ruleform.express_name" label="快递" name="express_name" changeField="value" type="select" dataKey="expressArr"
+				 left datatype="require"></weui-input>
+				<weui-input v-model="ruleform.express_no" label="单号" type="text" name="express_no" datatype="require"></weui-input>
+			</view>
+			<view class="btn">
+				<dx-button type="primary" size="lg" block @click="submit">确认</dx-button>
+			</view>
+		</dx-diag>
+		<dx-prompt content="是否确认核销订单" ref="cancel"  @confirmCallBack="finish()"></dx-prompt>
 	</view>
 </template>
 
 <script>
 	import dxTabs from "doxinui/components/tabs/tabs"
 	import orderPro from "@/components/orderPro"
-	import express from "./layouts/express"
 	import dxButton from "doxinui/components/button/button"
 	import dxPrompt from "doxinui/components/diag/prompt"
+	import dxDiag from "doxinui/components/diag/diag"
 	export default {
-		components:{dxTabs,orderPro,express,dxButton,dxPrompt},
+		components:{dxTabs,orderPro,dxButton,dxPrompt,dxDiag},
 		data() {
 			return {
-				formAction: '/shop/product/class',
+				formAction: '/admin/shop/order/lists',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
 				ruleform:{},
+				row:{},
 				orderLists:[{
 					order_no:'2021032215332102',
 					created_at:'2021-03-22 15:33:21',
@@ -133,6 +142,46 @@
 			}
 		},
 		methods: {
+			submit(){
+				if(!this.ruleform.express_name){
+					return this.getError("请输入快递号");
+				}
+				if(!this.ruleform.express_no){
+					return this.getError("请输入单号");
+				}
+				this.ruleform.type = 2;
+				this.postAjax("/admin/shop/order/modify",this.ruleform).then(msg=>{
+					if(msg.data.status == 2){
+						this.ajax();
+					}
+				})
+				
+			},
+			finish(){
+				this.postAjax("/admin/shop/order/change-order-status",{id:this.row.id,status:9}).then(msg=>{
+					if (msg.data.status == 2) {
+						this.ajax();
+					}
+				})
+			},
+			delOrder(item) {
+				uni.showModal({
+					title: '提示',
+					content: '您确定要删除这个订单吗',
+					success: res => {
+						if (res.confirm) {
+							this.postAjax('/ajax/mydel', {
+								id: item.id,
+								tablename: 'shop_orders'
+							}).then(msg => {
+								if (msg.data.status == 2) {
+									this.ajax();
+								}
+							});
+						}
+					}
+				})
+			},
 			ajax() {
 				this.getAjaxForApp(this, {
 				
@@ -142,7 +191,7 @@
 			}
 		},
 		onLoad(options) {
-			//this.ajax();
+			this.ajax();
 			
 		},
 		onReachBottom() {

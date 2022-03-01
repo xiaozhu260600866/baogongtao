@@ -12,7 +12,7 @@
 					</view>
 					<view class="right">
 						<view class="price fc-3">￥{{toFixed(item.amount / item.num ) }}</view>
-						<view class="num">x {{item.num}}<text class="fs-12 unit pl3">/ {{item.getProduct.unit}}</text></view>
+						<view class="num">x {{item.num}}</view>
 					</view>
 				</view>
 				<view class="scount">小计：{{item.amount}}</view>

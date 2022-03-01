@@ -37,11 +37,11 @@
 				<dx-list-cell arrow name="产品管理" iconName="dxi-icon dxi-icon-classify" :iconSize="18"
 				 @click="goto('/pages/merchant/products/lists',1)"></dx-list-cell>
 				<dx-list-cell arrow name="订单管理" iconName="dxi-icon dxi-icon-order2" :iconSize="18"
-				 @click="goto('/pages/merchant/order/lists',1)"></dx-list-cell>
+				 @click="goto('/pages/merchant/order/lists?status=3',1)"></dx-list-cell>
 				<dx-list-cell arrow name="账户资产" iconName="dxi-icon dxi-icon-wallet" :iconSize="18"
 				 @click="goto('/pages/merchant/finance/index',1)"></dx-list-cell>
 				<dx-list-cell arrow name="扫一扫" iconName="iconfont icon-user-scan" :iconSize="18"
-				 @click="goto('/pages/merchant/coupon/cancel/cancel',1)"></dx-list-cell>
+				 @click="scan"  ></dx-list-cell>
 				<dx-list-cell arrow name="退出" iconName="iconfont icon-user-quit" :iconSize="18"
 				 @click="goOut"></dx-list-cell>
 			</view>
@@ -101,6 +101,22 @@
 			
 		},
 		methods: {
+			scan(){
+				uni.scanCode({
+						
+				    success: res=> {
+						this.ruleform.code = res.result
+						this.scanOrder(res.result);
+				    }
+				});
+			},
+			scanOrder(code){
+				this.postAjax("/shop/order/change-order-status",{code:code}).then(msg=>{
+					if(msg.data.status == 2){
+						 this.getSuccess("扫码成功");
+					}
+				})
+			},
 			goOut(){
 				this.getConfirm("是否确认退出",()=>{
 					return this.goto("/pages/merchant/login/index")

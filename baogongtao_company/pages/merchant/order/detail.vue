@@ -19,15 +19,15 @@
 			</view>
 			
 			<!-- 产品 -->
-			<orderPro :data="products" myclass="block-sec"></orderPro>
+			<orderPro :data="ruleform.products" myclass="block-sec"></orderPro>
 			
 			<view class="block-sec orderDetail">
-				<weui-input v-model="ruleform.shipping" label="送货方式" type="txt" name="shipping"></weui-input>
-				<weui-input v-model="ruleform.pay_method" label="付款方式" type="txt" name="pay_method"></weui-input>
+				<weui-input v-model="ruleform.getShipping" label="送货方式" type="txt" name="getShipping"></weui-input>
+				<weui-input v-model="ruleform.getPayMethod" label="付款方式" type="txt" name="getPayMethod"></weui-input>
 				<weui-input v-model="ruleform.remark" label="买家留言" type="txt" name="remark"></weui-input>
 			</view>
 			
-			<view class="block-sec orderDetail" v-if="ruleform.status != 2">
+			<view class="block-sec orderDetail" v-if="ruleform.shipping == 1">
 				<weui-input label="快递公司" v-model="ruleform.express_name" type="txt" name="name"></weui-input>
 				<weui-input label="快递单号" v-model="ruleform.express_no" type="txt" name="name"></weui-input>
 				<weui-input label="发货时间" v-model="ruleform.express_at" type="txt" name="name"></weui-input>
@@ -36,29 +36,38 @@
 				<view class="lprice fs-14 pl10"></view>
 				<view class="rbtn">
 					<!-- 待发货-->
-					<view class="btn-item" v-if="ruleform.status == 2">
+					<view class="btn-item" v-if="ruleform.status == 3">
 						<!-- 如果是邮寄 -->
-						<view class="btn-nav ibtn" @click="$refs.expressDiag.express = true">发货</view>
+						<view class="btn-nav ibtn" @click="$refs.cancel.thisPrompt = true" v-if="ruleform.shipping == 1">发货</view>
 						<!-- 如果是自提 -->
-						<view class="btn-nav" @click="$refs.cancel.thisPrompt = true">核销</view>
+						<view class="btn-nav" @click="$refs.cancel.thisPrompt = true" v-if="ruleform.shipping == 2">核销</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		<express ref="expressDiag"></express>
-		<dx-prompt content="是否确认核销订单" ref="cancel"></dx-prompt>
+		<dx-diag title="请填写物流信息" :titBold="false" ref="expressDiag" @callBack="express = false" myclass="expressDiag">
+			<view class="express">
+				<weui-input v-model="ruleform.express_name" label="快递" name="express_name" changeField="value" type="select" dataKey="expressArr"
+				 left datatype="require"></weui-input>
+				<weui-input v-model="ruleform.express_no" label="单号" type="text" name="express_no" datatype="require"></weui-input>
+			</view>
+			<view class="btn">
+				<dx-button type="primary" size="lg" block @click="submit">确认</dx-button>
+			</view>
+		</dx-diag>
+		<dx-prompt content="是否确认核销订单" ref="cancel" @confirmCallBack="finish()"></dx-prompt>
 	</view>
 </template>
 
 <script>
 	import orderPro from "@/components/orderPro"
-	import express from "./layouts/express"
 	import dxPrompt from "doxinui/components/diag/prompt"
+		import dxDiag from "doxinui/components/diag/diag"
 	export default {
-		components:{orderPro,express,dxPrompt},
+		components:{orderPro,dxPrompt,dxDiag},
 		data() {
 			return {
-				formAction: '/shop/product/class',
+				formAction: '/admin/shop/order/info',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
@@ -121,16 +130,38 @@
 			}
 		},
 		methods: {
+			submit(){
+				if(!this.ruleform.express_name){
+					return this.getError("请输入快递号");
+				}
+				if(!this.ruleform.express_no){
+					return this.getError("请输入单号");
+				}
+				this.ruleform.type = 2;
+				this.postAjax("/admin/shop/order/modify",this.ruleform).then(msg=>{
+					if(msg.data.status == 2){
+						this.ajax();
+					}
+				})
+				
+			},
+			finish(){
+				this.postAjax("/admin/shop/order/change-order-status",{id:this.ruleform.id,status:9}).then(msg=>{
+					if (msg.data.status == 2) {
+						this.ajax();
+					}
+				})
+			},
 			ajax() {
 				this.getAjaxForApp(this, {
 				
 				}).then(msg => {
-					
+					this.ruleform = msg.detail;
 				});
 			}
 		},
 		onLoad(options) {
-			//this.ajax();
+			this.ajax();
 			
 		},
 		onReachBottom() {
