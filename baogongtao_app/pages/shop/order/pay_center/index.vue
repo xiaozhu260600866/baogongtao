@@ -2,37 +2,18 @@
 	<view>
 		<page :parentData="data" :formAction="formAction" ref="page"></page>
 		<view v-if="data.show">
-			<view id="pay_price">￥{{ data.amount }}</view>
+			<view class="order_no">订单编号<span>{{detail.order_no}}</span></view>
+			<view id="pay_price"><span class="fs-20">￥</span>{{ data.amount }}</view>
 			<view id="pay_info">
 				<view class="list-group">
-					<view class="txt_l">{{detail.shipping == 2 ? '提货人' : '收货人'}}</view>
-					<view class="txt_r">{{detail.addr_name}}<text class="Arial pl5">{{detail.addr_phone}}</text></view>
-				</view>
-				<div v-if="detail.shipping == 2">
-					<view class="list-group">
-						<view class="txt_l">提货地址</view>
-						<view class="txt_r">{{detail.addr_address}}</view>
-					</view>
-					
-				</div>
-				<div v-else>
-					
-				</div>
-				<view class="list-group">
-					<view class="txt_l">订单号</view>
-					<view class="txt_r Arial">{{detail.order_no}}</view>
-				</view>
-				<view class="list-group">
-					<view class="txt_l">收款号</view>
+					<view class="txt_l">收款方</view>
 					<view class="txt_r">包工淘</view>
-				</view>
-				<view class="list-group">
-					<view class="txt_l">支付项目</view>
-					<view class="txt_r">订单支付</view>
 				</view>
 			</view>
 			<form @submit="data.source == 'wap' ? formSubmitForH5():formSubmitForApp($event)" bindreset="formReset" report-submit="true">
-				<button id="pay_submit" formType="submit">立即支付</button>
+				<view class="m20">
+					<button hover-class="none" class="dx-btn dx-btn-big dx-btn-green w-b100" formType="submit">立即支付</button>
+				</view>
 			</form>
 		</view>
 	</view>

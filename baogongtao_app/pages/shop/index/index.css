@@ -21,11 +21,13 @@ page{padding-bottom: 0!important;}
 
 
 /* 导航按钮 */
-.fun_button {padding: 5px;background: white;}
-.fun_button_con{display: flex;flex-wrap: wrap;}
-.fun_button_con .a {width: 20%;text-align: center;}
-.fun_button_con .a .button-img {text-align: center;text-align: -webkit-center;}
-.fun_button_con .a .button-img .img{width: 44px;height: 44px;display: flex;justify-content: center;border-radius: 10px;}
+.Nav_btn{padding: 10upx;background: white;display: flex;flex-wrap: wrap;}
+.Nav_btn .item{width: 20%;padding: 10upx 0;text-align: center;}
+.Nav_btn .item .Nav_img {text-align: center;text-align: -webkit-center;}
+.Nav_btn .item .Nav_img .img{width: 90upx;height: 90upx;display: flex;justify-content: center;border-radius: 50%;}
+.Nav_btn .item .Nav_img .iconfont{font-size: 90upx;border-radius: 50%;display: flex;justify-content: center;width: 90upx;line-height: 90upx;overflow: hidden;}
+.Nav_btn .item .txt{padding-top: 10upx;font-size: 26upx;color: #333;line-height: 40upx;text-align: center;}
+.Nav_btn .item_4{width: 25%;}
 
 
 /* 低价火拼 */

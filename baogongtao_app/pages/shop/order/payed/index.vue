@@ -1,27 +1,17 @@
 <template>
 	<view>
 		<page :parentData="data" :formAction="formAction"></page>
-		<section class="container" v-if="data.show">
-			<div class="payed-content">
-				<div class="con" v-if="detail.payed_at">
-					<p class="iconfont icon-pay-yes"></p>
-					<p class="content">支付成功</p>
-				</div>
-				<div class="con" v-if="!detail.payed_at">
-					<p class="iconfont icon-pay-no"></p>
-					<p class="content">支付失败</p>
-				</div>
-			</div>
-			<div class="button">
-				<a hover-class="none" class="dx-btn dx-btn-red dx-btn-big fc-white w-b100" @click="goto('/pages/index/index',2)">返回</a>
-			</div>
-		</section>
+		<view v-if="data.show">
+			<dx-results txt="支付成功" @click="goto('/pages/shop/index/index',2)" v-if="detail.payed_at"></dx-results>
+			<dx-results txt="支付失败" :success="false" @click="goto('/pages/shop/index/index',2)" v-if="!detail.payed_at"></dx-results>
+		</view>
 	</view>
 </template>
 
 <script>
-	import "./index.css";
+	import dxResults from "doxinui/components/results/results"
 	export default {
+		components:{dxResults},
 		data() {
 			return {
 				 formAction: '/shop/order/payed',

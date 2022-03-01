@@ -1,30 +1,31 @@
 <template>
 	<view>
 		<page :parentData="data" :formAction="formAction" Fbottom="bottom:50px">
-			<div slot="floatBtn">
+			<view slot="floatBtn">
 				<floatBtn type="2" icon="icon-float-feedback-o" iSize="fs-25" openType="contact" title="咨询"></floatBtn>
-				<div @click="phone(data.siteConfig.phone)" v-if="data.show">
+				<view @click="phone(data.siteConfig.phone)" v-if="data.show">
 					<floatBtn icon="icon-float-tel-o" iSize="fs-22" title="电话"></floatBtn>
-				</div>
-			</div>
+				</view>
+			</view>
 		</page>
 		<view class="content" v-if="data.show">
-			<view id="banner" class="mt50" v-if="data.silders.data.length">
+			<view id="banner" v-if="data.silders.data.length">
 				<myswiper :lists="data.silders.data"></myswiper>
 			</view>
 			<view v-if="data.location.length">
-				<swiper class="swiper bg-f" :indicator-dots="data.location.length > 1 ? true :false" :vertical="false" :autoplay="false"
-				 :duration="false" :circular="false" :style="data.location[0].length<=4 ? 'height: 190rpx;' : 'height: 380rpx;'">
-					<swiper-item v-for="(item,index) in data.location" :key="index">
-						<view class="fun_button pb10">
-							<view class="fun_button_con">
-								<navigator hover-class="none" class="a ptb8" v-for="(v,index2) in item" :key="index2" @click="goto(v.url,1)">
-									<view :class="['button-img']">
-										<img :src=" v.cover " :class="['img']">
+				<swiper class="swiper bg-f mb8" :indicator-dots="data.location.length > 1 ? true :false" :vertical="false"
+				 :autoplay="false" :duration="false" :circular="false" :style="data.location[0].length<=5 ? 'height: 180rpx;':'height: 350rpx;'">
+					<swiper-item v-for="(item,index) in data.location" :key="index" :style="data.location[0].length<=5?'height:180rpx;':'height:350rpx;'">
+						<view class="Nav_btn pb10">
+							<view class="item" v-for="(v,index2) in item" :key="index2">
+								<myform :ruleform="ruleform" :append="true" :vaildate="vaildate" :data="v" @callBack="goto(v.url,v.redirect_type)">
+									<view slot="content">
+										<view class="Nav_img">
+											<image :src="v.cover" class="img" />
+										</view>
+										<view class="txt">{{ v.name }}</view>
 									</view>
-									<view :class="['button-txt','pt5', 'fs-13','fc-3']"><text>{{v.name}}</text></view>
-								</navigator>
-								<view class="clear"></view>
+								</myform>
 							</view>
 						</view>
 					</swiper-item>
@@ -35,30 +36,30 @@
 					<view class="name fs-16">推荐精选产品</view>
 					<view class="icon iconfont icon-right fc-9 fs-13 pr15"></view>
 				</view>
-				<div class="porducts">
-					<div class="pro-div pb5" v-for="item in data.lists.data" :key="item.id">
+				<view class="porducts">
+					<view class="pro-div" v-for="item in data.lists.data" :key="item.id">
 						<myform :ruleform="{}" :append="true" :vaildate="{}" :data="item"
 						 @callBack="goto(item.is_group ? '/pages/shop/product/show/index?id='+item.id :'/pages/shop/product/show/index?id='+item.id,1)">
-							<div slot="content">
-								<div class="pro-box bg-f">
-									<div class="cms_cover">
-										<image :src="item.firstCover" mode="aspectFill" />
-									</div>
-									<p class="cms_title Aname lh-20 fs-14 nowrap">{{ item.name }}</p>
-									<div class="cms_price ptb5 lh-20">
-										<view class="flex1 pr10 nowrap fc-9">
-											<span class="fs-12 price">￥</span>
-											<span class="fs-20 price">{{item.price.split(".")[0]}}</span>
-											<span class="fs-12 price">.{{item.price.split(".")[1]}}</span>
-											<span class="cprice fs-12 ml5" v-if="item.new_price">{{item.new_price}}</span>
+							<view slot="content">
+								<view class="pro-box bg-f lh-1_5">
+									<view class="cms_cover">
+										<image class="image" :src="item.firstCover" mode="aspectFill" />
+									</view>
+									<view class="cms_title Aname fs-14 nowrap">{{ item.name }}</view>
+									<view class="cms_price ptb5">
+										<view class="flex1 pr10 nowrap fs-12 price">
+											<text>￥</text>
+											<text class="fs-20">{{item.price.split(".")[0]}}</text>
+											<text>.{{item.price.split(".")[1]}}</text>
+											<text class="cprice ml5 fc-9" v-if="item.new_price">{{item.new_price}}</text>
 										</view>
-										<p class="fs-11 fc-9 pl5 lh-20 pt3" v-if="item.self_num_ > 0">已售<span class="Arial">{{ item.self_num_ }}</span>件</p>
-									</div>
-								</div>
-							</div>
+										<view class="fs-11 fc-9 pl5 pt3" v-if="item.self_num_ > 0">已售<text class="Arial">{{ item.self_num_ }}</text>件</view>
+									</view>
+								</view>
+							</view>
 						</myform>
-					</div>
-				</div>
+					</view>
+				</view>
 				<!--  -->
 			</view>
 		</view>
@@ -66,9 +67,9 @@
 </template>
 
 <script>
-	import "./index.css";
+	
 
-	import "@/public/css/shop/app.css"
+	
 	import tuiCountdown from "xiaozhu/uniapp/thorui/components/countdown/countdown"
 	export default {
 		data() {
@@ -112,3 +113,7 @@
 		}
 	}
 </script>
+<style>
+@import url("./index.css");
+@import url("@/public/css/shop/app.css");
+</style>
