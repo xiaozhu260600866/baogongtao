@@ -6,7 +6,7 @@
 			<weui-input v-model="ruleform.express_no" label="单号" type="text" name="express_no" datatype="require"></weui-input>
 		</view>
 		<view class="btn">
-			<dx-button type="primary" size="lg" block>确认</dx-button>
+			<dx-button type="primary" size="lg" block @click="submit">确认</dx-button>
 		</view>
 	</dx-diag>
 </template>
@@ -24,7 +24,25 @@ export default {
 		}
 	},
 	methods: {
-		
+		ajax(ruleform){
+			this.ruleform = ruleform;
+			this.express = true;
+		},
+		submit(){
+			if(!this.ruleform.express_name){
+				return this.getError("请输入快递号");
+			}
+			if(!this.ruleform.express_no){
+				return this.getError("请输入单号");
+			}
+			this.ruleform.type = 2;
+			this.postAjax("/admin/shop/order/modify",this.ruleform).then(msg=>{
+				if(msg.data.status == 2){
+					this.getParent(this).ajax();
+				}
+			})
+			
+		}
 	}
 }
 
