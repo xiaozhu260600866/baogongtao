@@ -13,7 +13,6 @@
 				</view>
 				<view class="location-info">
 					<view class="headPic">
-					
 						<image class="img" :src="wechatUser ? wechatUser.avatarUrl :'/static/images/news/01.jpg'"></image>
 					</view>
 					<view class="area">{{ruleform.area}}</view>
@@ -22,7 +21,7 @@
 				</view>
 				<!-- 如果是外出:start -->
 				<view class="sign_write" v-if="goout">
-					<weui-input v-model="ruleform.cover" type="upload" upurl='sign' allowUpLoadNum="4" name="cover" datatype="array" :sourceType="1"></weui-input>
+					<weui-input v-model="ruleform.cover" myclass="addCover" type="upload" upurl='sign' allowUpLoadNum="4" name="cover" datatype="array" :sourceType="1"></weui-input>
 					<view class="remark text-center fs-18" @click="goto('/pages/sign/index/layouts/remark',1)">添加备注...</view>
 				
 				</view>
@@ -101,9 +100,9 @@
 					address: '',
 					city: '',
 					type: 0,
-					cover:"",
 					remark:""
 				},
+				vaildate:{},
 				timeHour: '',
 				timeMinute: '',
 				show: false,

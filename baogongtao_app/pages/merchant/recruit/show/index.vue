@@ -139,10 +139,20 @@
 				</view>
 			</block>
 			<!-- 如果未有简历 -->
-			<dx-diag title="登录或注册简历" :titBold="false" :bottomOFF="false" ref="loginDiag">
+			<!-- <dx-diag title="登录或注册简历" :titBold="false" :bottomOFF="false" ref="loginDiag">
 				<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="wechatInfoCallBack">
 					<view slot="content">
 						<dx-button type="primary" size="lg" myclass="mt15 mlr5" icon="dxi-icon dxi-icon-wechat" block>微信账号快速登录</dx-button>
+					</view>
+				</myform>
+			</dx-diag> -->
+			
+			
+			<dx-diag title="包工淘，精准招聘" :bottomOFF="false" :open="true">
+				<view class="fs-16 pb15 pt10 text-center fc-3">一键授权，查看当前信息</view>
+				<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="wechatInfoCallBack">
+					<view slot="content">
+						<dx-button type="primary" size="lg" myclass="mt15 mlr15" block>确认</dx-button>
 					</view>
 				</myform>
 			</dx-diag>
