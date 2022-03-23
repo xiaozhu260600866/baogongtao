@@ -99,6 +99,13 @@
 		{
 			"path": "pages/user/login/index/index",
 			"style": {
+				"navigationBarTitleText": "在线注册",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/user/login/index/resume",
+			"style": {
 				"navigationBarTitleText": "简历",
 				"enablePullDownRefresh": true
 			}

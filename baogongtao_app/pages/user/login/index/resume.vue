@@ -2,25 +2,64 @@
 	<view>
 		<page ref="page"></page>
 		<view class="pb70 resume">
-			<view class="tips lh-1 fs-14 plr15 ptb20 lh-1">
-				<view class="fs-24 fw-bold mb15">在线注册</view>
+			<view class="step1 bg-f" v-if="step == 1">
+				<view class="tips lh-1 fs-14 plr15 ptb20 lh-1">
+					<view class="fs-24 fw-bold mb15">填写基本信息</view>
+					<view class="fs-17">快速创建简历，包工淘帮你升职加薪！</view>
+				</view>
+				<view class="dx-cell upload-head">
+					<view class="dx-cell_hd flex1">
+						<view class="dx-label fs-14">头像</view>
+						<view class="fs-16 fc-8 mt10">真实的头像更能吸引HR的关注</view>
+					</view>
+					<view class="dx-cell_bd">
+						<image class="img" :src="avatarUrl?avatarUrl:userInfo.avatarUrl" mode="aspectFill" @click="uploadAvatar" v-if="avatarUrl || userInfo.avatarUrl"></image>
+						<image class="img" src="https://www.baogongtao.com/images/user.png" mode="aspectFill" @click="uploadAvatar" v-else></image>
+						<view style="height: 1upx;overflow:hidden;width: 100rpx;">
+							<avatar @upload="avatarUploaded" ref="avatar"></avatar>
+						</view>
+					</view>
+				</view>
+				<weui-input v-model="ruleform.phone" label="手机" placeholder="请一键授权手机号" type="text" name="phone" datatype="require"
+				 :disabled="false" block>
+					<view slot="right" class="sq-nav">
+						<button type="primary" size="mini" class="plr5" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">一键授权</button>
+					</view>
+				</weui-input>
+				<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名" type="text" name="name"
+				 datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.sex" label="性别" name="sex" changeField="value" type="radio" dataKey="sexsArr" datatype="require"
+				 :radioType="true" myclass="sex" right></weui-input>
+				<weui-input v-model="ruleform.birthday" startDate="1920-01-01" label="出生年月" type="date" name="birthday" datatype="require"
+				 emptyValue block></weui-input>
+				<weui-input v-model="ruleform.education" label="最高学历" type="select" name="education" dataKey="educationArr"
+				 changeField="value" block></weui-input>
+				<weui-input v-model="ruleform.experience" label="工作经验" name="experience" changeField="value" type="select" dataKey="experienceYear"
+				 datatype="require" placeholder="请选择工作年份如：5年" block></weui-input>
+				<dxftButton type="primary" size="lg" round myclass="big-btn" @click="submit(1)">下一步</dxftButton>
 			</view>
-			<weui-input v-model="ruleform.phone" label="手机" placeholder="请一键授权手机号" type="text" name="phone" datatype="require"
-			 :disabled="false">
-				<view slot="right" class="sq-nav">
-					<button type="primary" size="mini" class="plr5" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">一键授权</button>
-				</view>
-			</weui-input>
-			<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名" type="text" name="name"
-			 datatype="require"></weui-input>
-			<dx-button type="primary" size="lg" myclass="big-btn m20" block round @click="$refs.successDiag.thisDiag = true">提交</dx-button>
-			<dx-diag :bottomOFF="false" ref="successDiag">
-				<view class="content text-center fs-18 fw-bold ptb30">恭喜你，成为包工淘注册会员</view>
-				<view class="btn flex-center">
-					<dx-button myclass="mlr10" @click="goto('/pages/index/index',2)">返回</dx-button>
-					<dx-button myclass="mlr10" block type="primary" @click="goto('/pages/user/login/index/resume',1)">注册简历</dx-button>
-				</view>
-			</dx-diag>
+			<view class="stpe2 bg-f" v-if="step == 2">
+				<!-- <view class="tips flex-between flex-middle lh-1 fs-14 fc-red plr15 ptb12">
+					<view>距离调薪职位又近了一步哦！</view>
+					<view class="dxi-icon dxi-icon-off fs-12"></view>
+				</view> -->
+				<view class="fs-16 fc-9 plr15 ptb10">完善的简介更容易获得HR青睐！</view>
+				<weui-input v-model="ruleform.position" label="期望职位" splitWord="/" name="position" type="manyselect" dataKey="positionData" changeField="value"
+				 datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.industry" label="期望行业" splitWord="/" name="industry" type="manyselect" dataKey="industryData" changeField="value"
+				 datatype="require" block></weui-input>
+				<dx-address v-model="ruleform.address" labeltxt="工作城市" :emptyValue="true" datatype="require" ref="address" :addressHidden="true" 
+				 block></dx-address>
+				<weui-input v-model="ruleform.salary" label="薪资要求" name="salary" changeField="value" type="manyselect" dataKey="emolumentArr"
+				 datatype="require" block splitWord="-"></weui-input>
+				<weui-input v-model="ruleform.apply_status" label="求职状态" name="apply_status" type="select" changeField="value"
+				 dataKey="applyStatusArr" datatype="require" block></weui-input>
+				<weui-input v-model="ruleform.remark" myclass="textarea" label="个人简介" placeholder="我主要负责***工作，取得***结果；具体工作为：1、负责***；2、参与***；3、完成***" type="textarea" name="remark" block></weui-input>
+				<dxftButton type="primary" size="lg" myclass="big-btn" round @click="submit(2)">提交</dxftButton>
+			</view>
+			<view v-if="step == 3">
+				<dx-results txt="简历提交完成" @click="goto('/pages/user/index/index',2)" ></dx-results>
+			</view>
 		</view>
 	</view>
 </template>
@@ -30,7 +69,6 @@
 	import {mapState, mapMutations, mapActions} from 'vuex'
 	import { loginSentMsg, login, userinfo } from "@/api/user";
 	import dxResults from "doxinui/components/results/results"
-	import dxDiag from "doxinui/components/diag/diag"
 	import {
 		attributes,wechatUser
 	} from "@/api/base";
@@ -39,8 +77,7 @@
 		components: {
 			dxftButton,
 			avatar,
-			dxResults,
-			dxDiag
+			dxResults
 		},
 		data() {
 			return {
@@ -224,7 +261,6 @@
 	}
 </script>
 <style lang="scss">
-	page{background-color: #fff;}
 	@import "index.scss";
 	@import "xiaozhu/css/dx-input.css";
 </style>

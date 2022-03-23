@@ -33,6 +33,13 @@
 				 @click="location(detail.location_x,detail.location_y,detail.address)">
 				　　<view slot="right" class="right-box">{{ detail.address }}</view>
 				</dx-list-cell>
+				<dx-list-cell name="联系人" iconName="user-fill2" iconSize="18" iconColor="#1e97ff">
+				　　<view slot="right" class="right-box">{{ detail.charger_name }}</view>
+				</dx-list-cell>
+				<dx-list-cell name="联系电话" iconName="tel-fill2" iconSize="18" iconColor="#1e97ff"
+				 @click="phone(detail.charger_phone)">
+				　　<view slot="right" class="right-box">{{ detail.charger_phone }}</view>
+				</dx-list-cell>
 			</view>
 			<view id="show_footer">
 				<view class="left plr8">
@@ -49,9 +56,9 @@
 					<view class="r-nav">
 						<view class="r-item r-item-primary" @click="phone(detail.charger_phone)">一键拨号</view>
 					</view>
-					<view class="r-nav">
+					<!-- <view class="r-nav">
 						<view class="r-item r-item-red" @click="location(detail.location_x,detail.location_y,detail.address)">一键导航</view>
-					</view>
+					</view> -->
 				</view>
 			</view>
 		</view>

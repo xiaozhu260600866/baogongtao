@@ -6,8 +6,8 @@
 				<!-- <view class="head-bg">
 					<image class="img w-b100 flex" mode="widthFix" src="/static/images/user-bg.jpg"></image>
 				</view> -->
-				<view class="utop">
-					<view class="uinfo" @click="wechatUser ? goto('/pages/user/login/index/index',1):$refs.loginDiag.thisDiag = true" v-if="!userInfo">
+				<view class="utop"><!-- $refs.loginDiag.thisDiag = true -->
+					<view class="uinfo" @click="wechatUser ? goto('/pages/user/login/index/resume',1):wechatInfoCallBack" v-if="!userInfo">
 						<view class="header-img nouser">
 							<image class="img" :src="wechatUser ? wechatUser.avatarUrl : 'https://www.baogongtao.com/images/user-w.png'" />
 						</view>
@@ -210,7 +210,11 @@
 				
 				this.wechatUser = uni.getStorageSync("userInfo");
 			},
-			wechatInfoCallBack(userInfo){
+			// wechatInfoCallBack(userInfo){
+			// 	this.wechatUser = userInfo;
+			// 	return this.linkTo("/pages/user/login/index/index",1);
+			// },
+			wechatInfoCallBack(){
 				this.wechatUser = userInfo;
 				return this.linkTo("/pages/user/login/index/index",1);
 			},

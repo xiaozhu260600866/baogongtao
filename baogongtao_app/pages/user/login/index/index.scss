@@ -42,8 +42,10 @@
 .resume{
 	::v-deep .dx-cell{
 		font-size: 36rpx!important;
-		.dx-cell_hd{
-			.dx-label{font-size: 30rpx;margin-bottom: 10rpx;}
+		&.dx-cell_block{
+			.dx-cell_hd{
+				.dx-label{font-size: 30rpx;margin-bottom: 10rpx;}
+			}
 		}
 		.dx-cell_bd{
 			.dx-input{font-size: 36rpx!important;}
