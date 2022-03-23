@@ -41,7 +41,7 @@
 		components:{dxTag},
 		data() {
 			return {
-				formAction: '/api/user/lists?role=12&industry_not_null=1',
+				formAction: '/api/user/lists?role=12&industry_not_null=1&company_null=1',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),

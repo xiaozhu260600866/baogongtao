@@ -39,7 +39,7 @@
 		components:{dxftButton},
 		data() {
 			return {
-				formAction: '/shop/dis/do-money',
+				formAction: '/api/dis/do-money',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
@@ -96,7 +96,7 @@
 		},
 		methods: {
 			ajax() {
-				this.getAjax(this).then(msg => {
+				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
 					console.log(this.data);
 				});
 			},
@@ -104,6 +104,7 @@
 				this.toggleDiag();
 			},
 			formSubmit(e) {
+				this.ruleform.token = uni.getStorageSync('token');
 				this.postAjax(this.formAction, this.ruleform).then(msg=>{
 					if (msg.data.status == 2) {
 						setTimeout(() => {

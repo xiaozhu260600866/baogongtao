@@ -203,7 +203,7 @@
 			ajax() {
 				this.getAjax(this).then(msg => {
 					console.log(this.data);
-					this.setTitle(msg.data.product.name)
+					this.setTitle(msg.product.name)
 				});
 			},
 			addCart() {

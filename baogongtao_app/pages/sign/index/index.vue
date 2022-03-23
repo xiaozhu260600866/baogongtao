@@ -159,11 +159,9 @@
 			this.ajax();
 		},
 		onShow(){
-			if(uni.getStorageSync('cover')){
+			if(uni.getStorageSync('remark')){
 				this.ruleform.remark = uni.getStorageSync('remark');
-				this.ruleform.cover = uni.getStorageSync('cover');
 				uni.removeStorageSync('remark');
-				uni.removeStorageSync('cover');
 			};
 		},
 		methods: {
@@ -193,7 +191,7 @@
 			},
 			signIn(type) {
 				
-				if (this.ruleform.sign_type == 1 && this.ruleform.cover.length == 0) {
+				if (this.ruleform.cover.length == 0) {
 					return this.getError("请拍照上传打卡图片");
 				}
 				this.ruleform.type = type;

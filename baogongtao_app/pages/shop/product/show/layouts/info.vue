@@ -69,6 +69,10 @@ export default {
         addCartAjax(data) {
             let showType = this.showType;
 			data.token =  uni.getStorageSync('token');
+			if(!data.token){
+				//this.getError("请注册简历");
+				return this.goto("/pages/user/login/index/index");	
+			}
             let url = "";
             if (showType == "addCart") {
                 url = "/shop/cart/to-add-cart"

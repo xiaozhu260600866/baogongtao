@@ -3,7 +3,7 @@
 		<page ref="page"></page>
 		<view class="bg-f" v-if="data.show">
 			<block v-if="applySuccess == false">
-				
+
 				<!-- <view class="banner">
 					<image class="flex w-b100" src="/static/images/news/03.jpg" mode="widthFix"></image>
 				</view> -->
@@ -33,10 +33,12 @@
 						<view class="flex-end">
 							<view class="fs-16 fw-bold">{{detail.get_company.charger_name}}</view>
 							<view class="fs-15 fc-3 mt8 pl10" v-if="detail.get_company.get_user.get_user_info.position">
-							{{detail.get_company.get_user.get_user_info.position}}</view>
+								{{detail.get_company.get_user.get_user_info.position}}
+							</view>
 						</view>
-						
-						<view class="fs-15 fc-3 mt8" v-if="detail.get_company.charger_phone">{{detail.get_company.charger_phone}}</view>
+
+						<view class="fs-15 fc-3 mt8" v-if="detail.get_company.charger_phone">
+							{{detail.get_company.charger_phone}}</view>
 					</view>
 				</view>
 				<view class="company-info">
@@ -146,21 +148,22 @@
 					</view>
 				</myform>
 			</dx-diag> -->
-			
-			
-			<dx-diag title="包工淘，精准招聘" :bottomOFF="false" :open="true">
-				<view class="fs-16 pb15 pt10 text-center fc-3">一键授权，查看当前信息</view>
-				<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="wechatInfoCallBack">
-					<view slot="content">
-						<dx-button type="primary" size="lg" myclass="mt15 mlr15" block>确认</dx-button>
-					</view>
-				</myform>
-			</dx-diag>
-			
+
+
+
+
 			<!-- 如果已有简历 -->
 			<dx-results txt="申请成功" @click="goto('/pages/index/index',2)" v-if="applySuccess"></dx-results>
 		</view>
 		<shareResume ref="shareShow" :data="detail" :qrcodeFilePath="qrcodeFilePath" :dis="dis"></shareResume>
+		<dx-diag title="包工淘，精准招聘" :bottomOFF="false" ref="wechatAuth" @callBack="goto('/pages/index/index',2)">
+			<view class="fs-16 pb15 pt10 text-center fc-3">一键授权，查看当前信息</view>
+			<myform :ruleform="ruleform" :vaildate="vaildate" :append="true" @callBack="wechatInfoCallBack">
+				<view slot="content">
+					<dx-button type="primary" size="lg" myclass="mt15 mlr15" block>确认</dx-button>
+				</view>
+			</myform>
+		</dx-diag>
 	</view>
 </template>
 
@@ -169,34 +172,39 @@
 	import dxResults from "doxinui/components/results/results"
 	import shareResume from "@/components/poster/shareResume"
 	export default {
-		components:{dxDiag,dxResults,shareResume},
+		components: {
+			dxDiag,
+			dxResults,
+			shareResume
+		},
 		data() {
 			return {
 				formAction: '/api/company/recruit-store',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
-				detail:{},
-				ruleform:{},
-				qrcodeFilePath:'',
-				company:{
-					
+				detail: {},
+				ruleform: {},
+				qrcodeFilePath: '',
+				company: {
+
 				},
-				intro:{
-					info:'公司位于广东中山市火炬高新技术产业开发区内，公司成立于1998年7月2日，1998年12月28日于中山市火炬开发区举行破土典礼，兴建厂房，1999年11月1日顺利完成厂房、写字楼及宿舍的兴建及机器设备的进口与安装，并正式开始量产。本公司是由西萨摩亚富理东公司投资，注册资本1100万美元，总投资1800美元。产品包括桌上型计算机机壳及笔记型电脑前组装（为宏碁计算机公司配套产品），具有精密模具、塑料成型、五金冲压、烤漆及组立等专业制造能力',
-					money:'五金部:20元/小时;涂装、注塑、组装:17元/小时;夜班补贴10元/晚',
-					require:'16-48周岁，男女不限;主要生产笔记本电脑外壳。',
-					condition:'可凭厂牌于厂内超市每日消费25块钱（月底工资扣)。',
-					prepare:'携带本人身份证原件，需要体检，体检费40元，做满7天报销。',
-					address:'江门市蓬江区建设路82号金山大厦之二10楼1001室'
+				intro: {
+					info: '公司位于广东中山市火炬高新技术产业开发区内，公司成立于1998年7月2日，1998年12月28日于中山市火炬开发区举行破土典礼，兴建厂房，1999年11月1日顺利完成厂房、写字楼及宿舍的兴建及机器设备的进口与安装，并正式开始量产。本公司是由西萨摩亚富理东公司投资，注册资本1100万美元，总投资1800美元。产品包括桌上型计算机机壳及笔记型电脑前组装（为宏碁计算机公司配套产品），具有精密模具、塑料成型、五金冲压、烤漆及组立等专业制造能力',
+					money: '五金部:20元/小时;涂装、注塑、组装:17元/小时;夜班补贴10元/晚',
+					require: '16-48周岁，男女不限;主要生产笔记本电脑外壳。',
+					condition: '可凭厂牌于厂内超市每日消费25块钱（月底工资扣)。',
+					prepare: '携带本人身份证原件，需要体检，体检费40元，做满7天报销。',
+					address: '江门市蓬江区建设路82号金山大厦之二10楼1001室'
 				},
 				collect: false,
 				type: 1,
-				dis:'',
+				dis: '',
 				applySuccess: false,
 			}
 		},
 		onLoad() {
+			
 			this.ajax();
 		},
 		onReachBottom() {
@@ -210,46 +218,52 @@
 			return this.shareSource(this, '包工淘');
 		},
 		methods: {
-			wechatInfoCallBack(userInfo){
-				this.wechatUser = userInfo;
-				return this.linkTo("/pages/user/login/index/index",1);
+			wechatInfoCallBack(userInfo) {
+				if( uni.getStorageSync("userInfo")){
+					this.$refs.wechatAuth.thisDiag = false;
+					this.ajax();
+				}
 			},
-			checkTo(){
-				if(this.type == 1){
+			checkTo() {
+				if (this.type == 1) {
 					this.ruleform.token = uni.getStorageSync('token');
 					this.ruleform.company_id = this.detail.get_company.id;
-					this.ruleform.recruit_id =  this.detail.id;
-					this.vaildForm(this, res => {	
-						if(res){
+					this.ruleform.recruit_id = this.detail.id;
+					this.vaildForm(this, res => {
+						if (res) {
 							this.postAjax("/api/company/recruit-record-store", this.ruleform).then(msg => {
 								if (msg.data.code == 0) {
 									return this.applySuccess = true;
 								}
 							});
 						}
-						
+
 					})
-					
+
 					// return this.linkTo("/pages/merchant/recruit/record/index?recruit_id="+this.data.data.data.id,1);
-					
-				}else{
+
+				} else {
 					return this.$refs.loginDiag.thisDiag = true;
 				}
 			},
 			ajax() {
 				let data = {};
-				if(uni.getStorageSync("token")){
-					data.token= uni.getStorageSync("token");
+				if (uni.getStorageSync("token")) {
+					data.token = uni.getStorageSync("token");
 				}
-				this.getAjax(this,data).then(msg => {
+				this.getAjax(this, data).then(msg => {
 					this.detail = msg.data.data;
 					this.qrcodeFilePath = msg.data.path
 					this.dis = msg.data.dis;
+					if (!uni.getStorageSync('userInfo')) {
+						console.log(this.$refs)
+						this.$refs.wechatAuth.thisDiag = true;
+					} 
 				});
 			}
 		}
 	}
 </script>
 <style lang="scss">
-@import "index.scss";
+	@import "index.scss";
 </style>

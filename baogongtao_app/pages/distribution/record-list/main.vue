@@ -1,7 +1,7 @@
 <template>
 	<view :class="status==0?'height100':''">
 		<page :parentData="data" :formAction="formAction"></page>
-		<view><!-- v-if="data.show" -->
+		<view v-if="data.show"><!-- v-if="data.show" -->
 			<dx-tabs :tabs="[
 				{value: 0,name: '达人提现'},
 				{value: 1,name: '提现记录'}
@@ -9,7 +9,7 @@
 			<block v-if="status == 0">
 				<view class="count bg-f text-center fs-14 pt20 pb40">
 					<view class="txt">可提现金额</view>
-					<view class="Arial fw-bold mtb8">￥<text class="fs-28">0.00</text></view>
+					<view class="Arial fw-bold mtb8">￥<text class="fs-28">{{data.dis.amount}}</text></view>
 					<dx-button type="primary" myclass="plr60" round txtColor="#623d04" @click="goto('/pages/distribution/domoney/main',1)">提现</dx-button>
 				</view>
 				<view class="explain bg-f p15">
@@ -23,7 +23,7 @@
 				</view>
 			</block>
 			<view class="mt8" v-if="status == 1">
-				<view class="dis-record-list plr15 ptb10 mb8 bg-f" v-for="item in lists">
+				<view class="dis-record-list plr15 ptb10 mb8 bg-f" v-for="item in data.lists.data">
 					<view class="group fs-15 flex-between">
 						<view>提现</view>
 						<view class="Arial">-{{item.amount}}</view>
@@ -35,7 +35,7 @@
 				</view>
 			</view>
 			
-			<hasMore :parentData="data" source="nodata" message="暂无提现记录"></hasMore>
+			<hasMore :parentData="data" source="nodata" message="暂无提现记录" v-if="status == 1"></hasMore>
 		</view>
 	</view>
 </template>
@@ -46,7 +46,7 @@
 		components:{dxTabs},
 		data() {
 			return {
-				formAction: '/shop/dis/come-out-infos',
+				formAction: '/api/dis/come-out-infos',
 				mpType: 'page', //用来分清父和子组件
 				data: this.formatData(this),
 				getSiteName: this.getSiteName(),
@@ -67,11 +67,11 @@
 			this.shareSource(this, '商城');
 		},
 		onLoad(options) {
-			//this.ajax();
+			this.ajax();
 		},
 		methods: {
 			ajax() {
-				this.getAjax(this).then(msg => {
+				this.getAjax(this,{token:uni.getStorageSync('token')}).then(msg => {
 					console.log(this.data);
 				});
 			}

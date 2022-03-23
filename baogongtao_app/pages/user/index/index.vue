@@ -152,6 +152,7 @@
 		},
 		methods: {
 			init(){
+				this.show = false;
 				if(uni.getStorageSync('sysUser')){
 					userinfo({token:uni.getStorageSync('token')}).then((res)=>{
 						this.pushing = res.data.push;
