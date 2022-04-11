@@ -20,7 +20,7 @@
 					
 				</view>
 				<!-- 如果是外出:start -->
-				<view class="sign_write" v-if="goout">
+				<view class="sign_write" >
 					<weui-input v-model="ruleform.cover" myclass="addCover" type="upload" upurl='sign' allowUpLoadNum="4" name="cover" datatype="array" :sourceType="1"></weui-input>
 					<view class="remark text-center fs-18" @click="goto('/pages/sign/index/layouts/remark',1)">添加备注...</view>
 				

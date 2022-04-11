@@ -147,10 +147,10 @@
 			wechatUser().then(res=>{
 				this.userInfo = uni.getStorageSync('userInfo')
 			})
-			// userinfo({token:uni.getStorageSync('token')}).then((res)=>{
-			// 	this.ruleform = res.data.user.get_user_info;
+			userinfo({token:uni.getStorageSync('token')}).then((res)=>{
+				this.ruleform = res.data.user.get_user_info;
 
-			// })
+			})
 			//this.ajax();
 		},
 		methods: {

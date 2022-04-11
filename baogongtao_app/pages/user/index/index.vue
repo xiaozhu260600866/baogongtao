@@ -7,16 +7,20 @@
 					<image class="img w-b100 flex" mode="widthFix" src="/static/images/user-bg.jpg"></image>
 				</view> -->
 				<view class="utop"><!-- $refs.loginDiag.thisDiag = true -->
-					<view class="uinfo" @click="wechatUser ? goto('/pages/user/login/index/resume',1):wechatInfoCallBack" v-if="!userInfo">
-						<view class="header-img nouser">
-							<image class="img" :src="wechatUser ? wechatUser.avatarUrl : 'https://www.baogongtao.com/images/user-w.png'" />
+					<myform :ruleform="ruleform" :vaildate="vaildate" :append="true"  @callBack="goto('/pages/user/login/index/index',1)" v-if="!userInfo">
+						<view slot="content">
+							<view class="uinfo">
+								<view class="header-img nouser">
+									<image class="img" :src="wechatUser ? wechatUser.avatarUrl : 'https://www.baogongtao.com/images/user-w.png'" />
+								</view>
+								<view class="fc-white lh-1_5 pl15">
+									<view class="fs-22">{{wechatUser ? wechatUser.nickName : '未登录/注册'}}</view>
+									<view class="fs-12" v-if="!wechatUser">点击头像可登录/注册</view>
+									<view class="editIntro fs-15 mt5" v-if="wechatUser"><text class="dxi-icon dxi-icon-edit2 fs-13 mr5"></text>我的在线简历</view>
+								</view>
+							</view>
 						</view>
-						<view class="fc-white lh-1_5 pl15">
-							<view class="fs-22">{{wechatUser ? wechatUser.nickName : '未登录/注册'}}</view>
-							<view class="fs-12" v-if="!wechatUser">点击头像可登录/注册</view>
-							<view class="editIntro fs-15 mt5" v-if="wechatUser"><text class="dxi-icon dxi-icon-edit2 fs-13 mr5"></text>我的在线简历</view>
-						</view>
-					</view>
+					</myform>
 					
 					<view class="uinfo" v-else @click="goto('/pages/user/talents/show',1)">
 						<view class="header-img">
@@ -215,6 +219,7 @@
 			// 	return this.linkTo("/pages/user/login/index/index",1);
 			// },
 			wechatInfoCallBack(){
+				console.log("a");
 				this.wechatUser = userInfo;
 				return this.linkTo("/pages/user/login/index/index",1);
 			},

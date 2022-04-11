@@ -13,7 +13,7 @@
 			</weui-input>
 			<weui-input v-model="ruleform.name" label="姓名" placeholder="请填写真实姓名" type="text" name="name"
 			 datatype="require"></weui-input>
-			<dx-button type="primary" size="lg" myclass="big-btn m20" block round @click="$refs.successDiag.thisDiag = true">提交</dx-button>
+			<dx-button type="primary" size="lg" myclass="big-btn m20" block round @click="submit(2)">提交</dx-button>
 			<dx-diag :bottomOFF="false" ref="successDiag">
 				<view class="content text-center fs-18 fw-bold ptb30">恭喜你，成为包工淘注册会员</view>
 				<view class="btn flex-center">
@@ -184,10 +184,12 @@
 										
 											//if(userInfo.data.status!=1) return this.timeoutLinkTo(this,'/pages/user/authenticate/index');
 											//return this.timeoutLinkTo(this,'/pages/user/authenticate/index');
-											this.getSuccess('简历提交完成');
+											//this.getSuccess('简历提交完成');
 											 setTimeout(()=>{
-													return this.linkTo("/pages/user/index/index", 2);
+													return this.$refs.successDiag.thisDiag = true;
+													//return this.linkTo("/pages/user/index/index", 2);
 											 },1000)
+											 return ;
 										
 										} else if (res.data.role == 6) {
 											let userInfo = {
