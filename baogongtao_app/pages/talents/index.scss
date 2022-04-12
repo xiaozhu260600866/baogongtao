@@ -39,7 +39,7 @@
 		flex:1;padding-left: 30rpx;line-height: 1;
 		.name{font-size: 44rpx;font-weight: bold;}
 		.tag{
-			display: flex;align-items: center;margin-top: 30rpx;
+			display: flex;align-items: center;margin-top: 30rpx;flex-wrap: wrap;
 			.item{
 				font-size: 28rpx;padding-right: 12rpx;margin-right: 12rpx;position: relative;
 				&::after{content: '';display: block;position: absolute;top: 5%;right: 0;height: 90%;width: 2rpx;background-color: #999;}

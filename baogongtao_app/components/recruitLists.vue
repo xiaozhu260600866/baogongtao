@@ -3,8 +3,8 @@
 		<view class="jobs_item p15 bg-f mb8" v-for="(v,key) in data" v-if="v.get_company">
 			<view @click="linkTo('/pages/merchant/recruit/show/index?id='+v.id,1)">
 				<view class="flex-between fs-17 fw-bold">
-					<view class="position fc-3">{{v.job_position}}</view>
-					<view class="main-color Arial">{{v.salary}}</view>
+					<view class="position fc-3 pr15">{{v.job_position}}</view>
+					<view class="main-color Arial flex1 text-right">{{v.salary}}</view>
 				</view>
 				<view class="info fs-15 flex-middle lh-1 mt8 fc-6" v-if="v.get_company">
 					<view class="tag mr10">{{v.get_company.name}}</view>
@@ -17,9 +17,9 @@
 				<view class="userInfo mt10 flex-middle fs-14" v-if="v.get_company">
 					<image class="head" :src="v.get_company.logoMinUrl" mode="aspectFill"></image>
 					<view class="left flex1 ml10 flex-middle">
-						<view class="name">{{v.get_company.charger_name ? v.get_company.charger_name :'暂无' }}</view>
-						<view class="dot mlr5"></view>
-						<view class="position">{{v.get_company.position ? v.get_company.position :'暂无' }}</view>
+						<view class="name">{{v.get_company.charger_name }}</view>
+						<view class="dot mlr5" v-if="v.get_company.position"></view>
+						<view class="position" v-if="v.get_company.position">{{v.get_company.position }}</view>
 					</view>
 					<view class="place fc-b" v-if="v.get_company.province">{{v.get_company.city}} {{v.get_company.area}}</view>
 				</view>

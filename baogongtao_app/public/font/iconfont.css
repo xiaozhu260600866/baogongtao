@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'iconfont';  /* Project id 1759642 */
-  src: url('//at.alicdn.com/t/font_1759642_gfs2946sh1a.woff2?t=1645696642783') format('woff2'),
-       url('//at.alicdn.com/t/font_1759642_gfs2946sh1a.woff?t=1645696642783') format('woff'),
-       url('//at.alicdn.com/t/font_1759642_gfs2946sh1a.ttf?t=1645696642783') format('truetype');
+  src: url('//at.alicdn.com/t/font_1759642_4hwq3eaijtk.woff2?t=1649649199213') format('woff2'),
+       url('//at.alicdn.com/t/font_1759642_4hwq3eaijtk.woff?t=1649649199213') format('woff'),
+       url('//at.alicdn.com/t/font_1759642_4hwq3eaijtk.ttf?t=1649649199213') format('truetype');
 }
 
 /* 3314024140@qq.com  dx3229010  包工淘 */
@@ -20,6 +20,7 @@
 .icon-right:before{content: "\f302";}/* 右 */
 .icon-n-right:before{content: "\f305";}/* 右 */
 .icon-add:before{content: "\e85a";}/* 加 */
+.icon-city:before{content: "\e719";}/* 城市 */
 
 .icon-man:before{content: "\e601";}/* 男 */
 .icon-women:before{content: "\e602";}/* 女 */

@@ -50,10 +50,14 @@
 	}
 }
 
+// 打卡提示
+.sign_tips{text-align: center;font-size: 34rpx;padding-bottom: 16rpx;}
+
+// 打卡#675B45#ECB514
 .sign_time{
-	display: flex;justify-content: center;align-items: center;margin: 0 auto;width: 240rpx;height: 240rpx;border-radius: 50%;border: 10rpx #ECB514 solid;line-height: 1;color: #675B45;margin-top: 80rpx;flex-direction: column;
-	.time{font-size: 60rpx;font-weight: bold;}
-	.txt{font-size: 30rpx;margin-top: 12rpx;}
+	display: flex;justify-content: center;align-items: center;margin: 0 auto;width: 240rpx;height: 240rpx;border-radius: 50%;line-height: 1;color: #fff;flex-direction: column;line-height: 1;background-color: $color-primary;
+	.time{font-size: 44rpx;margin-bottom: 12rpx;}
+	.txt{font-size: 60rpx;font-weight: bold;}
 }
 
 

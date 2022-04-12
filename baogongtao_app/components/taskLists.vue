@@ -5,7 +5,7 @@
 				<view class="name">{{ item.name }}</view>
 				<view class="price"><text class="Arial">{{ item.budget }}</text>元</view>
 				<view class="gray"><text class="iconfont icon-location-o"></text>{{ item.companyName }}</view>
-				<view class="gray"><text class="iconfont icon-location-o"></text>{{ item.province }} - {{ item.city }}</view>
+				<view class="gray"><text class="iconfont icon-city"></text>{{ item.province }} - {{ item.city }}</view>
 				<view class="gray Arial"><text class="iconfont icon-time-o"></text>{{ item.started_date }} 至 {{ item.ended_date }}</view>
 				<view class="nav">
 					<tyt-navigator :wxAuth="true" @callBack="linkTo('/pages/user/task/show?id=' + item.id,1)" v-if="self">

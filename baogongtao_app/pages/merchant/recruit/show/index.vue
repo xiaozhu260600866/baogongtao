@@ -9,8 +9,8 @@
 				</view> -->
 				<view class="recruit-info">
 					<view class="top lh-1 flex-between flex-middle">
-						<view class="name fs-26 fw-bold flex1 mr15">{{detail.job_position}}</view>
-						<view class="salary fs-18 main-color Arial">{{detail.salary}}</view>
+						<view class="name fs-26 fw-bold mr15">{{detail.job_position}}</view>
+						<view class="flex1 salary fs-18 main-color Arial text-right">{{detail.salary}}</view>
 					</view>
 					<view class="tag flex-middle flex-wrap lh-1 mt15 fs-14">
 						<view class="item">
@@ -19,12 +19,15 @@
 						</view>
 						<view class="item">
 							<text class="icon iconfont icon-recruit-experience"></text>
-							<text class="txt">{{detail.experience}}</text>
+							<text class="txt">工作经验{{detail.experience}}</text>
 						</view>
 						<view class="item">
 							<text class="icon iconfont icon-recruit-education"></text>
 							<text class="txt">{{detail.education}}</text>
 						</view>
+					</view>
+					<view class="condition">
+						<view class="lab" v-for="item in getTag(v)">{{item}}</view>
 					</view>
 				</view>
 				<view class="charger-info flex-middle">
@@ -218,6 +221,17 @@
 			return this.shareSource(this, '包工淘');
 		},
 		methods: {
+			getTag(v){
+				let arr = [];
+				// arr.push(v.salary)
+				let tag = this.detail.job_tab ? this.detail.job_tab.split(",") :[ ];
+				if(tag.length){
+					tag.forEach(e=>{
+						arr.push(e)
+					})	
+				}
+				return arr;
+			},
 			wechatInfoCallBack(userInfo) {
 				if( uni.getStorageSync("userInfo")){
 					this.$refs.wechatAuth.thisDiag = false;

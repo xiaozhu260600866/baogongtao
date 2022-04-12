@@ -26,18 +26,19 @@
 				
 				</view>
 				<!-- 如果是外出:end -->
-				<view class="sign_time" :class="[data.count < 2?'mt50':'']" @click="signIn()">
+				<view class="sign_tips" :class="[data.count < 2?'mt50':'mt40']">
+					<!-- 如果是外出 -->
+					<view v-if="goout">第<text class="plr2 Arial">{{data.count +1 }}</text>次外出打卡</view>
+					<!-- 如果是上下班 -->
+					<view v-else-if="data.count < 2">{{up?'上':'下'}}班打卡</view>
+				</view>
+				<view class="sign_time" @click="signIn()">
 					<view class="time">
 						<text class="Arial">{{data.h}}</text>
 						<text class="plr3">:</text>
 						<text class="Arial">{{data.m}}</text>
 					</view>
-					<view class="txt">
-						<!-- 如果是外出 -->
-						<view v-if="goout">第<text class="plr2 Arial">{{data.count +1 }}</text>次外出</view>
-						<!-- 如果是上下班 -->
-						<view v-else-if="data.count < 2">{{up?'上':'下'}}班打卡</view>
-					</view>
+					<view class="txt">打卡</view>
 				</view>
 				<view class="sign_record" @click="goto('/pages/sign/lists/index',1)">打卡记录</view>
 			</view>
